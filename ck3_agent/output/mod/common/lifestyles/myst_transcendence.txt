@@ -1,0 +1,18 @@
+myst_transcendence = {
+	lifestyle = learning_lifestyle
+	tree = mysticism
+	position = { 4 4 }
+	icon = myst_transcendence
+
+	parent = myst_astral_travel
+
+	effect = {
+		add_character_modifier = {
+			modifier = myst_transcendence_modifier
+		}
+	}
+
+	ai_will_do = {
+		base = 100
+	}
+}

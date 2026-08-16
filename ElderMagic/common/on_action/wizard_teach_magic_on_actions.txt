@@ -1,0 +1,11 @@
+﻿wizard_teach_magic_success = {
+	random_events = {
+		100 = wizard_teach_magic.0001
+	}
+}
+
+wizard_teach_magic_failure = {
+	random_events = {
+		100 = wizard_teach_magic.0002
+	}
+}

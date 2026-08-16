@@ -1,0 +1,150 @@
+﻿wizard_mana_bar_visible = {
+	is_shown = {
+		always = yes
+	}
+}
+
+# Fires when the mana bar window first shows (game start / save load).
+# Sets wizard_mana_start_year in player character scope so wizard_mana_total
+# can compute the accumulated total without any periodic event hooks.
+wizard_mana_start_init = {
+	is_shown = { always = yes }
+	effect = {
+		if = {
+			limit = { NOT = { has_global_variable = wizard_mana_start_year } }
+			set_global_variable = { name = wizard_mana_start_year value = current_year }
+		}
+	}
+}
+
+wizard_mana_has_value = {
+	is_shown = {
+		has_global_variable = wizard_mana_start_year
+	}
+}
+
+wizard_mana_missing_value = {
+	is_shown = {
+		NOT = { has_global_variable = wizard_mana }
+	}
+}
+
+wizard_mana_seg_1_visible = {
+	is_shown = {
+		has_global_variable = wizard_mana_start_year
+		wizard_mana_total >= 100
+	}
+}
+wizard_mana_seg_2_visible = {
+	is_shown = {
+		has_global_variable = wizard_mana_start_year
+		wizard_mana_total >= 200
+	}
+}
+wizard_mana_seg_3_visible = {
+	is_shown = {
+		has_global_variable = wizard_mana_start_year
+		wizard_mana_total >= 300
+	}
+}
+wizard_mana_seg_4_visible = {
+	is_shown = {
+		has_global_variable = wizard_mana_start_year
+		wizard_mana_total >= 400
+	}
+}
+wizard_mana_seg_5_visible = {
+	is_shown = {
+		has_global_variable = wizard_mana_start_year
+		wizard_mana_total >= 500
+	}
+}
+wizard_mana_seg_6_visible = {
+	is_shown = {
+		has_global_variable = wizard_mana_start_year
+		wizard_mana_total >= 600
+	}
+}
+wizard_mana_seg_7_visible = {
+	is_shown = {
+		has_global_variable = wizard_mana_start_year
+		wizard_mana_total >= 700
+	}
+}
+wizard_mana_seg_8_visible = {
+	is_shown = {
+		has_global_variable = wizard_mana_start_year
+		wizard_mana_total >= 800
+	}
+}
+wizard_mana_seg_9_visible = {
+	is_shown = {
+		has_global_variable = wizard_mana_start_year
+		wizard_mana_total >= 900
+	}
+}
+wizard_mana_seg_10_visible = {
+	is_shown = {
+		has_global_variable = wizard_mana_start_year
+		wizard_mana_total >= 1000
+	}
+}
+
+wizard_mana_popup_visible = {
+	is_shown = {
+		has_global_variable = wizard_mana_popup_open
+	}
+}
+
+wizard_mana_popup_toggle = {
+	is_shown = { always = yes }
+	effect = {
+		if = {
+			limit = { has_global_variable = wizard_mana_popup_open }
+			remove_variable = wizard_mana_popup_open
+		}
+		else = {
+			set_variable = { name = wizard_mana_popup_open value = 1 }
+		}
+	}
+}
+
+wizard_has_mana_trait_spark       = { is_shown = { has_trait = the_spark       } }
+wizard_has_mana_trait_conduit     = { is_shown = { has_trait = the_conduit     } }
+wizard_has_mana_trait_resonator   = { is_shown = { has_trait = the_resonator   } }
+wizard_has_mana_trait_vector      = { is_shown = { has_trait = the_vector      } }
+wizard_has_mana_trait_capacitor   = { is_shown = { has_trait = the_capacitor   } }
+wizard_has_mana_trait_dynamo      = { is_shown = { has_trait = the_dynamo      } }
+wizard_has_mana_trait_nexus       = { is_shown = { has_trait = the_nexus       } }
+wizard_has_mana_trait_singularity = { is_shown = { has_trait = the_singularity } }
+wizard_has_mana_trait_catalyst    = { is_shown = { has_trait = the_catalyst    } }
+wizard_has_mana_trait_horizon     = { is_shown = { has_trait = the_horizon     } }
+
+wizard_has_mana_trait_edu_1 = { is_shown = { has_trait = magic_education_1 } }
+wizard_has_mana_trait_edu_2 = { is_shown = { has_trait = magic_education_2 } }
+wizard_has_mana_trait_edu_3 = { is_shown = { has_trait = magic_education_3 } }
+wizard_has_mana_trait_edu_4 = { is_shown = { has_trait = magic_education_4 } }
+wizard_has_mana_trait_edu_5 = { is_shown = { has_trait = magic_education_5 } }
+
+wizard_has_no_mana_trait = {
+	is_shown = {
+		NOT = {
+			OR = {
+				has_trait = the_spark
+				has_trait = the_conduit
+				has_trait = the_resonator
+				has_trait = the_vector
+				has_trait = the_capacitor
+				has_trait = the_dynamo
+				has_trait = the_nexus
+				has_trait = the_singularity
+				has_trait = the_catalyst
+				has_trait = the_horizon
+				has_trait = magic_education_1
+				has_trait = magic_education_2
+				has_trait = magic_education_3
+				has_trait = magic_education_4
+				has_trait = magic_education_5
+			}
+	}
+}

@@ -1,0 +1,141 @@
+﻿l_english:
+ # ─── Decision menu entries ───────────────────────────────────────────────────
+ wizard_ascendant_decision_confirm:0 "Attempt the Ritual"
+
+ # ─── is_valid mastery requirement labels ────────────────────────────────────
+ wizard_lore_fire_mastery_requirement:0 "You have mastered the Lore of Fire (4 stars)"
+ wizard_lore_earth_mastery_requirement:0 "You have mastered the Lore of Earth (4 stars)"
+ wizard_lore_water_mastery_requirement:0 "You have mastered the Lore of Water (4 stars)"
+ wizard_lore_death_mastery_requirement:0 "You have mastered the Lore of Death (4 stars)"
+ wizard_lore_high_magic_mastery_requirement:0 "You have mastered the Lore of High Magic (4 stars)"
+
+ # ─── Ritual event option keys ────────────────────────────────────────────────
+ wizard_ascendant.ritual_success:0 "The ritual succeeded — I have transcended."
+ wizard_ascendant.ritual_failure:0 "The ritual failed. I must rest and try again."
+
+ wizard_ascendant_fire_decision:0 "Attempt Fire Ascension"
+ wizard_ascendant_fire_decision_desc:0 "You have mastered every facet of the Lore of Fire. With great focus and risk, you may attempt the ritual of Ascension — a chance to transcend ordinary mastery and become a true Ascendant of Fire.\n\n#low Chance of success: 20%–80%, scaling with Learning and magical education.#!"
+ wizard_ascendant_fire_decision_tooltip:0 "Success depends on your Learning and magical education."
+
+ wizard_ascendant_earth_decision:0 "Attempt Earth Ascension"
+ wizard_ascendant_earth_decision_desc:0 "You have mastered every facet of the Lore of Earth. With great focus and risk, you may attempt the ritual of Ascension and become a true Ascendant of Earth.\n\n#low Chance of success: 20%–80%, scaling with Learning and magical education.#!"
+ wizard_ascendant_earth_decision_tooltip:0 "Success depends on your Learning and magical education."
+
+ wizard_ascendant_water_decision:0 "Attempt Water Ascension"
+ wizard_ascendant_water_decision_desc:0 "You have mastered every facet of the Lore of Water. With great focus and risk, you may attempt the ritual of Ascension and become a true Ascendant of Water.\n\n#low Chance of success: 20%–80%, scaling with Learning and magical education.#!"
+ wizard_ascendant_water_decision_tooltip:0 "Success depends on your Learning and magical education."
+
+ wizard_ascendant_death_decision:0 "Attempt Death Ascension"
+ wizard_ascendant_death_decision_desc:0 "You have mastered every facet of the Lore of Death. With great focus and risk, you may attempt the ritual of Ascension and become a true Ascendant of Death.\n\n#low Chance of success: 20%–80%, scaling with Learning and magical education.#!"
+ wizard_ascendant_death_decision_tooltip:0 "Success depends on your Learning and magical education."
+
+ wizard_ascendant_high_magic_decision:0 "Attempt High Magic Ascension"
+ wizard_ascendant_high_magic_decision_desc:0 "You have mastered every facet of the Lore of High Magic. With great focus and risk, you may attempt the ritual of Ascension and become a true Ascendant of High Magic.\n\n#low Chance of success: 20%–80%, scaling with Learning and magical education.#!"
+ wizard_ascendant_high_magic_decision_tooltip:0 "Success depends on your Learning and magical education."
+
+ # Trait names and descriptions
+ trait_ascendant_lore_of_fire:0 "Master Fire Mage"
+ trait_ascendant_lore_of_fire_desc:0 "This mage has transcended the ordinary boundaries of pyromancy. Where other fire-lore practitioners command flame, this one has become one with it — a living conduit of ancient conflagration whose very presence radiates heat and power."
+
+ trait_ascendant_lore_of_earth:0 "Master Earth Mage"
+ trait_ascendant_lore_of_earth_desc:0 "Stone, soil, and root answer this mage's call as naturally as breathing. Through decades of study the Master Earth Mage has merged their will with the deep places of the world, drawing strength that outlasts any mortal fortification."
+
+ trait_ascendant_lore_of_water:0 "Master Water Mage"
+ trait_ascendant_lore_of_water_desc:0 "The currents of every ocean and river have passed through this mage's understanding. A Master Water Mage reads the flow of fate as easily as a sailor reads the tide, and heals wounds that would fell lesser practitioners."
+
+ trait_ascendant_lore_of_death:0 "Master Death Mage"
+ trait_ascendant_lore_of_death_desc:0 "This mage has stared into the void beyond life and returned — changed. A Master Death Mage neither fears the grave nor hurries toward it, wielding necrotic power that grants a terrible resilience against mortal frailty."
+
+ trait_ascendant_lore_of_high_magic:0 "Master of High Magic"
+ trait_ascendant_lore_of_high_magic_desc:0 "The supreme achievement of arcane study. A Master of High Magic has unified all strands of magical theory into a single coherent understanding, their mind and body forged by the raw weight of boundless knowledge."
+
+ # Interaction names and descriptions
+ wizard_ascend_lore_fire:0 "Attempt Fire Ascension"
+ wizard_ascend_lore_fire_interaction_desc:0 "You have mastered every facet of the Lore of Fire. With great focus and risk, you may attempt the ritual of Ascension — a chance to transcend ordinary mastery and become a true Ascendant of Fire. Success depends on your Learning and magical education.\n\nChance of success: [20|E]%–[80|E]%"
+
+ wizard_ascend_lore_earth:0 "Attempt Earth Ascension"
+ wizard_ascend_lore_earth_interaction_desc:0 "You have mastered every facet of the Lore of Earth. With great focus and risk, you may attempt the ritual of Ascension and become a true Ascendant of Earth. Success depends on your Learning and magical education.\n\nChance of success: [20|E]%–[80|E]%"
+
+ wizard_ascend_lore_water:0 "Attempt Water Ascension"
+ wizard_ascend_lore_water_interaction_desc:0 "You have mastered every facet of the Lore of Water. With great focus and risk, you may attempt the ritual of Ascension and become a true Ascendant of Water. Success depends on your Learning and magical education.\n\nChance of success: [20|E]%–[80|E]%"
+
+ wizard_ascend_lore_death:0 "Attempt Death Ascension"
+ wizard_ascend_lore_death_interaction_desc:0 "You have mastered every facet of the Lore of Death. With great focus and risk, you may attempt the ritual of Ascension and become a true Ascendant of Death. Success depends on your Learning and magical education.\n\nChance of success: [20|E]%–[80|E]%"
+
+ wizard_ascend_lore_high_magic:0 "Attempt High Magic Ascension"
+ wizard_ascend_lore_high_magic_interaction_desc:0 "You have mastered every facet of the Lore of High Magic. With great focus and risk, you may attempt the ritual of Ascension and become a true Ascendant of High Magic. Success depends on your Learning and magical education.\n\nChance of success: [20|E]%–[80|E]%"
+
+ # Shared ritual option (player clicks to see outcome)
+ wizard_ascendant.ritual_option:0 "Face the outcome."
+
+ # ─── Fire sub-events ─────────────────────────────────────────────────────────
+ wizard_ascendant.2001.t:0 "You Have Become an Ascendant of Fire"
+ wizard_ascendant.2001.desc:0 "The flames did not merely obey — they welcomed you as one of their own. Standing in the scorched circle, you feel the fire not outside you but within, a permanent ember that needs no fuel and knows no extinguishing. You have surpassed every pyromantic master who came before you. Among mages of fire, you have no rivals."
+ wizard_ascendant.2001.a:0 "The fire is part of me now."
+ wizard_ascendant.2002.t:0 "The Fire Ascension Failed"
+ wizard_ascendant.2002.desc:0 "The flames surged, then guttered out. The circle lies cold and dark. For all your skill, the final threshold — the true surrender to fire — did not come. The backlash tears through you. You stand exactly as you were, except more humbled — and perhaps more broken. You will need years to attempt this again."
+ wizard_ascendant.2002.a:0 "I was not yet ready."
+
+ # ─── Earth sub-events ────────────────────────────────────────────────────────
+ wizard_ascendant.2003.t:0 "You Have Become an Ascendant of Earth"
+ wizard_ascendant.2003.desc:0 "The stone closed around your consciousness and then released it, transformed. You can feel the slow pulse of the world's bones beneath your feet as plainly as your own heartbeat. The patience of mountains is yours now. Among mages of earth, you stand without rival."
+ wizard_ascendant.2003.a:0 "The earth and I are one."
+ wizard_ascendant.2004.t:0 "The Earth Ascension Failed"
+ wizard_ascendant.2004.desc:0 "The world's bones did not open for you. You reached deep — and felt only silence and stone. The rite exhausted and battered you without granting its prize. The backlash was considerable — you feel its mark. Years must pass before you may try again."
+ wizard_ascendant.2004.a:0 "I lacked the stillness required."
+
+ # ─── Water sub-events ────────────────────────────────────────────────────────
+ wizard_ascendant.2005.t:0 "You Have Become an Ascendant of Water"
+ wizard_ascendant.2005.desc:0 "You rose from the pool changed. The currents of every river, tide, and rain speak to you now in voices you understand completely. Water finds you without being called and departs without being dismissed. Among mages of water, you have left all rivals behind."
+ wizard_ascendant.2005.a:0 "I flow where the water flows."
+ wizard_ascendant.2006.t:0 "The Water Ascension Failed"
+ wizard_ascendant.2006.desc:0 "The pool gave nothing back. You floated in its dark, cold silence and found only yourself — unchanged, unenlightened, short of breath. The rite demands you dissolve into the current, and you could not let go. The rebound left its mark on you. Years of reflection must pass before the attempt can be made again."
+ wizard_ascendant.2006.a:0 "I could not surrender to it."
+
+ # ─── Death sub-events ────────────────────────────────────────────────────────
+ wizard_ascendant.2007.t:0 "You Have Become an Ascendant of Death"
+ wizard_ascendant.2007.desc:0 "The silence answered you — and for one measureless instant, you were on both sides of the threshold at once. You returned carrying something that cannot be put into words, only felt: an absolute ease with endings. Death holds no dread for you now. Among necromancers and death-mages, none can claim your depth of understanding."
+ wizard_ascendant.2007.a:0 "I have looked beyond, and I am unafraid."
+ wizard_ascendant.2008.t:0 "The Death Ascension Failed"
+ wizard_ascendant.2008.desc:0 "The candles guttered. The silence on the other side of the boundary did not stir. Whether you came too soon, or the rite demanded a surrender you could not offer, the threshold remained closed. You are still breathing — barely. The backlash of touching that void was severe. Years must pass before it can be attempted again."
+ wizard_ascendant.2008.a:0 "The threshold would not open for me."
+
+ # ─── High Magic sub-events ───────────────────────────────────────────────────
+ wizard_ascendant.2009.t:0 "You Have Become an Ascendant of High Magic"
+ wizard_ascendant.2009.desc:0 "The pattern held. Every strand of arcane theory cohered into a single unified whole, and you sat at its centre, understanding everything. When the light faded you found yourself still sitting on the tower floor, but the world had been rearranged — not around you, but within you. Among all living mages, you stand alone at the summit of magical knowledge."
+ wizard_ascendant.2009.a:0 "I have seen the whole of it."
+ wizard_ascendant.2010.t:0 "The High Magic Ascension Failed"
+ wizard_ascendant.2010.desc:0 "The pattern shattered. Every strand of theory you wove dissolved before the whole could cohere, and the tower fell silent around you. The supreme ritual demands a mind capable of holding the entirety of magical knowledge in a single moment — and in that moment, yours was not sufficient. The collapse was violent. The attempt has drained and hurt you. Years must pass before it can be tried again."
+ wizard_ascendant.2010.a:0 "The whole of it was beyond my grasp."
+
+ # Fire ascension event
+ wizard_ascendant.1001.t:0 "The Fire Ascension Ritual"
+ wizard_ascendant.1001.desc:0 "You prepare the great fire ascension ritual. Drawing on every lesson learned across a lifetime of pyromantic study, you channel your entire will into the flames and surrender to them completely. For a terrifying moment there is nothing left of you but fire — and then you are back, standing in the ashes of a scorched circle.\n\nWhether the ritual has changed you or merely burned you remains to be seen."
+
+ # Earth ascension event
+ wizard_ascendant.1002.t:0 "The Earth Ascension Ritual"
+ wizard_ascendant.1002.desc:0 "You descend into the ritual chamber carved from living rock and begin the earth ascension rite. Roots crack through the stone floor; the walls breathe. You reach deep into the world's bones with your mind and feel something vast reach back.\n\nThe stone is silent again. You wait to learn what has changed."
+
+ # Water ascension event
+ wizard_ascendant.1003.t:0 "The Water Ascension Ritual"
+ wizard_ascendant.1003.desc:0 "You submerge yourself in the ritual pool fed by an underground spring and still your breath. The water's currents seem to speak in voices older than language. For one endless moment you feel the pull of every tide on earth.\n\nYou break the surface. The world looks different — but in what way, only time will tell."
+
+ # Death ascension event
+ wizard_ascendant.1004.t:0 "The Death Ascension Ritual"
+ wizard_ascendant.1004.desc:0 "By candlelight and the smell of cold stone, you begin the death ascension rite. The boundary between your heartbeat and the silence beyond thins until it is barely a membrane. Something cold and ancient regards you from the other side.\n\nYou are still breathing. Whether that means success or merely survival is yet unclear."
+
+ # High Magic ascension event
+ wizard_ascendant.1005.t:0 "The High Magic Ascension Ritual"
+ wizard_ascendant.1005.desc:0 "In the high tower at midnight, you begin the supreme ritual. Every strand of magical theory you have ever studied interweaves around you, a storm of pure meaning. The world goes white, then black, then every colour at once.\n\nYou are sitting on the floor of the tower. The candles have burned to stubs. Something is different — whether it is triumph or merely exhaustion, you cannot yet say."
+
+ # Cooldown modifier names (shown in character modifier list)
+ wizard_ascendant_fire_failed:0 "Fire Ascension Failed"
+ wizard_ascendant_fire_failed_desc:0 "The fire ascension ritual failed. You may not attempt it again for some years."
+ wizard_ascendant_earth_failed:0 "Earth Ascension Failed"
+ wizard_ascendant_earth_failed_desc:0 "The earth ascension ritual failed. You may not attempt it again for some years."
+ wizard_ascendant_water_failed:0 "Water Ascension Failed"
+ wizard_ascendant_water_failed_desc:0 "The water ascension ritual failed. You may not attempt it again for some years."
+ wizard_ascendant_death_failed:0 "Death Ascension Failed"
+ wizard_ascendant_death_failed_desc:0 "The death ascension ritual failed. You may not attempt it again for some years."
+ wizard_ascendant_high_magic_failed:0 "High Magic Ascension Failed"
+ wizard_ascendant_high_magic_failed_desc:0 "The high magic ascension ritual failed. You may not attempt it again for some years."

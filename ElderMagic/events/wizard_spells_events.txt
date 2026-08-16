@@ -1,0 +1,98 @@
+namespace = wizard_spells
+
+wizard_spells.1000 = {
+	type = character_event
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		wizard_apply_learn_spell_cooldown = yes
+
+		if = {
+			limit = { learning >= 25 }
+			random = { chance = 90 wizard_learn_selected_spell = yes }
+		}
+		else_if = {
+			limit = { learning >= 20 }
+			random = { chance = 78 wizard_learn_selected_spell = yes }
+		}
+		else_if = {
+			limit = { learning >= 15 }
+			random = { chance = 62 wizard_learn_selected_spell = yes }
+		}
+		else_if = {
+			limit = { learning >= 10 }
+			random = { chance = 45 wizard_learn_selected_spell = yes }
+		}
+		else = {
+			random = { chance = 30 wizard_learn_selected_spell = yes }
+		}
+
+		if = {
+			limit = { wizard_selected_spell_known = yes }
+			trigger_event = wizard_spells.1001
+		}
+		else = {
+			trigger_event = wizard_spells.1002
+		}
+	}
+}
+
+wizard_spells.1001 = {
+	type = character_event
+	title = wizard_spells.1001.t
+	desc = wizard_spells.1001.desc
+
+	option = {
+		name = wizard_spells.1001.a
+	}
+}
+
+wizard_spells.1002 = {
+	type = character_event
+	title = wizard_spells.1002.t
+	desc = wizard_spells.1002.desc
+
+	option = {
+		name = wizard_spells.1002.a
+	}
+}
+
+wizard_spells.2000 = {
+	type = character_event
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { wizard_selected_spell_can_be_cast = yes }
+			wizard_spend_mana_for_selected_spell = yes
+			wizard_apply_selected_spell_effect = yes
+			set_global_variable = { name = wizard_spellbook_wants_to_close value = yes }
+			trigger_event = wizard_spells.2001
+		}
+		else = {
+			trigger_event = wizard_spells.2002
+		}
+	}
+}
+
+wizard_spells.2001 = {
+	type = character_event
+	title = wizard_spells.2001.t
+	desc = wizard_spells.2001.desc
+
+	option = {
+		name = wizard_spells.2001.a
+	}
+}
+
+wizard_spells.2002 = {
+	type = character_event
+	title = wizard_spells.2002.t
+	desc = wizard_spells.2002.desc
+
+	option = {
+		name = wizard_spells.2002.a
+	}
+}

@@ -1,0 +1,10 @@
+wizard_archmage_2 = {
+	category = lifestyle
+	icon = wizard_archmage_2
+
+	learning = 14
+	prowess = 8
+	monthly_prestige = 0.5
+
+	opposites = { wizard_archmage_1 }
+}

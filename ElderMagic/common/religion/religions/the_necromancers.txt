@@ -1,0 +1,41 @@
+the_necromancers = {
+	family = rf_pagan
+	graphical_faith = pagan_gfx
+	pagan_roots = yes
+
+	doctrine = doctrine_temporal_head
+	doctrine = doctrine_gender_equal
+	doctrine = doctrine_pluralism_fundamentalist
+	doctrine = doctrine_theocracy_temporal
+	doctrine = doctrine_pilgrimage_none
+	doctrine = doctrine_polygamy
+	doctrine = doctrine_divorce_allowed
+	doctrine = doctrine_bastardry_legitimization
+	doctrine = doctrine_consanguinity_cousins
+	doctrine = doctrine_clerical_function_taxation
+	doctrine = doctrine_clerical_gender_either
+	doctrine = doctrine_clerical_marriage_allowed
+	doctrine = doctrine_clerical_succession_temporal_appointment
+	doctrine = doctrine_homosexuality_accepted
+	doctrine = doctrine_adultery_men_accepted
+	doctrine = doctrine_adultery_women_accepted
+	doctrine = doctrine_kinslaying_accepted
+	doctrine = doctrine_deviancy_accepted
+	doctrine = doctrine_witchcraft_accepted
+
+	faiths = {
+		black_arts = {
+			color = { 0.3 0.7 0.3 }
+			icon = black_arts
+			reformed_icon = black_arts_reformed
+			holy_site = rome
+			holy_site = jerusalem
+			holy_site = cologne
+			holy_site = kent
+			holy_site = constantinople
+			doctrine = tenet_esotericism
+			doctrine = tenet_human_sacrifice
+			doctrine = tenet_ancestor_worship
+		}
+	}
+}

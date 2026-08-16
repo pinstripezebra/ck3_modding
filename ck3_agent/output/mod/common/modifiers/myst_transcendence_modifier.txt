@@ -1,0 +1,5 @@
+myst_transcendence_modifier = {
+	learning = 4
+	monthly_piety = 0.5
+	monthly_prestige = 0.2
+}

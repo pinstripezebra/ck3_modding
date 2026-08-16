@@ -1,0 +1,7 @@
+wizard_master_1 = {
+	category = lifestyle
+	icon = wizard_master_1
+
+	learning = 9
+	prowess = 5
+}

@@ -1,0 +1,5 @@
+﻿elem_earth_mastery_modifier = {
+	stewardship = 2
+}
+
+

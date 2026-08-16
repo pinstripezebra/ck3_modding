@@ -1,0 +1,12 @@
+﻿l_english:
+ study_magic_decision:0 "Study Magic"
+ study_magic_decision_desc:0 "Dedicate the next six months to rigorous arcane study. You will gain experience in every lore you already know — more if your Learning is high and your magical education deep."
+ study_magic_decision_tooltip:0 "Begin six months of study. XP gained scales with Learning and magical education (1–10 per period)."
+ study_magic_decision_confirm:0 "Begin Study"
+
+ wizard_study_magic_toast_title:0 "Arcane Studies Complete"
+ wizard_study_magic_toast_desc:0 "Months of disciplined study have sharpened your magical understanding. Your lore has deepened."
+
+ wizard_study_magic.1001.t:0 "Months of Study Complete"
+ wizard_study_magic.1001.desc:0 "Six months of disciplined arcane study have sharpened your magical understanding. Your mind is clearer and your lore deeper than before."
+ wizard_study_magic.1001.option:0 "Knowledge is its own reward."

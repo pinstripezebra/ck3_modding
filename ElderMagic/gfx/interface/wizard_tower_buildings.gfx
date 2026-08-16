@@ -1,0 +1,6 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_building_type_wizard_tower"
+		texturefile = "gfx/interface/icons/buildings/wizard_tower.dds"
+	}
+}

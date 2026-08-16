@@ -1,0 +1,28 @@
+﻿l_english:
+ # ─── Scheme UI ───────────────────────────────────────────────────────────────
+ wizard_teach_magic_desc_general:0 "Scheme to impart a Lore of Magic to a willing student. Success depends on the teacher's learning and the student's goodwill."
+ wizard_teach_magic_success_desc:0 "The teaching was successful."
+ wizard_teach_magic_invalidated_title:0 "Teaching Interrupted"
+ wizard_teach_magic_invalidated_reason:0 "The teaching scheme has ended before completion."
+
+ # ─── Interactions ────────────────────────────────────────────────────────────
+ wizard_teach_lore_of_fire_interaction:0 "Teach Lore of Fire"
+ wizard_teach_lore_of_fire_interaction_desc:0 "Share the secrets of pyromancy with this character, guiding them through the principles of flame and destruction."
+ wizard_teach_lore_of_earth_interaction:0 "Teach Lore of Earth"
+ wizard_teach_lore_of_earth_interaction_desc:0 "Impart the slow, enduring wisdom of stone and root, teaching this character to commune with the bones of the world."
+ wizard_teach_lore_of_water_interaction:0 "Teach Lore of Water"
+ wizard_teach_lore_of_water_interaction_desc:0 "Guide this character through the flowing mysteries of water and tide, teaching them to move with and against the currents of magic."
+ wizard_teach_lore_of_death_interaction:0 "Teach Lore of Death"
+ wizard_teach_lore_of_death_interaction_desc:0 "Walk this character to the boundary between the living and the dead, showing them what waits beyond and how to speak with it."
+ wizard_teach_lore_of_high_magic_interaction:0 "Teach Lore of High Magic"
+ wizard_teach_lore_of_high_magic_interaction_desc:0 "Reveal the unified theory of all arcane forces to this character — the most demanding discipline a mage can impart."
+
+ # ─── Success Event (001) ─────────────────────────────────────────────────────
+ wizard_teach_magic.0001.t:0 "The Teaching Bears Fruit"
+ wizard_teach_magic.0001.desc:0 "The long months of study have paid off. [scope:target.GetFirstName] has absorbed the lore and made it their own. Their understanding of magic will never be the same."
+ wizard_teach_magic.0001.a:0 "A worthy student indeed."
+
+ # ─── Failure Event (002) ─────────────────────────────────────────────────────
+ wizard_teach_magic.0002.t:0 "The Teaching Has Failed"
+ wizard_teach_magic.0002.desc:0 "Despite sustained effort, [scope:target.GetFirstName] could not bridge the final gap in understanding. The fundamental connection simply did not form. This teaching is finished — and a period of years must pass before it can be attempted with this student again."
+ wizard_teach_magic.0002.a:0 "This student was not ready."

@@ -1,0 +1,6 @@
+﻿elem_harmony_modifier = {
+	health = 0.5
+	learning = 2
+}
+
+

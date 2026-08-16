@@ -1,0 +1,61 @@
+types WizardManaBar
+{
+type mana_breakdown_tooltip = widget
+{
+size = { 260 220 }
+using = Window_Background
+
+vbox = {
+parentanchor = top|left
+widgetanchor = top|left
+margin = { 12 12 }
+spacing = 3
+ignoreinvisible = yes
+
+text_single = {
+text = "WIZARD_MANA_TOOLTIP_HEADER"
+default_format = "#bold"
+using = Font_Size_Medium
+minimumsize = { 236 0 }
+autoresize = yes
+align = hcenter|nobaseline
+}
+
+divider = { size = { 236 1 } }
+
+hbox = {
+spacing = 6
+text_single = {
+raw_text = "Mana from Traits:"
+default_format = "#low"
+autoresize = yes
+using = Font_Size_Small
+}
+text_single = {
+raw_text = "+[GetPlayer.MakeScope.ScriptValue('wizard_mana_gain_rate')]/mo"
+default_format = "#color:{0.45,0.8,1.0,1.0}"
+using = Font_Size_Small
+}
+}
+
+widget = { visible = "[GetScriptedGui('wizard_has_mana_trait_spark').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"text_single = { text = "the_spark"  default_format = "#low"  minimumsize = { 236 0 }  autoresize = yes  using = Font_Size_Small  align = hcenter|nobaseline } }
+widget = { visible = "[GetScriptedGui('wizard_has_mana_trait_conduit').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"text_single = { text = "the_conduit"  default_format = "#low"  minimumsize = { 236 0 }  autoresize = yes  using = Font_Size_Small  align = hcenter|nobaseline } }
+widget = { visible = "[GetScriptedGui('wizard_has_mana_trait_resonator').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"text_single = { text = "the_resonator"  default_format = "#low"  minimumsize = { 236 0 }  autoresize = yes  using = Font_Size_Small  align = hcenter|nobaseline } }
+widget = { visible = "[GetScriptedGui('wizard_has_mana_trait_vector').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"text_single = { text = "the_vector"  default_format = "#low"  minimumsize = { 236 0 }  autoresize = yes  using = Font_Size_Small  align = hcenter|nobaseline } }
+widget = { visible = "[GetScriptedGui('wizard_has_mana_trait_capacitor').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"text_single = { text = "the_capacitor"  default_format = "#low"  minimumsize = { 236 0 }  autoresize = yes  using = Font_Size_Small  align = hcenter|nobaseline } }
+widget = { visible = "[GetScriptedGui('wizard_has_mana_trait_dynamo').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"text_single = { text = "the_dynamo"  default_format = "#low"  minimumsize = { 236 0 }  autoresize = yes  using = Font_Size_Small  align = hcenter|nobaseline } }
+widget = { visible = "[GetScriptedGui('wizard_has_mana_trait_nexus').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"text_single = { text = "the_nexus"  default_format = "#low"  minimumsize = { 236 0 }  autoresize = yes  using = Font_Size_Small  align = hcenter|nobaseline } }
+widget = { visible = "[GetScriptedGui('wizard_has_mana_trait_singularity').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"text_single = { text = "the_singularity"  default_format = "#low"  minimumsize = { 236 0 }  autoresize = yes  using = Font_Size_Small  align = hcenter|nobaseline } }
+widget = { visible = "[GetScriptedGui('wizard_has_mana_trait_catalyst').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"text_single = { text = "the_catalyst"  default_format = "#low"  minimumsize = { 236 0 }  autoresize = yes  using = Font_Size_Small  align = hcenter|nobaseline } }
+widget = { visible = "[GetScriptedGui('wizard_has_mana_trait_horizon').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"text_single = { text = "the_horizon"  default_format = "#low"  minimumsize = { 236 0 }  autoresize = yes  using = Font_Size_Small  align = hcenter|nobaseline } }
+
+widget = { visible = "[GetScriptedGui('wizard_has_mana_trait_edu_1').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"text_single = { text = "trait_magic_education_1"  default_format = "#low"  minimumsize = { 236 0 }  autoresize = yes  using = Font_Size_Small  align = hcenter|nobaseline } }
+widget = { visible = "[GetScriptedGui('wizard_has_mana_trait_edu_2').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"text_single = { text = "trait_magic_education_2"  default_format = "#low"  minimumsize = { 236 0 }  autoresize = yes  using = Font_Size_Small  align = hcenter|nobaseline } }
+widget = { visible = "[GetScriptedGui('wizard_has_mana_trait_edu_3').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"text_single = { text = "trait_magic_education_3"  default_format = "#low"  minimumsize = { 236 0 }  autoresize = yes  using = Font_Size_Small  align = hcenter|nobaseline } }
+widget = { visible = "[GetScriptedGui('wizard_has_mana_trait_edu_4').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"text_single = { text = "trait_magic_education_4"  default_format = "#low"  minimumsize = { 236 0 }  autoresize = yes  using = Font_Size_Small  align = hcenter|nobaseline } }
+widget = { visible = "[GetScriptedGui('wizard_has_mana_trait_edu_5').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"text_single = { text = "trait_magic_education_5"  default_format = "#low"  minimumsize = { 236 0 }  autoresize = yes  using = Font_Size_Small  align = hcenter|nobaseline } }
+
+spacer = { size = { 0 8 } }
+}
+}
+}

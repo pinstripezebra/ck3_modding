@@ -1,0 +1,18 @@
+myst_ley_attune = {
+	lifestyle = learning_lifestyle
+	tree = mysticism
+	position = { 3 1 }
+	icon = myst_ley_attune
+
+	parent = myst_inner_eye
+
+	effect = {
+		add_character_modifier = {
+			modifier = myst_ley_attune_modifier
+		}
+	}
+
+	ai_will_do = {
+		base = 100
+	}
+}

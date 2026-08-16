@@ -1,0 +1,93 @@
+# Wizard Mod — Magical Men-at-Arms Units
+# Three tiers of mage soldiers, each unlocked by the corresponding
+# military innovation. All stacks of 25.
+
+wandering_mages = {
+	type = heavy_infantry
+	icon = wandering_mages
+
+	damage = 65
+	toughness = 25
+	pursuit = 0
+	screen = 0
+
+	siege_tier = 1
+	siege_value = 0.2
+
+	stack = 25
+
+	terrain_bonus = {
+		plains = { damage = 10 }
+		drylands = { damage = 10 }
+	}
+
+	buy_cost = { gold = 150 }
+	low_maintenance_cost = { gold = 0.50 }
+	high_maintenance_cost = { gold = 1.00 }
+
+	can_recruit = {
+		culture = { has_innovation = innovation_mage_commune }
+	}
+
+	ai_quality = { value = 100 }
+}
+
+mage_squadron = {
+	type = heavy_infantry
+	icon = mage_squadron
+
+	damage = 105
+	toughness = 40
+	pursuit = 0
+	screen = 0
+
+	siege_tier = 1
+	siege_value = 0.3
+
+	stack = 25
+
+	terrain_bonus = {
+		plains = { damage = 10 }
+		drylands = { damage = 10 }
+	}
+
+	buy_cost = { gold = 250 }
+	low_maintenance_cost = { gold = 0.75 }
+	high_maintenance_cost = { gold = 1.50 }
+
+	can_recruit = {
+		culture = { has_innovation = innovation_empowered_mages }
+	}
+
+	ai_quality = { value = 150 }
+}
+
+mage_regiment = {
+	type = heavy_infantry
+	icon = mage_regiment
+
+	damage = 135
+	toughness = 60
+	pursuit = 0
+	screen = 0
+
+	siege_tier = 1
+	siege_value = 0.4
+
+	stack = 25
+
+	terrain_bonus = {
+		plains = { damage = 10 }
+		drylands = { damage = 10 }
+	}
+
+	buy_cost = { gold = 350 }
+	low_maintenance_cost = { gold = 1.00 }
+	high_maintenance_cost = { gold = 2.00 }
+
+	can_recruit = {
+		culture = { has_innovation = innovation_ascendant_magic }
+	}
+
+	ai_quality = { value = 200 }
+}

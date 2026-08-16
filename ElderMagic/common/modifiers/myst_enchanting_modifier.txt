@@ -1,0 +1,5 @@
+﻿myst_enchanting_modifier = {
+	monthly_prestige = 0.25
+}
+
+

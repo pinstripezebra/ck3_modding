@@ -1,0 +1,4 @@
+elem_storm_weave_modifier = {
+	prowess = 1
+	intrigue = 1
+}

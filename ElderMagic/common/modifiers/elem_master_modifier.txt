@@ -1,0 +1,7 @@
+﻿elem_master_modifier = {
+	learning = 2
+	martial = 3
+	prowess = 4
+}
+
+

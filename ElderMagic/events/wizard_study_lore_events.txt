@@ -1,0 +1,300 @@
+namespace = wizard_study_lore
+
+wizard_study_lore.0001 = {
+	type = character_event
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				learning >= 22
+				has_character_flag = wizard_pending_lore_fire
+			}
+			random = {
+				chance = 88
+				wizard_grant_pending_lore = yes
+			}
+		}
+		else_if = {
+			limit = {
+				learning >= 18
+				has_character_flag = wizard_pending_lore_fire
+			}
+			random = {
+				chance = 75
+				wizard_grant_pending_lore = yes
+			}
+		}
+		else_if = {
+			limit = {
+				learning >= 14
+				has_character_flag = wizard_pending_lore_fire
+			}
+			random = {
+				chance = 60
+				wizard_grant_pending_lore = yes
+			}
+		}
+		else_if = {
+			limit = {
+				learning >= 10
+				has_character_flag = wizard_pending_lore_fire
+			}
+			random = {
+				chance = 45
+				wizard_grant_pending_lore = yes
+			}
+		}
+		else_if = {
+			limit = { has_character_flag = wizard_pending_lore_fire }
+			random = {
+				chance = 30
+				wizard_grant_pending_lore = yes
+			}
+		}
+
+		if = {
+			limit = {
+				learning >= 22
+				has_character_flag = wizard_pending_lore_earth
+			}
+			random = {
+				chance = 88
+				wizard_grant_pending_lore = yes
+			}
+		}
+		else_if = {
+			limit = {
+				learning >= 18
+				has_character_flag = wizard_pending_lore_earth
+			}
+			random = {
+				chance = 75
+				wizard_grant_pending_lore = yes
+			}
+		}
+		else_if = {
+			limit = {
+				learning >= 14
+				has_character_flag = wizard_pending_lore_earth
+			}
+			random = {
+				chance = 60
+				wizard_grant_pending_lore = yes
+			}
+		}
+		else_if = {
+			limit = {
+				learning >= 10
+				has_character_flag = wizard_pending_lore_earth
+			}
+			random = {
+				chance = 45
+				wizard_grant_pending_lore = yes
+			}
+		}
+		else_if = {
+			limit = { has_character_flag = wizard_pending_lore_earth }
+			random = {
+				chance = 30
+				wizard_grant_pending_lore = yes
+			}
+		}
+
+		if = {
+			limit = {
+				learning >= 22
+				has_character_flag = wizard_pending_lore_wind
+			}
+			random = {
+				chance = 88
+				wizard_grant_pending_lore = yes
+			}
+		}
+		else_if = {
+			limit = {
+				learning >= 18
+				has_character_flag = wizard_pending_lore_wind
+			}
+			random = {
+				chance = 75
+				wizard_grant_pending_lore = yes
+			}
+		}
+		else_if = {
+			limit = {
+				learning >= 14
+				has_character_flag = wizard_pending_lore_wind
+			}
+			random = {
+				chance = 60
+				wizard_grant_pending_lore = yes
+			}
+		}
+		else_if = {
+			limit = {
+				learning >= 10
+				has_character_flag = wizard_pending_lore_wind
+			}
+			random = {
+				chance = 45
+				wizard_grant_pending_lore = yes
+			}
+		}
+		else_if = {
+			limit = { has_character_flag = wizard_pending_lore_wind }
+			random = {
+				chance = 30
+				wizard_grant_pending_lore = yes
+			}
+		}
+
+		if = {
+			limit = {
+				learning >= 22
+				has_character_flag = wizard_pending_lore_water
+			}
+			random = {
+				chance = 88
+				wizard_grant_pending_lore = yes
+			}
+		}
+		else_if = {
+			limit = {
+				learning >= 18
+				has_character_flag = wizard_pending_lore_water
+			}
+			random = {
+				chance = 75
+				wizard_grant_pending_lore = yes
+			}
+		}
+		else_if = {
+			limit = {
+				learning >= 14
+				has_character_flag = wizard_pending_lore_water
+			}
+			random = {
+				chance = 60
+				wizard_grant_pending_lore = yes
+			}
+		}
+		else_if = {
+			limit = {
+				learning >= 10
+				has_character_flag = wizard_pending_lore_water
+			}
+			random = {
+				chance = 45
+				wizard_grant_pending_lore = yes
+			}
+		}
+		else_if = {
+			limit = { has_character_flag = wizard_pending_lore_water }
+			random = {
+				chance = 30
+				wizard_grant_pending_lore = yes
+			}
+		}
+
+		if = {
+			limit = {
+				learning >= 22
+				has_character_flag = wizard_pending_lore_death
+			}
+			random = {
+				chance = 88
+				wizard_grant_pending_lore = yes
+			}
+		}
+		else_if = {
+			limit = {
+				learning >= 18
+				has_character_flag = wizard_pending_lore_death
+			}
+			random = {
+				chance = 75
+				wizard_grant_pending_lore = yes
+			}
+		}
+		else_if = {
+			limit = {
+				learning >= 14
+				has_character_flag = wizard_pending_lore_death
+			}
+			random = {
+				chance = 60
+				wizard_grant_pending_lore = yes
+			}
+		}
+		else_if = {
+			limit = {
+				learning >= 10
+				has_character_flag = wizard_pending_lore_death
+			}
+			random = {
+				chance = 45
+				wizard_grant_pending_lore = yes
+			}
+		}
+		else_if = {
+			limit = { has_character_flag = wizard_pending_lore_death }
+			random = {
+				chance = 30
+				wizard_grant_pending_lore = yes
+			}
+		}
+
+		if = {
+			limit = {
+				learning >= 22
+				has_character_flag = wizard_pending_lore_high_magic
+			}
+			random = {
+				chance = 88
+				wizard_grant_pending_lore = yes
+			}
+		}
+		else_if = {
+			limit = {
+				learning >= 18
+				has_character_flag = wizard_pending_lore_high_magic
+			}
+			random = {
+				chance = 75
+				wizard_grant_pending_lore = yes
+			}
+		}
+		else_if = {
+			limit = {
+				learning >= 14
+				has_character_flag = wizard_pending_lore_high_magic
+			}
+			random = {
+				chance = 60
+				wizard_grant_pending_lore = yes
+			}
+		}
+		else_if = {
+			limit = {
+				learning >= 10
+				has_character_flag = wizard_pending_lore_high_magic
+			}
+			random = {
+				chance = 45
+				wizard_grant_pending_lore = yes
+			}
+		}
+		else_if = {
+			limit = { has_character_flag = wizard_pending_lore_high_magic }
+			random = {
+				chance = 30
+				wizard_grant_pending_lore = yes
+			}
+		}
+
+		remove_character_modifier = wizard_studying_lore
+		wizard_clear_pending_study_lore_flags = yes
+	}
+}

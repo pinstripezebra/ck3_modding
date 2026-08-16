@@ -1,0 +1,128 @@
+﻿namespace = wizard_ruins
+
+# Event 1: Character stumbles upon ruins — proceed or retreat.
+wizard_ruins.0001 = {
+	type = character_event
+	title = wizard_ruins.0001.t
+	desc = wizard_ruins.0001.desc
+	theme = learning
+	left_portrait = { character = root animation = personality_curious }
+	override_background = { reference = "dungeon" }
+
+	option = {
+		name = wizard_ruins.0001.a  # Proceed further
+		trigger_event = { id = wizard_ruins.0002 }
+	}
+	option = {
+		name = wizard_ruins.0001.b  # Retreat — nothing happens
+	}
+}
+
+# Event 2: Hidden resolver — 40% chance to find the tomb.
+wizard_ruins.0002 = {
+	type = character_event
+	hidden = yes
+
+	immediate = {
+		random = {
+			chance = 40
+			add_character_flag = wizard_ruins_tomb_found
+		}
+		trigger_event = wizard_ruins.0003
+	}
+}
+
+# Event 3: Show what was found — branches via option triggers.
+wizard_ruins.0003 = {
+	type = character_event
+	title = wizard_ruins.0003.t
+	desc = {
+		triggered_desc = {
+			trigger = { has_character_flag = wizard_ruins_tomb_found }
+			desc = wizard_ruins.0003.desc_tomb
+		}
+		triggered_desc = {
+			trigger = { NOT = { has_character_flag = wizard_ruins_tomb_found } }
+			desc = wizard_ruins.0003.desc_empty
+		}
+	}
+	theme = learning
+	left_portrait = { character = root animation = personality_curious }
+	override_background = { reference = "dungeon" }
+
+	# Tomb found — open it
+	option = {
+		name = wizard_ruins.0003.a
+		trigger = { has_character_flag = wizard_ruins_tomb_found }
+		remove_character_flag = wizard_ruins_tomb_found
+		trigger_event = wizard_ruins.0004
+	}
+	# Tomb found — leave it
+	option = {
+		name = wizard_ruins.0003.b
+		trigger = { has_character_flag = wizard_ruins_tomb_found }
+		remove_character_flag = wizard_ruins_tomb_found
+	}
+	# Nothing found — fallback
+	option = {
+		name = wizard_ruins.0003.c
+		trigger = { NOT = { has_character_flag = wizard_ruins_tomb_found } }
+	}
+}
+
+# Event 4: Opening the tomb — success or failure based on learning.
+wizard_ruins.0004 = {
+	type = character_event
+	hidden = yes
+
+	immediate = {
+		random = {
+			chance = wizard_ruins_lore_success_chance
+			add_character_flag = wizard_ruins_success
+		}
+		if = {
+			limit = { has_character_flag = wizard_ruins_success }
+			remove_character_flag = wizard_ruins_success
+			if = {
+				limit = { wizard_missing_any_lore_trait = yes }
+				wizard_grant_random_missing_lore = yes
+			}
+			trigger_event = wizard_ruins.0005
+		}
+		else = {
+			trigger_event = wizard_ruins.0006
+		}
+	}
+}
+
+# Event 5: Success — gained a lore of magic.
+wizard_ruins.0005 = {
+	type = character_event
+	title = wizard_ruins.0005.t
+	desc = wizard_ruins.0005.desc
+	theme = learning
+	left_portrait = { character = root animation = personality_bold }
+	override_background = { reference = "study" }
+
+	option = {
+		name = wizard_ruins.0005.a
+	}
+}
+
+# Event 6: Failure — 40 stress.
+wizard_ruins.0006 = {
+	type = character_event
+	title = wizard_ruins.0006.t
+	desc = wizard_ruins.0006.desc
+	theme = learning
+	left_portrait = { character = root animation = stress }
+	override_background = { reference = "dungeon" }
+
+	immediate = {
+		add_stress = 40
+	}
+
+	option = {
+		name = wizard_ruins.0006.a
+	}
+}

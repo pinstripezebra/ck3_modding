@@ -1,0 +1,13 @@
+﻿l_english:
+ trait_mana_scarred_1:0 "Mana Wells Scarred"
+ trait_mana_scarred_1_desc:0 "A magical accident has left this character's mana wells scorched. The channels through which arcane energy flows are damaged, making spellwork painful and sapping vitality. With rest, the wounds may heal."
+ trait_mana_scarred_2:0 "Mana Wells Deeply Scarred"
+ trait_mana_scarred_2_desc:0 "Severe arcane burns have carved deep wounds through the mana channels. Every use of magic brings sharp pain. Recovery will be slow."
+ trait_mana_scarred_3:0 "Mana Wells Critically Scarred"
+ trait_mana_scarred_3_desc:0 "A catastrophic surge of uncontrolled magic has left the mana wells in ruins. Health and fighting ability are gravely impaired."
+ trait_battlemage:0 "Battlemage"
+ trait_battlemage_desc:0 "Arcane power and martial discipline have fused through hard-won battlefield experience. This wizard channels magical force into their fighting style, growing ever more lethal with each campaign."
+ wizard_battlemage_gain_title:0 "Forged in Battle"
+ wizard_battlemage_gain_desc:0 "The heat of battle has forged your arcane talents into something fiercer. You have become a Battlemage."
+ wizard_battlemage_advance_title:0 "Battle-Hardened Sorcery"
+ wizard_battlemage_advance_desc:0 "Another campaign has deepened your mastery of magical combat. Your battlefield sorcery grows ever more lethal."

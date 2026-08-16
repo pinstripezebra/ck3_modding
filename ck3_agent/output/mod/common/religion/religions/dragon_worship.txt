@@ -1,0 +1,21 @@
+dragon_worship = {
+	family = rf_pagan
+	graphical_faith = pagan_gfx
+	pagan_roots = yes
+
+	doctrine = doctrine_gender_equal
+	doctrine = doctrine_pluralism_fundamentalist
+	doctrine = doctrine_theocracy_lay_clergy
+
+	faiths = {
+		draconic_creed = {
+			color = { 0.8 0.2 0.1 }
+			icon = draconic_creed
+			reformed_icon = draconic_creed_reformed
+			holy_site = rome
+			holy_site = jerusalem
+			doctrine = tenet_warmonger
+			doctrine = tenet_human_sacrifice
+		}
+	}
+}

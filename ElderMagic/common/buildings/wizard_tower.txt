@@ -1,0 +1,161 @@
+﻿# Wizard Tower - Duchy Capital Building
+# A special duchy building representing a center of arcane learning and power.
+# Provides 5 upgrade levels with increasing income and development bonuses.
+
+wizard_tower_01 = {
+	type = duchy_capital
+	type_icon = "icon_building_wizard_tower.dds"
+
+	next_building = wizard_tower_02
+
+	cost = { gold = 400 }
+	construction_time = 730
+
+	can_construct_potential = {
+		culture = { has_innovation = innovation_mage_commune }
+	}
+
+	can_construct_showing_failures_only = {
+		building_requirement_tribal = no
+	}
+
+	county_modifier = {
+		development_growth_factor = 0.05
+	}
+
+	character_modifier = {
+		monthly_income = 1
+	}
+
+	ai_value = {
+		base = 10
+		ai_general_building_modifier = yes
+	}
+}
+
+wizard_tower_02 = {
+	type = duchy_capital
+	type_icon = "icon_building_wizard_tower.dds"
+
+	next_building = wizard_tower_03
+
+	cost = { gold = 600 }
+	construction_time = 730
+
+	can_construct_potential = {
+		always = no
+	}
+
+	can_construct_showing_failures_only = {
+		building_requirement_tribal = no
+	}
+
+	county_modifier = {
+		development_growth_factor = 0.10
+	}
+
+	character_modifier = {
+		monthly_income = 2
+	}
+
+	ai_value = {
+		base = 10
+		ai_general_building_modifier = yes
+	}
+}
+
+wizard_tower_03 = {
+	type = duchy_capital
+	type_icon = "icon_building_wizard_tower.dds"
+
+	next_building = wizard_tower_04
+
+	cost = { gold = 900 }
+	construction_time = 730
+
+	can_construct_potential = {
+		always = no
+	}
+
+	can_construct_showing_failures_only = {
+		building_requirement_tribal = no
+	}
+
+	county_modifier = {
+		development_growth_factor = 0.15
+	}
+
+	character_modifier = {
+		monthly_income = 3
+	}
+
+	ai_value = {
+		base = 10
+		ai_general_building_modifier = yes
+	}
+}
+
+wizard_tower_04 = {
+	type = duchy_capital
+	type_icon = "icon_building_wizard_tower.dds"
+
+	next_building = wizard_tower_05
+
+	cost = { gold = 1200 }
+	construction_time = 730
+
+	can_construct_potential = {
+		always = no
+	}
+
+	can_construct_showing_failures_only = {
+		building_requirement_tribal = no
+	}
+
+	county_modifier = {
+		development_growth_factor = 0.20
+	}
+
+	character_modifier = {
+		monthly_income = 4
+	}
+
+	ai_value = {
+		base = 10
+		ai_general_building_modifier = yes
+	}
+}
+
+wizard_tower_05 = {
+	type = duchy_capital
+	type_icon = "icon_building_wizard_tower.dds"
+
+	cost = { gold = 1500 }
+	construction_time = 730
+
+	can_construct_potential = {
+		always = no
+	}
+
+	can_construct_showing_failures_only = {
+		building_requirement_tribal = no
+	}
+
+	county_modifier = {
+		development_growth_factor = 0.25
+	}
+
+	character_modifier = {
+		monthly_income = 5
+	}
+
+	county_holding_modifier = {
+		holding = castle_holding
+		income_mult = 0.25
+	}
+
+	ai_value = {
+		base = 10
+		ai_general_building_modifier = yes
+	}
+}

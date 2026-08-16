@@ -1,0 +1,4 @@
+gui/wizard_mana_bar.gui = wizard_mana_bar
+gui/wizard_spellbook2.gui = wizard_spellbook_trigger
+gui/wizard_spellbook2.gui = wizard_spellbook_main
+gui/wizard_magic_power_badge.gui = wizard_magic_power_badge

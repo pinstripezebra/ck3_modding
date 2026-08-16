@@ -1,0 +1,5 @@
+elem_master_modifier = {
+	learning = 3
+	prowess = 2
+	monthly_prestige = 0.2
+}

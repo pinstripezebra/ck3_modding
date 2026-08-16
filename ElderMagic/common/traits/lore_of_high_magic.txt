@@ -1,0 +1,36 @@
+﻿lore_of_high_magic = {
+	category = lifestyle
+	icon = lore_of_high_magic.dds
+	learning = 2
+
+	on_add = {
+		if = {
+			limit = { NOT = { has_variable = wizard_high_magic_xp_total } }
+			set_variable = { name = wizard_high_magic_xp_total value = 0 }
+		}
+	}
+
+	track = {
+	25 = {
+		learning = 1
+		prowess = 2
+	}
+	50 = {
+		learning = 2
+		prowess = 3
+		monthly_prestige = 0.05
+	}
+	75 = {
+		learning = 3
+		prowess = 4
+		monthly_prestige = 0.1
+	}
+	100 = {
+		learning = 4
+		prowess = 5
+		monthly_prestige = 0.2
+	}
+	}
+
+	ruler_designer_cost = 40
+}

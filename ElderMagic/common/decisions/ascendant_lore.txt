@@ -1,0 +1,265 @@
+# Ascendant Lore Decisions — one per Lore of Magic.
+# Visible when: character has the lore trait at max level, does not yet have
+# the ascendant trait, and is not on the 5-year failure cooldown.
+# Fires the corresponding wizard_ascendant.100X ritual event which resolves
+# into success (sub-event 200X) or failure (sub-event 200Y).
+
+wizard_ascendant_fire_decision = {
+	title = wizard_ascendant_fire_decision
+	desc = wizard_ascendant_fire_decision_desc
+	selection_tooltip = wizard_ascendant_fire_decision_tooltip
+	confirm_text = wizard_ascendant_decision_confirm
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_ascendant_fire.dds"
+	}
+	ai_check_interval = 24
+
+	is_shown = {
+		is_adult = yes
+		has_trait = lore_of_fire
+		OR = {
+			has_character_flag = wizard_lore_fire_maxed
+			AND = {
+				has_variable = wizard_fire_xp_total
+				var:wizard_fire_xp_total >= 100
+			}
+		}
+		NOT = { has_trait = ascendant_lore_of_fire }
+		NOT = { has_character_modifier = wizard_ascendant_fire_failed }
+	}
+
+	is_valid = {
+		is_adult = yes
+		is_imprisoned = no
+		custom_description = {
+			text = wizard_lore_fire_mastery_requirement
+			OR = {
+				has_character_flag = wizard_lore_fire_maxed
+				AND = {
+					has_variable = wizard_fire_xp_total
+					var:wizard_fire_xp_total >= 100
+				}
+			}
+		}
+	}
+
+	ai_potential = {
+		always = yes
+	}
+
+	ai_will_do = {
+		base = 30
+	}
+
+	effect = {
+		trigger_event = { id = wizard_ascendant.1001 }
+	}
+}
+
+wizard_ascendant_earth_decision = {
+	title = wizard_ascendant_earth_decision
+	desc = wizard_ascendant_earth_decision_desc
+	selection_tooltip = wizard_ascendant_earth_decision_tooltip
+	confirm_text = wizard_ascendant_decision_confirm
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_ascendant_earth.dds"
+	}
+	ai_check_interval = 24
+
+	is_shown = {
+		is_adult = yes
+		has_trait = lore_of_earth
+		OR = {
+			has_character_flag = wizard_lore_earth_maxed
+			AND = {
+				has_variable = wizard_earth_xp_total
+				var:wizard_earth_xp_total >= 100
+			}
+		}
+		NOT = { has_trait = ascendant_lore_of_earth }
+		NOT = { has_character_modifier = wizard_ascendant_earth_failed }
+	}
+
+	is_valid = {
+		is_adult = yes
+		is_imprisoned = no
+		custom_description = {
+			text = wizard_lore_earth_mastery_requirement
+			OR = {
+				has_character_flag = wizard_lore_earth_maxed
+				AND = {
+					has_variable = wizard_earth_xp_total
+					var:wizard_earth_xp_total >= 100
+				}
+			}
+		}
+	}
+
+	ai_potential = {
+		always = yes
+	}
+
+	ai_will_do = {
+		base = 30
+	}
+
+	effect = {
+		trigger_event = { id = wizard_ascendant.1002 }
+	}
+}
+
+wizard_ascendant_water_decision = {
+	title = wizard_ascendant_water_decision
+	desc = wizard_ascendant_water_decision_desc
+	selection_tooltip = wizard_ascendant_water_decision_tooltip
+	confirm_text = wizard_ascendant_decision_confirm
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_ascendant_water.dds"
+	}
+	ai_check_interval = 24
+
+	is_shown = {
+		is_adult = yes
+		has_trait = lore_of_water
+		OR = {
+			has_character_flag = wizard_lore_water_maxed
+			AND = {
+				has_variable = wizard_water_xp_total
+				var:wizard_water_xp_total >= 100
+			}
+		}
+		NOT = { has_trait = ascendant_lore_of_water }
+		NOT = { has_character_modifier = wizard_ascendant_water_failed }
+	}
+
+	is_valid = {
+		is_adult = yes
+		is_imprisoned = no
+		custom_description = {
+			text = wizard_lore_water_mastery_requirement
+			OR = {
+				has_character_flag = wizard_lore_water_maxed
+				AND = {
+					has_variable = wizard_water_xp_total
+					var:wizard_water_xp_total >= 100
+				}
+			}
+		}
+	}
+
+	ai_potential = {
+		always = yes
+	}
+
+	ai_will_do = {
+		base = 30
+	}
+
+	effect = {
+		trigger_event = { id = wizard_ascendant.1003 }
+	}
+}
+
+wizard_ascendant_death_decision = {
+	title = wizard_ascendant_death_decision
+	desc = wizard_ascendant_death_decision_desc
+	selection_tooltip = wizard_ascendant_death_decision_tooltip
+	confirm_text = wizard_ascendant_decision_confirm
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_ascendant_death.dds"
+	}
+	ai_check_interval = 24
+
+	is_shown = {
+		is_adult = yes
+		has_trait = lore_of_death
+		OR = {
+			has_character_flag = wizard_lore_death_maxed
+			AND = {
+				has_variable = wizard_death_xp_total
+				var:wizard_death_xp_total >= 100
+			}
+		}
+		NOT = { has_trait = ascendant_lore_of_death }
+		NOT = { has_character_modifier = wizard_ascendant_death_failed }
+	}
+
+	is_valid = {
+		is_adult = yes
+		is_imprisoned = no
+		custom_description = {
+			text = wizard_lore_death_mastery_requirement
+			OR = {
+				has_character_flag = wizard_lore_death_maxed
+				AND = {
+					has_variable = wizard_death_xp_total
+					var:wizard_death_xp_total >= 100
+				}
+			}
+		}
+	}
+
+	ai_potential = {
+		always = yes
+	}
+
+	ai_will_do = {
+		base = 30
+	}
+
+	effect = {
+		trigger_event = { id = wizard_ascendant.1004 }
+	}
+}
+
+wizard_ascendant_high_magic_decision = {
+	title = wizard_ascendant_high_magic_decision
+	desc = wizard_ascendant_high_magic_decision_desc
+	selection_tooltip = wizard_ascendant_high_magic_decision_tooltip
+	confirm_text = wizard_ascendant_decision_confirm
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_ascendant_high_magic.dds"
+	}
+	ai_check_interval = 24
+
+	is_shown = {
+		is_adult = yes
+		has_trait = lore_of_high_magic
+		OR = {
+			has_character_flag = wizard_lore_high_magic_maxed
+			AND = {
+				has_variable = wizard_high_magic_xp_total
+				var:wizard_high_magic_xp_total >= 100
+			}
+		}
+		NOT = { has_trait = ascendant_lore_of_high_magic }
+		NOT = { has_character_modifier = wizard_ascendant_high_magic_failed }
+	}
+
+	is_valid = {
+		is_adult = yes
+		is_imprisoned = no
+		custom_description = {
+			text = wizard_lore_high_magic_mastery_requirement
+			OR = {
+				has_character_flag = wizard_lore_high_magic_maxed
+				AND = {
+					has_variable = wizard_high_magic_xp_total
+					var:wizard_high_magic_xp_total >= 100
+				}
+			}
+		}
+	}
+
+	ai_potential = {
+		always = yes
+	}
+
+	ai_will_do = {
+		base = 30
+	}
+
+	effect = {
+		trigger_event = { id = wizard_ascendant.1005 }
+	}
+}

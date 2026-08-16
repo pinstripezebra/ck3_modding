@@ -1,0 +1,4 @@
+elem_flame_touch_modifier = {
+	prowess = 1
+	monthly_prestige = 0.05
+}

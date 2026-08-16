@@ -1,0 +1,22 @@
+# Battlemage - single XP-track commander trait, 3 tiers at 33/66/100 XP.
+# Only gainable through battle while holding a lore trait (see on_action).
+
+battlemage = {
+	category = commander
+	icon = battlemage_1.dds
+	prowess = 2
+	advantage = 3
+
+	track = {
+	33 = {
+		prowess = 4
+		advantage = 5
+	}
+	66 = {
+		prowess = 6
+		advantage = 8
+	}
+	}
+
+	ruler_designer_cost = 0
+}

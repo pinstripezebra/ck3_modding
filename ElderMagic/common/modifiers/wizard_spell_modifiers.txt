@@ -1,0 +1,26 @@
+wizard_learn_spell_cooldown = {
+	learning = -1
+}
+
+# ─── Lore of Fire spell effects ──────────────────────────────────────────────
+wizard_field_of_fire_active = {
+	prowess = 6
+}
+
+wizard_doom_of_flame_active = {
+	advantage = 15
+}
+
+wizard_empowerment_of_flame_active = {
+	health = 0.5
+}
+
+wizard_crown_of_flame_active = {
+	prowess = 10
+}
+
+# ─── Fire cast cooldowns (prevent stacking) ──────────────────────────────────
+wizard_fire_1_cast_cooldown = {}
+wizard_fire_2_cast_cooldown = {}
+wizard_fire_3_cast_cooldown = {}
+wizard_fire_4_cast_cooldown = {}

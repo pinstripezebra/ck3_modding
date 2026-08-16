@@ -1,0 +1,26 @@
+cast_spell_decision = {
+	title = cast_spell_decision
+	desc = cast_spell_decision_desc
+	selection_tooltip = cast_spell_decision_tooltip
+	confirm_text = cast_spell_decision_confirm
+	ai_check_interval = 6
+
+	is_shown = {
+		is_adult = yes
+		wizard_spellbook_access = yes
+		wizard_any_spell_selected = yes
+	}
+
+	is_valid = {
+		is_adult = yes
+		wizard_selected_spell_can_be_cast = yes
+	}
+
+	ai_potential = {
+		always = no
+	}
+
+	effect = {
+		trigger_event = wizard_spells.2000
+	}
+}

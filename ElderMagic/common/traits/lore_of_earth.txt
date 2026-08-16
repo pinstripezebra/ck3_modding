@@ -1,0 +1,36 @@
+﻿lore_of_earth = {
+	category = lifestyle
+	icon = lore_of_earth.dds
+	prowess = 1
+	health = 0.25
+
+	on_add = {
+		if = {
+			limit = { NOT = { has_variable = wizard_earth_xp_total } }
+			set_variable = { name = wizard_earth_xp_total value = 0 }
+		}
+	}
+
+	track = {
+	25 = {
+		health = 0.5
+	}
+	50 = {
+		prowess = 2
+		health = 0.72
+		monthly_prestige = 0.05
+	}
+	75 = {
+		prowess = 3
+		health = 1
+		monthly_prestige = 0.1
+	}
+	100 = {
+		prowess = 4
+		health = 1.25
+		monthly_prestige = 0.2
+	}
+	}
+
+	ruler_designer_cost = 32
+}

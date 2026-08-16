@@ -1,0 +1,18 @@
+myst_astral_travel = {
+	lifestyle = learning_lifestyle
+	tree = mysticism
+	position = { 4 3 }
+	icon = myst_astral_travel
+
+	parent = myst_divination
+
+	effect = {
+		add_character_modifier = {
+			modifier = myst_astral_travel_modifier
+		}
+	}
+
+	ai_will_do = {
+		base = 100
+	}
+}

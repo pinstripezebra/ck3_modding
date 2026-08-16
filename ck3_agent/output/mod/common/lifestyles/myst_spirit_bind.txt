@@ -1,0 +1,18 @@
+myst_spirit_bind = {
+	lifestyle = learning_lifestyle
+	tree = mysticism
+	position = { 5 2 }
+	icon = myst_spirit_bind
+
+	parent = myst_mind_veil
+
+	effect = {
+		add_character_modifier = {
+			modifier = myst_spirit_bind_modifier
+		}
+	}
+
+	ai_will_do = {
+		base = 100
+	}
+}

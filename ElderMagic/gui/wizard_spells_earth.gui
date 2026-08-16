@@ -1,0 +1,139 @@
+# Lore of Earth — Spell Panel
+# Type: wizard_earth_spells_panel
+# Edit this file to add, remove, or modify Earth lore spells.
+
+types WizardEarthSpells
+{
+	type wizard_earth_spells_panel = vbox
+	{
+		layoutpolicy_horizontal = expanding
+		layoutpolicy_vertical   = expanding
+		margin  = { 8 8 }
+		spacing = 8
+		visible = "[GetScriptedGui('wizard_spellbook_show_spells_earth').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+
+		# ── T1: Stone Skin ──────────────────────────────────────────────────
+		widget = {
+			name = "spell_earth_1"
+			layoutpolicy_horizontal = expanding
+			size = { 0 90 }
+			button = { parentanchor = top|left  widgetanchor = top|left  size = { 2000 90 }  onclick = "[GetScriptedGui('wizard_spellbook_select_spell_earth_1').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical   = expanding
+				using = Window_Background_Subwindow
+				background = { color = { 0.22 0.48 0.90 0.55 }  visible = "[GetScriptedGui('wizard_spell_earth_1_selected').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+				background = { color = { 0 0 0 0.65 }  visible = "[GetScriptedGui('wizard_spell_earth_1_unknown').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+				widget = {
+					size = { 40 90 }
+					background = { color = { 0.08 0.08 0.18 1.0 } }
+					textbox = { parentanchor = center  widgetanchor = center  size = { 36 38 }  autoresize = no  align = hcenter|vcenter  using = Font_Size_Small  default_format = "#bold"  raw_text = "T1" }
+				}
+				widget = { size = { 1 90 }  background = { color = { 0.30 0.30 0.50 0.5 } } }
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					layoutpolicy_vertical   = expanding
+					margin  = { 8 5 }
+					spacing = 2
+					hbox = {
+						layoutpolicy_horizontal = expanding
+						text_single = { layoutpolicy_horizontal = expanding  autoresize = no  minimumsize = { 0 18 }  using = Font_Size_Medium  default_format = "#bold #high"  align = left|nobaseline  raw_text = "Stone Skin" }
+						text_single = { autoresize = yes  using = Font_Size_Small  default_format = "#bold #color:{0.35,0.88,0.35,1.0}"  align = right|nobaseline  raw_text = "Known"  visible = "[GetScriptedGui('wizard_spell_earth_1_known').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+					}
+					textbox = { layoutpolicy_horizontal = expanding  size = { 0 32 }  autoresize = no  default_format = "#low"  using = Font_Size_Small  align = left|top  raw_text = "A compact earthen shell that hardens flesh against sudden harm." }
+					hbox = {
+						layoutpolicy_horizontal = expanding
+						text_single = { layoutpolicy_horizontal = expanding  autoresize = no  minimumsize = { 0 14 }  default_format = "#color:{0.45,0.85,0.45,1.0}"  using = Font_Size_Small  align = left|nobaseline  raw_text = "+Piety 20, +Lore XP" }
+						text_single = { size = { 160 14 }  autoresize = no  default_format = "#color:{0.3,0.65,1.0,1.0}"  using = Font_Size_Small  align = right|nobaseline  raw_text = "100 Mana" }
+					}
+				}
+				widget = { size = { 1 90 }  background = { color = { 0.30 0.30 0.50 0.5 } } }
+				widget = { size = { 36 90 }
+					textbox = { parentanchor = center  widgetanchor = center  size = { 30 30 }  autoresize = no  align = hcenter|vcenter  using = Font_Size_Small  default_format = "#bold #color:{0.35,0.88,0.35,1.0}"  raw_text = "✓"  visible = "[GetScriptedGui('wizard_spell_earth_1_selected').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+				}
+			}
+		}
+		# ── T2: Earthen Grasp ────────────────────────────────────────────────
+		widget = {
+			name = "spell_earth_2"
+			layoutpolicy_horizontal = expanding
+			size = { 0 90 }
+			button = { parentanchor = top|left  widgetanchor = top|left  size = { 2000 90 }  onclick = "[GetScriptedGui('wizard_spellbook_select_spell_earth_2').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical   = expanding
+				using = Window_Background_Subwindow
+				background = { color = { 0.22 0.48 0.90 0.55 }  visible = "[GetScriptedGui('wizard_spell_earth_2_selected').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+				background = { color = { 0 0 0 0.65 }  visible = "[GetScriptedGui('wizard_spell_earth_2_unknown').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+				widget = {
+					size = { 40 90 }
+					background = { color = { 0.08 0.08 0.18 1.0 } }
+					textbox = { parentanchor = center  widgetanchor = center  size = { 36 38 }  autoresize = no  align = hcenter|vcenter  using = Font_Size_Small  default_format = "#bold"  raw_text = "T2" }
+				}
+				widget = { size = { 1 90 }  background = { color = { 0.30 0.30 0.50 0.5 } } }
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					layoutpolicy_vertical   = expanding
+					margin  = { 8 5 }
+					spacing = 2
+					hbox = {
+						layoutpolicy_horizontal = expanding
+						text_single = { layoutpolicy_horizontal = expanding  autoresize = no  minimumsize = { 0 18 }  using = Font_Size_Medium  default_format = "#bold #high"  align = left|nobaseline  raw_text = "Earthen Grasp" }
+						text_single = { autoresize = yes  using = Font_Size_Small  default_format = "#bold #color:{0.35,0.88,0.35,1.0}"  align = right|nobaseline  raw_text = "Known"  visible = "[GetScriptedGui('wizard_spell_earth_2_known').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+					}
+					textbox = { layoutpolicy_horizontal = expanding  size = { 0 32 }  autoresize = no  default_format = "#low"  using = Font_Size_Small  align = left|top  raw_text = "Ridges of rock rise to bind movement and anchor the battlefield." }
+					hbox = {
+						layoutpolicy_horizontal = expanding
+						text_single = { layoutpolicy_horizontal = expanding  autoresize = no  minimumsize = { 0 14 }  default_format = "#color:{0.45,0.85,0.45,1.0}"  using = Font_Size_Small  align = left|nobaseline  raw_text = "+Gold 20, +Lore XP" }
+						text_single = { size = { 160 14 }  autoresize = no  default_format = "#color:{0.3,0.65,1.0,1.0}"  using = Font_Size_Small  align = right|nobaseline  raw_text = "220 Mana" }
+					}
+				}
+				widget = { size = { 1 90 }  background = { color = { 0.30 0.30 0.50 0.5 } } }
+				widget = { size = { 36 90 }
+					textbox = { parentanchor = center  widgetanchor = center  size = { 30 30 }  autoresize = no  align = hcenter|vcenter  using = Font_Size_Small  default_format = "#bold #color:{0.35,0.88,0.35,1.0}"  raw_text = "✓"  visible = "[GetScriptedGui('wizard_spell_earth_2_selected').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+				}
+			}
+		}
+		# ── T3: Mountain's Judgment ─────────────────────────────────────────
+		widget = {
+			name = "spell_earth_3"
+			layoutpolicy_horizontal = expanding
+			size = { 0 90 }
+			button = { parentanchor = top|left  widgetanchor = top|left  size = { 2000 90 }  onclick = "[GetScriptedGui('wizard_spellbook_select_spell_earth_3').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical   = expanding
+				using = Window_Background_Subwindow
+				background = { color = { 0.22 0.48 0.90 0.55 }  visible = "[GetScriptedGui('wizard_spell_earth_3_selected').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+				background = { color = { 0 0 0 0.65 }  visible = "[GetScriptedGui('wizard_spell_earth_3_unknown').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+				widget = {
+					size = { 40 90 }
+					background = { color = { 0.08 0.08 0.18 1.0 } }
+					textbox = { parentanchor = center  widgetanchor = center  size = { 36 38 }  autoresize = no  align = hcenter|vcenter  using = Font_Size_Small  default_format = "#bold"  raw_text = "T3" }
+				}
+				widget = { size = { 1 90 }  background = { color = { 0.30 0.30 0.50 0.5 } } }
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					layoutpolicy_vertical   = expanding
+					margin  = { 8 5 }
+					spacing = 2
+					hbox = {
+						layoutpolicy_horizontal = expanding
+						text_single = { layoutpolicy_horizontal = expanding  autoresize = no  minimumsize = { 0 18 }  using = Font_Size_Medium  default_format = "#bold #high"  align = left|nobaseline  raw_text = "Mountain's Judgment" }
+						text_single = { autoresize = yes  using = Font_Size_Small  default_format = "#bold #color:{0.35,0.88,0.35,1.0}"  align = right|nobaseline  raw_text = "Known"  visible = "[GetScriptedGui('wizard_spell_earth_3_known').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+					}
+					textbox = { layoutpolicy_horizontal = expanding  size = { 0 32 }  autoresize = no  default_format = "#low"  using = Font_Size_Small  align = left|top  raw_text = "A crushing invocation of weight and stone that overwhelms resistance." }
+					hbox = {
+						layoutpolicy_horizontal = expanding
+						text_single = { layoutpolicy_horizontal = expanding  autoresize = no  minimumsize = { 0 14 }  default_format = "#color:{0.45,0.85,0.45,1.0}"  using = Font_Size_Small  align = left|nobaseline  raw_text = "+Piety 50, +Gold 40, +Lore XP" }
+						text_single = { size = { 160 14 }  autoresize = no  default_format = "#color:{0.3,0.65,1.0,1.0}"  using = Font_Size_Small  align = right|nobaseline  raw_text = "400 Mana" }
+					}
+				}
+				widget = { size = { 1 90 }  background = { color = { 0.30 0.30 0.50 0.5 } } }
+				widget = { size = { 36 90 }
+					textbox = { parentanchor = center  widgetanchor = center  size = { 30 30 }  autoresize = no  align = hcenter|vcenter  using = Font_Size_Small  default_format = "#bold #color:{0.35,0.88,0.35,1.0}"  raw_text = "✓"  visible = "[GetScriptedGui('wizard_spell_earth_3_selected').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+				}
+			}
+		}
+	}
+}

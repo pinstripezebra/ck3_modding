@@ -1,0 +1,57 @@
+window = {
+	name = "wizard_mana_bar"
+	layer = top
+	parentanchor = top|left
+	position = { 10 8 }
+	size = { 110 46 }
+	movable = no
+	allow_outside = yes
+	visible = "[GetPlayer.IsValid]"
+
+	state = { name = _show  using = Animation_FadeIn_Quick  on_start = "[GetScriptedGui('wizard_mana_start_init').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+	state = { name = _hide  using = Animation_FadeOut_Quick }
+
+	background = { using = Background_Area_Dark }
+
+	icon = {
+		name = "mana_icon"
+		parentanchor = left|vcenter
+		widgetanchor = left|vcenter
+		position = { 4 0 }
+		size = { 34 34 }
+		texture = "gfx/interface/icons/traits/mana_flame.dds"
+	}
+
+	text_single = {
+		name = "mana_value"
+		parentanchor = left|vcenter
+		widgetanchor = left|vcenter
+		position = { 44 -10 }
+		raw_text = "[GetPlayer.MakeScope.ScriptValue('wizard_mana_total')]"
+		using = Font_Size_Medium
+		default_format = "#color:{0.45,0.8,1.0,1.0}"
+		align = left|nobaseline
+	}
+
+	text_single = {
+		name = "mana_gain"
+		parentanchor = left|vcenter
+		widgetanchor = left|vcenter
+		position = { 44 10 }
+		raw_text = "+[GetPlayer.MakeScope.ScriptValue('wizard_mana_gain_rate')]/mo"
+		using = Font_Size_Small
+		default_format = "#color:{0.3,0.65,0.95,1.0}"
+		align = left|nobaseline
+	}
+
+	# Hover to show mana breakdown popup
+	button = {
+		name = "mana_tooltip_trigger"
+		parentanchor = center
+		widgetanchor = center
+		size = { 110 46 }
+		tooltipwidget = {
+			mana_breakdown_tooltip = {}
+		}
+	}
+}

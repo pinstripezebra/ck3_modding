@@ -1,0 +1,18 @@
+elem_flame_touch = {
+	lifestyle = learning_lifestyle
+	tree = elementalism
+	position = { 0 1 }
+	icon = elem_flame_touch
+
+	parent = elem_spark
+
+	effect = {
+		add_character_modifier = {
+			modifier = elem_flame_touch_modifier
+		}
+	}
+
+	ai_will_do = {
+		base = 100
+	}
+}

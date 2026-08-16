@@ -1,0 +1,5 @@
+﻿myst_arcane_study_modifier = {
+	learning = 2
+}
+
+

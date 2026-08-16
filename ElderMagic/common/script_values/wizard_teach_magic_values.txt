@@ -1,0 +1,36 @@
+﻿# Script value for the opinion-based secondary success roll in the teach magic scheme.
+# Uses threshold tiers since CK3 scripted value syntax for opinion-as-number varies by version.
+# Evaluated with scope:teach_owner and scope:teach_target already saved.
+#
+#  < 20 opinion â†’ +0%
+# 20â€“49 opinion â†’ +5%
+# 50â€“79 opinion â†’ +10%
+#  80+  opinion â†’ +15%
+
+wizard_teach_magic_opinion_bonus = {
+	value = 0
+	if = {
+		limit = {
+			scope:teach_target = {
+				opinion = { target = scope:teach_owner value >= 20 }
+			}
+		}
+		add = 5
+	}
+	if = {
+		limit = {
+			scope:teach_target = {
+				opinion = { target = scope:teach_owner value >= 50 }
+			}
+		}
+		add = 5
+	}
+	if = {
+		limit = {
+			scope:teach_target = {
+				opinion = { target = scope:teach_owner value >= 80 }
+			}
+		}
+		add = 5
+	}
+}

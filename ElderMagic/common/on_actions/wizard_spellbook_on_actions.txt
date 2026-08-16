@@ -1,0 +1,12 @@
+# Clear the spellbook TRIGGER var on game start (safety net for new games).
+# The trigger var is normally cleared immediately by the GUI bridge widget,
+# but this catches edge cases. on_game_start_after_lobby fires for new games.
+on_game_start_after_lobby = {
+	on_actions = { wizard_spellbook_reset }
+}
+
+wizard_spellbook_reset = {
+	effect = {
+		remove_global_variable = wizard_spellbook_wants_to_open
+	}
+}

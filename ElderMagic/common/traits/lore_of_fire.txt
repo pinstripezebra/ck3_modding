@@ -1,0 +1,39 @@
+﻿lore_of_fire = {
+	category = lifestyle
+	icon = lore_of_fire.dds
+	learning = 1
+
+	on_add = {
+		if = {
+			limit = { NOT = { has_variable = wizard_fire_xp_total } }
+			set_variable = { name = wizard_fire_xp_total value = 0 }
+		}
+	}
+	track = {
+	25 = {
+		learning = 1
+		prowess = 2
+		hard_casualty_modifier = 0.05
+	}
+	50 = {
+		learning = 3
+		prowess = 4
+		monthly_prestige = 0.05
+		hard_casualty_modifier = 0.10
+	}
+	75 = {
+		learning = 2
+		prowess = 6
+		monthly_prestige = 0.1
+		hard_casualty_modifier = 0.15
+	}
+	100 = {
+		learning = 3
+		prowess = 9
+		monthly_prestige = 0.2
+		hard_casualty_modifier = 0.20
+	}
+	}
+
+	ruler_designer_cost = 30
+}

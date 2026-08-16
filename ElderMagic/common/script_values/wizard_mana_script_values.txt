@@ -1,0 +1,43 @@
+# Computes the monthly mana generation rate for the current character.
+# Read live from the GUI — no stored variable, no events, always accurate.
+wizard_mana_gain_rate = {
+	value = 0
+	# Wizard potential ladder (mutually exclusive, +1 to +20)
+	if = { limit = { has_trait = the_spark }       add = 1 }
+	if = { limit = { has_trait = the_conduit }     add = 2 }
+	if = { limit = { has_trait = the_resonator }   add = 4 }
+	if = { limit = { has_trait = the_vector }      add = 6 }
+	if = { limit = { has_trait = the_capacitor }   add = 8 }
+	if = { limit = { has_trait = the_dynamo }      add = 10 }
+	if = { limit = { has_trait = the_nexus }       add = 12 }
+	if = { limit = { has_trait = the_singularity } add = 14 }
+	if = { limit = { has_trait = the_catalyst }    add = 16 }
+	if = { limit = { has_trait = the_horizon }     add = 20 }
+	# Magic education (stackable with ladder, +1 to +5)
+	if = { limit = { has_trait = magic_education_1 } add = 1 }
+	if = { limit = { has_trait = magic_education_2 } add = 2 }
+	if = { limit = { has_trait = magic_education_3 } add = 3 }
+	if = { limit = { has_trait = magic_education_4 } add = 4 }
+	if = { limit = { has_trait = magic_education_5 } add = 5 }
+}
+
+# Computes total accumulated mana without any periodic events.
+# Formula: (current_year - start_year) x 12 months x monthly_rate - mana_spent
+# wizard_mana_start_year is set on trait on_add.
+# wizard_mana_spent tracks cumulative spell costs.
+wizard_mana_total = {
+	value = 0
+	if = {
+		limit = { has_global_variable = wizard_mana_start_year }
+		add = current_year
+		subtract = global_var:wizard_mana_start_year
+		multiply = 12
+		multiply = wizard_mana_gain_rate
+	}
+	if = {
+		limit = { has_global_variable = wizard_mana_spent }
+		subtract = global_var:wizard_mana_spent
+	}
+	min = 0
+	max = 1000
+}

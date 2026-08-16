@@ -1,0 +1,237 @@
+wizard_clear_selected_spell_flags = {
+	remove_character_flag = wizard_selected_spell_fire_1
+	remove_character_flag = wizard_selected_spell_fire_2
+	remove_character_flag = wizard_selected_spell_fire_3
+	remove_character_flag = wizard_selected_spell_fire_4
+	remove_character_flag = wizard_selected_spell_earth_1
+	remove_character_flag = wizard_selected_spell_earth_2
+	remove_character_flag = wizard_selected_spell_earth_3
+	remove_character_flag = wizard_selected_spell_wind_1
+	remove_character_flag = wizard_selected_spell_wind_2
+	remove_character_flag = wizard_selected_spell_wind_3
+	remove_character_flag = wizard_selected_spell_water_1
+	remove_character_flag = wizard_selected_spell_water_2
+	remove_character_flag = wizard_selected_spell_water_3
+	remove_character_flag = wizard_selected_spell_death_1
+	remove_character_flag = wizard_selected_spell_death_2
+	remove_character_flag = wizard_selected_spell_death_3
+	remove_character_flag = wizard_selected_spell_high_1
+	remove_character_flag = wizard_selected_spell_high_2
+	remove_character_flag = wizard_selected_spell_high_3
+}
+
+wizard_apply_learn_spell_cooldown = {
+	add_character_modifier = {
+		modifier = wizard_learn_spell_cooldown
+		years = 2
+	}
+}
+
+wizard_learn_selected_spell = {
+	if = { limit = { has_character_flag = wizard_selected_spell_fire_1 } add_character_flag = wizard_spell_fire_1_learned }
+	if = { limit = { has_character_flag = wizard_selected_spell_fire_2 } add_character_flag = wizard_spell_fire_2_learned }
+	if = { limit = { has_character_flag = wizard_selected_spell_fire_3 } add_character_flag = wizard_spell_fire_3_learned }
+	if = { limit = { has_character_flag = wizard_selected_spell_fire_4 } add_character_flag = wizard_spell_fire_4_learned }
+	if = { limit = { has_character_flag = wizard_selected_spell_earth_1 } add_character_flag = wizard_spell_earth_1_learned }
+	if = { limit = { has_character_flag = wizard_selected_spell_earth_2 } add_character_flag = wizard_spell_earth_2_learned }
+	if = { limit = { has_character_flag = wizard_selected_spell_earth_3 } add_character_flag = wizard_spell_earth_3_learned }
+	if = { limit = { has_character_flag = wizard_selected_spell_wind_1 } add_character_flag = wizard_spell_wind_1_learned }
+	if = { limit = { has_character_flag = wizard_selected_spell_wind_2 } add_character_flag = wizard_spell_wind_2_learned }
+	if = { limit = { has_character_flag = wizard_selected_spell_wind_3 } add_character_flag = wizard_spell_wind_3_learned }
+	if = { limit = { has_character_flag = wizard_selected_spell_water_1 } add_character_flag = wizard_spell_water_1_learned }
+	if = { limit = { has_character_flag = wizard_selected_spell_water_2 } add_character_flag = wizard_spell_water_2_learned }
+	if = { limit = { has_character_flag = wizard_selected_spell_water_3 } add_character_flag = wizard_spell_water_3_learned }
+	if = { limit = { has_character_flag = wizard_selected_spell_death_1 } add_character_flag = wizard_spell_death_1_learned }
+	if = { limit = { has_character_flag = wizard_selected_spell_death_2 } add_character_flag = wizard_spell_death_2_learned }
+	if = { limit = { has_character_flag = wizard_selected_spell_death_3 } add_character_flag = wizard_spell_death_3_learned }
+	if = { limit = { has_character_flag = wizard_selected_spell_high_1 } add_character_flag = wizard_spell_high_1_learned }
+	if = { limit = { has_character_flag = wizard_selected_spell_high_2 } add_character_flag = wizard_spell_high_2_learned }
+	if = { limit = { has_character_flag = wizard_selected_spell_high_3 } add_character_flag = wizard_spell_high_3_learned }
+}
+
+wizard_spend_mana_for_selected_spell = {
+	if = {
+		limit = { NOT = { has_global_variable = wizard_mana_spent } }
+		set_global_variable = { name = wizard_mana_spent value = 0 }
+	}
+
+	if = { limit = { wizard_selected_spell_tier_1 = yes } change_global_variable = { name = wizard_mana_spent add = 100 } }
+	if = { limit = { wizard_selected_spell_tier_2 = yes } change_global_variable = { name = wizard_mana_spent add = 220 } }
+	if = { limit = { wizard_selected_spell_tier_3 = yes } change_global_variable = { name = wizard_mana_spent add = 400 } }
+	if = { limit = { wizard_selected_spell_tier_4 = yes } change_global_variable = { name = wizard_mana_spent add = 600 } }
+
+	# Clamp spent so total can't go below 0
+	if = {
+		limit = { global_var:wizard_mana_spent > wizard_mana_total }
+		set_global_variable = { name = wizard_mana_spent value = wizard_mana_total }
+	}
+}
+
+wizard_apply_selected_spell_effect = {
+	# Fire
+	if = { limit = { has_character_flag = wizard_selected_spell_fire_1 }
+		add_character_modifier = { modifier = wizard_field_of_fire_active years = 1 }
+		add_character_modifier = { modifier = wizard_fire_1_cast_cooldown years = 1 }
+	}
+	if = { limit = { has_character_flag = wizard_selected_spell_fire_2 }
+		add_character_modifier = { modifier = wizard_doom_of_flame_active years = 1 }
+		add_character_modifier = { modifier = wizard_fire_2_cast_cooldown years = 1 }
+	}
+	if = { limit = { has_character_flag = wizard_selected_spell_fire_3 }
+		add_character_modifier = { modifier = wizard_empowerment_of_flame_active years = 5 }
+		add_character_modifier = { modifier = wizard_fire_3_cast_cooldown years = 5 }
+	}
+	if = { limit = { has_character_flag = wizard_selected_spell_fire_4 }
+		add_character_modifier = { modifier = wizard_crown_of_flame_active years = 5 }
+		add_character_modifier = { modifier = wizard_fire_4_cast_cooldown years = 5 }
+	}
+
+	# Earth
+	if = { limit = { has_character_flag = wizard_selected_spell_earth_1 } add_trait_xp = { trait = lore_of_earth value = 1 } add_piety = 20 }
+	if = { limit = { has_character_flag = wizard_selected_spell_earth_2 } add_trait_xp = { trait = lore_of_earth value = 1 } add_gold = 20 }
+	if = { limit = { has_character_flag = wizard_selected_spell_earth_3 } add_trait_xp = { trait = lore_of_earth value = 2 } add_piety = 50 add_gold = 40 }
+
+	# Water
+	if = { limit = { has_character_flag = wizard_selected_spell_water_1 } add_trait_xp = { trait = lore_of_water value = 1 } add_stress = -20 }
+	if = { limit = { has_character_flag = wizard_selected_spell_water_2 } add_trait_xp = { trait = lore_of_water value = 1 } add_piety = 30 }
+	if = { limit = { has_character_flag = wizard_selected_spell_water_3 } add_trait_xp = { trait = lore_of_water value = 2 } add_stress = -35 add_piety = 55 }
+
+	# Death
+	if = { limit = { has_character_flag = wizard_selected_spell_death_1 } add_trait_xp = { trait = lore_of_death value = 1 } add_dread = 2 }
+	if = { limit = { has_character_flag = wizard_selected_spell_death_2 } add_trait_xp = { trait = lore_of_death value = 1 } add_dread = 4 }
+	if = { limit = { has_character_flag = wizard_selected_spell_death_3 } add_trait_xp = { trait = lore_of_death value = 2 } add_dread = 8 add_prestige = 40 }
+
+	# High Magic
+	if = { limit = { has_character_flag = wizard_selected_spell_high_1 } add_trait_xp = { trait = lore_of_high_magic value = 1 } add_piety = 15 add_prestige = 15 }
+	if = { limit = { has_character_flag = wizard_selected_spell_high_2 } add_trait_xp = { trait = lore_of_high_magic value = 1 } add_piety = 35 add_prestige = 35 }
+	if = { limit = { has_character_flag = wizard_selected_spell_high_3 } add_trait_xp = { trait = lore_of_high_magic value = 2 } add_piety = 60 add_prestige = 60 }
+}
+
+wizard_set_spellbook_open = {
+	# Use a TRIGGER global var (not a state var) — the GUI bridge widget
+	# converts this to a session-only VariableSystem var (not save-persistent)
+	# and immediately removes the trigger. No persistent state in saves.
+	set_global_variable = { name = wizard_spellbook_wants_to_open value = yes }
+
+	# Ensure the spellbook always opens with a visible lore tab.
+	if = {
+		limit = {
+			NOT = { has_character_flag = wizard_spellbook_lore_fire_selected }
+			NOT = { has_character_flag = wizard_spellbook_lore_earth_selected }
+			NOT = { has_character_flag = wizard_spellbook_lore_wind_selected }
+			NOT = { has_character_flag = wizard_spellbook_lore_water_selected }
+			NOT = { has_character_flag = wizard_spellbook_lore_death_selected }
+			NOT = { has_character_flag = wizard_spellbook_lore_high_selected }
+		}
+
+		if = {
+			limit = { has_trait = lore_of_fire }
+			wizard_select_lore_fire = yes
+			wizard_select_spell_fire_1 = yes
+		}
+		else_if = {
+			limit = { has_trait = lore_of_earth }
+			wizard_select_lore_earth = yes
+			wizard_select_spell_earth_1 = yes
+		}
+		else_if = {
+			limit = { has_trait = lore_of_water }
+			wizard_select_lore_water = yes
+			wizard_select_spell_water_1 = yes
+		}
+		else_if = {
+			limit = { has_trait = lore_of_death }
+			wizard_select_lore_death = yes
+			wizard_select_spell_death_1 = yes
+		}
+		else_if = {
+			limit = { has_trait = lore_of_high_magic }
+			wizard_select_lore_high = yes
+			wizard_select_spell_high_1 = yes
+		}
+		else = {
+			# Fallback so the panel still has visible content even before any lore is acquired.
+			wizard_select_lore_fire = yes
+			wizard_select_spell_fire_1 = yes
+		}
+	}
+}
+
+wizard_set_spellbook_closed = {
+	# Close is now handled directly by the GUI (GetVariableSystem.Clear).
+	# This effect kept for backward compat but no longer drives visibility.
+	remove_global_variable = wizard_spellbook_wants_to_open
+}
+
+wizard_toggle_spellbook_window = {
+	# Toggle: open by setting trigger var; close is GUI-only via VariableSystem.
+	if = {
+		limit = { NOT = { has_global_variable = wizard_spellbook_wants_to_open } }
+		wizard_set_spellbook_open = yes
+	}
+}
+
+wizard_clear_spellbook_lore_selection = {
+	remove_character_flag = wizard_spellbook_lore_fire_selected
+	remove_character_flag = wizard_spellbook_lore_earth_selected
+	remove_character_flag = wizard_spellbook_lore_wind_selected
+	remove_character_flag = wizard_spellbook_lore_water_selected
+	remove_character_flag = wizard_spellbook_lore_death_selected
+	remove_character_flag = wizard_spellbook_lore_high_selected
+}
+
+wizard_select_lore_fire = {
+	wizard_clear_spellbook_lore_selection = yes
+	add_character_flag = wizard_spellbook_lore_fire_selected
+	wizard_select_spell_fire_1 = yes
+}
+wizard_select_lore_earth = {
+	wizard_clear_spellbook_lore_selection = yes
+	add_character_flag = wizard_spellbook_lore_earth_selected
+	wizard_select_spell_earth_1 = yes
+}
+wizard_select_lore_wind = {
+	wizard_clear_spellbook_lore_selection = yes
+	add_character_flag = wizard_spellbook_lore_wind_selected
+	wizard_select_spell_wind_1 = yes
+}
+wizard_select_lore_water = {
+	wizard_clear_spellbook_lore_selection = yes
+	add_character_flag = wizard_spellbook_lore_water_selected
+	wizard_select_spell_water_1 = yes
+}
+wizard_select_lore_death = {
+	wizard_clear_spellbook_lore_selection = yes
+	add_character_flag = wizard_spellbook_lore_death_selected
+	wizard_select_spell_death_1 = yes
+}
+wizard_select_lore_high = {
+	wizard_clear_spellbook_lore_selection = yes
+	add_character_flag = wizard_spellbook_lore_high_selected
+	wizard_select_spell_high_1 = yes
+}
+
+wizard_select_spell_fire_1 = { wizard_clear_selected_spell_flags = yes add_character_flag = wizard_selected_spell_fire_1 }
+wizard_select_spell_fire_2 = { wizard_clear_selected_spell_flags = yes add_character_flag = wizard_selected_spell_fire_2 }
+wizard_select_spell_fire_3 = { wizard_clear_selected_spell_flags = yes add_character_flag = wizard_selected_spell_fire_3 }
+wizard_select_spell_fire_4 = { wizard_clear_selected_spell_flags = yes add_character_flag = wizard_selected_spell_fire_4 }
+
+wizard_select_spell_earth_1 = { wizard_clear_selected_spell_flags = yes add_character_flag = wizard_selected_spell_earth_1 }
+wizard_select_spell_earth_2 = { wizard_clear_selected_spell_flags = yes add_character_flag = wizard_selected_spell_earth_2 }
+wizard_select_spell_earth_3 = { wizard_clear_selected_spell_flags = yes add_character_flag = wizard_selected_spell_earth_3 }
+
+wizard_select_spell_wind_1 = { wizard_clear_selected_spell_flags = yes add_character_flag = wizard_selected_spell_wind_1 }
+wizard_select_spell_wind_2 = { wizard_clear_selected_spell_flags = yes add_character_flag = wizard_selected_spell_wind_2 }
+wizard_select_spell_wind_3 = { wizard_clear_selected_spell_flags = yes add_character_flag = wizard_selected_spell_wind_3 }
+
+wizard_select_spell_water_1 = { wizard_clear_selected_spell_flags = yes add_character_flag = wizard_selected_spell_water_1 }
+wizard_select_spell_water_2 = { wizard_clear_selected_spell_flags = yes add_character_flag = wizard_selected_spell_water_2 }
+wizard_select_spell_water_3 = { wizard_clear_selected_spell_flags = yes add_character_flag = wizard_selected_spell_water_3 }
+
+wizard_select_spell_death_1 = { wizard_clear_selected_spell_flags = yes add_character_flag = wizard_selected_spell_death_1 }
+wizard_select_spell_death_2 = { wizard_clear_selected_spell_flags = yes add_character_flag = wizard_selected_spell_death_2 }
+wizard_select_spell_death_3 = { wizard_clear_selected_spell_flags = yes add_character_flag = wizard_selected_spell_death_3 }
+
+wizard_select_spell_high_1 = { wizard_clear_selected_spell_flags = yes add_character_flag = wizard_selected_spell_high_1 }
+wizard_select_spell_high_2 = { wizard_clear_selected_spell_flags = yes add_character_flag = wizard_selected_spell_high_2 }
+wizard_select_spell_high_3 = { wizard_clear_selected_spell_flags = yes add_character_flag = wizard_selected_spell_high_3 }

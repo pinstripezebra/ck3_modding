@@ -1,0 +1,92 @@
+﻿namespace = wizard_wardship
+
+# Hidden event: child ward has a 75% chance to learn one lore of magic
+# that their guardian has but they are missing.
+# scope:warding_guardian is set in wizard_wardship_on_actions.txt.
+wizard_wardship.0001 = {
+	type = character_event
+	hidden = yes
+
+	immediate = {
+		add_character_flag = { flag = wizard_wardship_lore_cooldown days = 365 }
+
+		# 75% chance to actually learn something this year
+		random = {
+			chance = 75
+			add_character_flag = wizard_wardship_will_learn
+		}
+
+		if = {
+			limit = { has_character_flag = wizard_wardship_will_learn }
+			remove_character_flag = wizard_wardship_will_learn
+
+			random_list = {
+				1 = {
+					trigger = {
+						NOT = { has_trait = lore_of_fire }
+						scope:warding_guardian = { has_trait = lore_of_fire }
+					}
+					add_trait = lore_of_fire
+					send_interface_toast = {
+						type = event_toast_effect_good
+						title = wizard_wardship_toast_title
+						desc = wizard_wardship_toast_fire_desc
+						left_icon = ROOT
+					}
+				}
+				1 = {
+					trigger = {
+						NOT = { has_trait = lore_of_earth }
+						scope:warding_guardian = { has_trait = lore_of_earth }
+					}
+					add_trait = lore_of_earth
+					send_interface_toast = {
+						type = event_toast_effect_good
+						title = wizard_wardship_toast_title
+						desc = wizard_wardship_toast_earth_desc
+						left_icon = ROOT
+					}
+				}
+				1 = {
+					trigger = {
+						NOT = { has_trait = lore_of_water }
+						scope:warding_guardian = { has_trait = lore_of_water }
+					}
+					add_trait = lore_of_water
+					send_interface_toast = {
+						type = event_toast_effect_good
+						title = wizard_wardship_toast_title
+						desc = wizard_wardship_toast_water_desc
+						left_icon = ROOT
+					}
+				}
+				1 = {
+					trigger = {
+						NOT = { has_trait = lore_of_death }
+						scope:warding_guardian = { has_trait = lore_of_death }
+					}
+					add_trait = lore_of_death
+					send_interface_toast = {
+						type = event_toast_effect_good
+						title = wizard_wardship_toast_title
+						desc = wizard_wardship_toast_death_desc
+						left_icon = ROOT
+					}
+				}
+				1 = {
+					trigger = {
+						NOT = { has_trait = lore_of_high_magic }
+						scope:warding_guardian = { has_trait = lore_of_high_magic }
+					}
+					add_trait = lore_of_high_magic
+					send_interface_toast = {
+						type = event_toast_effect_good
+						title = wizard_wardship_toast_title
+						desc = wizard_wardship_toast_high_magic_desc
+						left_icon = ROOT
+					}
+				}
+			}
+		}
+	}
+}

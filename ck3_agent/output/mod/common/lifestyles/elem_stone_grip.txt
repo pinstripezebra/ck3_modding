@@ -1,0 +1,18 @@
+elem_stone_grip = {
+	lifestyle = learning_lifestyle
+	tree = elementalism
+	position = { 1 1 }
+	icon = elem_stone_grip
+
+	parent = elem_spark
+
+	effect = {
+		add_character_modifier = {
+			modifier = elem_stone_grip_modifier
+		}
+	}
+
+	ai_will_do = {
+		base = 100
+	}
+}

@@ -1,0 +1,3 @@
+myst_second_sight_modifier = {
+	monthly_piety = 0.2
+}

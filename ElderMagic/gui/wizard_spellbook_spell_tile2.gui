@@ -1,0 +1,75 @@
+# Arcane Codex — Spell Card Tile (v2 - revised)
+# All variable blocks use WIDGET-LEVEL overrides (whole widget elements).
+# This is required by CK3's block system — attribute-level overrides are ignored.
+
+types WizardSpellTiles2
+{
+type wizard_spell_tile2 = widget
+{
+layoutpolicy_horizontal = expanding
+size = { 0 86 }
+
+background = { using = Window_Background_Subwindow }
+
+# Selection highlight — instance replaces with background + visible condition
+block "spell_selected_highlight" {}
+
+hbox = {
+layoutpolicy_horizontal = expanding
+margin = { 10 6 }
+spacing = 10
+
+# Tier badge — instance replaces entire widget with correct tier text
+block "spell_tier_badge" {
+widget = {
+size = { 28 70 }
+background = { color = { 0.12 0.12 0.20 0.95 } }
+textbox = { parentanchor = center  widgetanchor = center  size = { 24 42 }  autoresize = no  align = hcenter|vcenter  default_format = "#bold"  using = Font_Size_Small  raw_text = "T?" }
+}
+}
+
+vbox = {
+layoutpolicy_horizontal = expanding
+layoutpolicy_vertical = expanding
+spacing = 2
+
+hbox = {
+layoutpolicy_horizontal = expanding
+# Spell name — instance replaces entire text_single
+block "spell_name" {
+text_single = { layoutpolicy_horizontal = expanding  autoresize = no  minimumsize = { 0 20 }  using = Font_Size_Medium  default_format = "#bold #high"  align = left|nobaseline  raw_text = "Spell" }
+}
+# Known badge — instance replaces with correct visible condition
+block "spell_known_badge" {
+text_single = { autoresize = yes  using = Font_Size_Small  default_format = "#bold #color:{0.35,0.88,0.35,1.0}"  raw_text = "Known"  align = right|nobaseline  visible = no }
+}
+}
+
+# Description — instance replaces entire textbox
+block "spell_desc" {
+textbox = { layoutpolicy_horizontal = expanding  size = { 0 22 }  autoresize = no  default_format = "#low"  using = Font_Size_Small  align = left  raw_text = "" }
+}
+
+hbox = {
+layoutpolicy_horizontal = expanding
+# Effect — instance replaces entire text_single
+block "spell_effect" {
+text_single = { layoutpolicy_horizontal = expanding  autoresize = no  minimumsize = { 0 16 }  default_format = "#color:{0.45,0.85,0.45,1.0}"  using = Font_Size_Small  align = left|nobaseline  raw_text = "" }
+}
+# Cost — instance replaces entire text_single
+block "spell_cost" {
+text_single = { autoresize = yes  default_format = "#color:{0.3,0.65,1.0,1.0}"  using = Font_Size_Small  align = right|nobaseline  raw_text = "" }
+}
+}
+}
+}
+
+# Click overlay — instance replaces with onclick
+block "spell_button" {
+button = { parentanchor = top|left  widgetanchor = top|left  size = { 1200 86 } }
+}
+
+# Locked overlay — instance replaces with background + visible condition
+block "spell_locked_overlay" {}
+}
+}

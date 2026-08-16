@@ -1,0 +1,12 @@
+﻿l_english:
+ # Dangerous Study of Magic event
+ wizard_study_magic.2001.t:0 "A Dangerous Study of Magic"
+ wizard_study_magic.2001.desc:0 "Deep in your laboratory, you feel the power building as you push your studies further than ever before. Arcane energies swirl around your hands when a sudden, violent explosion rocks the room — books fly from shelves and glass shatters as wild magic surges uncontrolled. A storm of crackling energy fills the chamber. You must act quickly."
+ wizard_study_magic.2001.a:0 "Flee the Laboratory!"
+ wizard_study_magic.2001.a.tt:0 "40% chance to escape unharmed. On failure: Injured (70%) or Maimed (30%). No arcane knowledge is gained."
+ wizard_study_magic.2001.b:0 "Attempt to Control the Surging Magic"
+ wizard_study_magic.2001.b.tt:0 "Success scales with Learning (10% at Learning 5, 90% at Learning 40). On success: study XP awarded normally. On failure: Mana Wells Scarred."
+
+ # Toast for successful flight
+ wizard_dangerous_study_fled_title:0 "Escaped the Laboratory"
+ wizard_dangerous_study_fled_desc:0 "You sprinted from the laboratory as arcane fire scorched the walls behind you. You are unharmed — but you learned nothing from this session."

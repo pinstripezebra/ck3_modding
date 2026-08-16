@@ -1,0 +1,18 @@
+myst_second_sight = {
+	lifestyle = learning_lifestyle
+	tree = mysticism
+	position = { 4 1 }
+	icon = myst_second_sight
+
+	parent = myst_inner_eye
+
+	effect = {
+		add_character_modifier = {
+			modifier = myst_second_sight_modifier
+		}
+	}
+
+	ai_will_do = {
+		base = 100
+	}
+}

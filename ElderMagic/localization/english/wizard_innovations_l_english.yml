@@ -1,0 +1,23 @@
+﻿l_english:
+ # ─── Military Innovations ────────────────────────────────────────────────────
+ innovation_mage_commune:0 "Mage Commune"
+ innovation_mage_commune_desc:0 "Wandering mages have long moved through our lands, but only now do we begin to organize them into a coherent martial force. By offering shelter, coin, and purpose, we draw these solitary practitioners into a commune of shared magical discipline — ready to march alongside our armies."
+
+ innovation_empowered_mages:0 "Empowered Mages"
+ innovation_empowered_mages_desc:0 "Magic and martial training are no longer separate pursuits. Our mage-soldiers are drilled in formation, their spells coordinated for maximum battlefield impact. Where once a mage was a lone asset, now they fight as a disciplined squadron — multiplying one another's power."
+
+ innovation_ascendant_magic:0 "Ascendant Magic"
+ innovation_ascendant_magic_desc:0 "The highest attainment of magical warfare: entire regiments of ascendant-level mages, their power bound together by ritual compact. To face such a force is to face something beyond ordinary war — a walking catastrophe in service of our banners."
+
+ # ─── Men-at-Arms Units ───────────────────────────────────────────────────────
+ wandering_mages_name:0 "Wandering Mage"
+ wandering_mages_name_plural:0 "Wandering Mages"
+ wandering_mages_name_flavor:0 "#F Solitary practitioners who have traded vagabond life for a lord's coin. Each fights alone, but together they are worth far more than their numbers suggest.#!"
+
+ mage_squadron_name:0 "Mage Squadron"
+ mage_squadron_name_plural:0 "Mage Squadrons"
+ mage_squadron_name_flavor:0 "#F Trained to fight in concert, these armored battle-mages coordinate their spells with the precision of a veteran infantry company. Their enchanted weapons cleave through what ordinary steel cannot.#!"
+
+ mage_regiment_name:0 "Mage Regiment"
+ mage_regiment_name_plural:0 "Mage Regiments"
+ mage_regiment_name_flavor:0 "#F The pinnacle of organized magical warfare. A regiment of ascendant mages, whose combined power reshapes the battlefield itself. Rulers who can field even one such regiment are feared across the known world.#!"

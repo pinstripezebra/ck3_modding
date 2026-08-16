@@ -1,0 +1,4 @@
+elem_harmony_modifier = {
+	learning = 2
+	monthly_prestige = 0.15
+}

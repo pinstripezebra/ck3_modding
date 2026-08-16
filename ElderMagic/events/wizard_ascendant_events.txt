@@ -1,0 +1,336 @@
+﻿﻿namespace = wizard_ascendant
+
+wizard_ascendant.1001 = {
+	type = character_event
+	title = wizard_ascendant.1001.t
+	desc = wizard_ascendant.1001.desc
+	theme = learning
+	left_portrait = { character = root  animation = personality_bold }
+	override_background = { reference = "study" }
+
+	immediate = {
+		random = {
+			chance = wizard_ascendant_success_chance
+			add_character_flag = wizard_ascendant_fire_success
+		}
+	}
+
+	option = {
+		name = wizard_ascendant.ritual_success
+		trigger = { has_character_flag = wizard_ascendant_fire_success }
+		remove_character_flag = wizard_ascendant_fire_success
+		trigger_event = { id = wizard_ascendant.2001 }
+	}
+	option = {
+		name = wizard_ascendant.ritual_failure
+		fallback = yes
+		trigger = { NOT = { has_character_flag = wizard_ascendant_fire_success } }
+		trigger_event = { id = wizard_ascendant.2002 }
+	}
+}
+
+wizard_ascendant.1002 = {
+	type = character_event
+	title = wizard_ascendant.1002.t
+	desc = wizard_ascendant.1002.desc
+	theme = learning
+	left_portrait = { character = root  animation = personality_bold }
+	override_background = { reference = "study" }
+
+	immediate = {
+		random = {
+			chance = wizard_ascendant_success_chance
+			add_character_flag = wizard_ascendant_earth_success
+		}
+	}
+
+	option = {
+		name = wizard_ascendant.ritual_success
+		trigger = { has_character_flag = wizard_ascendant_earth_success }
+		remove_character_flag = wizard_ascendant_earth_success
+		trigger_event = { id = wizard_ascendant.2003 }
+	}
+	option = {
+		name = wizard_ascendant.ritual_failure
+		fallback = yes
+		trigger = { NOT = { has_character_flag = wizard_ascendant_earth_success } }
+		trigger_event = { id = wizard_ascendant.2004 }
+	}
+}
+
+wizard_ascendant.1003 = {
+	type = character_event
+	title = wizard_ascendant.1003.t
+	desc = wizard_ascendant.1003.desc
+	theme = learning
+	left_portrait = { character = root  animation = personality_bold }
+	override_background = { reference = "study" }
+
+	immediate = {
+		random = {
+			chance = wizard_ascendant_success_chance
+			add_character_flag = wizard_ascendant_water_success
+		}
+	}
+
+	option = {
+		name = wizard_ascendant.ritual_success
+		trigger = { has_character_flag = wizard_ascendant_water_success }
+		remove_character_flag = wizard_ascendant_water_success
+		trigger_event = { id = wizard_ascendant.2005 }
+	}
+	option = {
+		name = wizard_ascendant.ritual_failure
+		fallback = yes
+		trigger = { NOT = { has_character_flag = wizard_ascendant_water_success } }
+		trigger_event = { id = wizard_ascendant.2006 }
+	}
+}
+
+wizard_ascendant.1004 = {
+	type = character_event
+	title = wizard_ascendant.1004.t
+	desc = wizard_ascendant.1004.desc
+	theme = learning
+	left_portrait = { character = root  animation = personality_bold }
+	override_background = { reference = "study" }
+
+	immediate = {
+		random = {
+			chance = wizard_ascendant_success_chance
+			add_character_flag = wizard_ascendant_death_success
+		}
+	}
+
+	option = {
+		name = wizard_ascendant.ritual_success
+		trigger = { has_character_flag = wizard_ascendant_death_success }
+		remove_character_flag = wizard_ascendant_death_success
+		trigger_event = { id = wizard_ascendant.2007 }
+	}
+	option = {
+		name = wizard_ascendant.ritual_failure
+		fallback = yes
+		trigger = { NOT = { has_character_flag = wizard_ascendant_death_success } }
+		trigger_event = { id = wizard_ascendant.2008 }
+	}
+}
+
+wizard_ascendant.1005 = {
+	type = character_event
+	title = wizard_ascendant.1005.t
+	desc = wizard_ascendant.1005.desc
+	theme = learning
+	left_portrait = { character = root  animation = personality_bold }
+	override_background = { reference = "study" }
+
+	immediate = {
+		random = {
+			chance = wizard_ascendant_success_chance
+			add_character_flag = wizard_ascendant_high_magic_success
+		}
+	}
+
+	option = {
+		name = wizard_ascendant.ritual_success
+		trigger = { has_character_flag = wizard_ascendant_high_magic_success }
+		remove_character_flag = wizard_ascendant_high_magic_success
+		trigger_event = { id = wizard_ascendant.2009 }
+	}
+	option = {
+		name = wizard_ascendant.ritual_failure
+		fallback = yes
+		trigger = { NOT = { has_character_flag = wizard_ascendant_high_magic_success } }
+		trigger_event = { id = wizard_ascendant.2010 }
+	}
+}
+
+# --- Sub-events: Fire --------------------------------------------------------
+wizard_ascendant.2001 = {
+	type = character_event
+	title = wizard_ascendant.2001.t
+	desc = wizard_ascendant.2001.desc
+	theme = learning
+	left_portrait = { character = root }
+	override_background = { reference = "study" }
+	immediate = { add_trait = ascendant_lore_of_fire }
+	option = { name = wizard_ascendant.2001.a }
+}
+wizard_ascendant.2002 = {
+	type = character_event
+	title = wizard_ascendant.2002.t
+	desc = wizard_ascendant.2002.desc
+	theme = learning
+	left_portrait = { character = root  animation = personality_afraid }
+	override_background = { reference = "study" }
+	immediate = {
+		random = {
+			chance = 1
+			death = { death_reason = death_murder_unknown }
+		}
+		if = {
+			limit = { is_alive = yes }
+			random = {
+				chance = 20
+				add_trait = wounded_2
+			}
+		}
+		if = {
+			limit = { is_alive = yes }
+			add_character_modifier = { modifier = wizard_ascendant_fire_failed years = 5 }
+		}
+	}
+	option = { name = wizard_ascendant.2002.a }
+}
+
+# --- Sub-events: Earth -------------------------------------------------------
+wizard_ascendant.2003 = {
+	type = character_event
+	title = wizard_ascendant.2003.t
+	desc = wizard_ascendant.2003.desc
+	theme = learning
+	left_portrait = { character = root }
+	override_background = { reference = "study" }
+	immediate = { add_trait = ascendant_lore_of_earth }
+	option = { name = wizard_ascendant.2003.a }
+}
+wizard_ascendant.2004 = {
+	type = character_event
+	title = wizard_ascendant.2004.t
+	desc = wizard_ascendant.2004.desc
+	theme = learning
+	left_portrait = { character = root  animation = personality_afraid }
+	override_background = { reference = "study" }
+	immediate = {
+		random = {
+			chance = 1
+			death = { death_reason = death_murder_unknown }
+		}
+		if = {
+			limit = { is_alive = yes }
+			random = {
+				chance = 20
+				add_trait = wounded_2
+			}
+		}
+		if = {
+			limit = { is_alive = yes }
+			add_character_modifier = { modifier = wizard_ascendant_earth_failed years = 5 }
+		}
+	}
+	option = { name = wizard_ascendant.2004.a }
+}
+
+# --- Sub-events: Water -------------------------------------------------------
+wizard_ascendant.2005 = {
+	type = character_event
+	title = wizard_ascendant.2005.t
+	desc = wizard_ascendant.2005.desc
+	theme = learning
+	left_portrait = { character = root }
+	override_background = { reference = "study" }
+	immediate = { add_trait = ascendant_lore_of_water }
+	option = { name = wizard_ascendant.2005.a }
+}
+wizard_ascendant.2006 = {
+	type = character_event
+	title = wizard_ascendant.2006.t
+	desc = wizard_ascendant.2006.desc
+	theme = learning
+	left_portrait = { character = root  animation = personality_afraid }
+	override_background = { reference = "study" }
+	immediate = {
+		random = {
+			chance = 1
+			death = { death_reason = death_murder_unknown }
+		}
+		if = {
+			limit = { is_alive = yes }
+			random = {
+				chance = 20
+				add_trait = wounded_2
+			}
+		}
+		if = {
+			limit = { is_alive = yes }
+			add_character_modifier = { modifier = wizard_ascendant_water_failed years = 5 }
+		}
+	}
+	option = { name = wizard_ascendant.2006.a }
+}
+
+# --- Sub-events: Death -------------------------------------------------------
+wizard_ascendant.2007 = {
+	type = character_event
+	title = wizard_ascendant.2007.t
+	desc = wizard_ascendant.2007.desc
+	theme = learning
+	left_portrait = { character = root }
+	override_background = { reference = "study" }
+	immediate = { add_trait = ascendant_lore_of_death }
+	option = { name = wizard_ascendant.2007.a }
+}
+wizard_ascendant.2008 = {
+	type = character_event
+	title = wizard_ascendant.2008.t
+	desc = wizard_ascendant.2008.desc
+	theme = learning
+	left_portrait = { character = root  animation = personality_afraid }
+	override_background = { reference = "study" }
+	immediate = {
+		random = {
+			chance = 1
+			death = { death_reason = death_murder_unknown }
+		}
+		if = {
+			limit = { is_alive = yes }
+			random = {
+				chance = 20
+				add_trait = wounded_2
+			}
+		}
+		if = {
+			limit = { is_alive = yes }
+			add_character_modifier = { modifier = wizard_ascendant_death_failed years = 5 }
+		}
+	}
+	option = { name = wizard_ascendant.2008.a }
+}
+
+# --- Sub-events: High Magic --------------------------------------------------
+wizard_ascendant.2009 = {
+	type = character_event
+	title = wizard_ascendant.2009.t
+	desc = wizard_ascendant.2009.desc
+	theme = learning
+	left_portrait = { character = root }
+	override_background = { reference = "study" }
+	immediate = { add_trait = ascendant_lore_of_high_magic }
+	option = { name = wizard_ascendant.2009.a }
+}
+wizard_ascendant.2010 = {
+	type = character_event
+	title = wizard_ascendant.2010.t
+	desc = wizard_ascendant.2010.desc
+	theme = learning
+	left_portrait = { character = root  animation = personality_afraid }
+	override_background = { reference = "study" }
+	immediate = {
+		random = {
+			chance = 1
+			death = { death_reason = death_murder_unknown }
+		}
+		if = {
+			limit = { is_alive = yes }
+			random = {
+				chance = 20
+				add_trait = wounded_2
+			}
+		}
+		if = {
+			limit = { is_alive = yes }
+			add_character_modifier = { modifier = wizard_ascendant_high_magic_failed years = 5 }
+		}
+	}
+	option = { name = wizard_ascendant.2010.a }
+}

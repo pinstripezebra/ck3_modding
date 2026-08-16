@@ -1,0 +1,181 @@
+# Lore of Fire — Spell Panel
+# Type: wizard_fire_spells_panel
+# Visibility is baked in: shows when fire lore tab is active.
+# Edit this file to add, remove, or modify Fire lore spells.
+
+types WizardFireSpells
+{
+	type wizard_fire_spells_panel = vbox
+	{
+		layoutpolicy_horizontal = expanding
+		layoutpolicy_vertical   = expanding
+		margin  = { 8 8 }
+		spacing = 8
+		visible = "[GetScriptedGui('wizard_spellbook_show_spells_fire').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+
+		# ── T1: Field of Fire ────────────────────────────────────────────────
+		widget = {
+			name = "spell_fire_1"
+			layoutpolicy_horizontal = expanding
+			size = { 0 90 }
+			button = { parentanchor = top|left  widgetanchor = top|left  size = { 2000 90 }  onclick = "[GetScriptedGui('wizard_spellbook_select_spell_fire_1').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical   = expanding
+				using = Window_Background_Subwindow
+				background = { color = { 0.22 0.48 0.90 0.55 }  visible = "[GetScriptedGui('wizard_spell_fire_1_selected').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+				background = { color = { 0 0 0 0.65 }  visible = "[GetScriptedGui('wizard_spell_fire_1_unknown').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+				widget = {
+					size = { 40 90 }
+					background = { color = { 0.08 0.08 0.18 1.0 } }
+					textbox = { parentanchor = center  widgetanchor = center  size = { 36 38 }  autoresize = no  align = hcenter|vcenter  using = Font_Size_Small  default_format = "#bold"  raw_text = "T1" }
+				}
+				widget = { size = { 1 90 }  background = { color = { 0.30 0.30 0.50 0.5 } } }
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					layoutpolicy_vertical   = expanding
+					margin  = { 8 5 }
+					spacing = 2
+					hbox = {
+						layoutpolicy_horizontal = expanding
+						text_single = { layoutpolicy_horizontal = expanding  autoresize = no  minimumsize = { 0 18 }  using = Font_Size_Medium  default_format = "#bold #high"  align = left|nobaseline  raw_text = "Field of Fire" }
+						text_single = { autoresize = yes  using = Font_Size_Small  default_format = "#bold #color:{0.35,0.88,0.35,1.0}"  align = right|nobaseline  raw_text = "Known"  visible = "[GetScriptedGui('wizard_spell_fire_1_known').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+					}
+					textbox = { layoutpolicy_horizontal = expanding  size = { 0 32 }  autoresize = no  default_format = "#low"  using = Font_Size_Small  align = left|top  raw_text = "A blazing field of flame empowers the caster's body with the raw fury of fire." }
+					hbox = {
+						layoutpolicy_horizontal = expanding
+						text_single = { layoutpolicy_horizontal = expanding  autoresize = no  minimumsize = { 0 14 }  default_format = "#color:{0.45,0.85,0.45,1.0}"  using = Font_Size_Small  align = left|nobaseline  raw_text = "+6 Prowess, 1 Year" }
+						text_single = { size = { 160 14 }  autoresize = no  default_format = "#color:{0.3,0.65,1.0,1.0}"  using = Font_Size_Small  align = right|nobaseline  raw_text = "100 Mana · 1yr cd" }
+					}
+				}
+				widget = { size = { 1 90 }  background = { color = { 0.30 0.30 0.50 0.5 } } }
+				widget = { size = { 36 90 }
+					textbox = { parentanchor = center  widgetanchor = center  size = { 30 30 }  autoresize = no  align = hcenter|vcenter  using = Font_Size_Small  default_format = "#bold #color:{0.35,0.88,0.35,1.0}"  raw_text = "✓"  visible = "[GetScriptedGui('wizard_spell_fire_1_selected').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+				}
+			}
+		}
+		# ── T2: Doom of Flame ────────────────────────────────────────────────
+		widget = {
+			name = "spell_fire_2"
+			layoutpolicy_horizontal = expanding
+			size = { 0 90 }
+			button = { parentanchor = top|left  widgetanchor = top|left  size = { 2000 90 }  onclick = "[GetScriptedGui('wizard_spellbook_select_spell_fire_2').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical   = expanding
+				using = Window_Background_Subwindow
+				background = { color = { 0.22 0.48 0.90 0.55 }  visible = "[GetScriptedGui('wizard_spell_fire_2_selected').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+				background = { color = { 0 0 0 0.65 }  visible = "[GetScriptedGui('wizard_spell_fire_2_unknown').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+				widget = {
+					size = { 40 90 }
+					background = { color = { 0.08 0.08 0.18 1.0 } }
+					textbox = { parentanchor = center  widgetanchor = center  size = { 36 38 }  autoresize = no  align = hcenter|vcenter  using = Font_Size_Small  default_format = "#bold"  raw_text = "T2" }
+				}
+				widget = { size = { 1 90 }  background = { color = { 0.30 0.30 0.50 0.5 } } }
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					layoutpolicy_vertical   = expanding
+					margin  = { 8 5 }
+					spacing = 2
+					hbox = {
+						layoutpolicy_horizontal = expanding
+						text_single = { layoutpolicy_horizontal = expanding  autoresize = no  minimumsize = { 0 18 }  using = Font_Size_Medium  default_format = "#bold #high"  align = left|nobaseline  raw_text = "Doom of Flame" }
+						text_single = { autoresize = yes  using = Font_Size_Small  default_format = "#bold #color:{0.35,0.88,0.35,1.0}"  align = right|nobaseline  raw_text = "Known"  visible = "[GetScriptedGui('wizard_spell_fire_2_known').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+					}
+					textbox = { layoutpolicy_horizontal = expanding  size = { 0 32 }  autoresize = no  default_format = "#low"  using = Font_Size_Small  align = left|top  raw_text = "Shimmering heat surrounds the caster, granting fearsome combat advantage." }
+					hbox = {
+						layoutpolicy_horizontal = expanding
+						text_single = { layoutpolicy_horizontal = expanding  autoresize = no  minimumsize = { 0 14 }  default_format = "#color:{0.45,0.85,0.45,1.0}"  using = Font_Size_Small  align = left|nobaseline  raw_text = "+15 Advantage, 1 Year" }
+						text_single = { size = { 160 14 }  autoresize = no  default_format = "#color:{0.3,0.65,1.0,1.0}"  using = Font_Size_Small  align = right|nobaseline  raw_text = "220 Mana · 1yr cd" }
+					}
+				}
+				widget = { size = { 1 90 }  background = { color = { 0.30 0.30 0.50 0.5 } } }
+				widget = { size = { 36 90 }
+					textbox = { parentanchor = center  widgetanchor = center  size = { 30 30 }  autoresize = no  align = hcenter|vcenter  using = Font_Size_Small  default_format = "#bold #color:{0.35,0.88,0.35,1.0}"  raw_text = "✓"  visible = "[GetScriptedGui('wizard_spell_fire_2_selected').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+				}
+			}
+		}
+		# ── T3: Empowerment of Flame ─────────────────────────────────────────
+		widget = {
+			name = "spell_fire_3"
+			layoutpolicy_horizontal = expanding
+			size = { 0 90 }
+			button = { parentanchor = top|left  widgetanchor = top|left  size = { 2000 90 }  onclick = "[GetScriptedGui('wizard_spellbook_select_spell_fire_3').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical   = expanding
+				using = Window_Background_Subwindow
+				background = { color = { 0.22 0.48 0.90 0.55 }  visible = "[GetScriptedGui('wizard_spell_fire_3_selected').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+				background = { color = { 0 0 0 0.65 }  visible = "[GetScriptedGui('wizard_spell_fire_3_unknown').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+				widget = {
+					size = { 40 90 }
+					background = { color = { 0.08 0.08 0.18 1.0 } }
+					textbox = { parentanchor = center  widgetanchor = center  size = { 36 38 }  autoresize = no  align = hcenter|vcenter  using = Font_Size_Small  default_format = "#bold"  raw_text = "T3" }
+				}
+				widget = { size = { 1 90 }  background = { color = { 0.30 0.30 0.50 0.5 } } }
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					layoutpolicy_vertical   = expanding
+					margin  = { 8 5 }
+					spacing = 2
+					hbox = {
+						layoutpolicy_horizontal = expanding
+						text_single = { layoutpolicy_horizontal = expanding  autoresize = no  minimumsize = { 0 18 }  using = Font_Size_Medium  default_format = "#bold #high"  align = left|nobaseline  raw_text = "Empowerment of Flame" }
+						text_single = { autoresize = yes  using = Font_Size_Small  default_format = "#bold #color:{0.35,0.88,0.35,1.0}"  align = right|nobaseline  raw_text = "Known"  visible = "[GetScriptedGui('wizard_spell_fire_3_known').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+					}
+					textbox = { layoutpolicy_horizontal = expanding  size = { 0 32 }  autoresize = no  default_format = "#low"  using = Font_Size_Small  align = left|top  raw_text = "An enduring mantle of fire sustains the caster's health over many years." }
+					hbox = {
+						layoutpolicy_horizontal = expanding
+						text_single = { layoutpolicy_horizontal = expanding  autoresize = no  minimumsize = { 0 14 }  default_format = "#color:{0.45,0.85,0.45,1.0}"  using = Font_Size_Small  align = left|nobaseline  raw_text = "+Health, 5 Years" }
+						text_single = { size = { 160 14 }  autoresize = no  default_format = "#color:{0.3,0.65,1.0,1.0}"  using = Font_Size_Small  align = right|nobaseline  raw_text = "400 Mana · 5yr cd" }
+					}
+				}
+				widget = { size = { 1 90 }  background = { color = { 0.30 0.30 0.50 0.5 } } }
+				widget = { size = { 36 90 }
+					textbox = { parentanchor = center  widgetanchor = center  size = { 30 30 }  autoresize = no  align = hcenter|vcenter  using = Font_Size_Small  default_format = "#bold #color:{0.35,0.88,0.35,1.0}"  raw_text = "✓"  visible = "[GetScriptedGui('wizard_spell_fire_3_selected').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+				}
+			}
+		}
+		# ── T4: Crown of Flame ───────────────────────────────────────────────
+		widget = {
+			name = "spell_fire_4"
+			layoutpolicy_horizontal = expanding
+			size = { 0 90 }
+			button = { parentanchor = top|left  widgetanchor = top|left  size = { 2000 90 }  onclick = "[GetScriptedGui('wizard_spellbook_select_spell_fire_4').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical   = expanding
+				using = Window_Background_Subwindow
+				background = { color = { 0.22 0.48 0.90 0.55 }  visible = "[GetScriptedGui('wizard_spell_fire_4_selected').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+				background = { color = { 0 0 0 0.65 }  visible = "[GetScriptedGui('wizard_spell_fire_4_unknown').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+				widget = {
+					size = { 40 90 }
+					background = { color = { 0.08 0.08 0.18 1.0 } }
+					textbox = { parentanchor = center  widgetanchor = center  size = { 36 38 }  autoresize = no  align = hcenter|vcenter  using = Font_Size_Small  default_format = "#bold"  raw_text = "T4" }
+				}
+				widget = { size = { 1 90 }  background = { color = { 0.30 0.30 0.50 0.5 } } }
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					layoutpolicy_vertical   = expanding
+					margin  = { 8 5 }
+					spacing = 2
+					hbox = {
+						layoutpolicy_horizontal = expanding
+						text_single = { layoutpolicy_horizontal = expanding  autoresize = no  minimumsize = { 0 18 }  using = Font_Size_Medium  default_format = "#bold #high"  align = left|nobaseline  raw_text = "Crown of Flame" }
+						text_single = { autoresize = yes  using = Font_Size_Small  default_format = "#bold #color:{0.35,0.88,0.35,1.0}"  align = right|nobaseline  raw_text = "Known"  visible = "[GetScriptedGui('wizard_spell_fire_4_known').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+					}
+					textbox = { layoutpolicy_horizontal = expanding  size = { 0 32 }  autoresize = no  default_format = "#low"  using = Font_Size_Small  align = left|top  raw_text = "A regal corona of eternal fire grants extraordinary martial power for years." }
+					hbox = {
+						layoutpolicy_horizontal = expanding
+						text_single = { layoutpolicy_horizontal = expanding  autoresize = no  minimumsize = { 0 14 }  default_format = "#color:{0.45,0.85,0.45,1.0}"  using = Font_Size_Small  align = left|nobaseline  raw_text = "+10 Prowess, 5 Years" }
+						text_single = { size = { 160 14 }  autoresize = no  default_format = "#color:{0.3,0.65,1.0,1.0}"  using = Font_Size_Small  align = right|nobaseline  raw_text = "600 Mana · 5yr cd" }
+					}
+				}
+				widget = { size = { 1 90 }  background = { color = { 0.30 0.30 0.50 0.5 } } }
+				widget = { size = { 36 90 }
+					textbox = { parentanchor = center  widgetanchor = center  size = { 30 30 }  autoresize = no  align = hcenter|vcenter  using = Font_Size_Small  default_format = "#bold #color:{0.35,0.88,0.35,1.0}"  raw_text = "✓"  visible = "[GetScriptedGui('wizard_spell_fire_4_selected').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+				}
+			}
+		}
+	}
+}

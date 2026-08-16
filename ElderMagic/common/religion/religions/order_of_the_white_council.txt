@@ -1,0 +1,41 @@
+order_of_the_white_council = {
+	family = rf_pagan
+	graphical_faith = pagan_gfx
+	pagan_roots = yes
+
+	doctrine = doctrine_spiritual_head
+	doctrine = doctrine_gender_equal
+	doctrine = doctrine_pluralism_righteous
+	doctrine = doctrine_theocracy_temporal
+	doctrine = doctrine_pilgrimage_encouraged
+	doctrine = doctrine_monogamy
+	doctrine = doctrine_divorce_disallowed
+	doctrine = doctrine_bastardry_none
+	doctrine = doctrine_consanguinity_restricted
+	doctrine = doctrine_clerical_function_alms_and_charity
+	doctrine = doctrine_clerical_gender_either
+	doctrine = doctrine_clerical_marriage_disallowed
+	doctrine = doctrine_clerical_succession_spiritual_appointment
+	doctrine = doctrine_homosexuality_shunned
+	doctrine = doctrine_adultery_men_shunned
+	doctrine = doctrine_adultery_women_shunned
+	doctrine = doctrine_kinslaying_crime
+	doctrine = doctrine_deviancy_shunned
+	doctrine = doctrine_witchcraft_accepted
+
+	faiths = {
+		white_council = {
+			color = { 0.9 0.9 1 }
+			icon = white_council
+			reformed_icon = white_council_reformed
+			holy_site = rome
+			holy_site = jerusalem
+			holy_site = cologne
+			holy_site = kent
+			holy_site = constantinople
+			doctrine = tenet_esotericism
+			doctrine = tenet_pacifism
+			doctrine = tenet_astrology
+		}
+	}
+}

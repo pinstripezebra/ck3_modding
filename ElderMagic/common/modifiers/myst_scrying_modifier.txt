@@ -1,0 +1,5 @@
+﻿myst_scrying_modifier = {
+	intrigue = 2
+}
+
+

@@ -1,0 +1,11 @@
+﻿l_english:
+ study_lore_interaction:0 "Study Lore"
+ study_lore_interaction_desc:0 "Request tutelage from this character to learn a school of magic you do not yet possess."
+
+ wizard_study_lore_cooldown:0 "Recently Studied Lore"
+ wizard_study_lore_cooldown_desc:0 "This character recently undertook intense magical tutelage and must rest before beginning another study cycle."
+ wizard_studying_lore:0 "Studying Lore"
+ wizard_studying_lore_desc:0 "This character is immersed in six months of magical instruction under a mentor."
+
+ wizard_magic_pilgrimage_traveling:0 "On a Magical Pilgrimage"
+ wizard_magic_pilgrimage_traveling_desc:0 "This character is traveling between hidden sites of arcane learning."

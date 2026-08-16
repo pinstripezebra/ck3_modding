@@ -1,0 +1,22 @@
+necromancer_cult = {
+	family = rf_pagan
+	graphical_faith = pagan_gfx
+	pagan_roots = yes
+
+	doctrine = doctrine_gender_male_dominated
+	doctrine = doctrine_pluralism_fundamentalist
+	doctrine = doctrine_kinslaying_accepted
+	doctrine = doctrine_deviancy_accepted
+
+	faiths = {
+		necromancer_creed = {
+			color = { 0.2 0.1 0.3 }
+			icon = necromancer_creed
+			reformed_icon = necromancer_creed_reformed
+			holy_site = antioch
+			holy_site = alexandria
+			doctrine = tenet_human_sacrifice
+			doctrine = tenet_ritual_cannibalism
+		}
+	}
+}

@@ -1,0 +1,33 @@
+# Arcane Codex — Lore Tab Tile (v2)
+# Used in the left panel of wizard_spellbook2.gui.
+#
+# Blocks to override per lore instance:
+#   lore_active_bar — full widget including background color + visible condition
+#   lore_button     — full button element with enabled, onclick, icon, and name
+
+types WizardLoreTiles2
+{
+	type wizard_lore_tile2 = widget
+	{
+		layoutpolicy_horizontal = expanding
+		size = { 0 52 }
+
+		hbox = {
+			layoutpolicy_horizontal = expanding
+			layoutpolicy_vertical   = expanding
+
+			# Coloured left border indicating active selection
+			block "lore_active_bar" {
+				widget = { size = { 4 52 } }
+			}
+
+			# Clickable button — override to set onclick, enabled, icon texture, and name
+			block "lore_button" {
+				button = {
+					layoutpolicy_horizontal = expanding
+					size = { 0 52 }
+				}
+			}
+		}
+	}
+}

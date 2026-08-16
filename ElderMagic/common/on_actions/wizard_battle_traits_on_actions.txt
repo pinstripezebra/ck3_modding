@@ -1,0 +1,80 @@
+# Monthly recovery for Mana Scarred trait — degrades tier by tier over time.
+monthly_playable_pulse = {
+	on_actions = { wizard_mana_scarred_recovery }
+}
+
+wizard_mana_scarred_recovery = {
+	effect = {
+		# Severe scarring — 15% monthly chance to downgrade to moderate
+		if = {
+			limit = { has_trait = mana_scarred_3 }
+			random = {
+				chance = 15
+				remove_trait = mana_scarred_3
+				add_trait = mana_scarred_2
+			}
+		}
+		# Moderate scarring — 25% monthly chance to downgrade to mild
+		else_if = {
+			limit = { has_trait = mana_scarred_2 }
+			random = {
+				chance = 25
+				remove_trait = mana_scarred_2
+				add_trait = mana_scarred_1
+			}
+		}
+		# Mild scarring — 40% monthly chance to fully recover
+		else_if = {
+			limit = { has_trait = mana_scarred_1 }
+			random = {
+				chance = 40
+				remove_trait = mana_scarred_1
+			}
+		}
+	}
+}
+
+# Yearly battle check — chance for a wizard to gain or advance the Battlemage trait.
+yearly_playable_pulse = {
+	on_actions = { wizard_battlemage_battle_check }
+}
+
+wizard_battlemage_battle_check = {
+	effect = {
+		if = {
+			limit = {
+				wizard_has_any_lore_trait = yes
+				is_at_war = yes
+				is_leading_army = yes
+			}
+			# First-time gain
+			if = {
+				limit = { NOT = { has_trait = battlemage } }
+				random = {
+					chance = 5
+					add_trait = battlemage
+					send_interface_toast = {
+						type = event_toast_effect_good
+						title = wizard_battlemage_gain_title
+						desc = wizard_battlemage_gain_desc
+						left_icon = ROOT
+					}
+				}
+			}
+			# XP advance for existing battlemages
+			else_if = {
+				limit = { has_trait = battlemage }
+				random = {
+					chance = 3
+					add_trait_xp = { trait = battlemage value = 34 }
+					send_interface_toast = {
+						type = event_toast_effect_good
+						title = wizard_battlemage_advance_title
+						desc = wizard_battlemage_advance_desc
+						left_icon = ROOT
+					}
+				}
+			}
+		}
+	}
+}

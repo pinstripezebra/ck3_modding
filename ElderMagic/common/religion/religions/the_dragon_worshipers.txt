@@ -1,0 +1,41 @@
+the_dragon_worshipers = {
+	family = rf_pagan
+	graphical_faith = pagan_gfx
+	pagan_roots = yes
+
+	doctrine = doctrine_temporal_head
+	doctrine = doctrine_gender_male_dominated
+	doctrine = doctrine_pluralism_fundamentalist
+	doctrine = doctrine_theocracy_temporal
+	doctrine = doctrine_pilgrimage_encouraged
+	doctrine = doctrine_polygamy
+	doctrine = doctrine_divorce_allowed
+	doctrine = doctrine_bastardry_legitimization
+	doctrine = doctrine_consanguinity_cousins
+	doctrine = doctrine_clerical_function_taxation
+	doctrine = doctrine_clerical_gender_male_only
+	doctrine = doctrine_clerical_marriage_allowed
+	doctrine = doctrine_clerical_succession_temporal_appointment
+	doctrine = doctrine_homosexuality_shunned
+	doctrine = doctrine_adultery_men_accepted
+	doctrine = doctrine_adultery_women_shunned
+	doctrine = doctrine_kinslaying_shunned
+	doctrine = doctrine_deviancy_shunned
+	doctrine = doctrine_witchcraft_accepted
+
+	faiths = {
+		dragon_flame = {
+			color = { 0.8 0.1 0.1 }
+			icon = dragon_flame
+			reformed_icon = dragon_flame_reformed
+			holy_site = rome
+			holy_site = jerusalem
+			holy_site = constantinople
+			holy_site = kent
+			holy_site = uppsala
+			doctrine = tenet_warmonger
+			doctrine = tenet_human_sacrifice
+			doctrine = tenet_pursuit_of_power
+		}
+	}
+}

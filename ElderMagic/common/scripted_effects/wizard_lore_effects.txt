@@ -1,0 +1,201 @@
+# Accumulates one year of mana. Uses global variable — works from any event scope.
+wizard_accumulate_mana = {
+	if = {
+		limit = { NOT = { has_global_variable = wizard_mana } }
+		set_global_variable = { name = wizard_mana value = 0 }
+	}
+	# Add 12x monthly rate (one full year's worth)
+	if = { limit = { has_trait = the_spark }       change_global_variable = { name = wizard_mana add = 12 } }
+	if = { limit = { has_trait = the_conduit }     change_global_variable = { name = wizard_mana add = 24 } }
+	if = { limit = { has_trait = the_resonator }   change_global_variable = { name = wizard_mana add = 48 } }
+	if = { limit = { has_trait = the_vector }      change_global_variable = { name = wizard_mana add = 72 } }
+	if = { limit = { has_trait = the_capacitor }   change_global_variable = { name = wizard_mana add = 96 } }
+	if = { limit = { has_trait = the_dynamo }      change_global_variable = { name = wizard_mana add = 120 } }
+	if = { limit = { has_trait = the_nexus }       change_global_variable = { name = wizard_mana add = 144 } }
+	if = { limit = { has_trait = the_singularity } change_global_variable = { name = wizard_mana add = 168 } }
+	if = { limit = { has_trait = the_catalyst }    change_global_variable = { name = wizard_mana add = 192 } }
+	if = { limit = { has_trait = the_horizon }     change_global_variable = { name = wizard_mana add = 240 } }
+	if = {
+		limit = { global_var:wizard_mana > 1000 }
+		set_global_variable = { name = wizard_mana value = 1000 }
+	}
+}
+
+# Recalculates wizard_mana_gain display variable only (no pool change).
+wizard_update_mana_gain = {
+	set_variable = { name = wizard_mana_gain value = 0 }
+	if = { limit = { has_trait = the_spark }       change_variable = { name = wizard_mana_gain add = 1 } }
+	if = { limit = { has_trait = the_conduit }     change_variable = { name = wizard_mana_gain add = 2 } }
+	if = { limit = { has_trait = the_resonator }   change_variable = { name = wizard_mana_gain add = 4 } }
+	if = { limit = { has_trait = the_vector }      change_variable = { name = wizard_mana_gain add = 6 } }
+	if = { limit = { has_trait = the_capacitor }   change_variable = { name = wizard_mana_gain add = 8 } }
+	if = { limit = { has_trait = the_dynamo }      change_variable = { name = wizard_mana_gain add = 10 } }
+	if = { limit = { has_trait = the_nexus }       change_variable = { name = wizard_mana_gain add = 12 } }
+	if = { limit = { has_trait = the_singularity } change_variable = { name = wizard_mana_gain add = 14 } }
+	if = { limit = { has_trait = the_catalyst }    change_variable = { name = wizard_mana_gain add = 16 } }
+	if = { limit = { has_trait = the_horizon }     change_variable = { name = wizard_mana_gain add = 20 } }
+}
+
+wizard_clear_pending_study_lore_flags = {
+	remove_character_flag = wizard_pending_lore_fire
+	remove_character_flag = wizard_pending_lore_earth
+	remove_character_flag = wizard_pending_lore_wind
+	remove_character_flag = wizard_pending_lore_water
+	remove_character_flag = wizard_pending_lore_death
+	remove_character_flag = wizard_pending_lore_high_magic
+}
+
+wizard_apply_study_lore_cooldown = {
+	add_character_modifier = {
+		modifier = wizard_study_lore_cooldown
+		years = 2
+	}
+}
+
+wizard_apply_studying_lore_modifier = {
+	add_character_modifier = {
+		modifier = wizard_studying_lore
+		months = 6
+	}
+}
+
+wizard_grant_pending_lore = {
+	if = {
+		limit = {
+			has_character_flag = wizard_pending_lore_fire
+			NOT = { has_trait = lore_of_fire }
+		}
+		add_trait = lore_of_fire
+	}
+	if = {
+		limit = {
+			has_character_flag = wizard_pending_lore_earth
+			NOT = { has_trait = lore_of_earth }
+		}
+		add_trait = lore_of_earth
+	}
+	if = {
+		limit = {
+			has_character_flag = wizard_pending_lore_water
+			NOT = { has_trait = lore_of_water }
+		}
+		add_trait = lore_of_water
+	}
+	if = {
+		limit = {
+			has_character_flag = wizard_pending_lore_death
+			NOT = { has_trait = lore_of_death }
+		}
+		add_trait = lore_of_death
+	}
+	if = {
+		limit = {
+			has_character_flag = wizard_pending_lore_high_magic
+			NOT = { has_trait = lore_of_high_magic }
+		}
+		add_trait = lore_of_high_magic
+	}
+}
+
+wizard_grant_random_missing_lore = {
+	random_list = {
+		100 = {
+			trigger = { NOT = { has_trait = lore_of_fire } }
+			add_trait = lore_of_fire
+		}
+		100 = {
+			trigger = { NOT = { has_trait = lore_of_earth } }
+			add_trait = lore_of_earth
+		}
+		100 = {
+			trigger = { NOT = { has_trait = lore_of_water } }
+			add_trait = lore_of_water
+		}
+		100 = {
+			trigger = { NOT = { has_trait = lore_of_death } }
+			add_trait = lore_of_death
+		}
+		100 = {
+			trigger = { NOT = { has_trait = lore_of_high_magic } }
+			add_trait = lore_of_high_magic
+		}
+	}
+}
+
+wizard_award_study_xp = {
+	# Award full study-session XP to all lore traits held.
+	if = {
+		limit = { has_trait = lore_of_fire }
+		add_trait_xp = { trait = lore_of_fire value = wizard_study_xp_gain }
+		if = { limit = { NOT = { has_variable = wizard_fire_xp_total } } set_variable = { name = wizard_fire_xp_total value = 0 } }
+		change_variable = { name = wizard_fire_xp_total add = wizard_study_xp_gain }
+		if = { limit = { var:wizard_fire_xp_total >= 100 } add_character_flag = wizard_lore_fire_maxed }
+	}
+	if = {
+		limit = { has_trait = lore_of_earth }
+		add_trait_xp = { trait = lore_of_earth value = wizard_study_xp_gain }
+		if = { limit = { NOT = { has_variable = wizard_earth_xp_total } } set_variable = { name = wizard_earth_xp_total value = 0 } }
+		change_variable = { name = wizard_earth_xp_total add = wizard_study_xp_gain }
+		if = { limit = { var:wizard_earth_xp_total >= 100 } add_character_flag = wizard_lore_earth_maxed }
+	}
+	if = {
+		limit = { has_trait = lore_of_water }
+		add_trait_xp = { trait = lore_of_water value = wizard_study_xp_gain }
+		if = { limit = { NOT = { has_variable = wizard_water_xp_total } } set_variable = { name = wizard_water_xp_total value = 0 } }
+		change_variable = { name = wizard_water_xp_total add = wizard_study_xp_gain }
+		if = { limit = { var:wizard_water_xp_total >= 100 } add_character_flag = wizard_lore_water_maxed }
+	}
+	if = {
+		limit = { has_trait = lore_of_death }
+		add_trait_xp = { trait = lore_of_death value = wizard_study_xp_gain }
+		if = { limit = { NOT = { has_variable = wizard_death_xp_total } } set_variable = { name = wizard_death_xp_total value = 0 } }
+		change_variable = { name = wizard_death_xp_total add = wizard_study_xp_gain }
+		if = { limit = { var:wizard_death_xp_total >= 100 } add_character_flag = wizard_lore_death_maxed }
+	}
+	if = {
+		limit = { has_trait = lore_of_high_magic }
+		add_trait_xp = { trait = lore_of_high_magic value = wizard_study_xp_gain }
+		if = { limit = { NOT = { has_variable = wizard_high_magic_xp_total } } set_variable = { name = wizard_high_magic_xp_total value = 0 } }
+		change_variable = { name = wizard_high_magic_xp_total add = wizard_study_xp_gain }
+		if = { limit = { var:wizard_high_magic_xp_total >= 100 } add_character_flag = wizard_lore_high_magic_maxed }
+	}
+	send_interface_toast = {
+		type = event_toast_effect_good
+		title = wizard_study_magic_toast_title
+		desc = wizard_study_magic_toast_desc
+		left_icon = ROOT
+	}
+}
+
+wizard_gain_lore_progress = {
+	if = {
+		limit = { has_trait = lore_of_fire }
+		add_trait_xp = { trait = lore_of_fire value = 2 }
+		change_variable = { name = wizard_fire_xp_total add = 2 }
+		if = { limit = { var:wizard_fire_xp_total >= 100 } add_character_flag = wizard_lore_fire_maxed }
+	}
+	if = {
+		limit = { has_trait = lore_of_earth }
+		add_trait_xp = { trait = lore_of_earth value = 2 }
+		change_variable = { name = wizard_earth_xp_total add = 2 }
+		if = { limit = { var:wizard_earth_xp_total >= 100 } add_character_flag = wizard_lore_earth_maxed }
+	}
+	if = {
+		limit = { has_trait = lore_of_water }
+		add_trait_xp = { trait = lore_of_water value = 2 }
+		change_variable = { name = wizard_water_xp_total add = 2 }
+		if = { limit = { var:wizard_water_xp_total >= 100 } add_character_flag = wizard_lore_water_maxed }
+	}
+	if = {
+		limit = { has_trait = lore_of_death }
+		add_trait_xp = { trait = lore_of_death value = 2 }
+		change_variable = { name = wizard_death_xp_total add = 2 }
+		if = { limit = { var:wizard_death_xp_total >= 100 } add_character_flag = wizard_lore_death_maxed }
+	}
+	if = {
+		limit = { has_trait = lore_of_high_magic }
+		add_trait_xp = { trait = lore_of_high_magic value = 2 }
+		change_variable = { name = wizard_high_magic_xp_total add = 2 }
+		if = { limit = { var:wizard_high_magic_xp_total >= 100 } add_character_flag = wizard_lore_high_magic_maxed }
+	}
+}

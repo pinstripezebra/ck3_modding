@@ -1,0 +1,4 @@
+elem_water_flow_modifier = {
+	diplomacy = 1
+	stress_loss_mult = 0.1
+}

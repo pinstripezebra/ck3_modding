@@ -1,0 +1,85 @@
+﻿wizard_teach_magic = {
+	# Teach Magic - Personal Scheme modeled after the sway scheme
+	skill = learning
+	desc = wizard_teach_magic_desc_general
+	success_desc = "wizard_teach_magic_success_desc"
+	icon = learning
+	illustration = "gfx/interface/illustrations/event_scenes/corridor.dds"
+	target_type = character
+	is_secret = no
+	is_basic = yes
+
+	speed_per_skill_point = -2.5
+	spymaster_speed_per_skill_point = 0
+	uses_resistance = no
+	base_progress_goal = 100
+	base_maximum_success = 85
+	minimum_success = 20
+
+	allow = {
+		is_adult = yes
+		is_imprisoned = no
+		NOT = { has_trait = incapable }
+		scope:target = {
+			is_adult = yes
+			is_imprisoned = no
+		}
+	}
+
+	valid = {
+		is_incapable = no
+		scope:target = {
+			is_alive = yes
+		}
+	}
+
+	on_phase_completed = {
+		save_scope_as = scheme
+		scheme_target_character = { save_scope_as = target }
+		scheme_owner = { save_scope_as = owner }
+		random = {
+			chance = scope:scheme.scheme_success_chance
+			save_scope_value_as = {
+				name = scheme_successful
+				value = yes
+			}
+		}
+		scope:owner = {
+			if = {
+				limit = { exists = scope:scheme_successful }
+				trigger_event = { on_action = wizard_teach_magic_success }
+			}
+			else = {
+				trigger_event = { on_action = wizard_teach_magic_failure }
+			}
+		}
+		end_scheme = yes
+	}
+
+	on_invalidated = {
+		scheme_target_character = { save_scope_as = target }
+		scheme_owner = {
+			save_scope_as = owner
+			if = {
+				limit = { has_character_flag = wizard_teach_magic_pending_fire }
+				remove_character_flag = wizard_teach_magic_pending_fire
+			}
+			if = {
+				limit = { has_character_flag = wizard_teach_magic_pending_earth }
+				remove_character_flag = wizard_teach_magic_pending_earth
+			}
+			if = {
+				limit = { has_character_flag = wizard_teach_magic_pending_water }
+				remove_character_flag = wizard_teach_magic_pending_water
+			}
+			if = {
+				limit = { has_character_flag = wizard_teach_magic_pending_death }
+				remove_character_flag = wizard_teach_magic_pending_death
+			}
+			if = {
+				limit = { has_character_flag = wizard_teach_magic_pending_high_magic }
+				remove_character_flag = wizard_teach_magic_pending_high_magic
+			}
+		}
+	}
+}

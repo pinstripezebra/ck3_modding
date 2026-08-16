@@ -1,0 +1,28 @@
+﻿namespace = wizard_mana
+
+# Fired from random_yearly_everyone_pulse (fires for ALL characters including human player).
+# Trait trigger ensures it only processes characters who have a potential trait.
+wizard_mana.0001 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {
+		is_ai = no
+		OR = {
+			has_trait = the_spark
+			has_trait = the_conduit
+			has_trait = the_resonator
+			has_trait = the_vector
+			has_trait = the_capacitor
+			has_trait = the_dynamo
+			has_trait = the_nexus
+			has_trait = the_singularity
+			has_trait = the_catalyst
+			has_trait = the_horizon
+		}
+	}
+
+	immediate = {
+		wizard_accumulate_mana = yes
+	}
+}

@@ -1,0 +1,16 @@
+myst_inner_eye = {
+	lifestyle = learning_lifestyle
+	tree = mysticism
+	position = { 4 0 }
+	icon = myst_inner_eye
+
+	effect = {
+		add_character_modifier = {
+			modifier = myst_inner_eye_modifier
+		}
+	}
+
+	ai_will_do = {
+		base = 100
+	}
+}

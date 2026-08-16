@@ -1,0 +1,16 @@
+elem_spark = {
+	lifestyle = learning_lifestyle
+	tree = elementalism
+	position = { 1 0 }
+	icon = elem_spark
+
+	effect = {
+		add_character_modifier = {
+			modifier = elem_spark_modifier
+		}
+	}
+
+	ai_will_do = {
+		base = 100
+	}
+}

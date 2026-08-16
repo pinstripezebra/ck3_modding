@@ -1,0 +1,65 @@
+pilgrimage_of_magic_decision = {
+	title = pilgrimage_of_magic_decision
+	desc = pilgrimage_of_magic_decision_desc
+	selection_tooltip = pilgrimage_of_magic_decision_tooltip
+	confirm_text = pilgrimage_of_magic_decision_confirm
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_pilgrimage_of_magic.dds"
+	}
+	ai_check_interval = 18
+	cooldown = { years = 5 }
+
+	is_shown = {
+		is_adult = yes
+		OR = {
+			wizard_has_any_lore_trait = yes
+			wizard_has_any_magic_potential_trait = yes
+		}
+		NOT = { has_character_modifier = wizard_magic_pilgrimage_traveling }
+	}
+
+	is_valid = {
+		is_adult = yes
+		gold >= 500
+		NOT = { has_character_modifier = wizard_magic_pilgrimage_traveling }
+	}
+
+	ai_potential = {
+		always = yes
+	}
+
+	ai_will_do = {
+		base = 0
+		modifier = {
+			add = 80
+			gold >= 900
+		}
+		modifier = {
+			add = 40
+			gold >= 700
+		}
+		modifier = {
+			add = 30
+			wizard_missing_any_lore_trait = yes
+		}
+	}
+
+	effect = {
+		add_gold = -500
+		add_character_modifier = {
+			modifier = wizard_magic_pilgrimage_traveling
+			months = 4
+		}
+
+		random_list = {
+			1 = { trigger_event = wizard_magic_pilgrimage.1001 }
+			1 = { trigger_event = wizard_magic_pilgrimage.1002 }
+			1 = { trigger_event = wizard_magic_pilgrimage.1003 }
+			1 = { trigger_event = wizard_magic_pilgrimage.1004 }
+			1 = { trigger_event = wizard_magic_pilgrimage.1005 }
+			1 = { trigger_event = wizard_magic_pilgrimage.1006 }
+			1 = { trigger_event = wizard_magic_pilgrimage.1007 }
+			1 = { trigger_event = wizard_magic_pilgrimage.1008 }
+		}
+	}
+}

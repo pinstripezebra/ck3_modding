@@ -1,0 +1,185 @@
+﻿namespace = wizard_magic_pilgrimage
+
+wizard_magic_pilgrimage.1001 = {
+	type = character_event
+	title = wizard_magic_pilgrimage.1001.t
+	desc = wizard_magic_pilgrimage.1001.desc
+	theme = learning
+
+	immediate = {
+		add_character_flag = wizard_magic_destination_1
+		trigger_event = {
+			id = wizard_magic_pilgrimage.2001
+			days = 120
+		}
+	}
+
+	option = {
+		name = wizard_magic_pilgrimage.option_begin
+	}
+}
+
+wizard_magic_pilgrimage.1002 = {
+	type = character_event
+	title = wizard_magic_pilgrimage.1002.t
+	desc = wizard_magic_pilgrimage.1002.desc
+	theme = learning
+
+	immediate = {
+		add_character_flag = wizard_magic_destination_2
+		trigger_event = {
+			id = wizard_magic_pilgrimage.2001
+			days = 120
+		}
+	}
+
+	option = {
+		name = wizard_magic_pilgrimage.option_begin
+	}
+}
+
+wizard_magic_pilgrimage.1003 = {
+	type = character_event
+	title = wizard_magic_pilgrimage.1003.t
+	desc = wizard_magic_pilgrimage.1003.desc
+	theme = learning
+
+	immediate = {
+		add_character_flag = wizard_magic_destination_3
+		trigger_event = {
+			id = wizard_magic_pilgrimage.2001
+			days = 120
+		}
+	}
+
+	option = {
+		name = wizard_magic_pilgrimage.option_begin
+	}
+}
+
+wizard_magic_pilgrimage.1004 = {
+	type = character_event
+	title = wizard_magic_pilgrimage.1004.t
+	desc = wizard_magic_pilgrimage.1004.desc
+	theme = learning
+
+	immediate = {
+		add_character_flag = wizard_magic_destination_4
+		trigger_event = {
+			id = wizard_magic_pilgrimage.2001
+			days = 120
+		}
+	}
+
+	option = {
+		name = wizard_magic_pilgrimage.option_begin
+	}
+}
+
+wizard_magic_pilgrimage.1005 = {
+	type = character_event
+	title = wizard_magic_pilgrimage.1005.t
+	desc = wizard_magic_pilgrimage.1005.desc
+	theme = learning
+
+	immediate = {
+		add_character_flag = wizard_magic_destination_5
+		trigger_event = {
+			id = wizard_magic_pilgrimage.2001
+			days = 120
+		}
+	}
+
+	option = {
+		name = wizard_magic_pilgrimage.option_begin
+	}
+}
+
+wizard_magic_pilgrimage.1006 = {
+	type = character_event
+	title = wizard_magic_pilgrimage.1006.t
+	desc = wizard_magic_pilgrimage.1006.desc
+	theme = learning
+
+	immediate = {
+		add_character_flag = wizard_magic_destination_6
+		trigger_event = {
+			id = wizard_magic_pilgrimage.2001
+			days = 120
+		}
+	}
+
+	option = {
+		name = wizard_magic_pilgrimage.option_begin
+	}
+}
+
+wizard_magic_pilgrimage.1007 = {
+	type = character_event
+	title = wizard_magic_pilgrimage.1007.t
+	desc = wizard_magic_pilgrimage.1007.desc
+	theme = learning
+
+	immediate = {
+		add_character_flag = wizard_magic_destination_7
+		trigger_event = {
+			id = wizard_magic_pilgrimage.2001
+			days = 120
+		}
+	}
+
+	option = {
+		name = wizard_magic_pilgrimage.option_begin
+	}
+}
+
+wizard_magic_pilgrimage.1008 = {
+	type = character_event
+	title = wizard_magic_pilgrimage.1008.t
+	desc = wizard_magic_pilgrimage.1008.desc
+	theme = learning
+
+	immediate = {
+		add_character_flag = wizard_magic_destination_8
+		trigger_event = {
+			id = wizard_magic_pilgrimage.2001
+			days = 120
+		}
+	}
+
+	option = {
+		name = wizard_magic_pilgrimage.option_begin
+	}
+}
+
+wizard_magic_pilgrimage.2001 = {
+	type = character_event
+	title = wizard_magic_pilgrimage.2001.t
+	desc = wizard_magic_pilgrimage.2001.desc
+	theme = learning
+
+	immediate = {
+		remove_character_modifier = wizard_magic_pilgrimage_traveling
+
+		if = {
+			limit = { wizard_missing_any_lore_trait = yes }
+			wizard_grant_random_missing_lore = yes
+		}
+		else = {
+			wizard_gain_lore_progress = yes
+		}
+
+		remove_character_flag = wizard_magic_destination_1
+		remove_character_flag = wizard_magic_destination_2
+		remove_character_flag = wizard_magic_destination_3
+		remove_character_flag = wizard_magic_destination_4
+		remove_character_flag = wizard_magic_destination_5
+		remove_character_flag = wizard_magic_destination_6
+		remove_character_flag = wizard_magic_destination_7
+		remove_character_flag = wizard_magic_destination_8
+	}
+
+	option = {
+		name = wizard_magic_pilgrimage.option_complete
+	}
+}

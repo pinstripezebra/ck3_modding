@@ -1,0 +1,137 @@
+wizard_spellbook_access = {
+	wizard_has_any_lore_trait = yes
+}
+
+wizard_spell_learning_on_cooldown = {
+	has_character_modifier = wizard_learn_spell_cooldown
+}
+
+wizard_any_spell_selected = {
+	OR = {
+		has_character_flag = wizard_selected_spell_fire_1
+		has_character_flag = wizard_selected_spell_fire_2
+		has_character_flag = wizard_selected_spell_fire_3
+		has_character_flag = wizard_selected_spell_fire_4
+		has_character_flag = wizard_selected_spell_earth_1
+		has_character_flag = wizard_selected_spell_earth_2
+		has_character_flag = wizard_selected_spell_earth_3
+		has_character_flag = wizard_selected_spell_wind_1
+		has_character_flag = wizard_selected_spell_wind_2
+		has_character_flag = wizard_selected_spell_wind_3
+		has_character_flag = wizard_selected_spell_water_1
+		has_character_flag = wizard_selected_spell_water_2
+		has_character_flag = wizard_selected_spell_water_3
+		has_character_flag = wizard_selected_spell_death_1
+		has_character_flag = wizard_selected_spell_death_2
+		has_character_flag = wizard_selected_spell_death_3
+		has_character_flag = wizard_selected_spell_high_1
+		has_character_flag = wizard_selected_spell_high_2
+		has_character_flag = wizard_selected_spell_high_3
+	}
+}
+
+wizard_selected_spell_known = {
+	OR = {
+		# Fire — unlocks T1 at any level, T2 at 25 XP, T3 at 50, T4 at 75
+		AND = { has_character_flag = wizard_selected_spell_fire_1 has_trait = lore_of_fire }
+		AND = { has_character_flag = wizard_selected_spell_fire_2 has_trait_xp = { trait = lore_of_fire value >= 25 } }
+		AND = { has_character_flag = wizard_selected_spell_fire_3 has_trait_xp = { trait = lore_of_fire value >= 50 } }
+		AND = { has_character_flag = wizard_selected_spell_fire_4 has_trait_xp = { trait = lore_of_fire value >= 75 } }
+		# Earth — T1 at any level, T2 at 25, T3 at 50
+		AND = { has_character_flag = wizard_selected_spell_earth_1 has_trait = lore_of_earth }
+		AND = { has_character_flag = wizard_selected_spell_earth_2 has_trait_xp = { trait = lore_of_earth value >= 25 } }
+		AND = { has_character_flag = wizard_selected_spell_earth_3 has_trait_xp = { trait = lore_of_earth value >= 50 } }
+		# Water
+		AND = { has_character_flag = wizard_selected_spell_water_1 has_trait = lore_of_water }
+		AND = { has_character_flag = wizard_selected_spell_water_2 has_trait_xp = { trait = lore_of_water value >= 25 } }
+		AND = { has_character_flag = wizard_selected_spell_water_3 has_trait_xp = { trait = lore_of_water value >= 50 } }
+		# Death
+		AND = { has_character_flag = wizard_selected_spell_death_1 has_trait = lore_of_death }
+		AND = { has_character_flag = wizard_selected_spell_death_2 has_trait_xp = { trait = lore_of_death value >= 25 } }
+		AND = { has_character_flag = wizard_selected_spell_death_3 has_trait_xp = { trait = lore_of_death value >= 50 } }
+		# High Magic
+		AND = { has_character_flag = wizard_selected_spell_high_1 has_trait = lore_of_high_magic }
+		AND = { has_character_flag = wizard_selected_spell_high_2 has_trait_xp = { trait = lore_of_high_magic value >= 25 } }
+		AND = { has_character_flag = wizard_selected_spell_high_3 has_trait_xp = { trait = lore_of_high_magic value >= 50 } }
+	}
+}
+
+wizard_selected_spell_can_be_learned = {
+	OR = {
+		AND = { has_character_flag = wizard_selected_spell_fire_1 has_trait = lore_of_fire NOT = { has_character_flag = wizard_spell_fire_1_learned } }
+		AND = { has_character_flag = wizard_selected_spell_fire_2 has_trait = lore_of_fire NOT = { has_character_flag = wizard_spell_fire_2_learned } }
+		AND = { has_character_flag = wizard_selected_spell_fire_3 has_trait = lore_of_fire NOT = { has_character_flag = wizard_spell_fire_3_learned } }
+		AND = { has_character_flag = wizard_selected_spell_fire_4 has_trait = lore_of_fire NOT = { has_character_flag = wizard_spell_fire_4_learned } }
+		AND = { has_character_flag = wizard_selected_spell_earth_1 has_trait = lore_of_earth NOT = { has_character_flag = wizard_spell_earth_1_learned } }
+		AND = { has_character_flag = wizard_selected_spell_earth_2 has_trait = lore_of_earth NOT = { has_character_flag = wizard_spell_earth_2_learned } }
+		AND = { has_character_flag = wizard_selected_spell_earth_3 has_trait = lore_of_earth NOT = { has_character_flag = wizard_spell_earth_3_learned } }
+		AND = { has_character_flag = wizard_selected_spell_wind_2 has_trait = lore_of_wind NOT = { has_character_flag = wizard_spell_wind_2_learned } }
+		AND = { has_character_flag = wizard_selected_spell_water_1 has_trait = lore_of_water NOT = { has_character_flag = wizard_spell_water_1_learned } }
+		AND = { has_character_flag = wizard_selected_spell_water_2 has_trait = lore_of_water NOT = { has_character_flag = wizard_spell_water_2_learned } }
+		AND = { has_character_flag = wizard_selected_spell_water_3 has_trait = lore_of_water NOT = { has_character_flag = wizard_spell_water_3_learned } }
+		AND = { has_character_flag = wizard_selected_spell_death_1 has_trait = lore_of_death NOT = { has_character_flag = wizard_spell_death_1_learned } }
+		AND = { has_character_flag = wizard_selected_spell_death_2 has_trait = lore_of_death NOT = { has_character_flag = wizard_spell_death_2_learned } }
+		AND = { has_character_flag = wizard_selected_spell_death_3 has_trait = lore_of_death NOT = { has_character_flag = wizard_spell_death_3_learned } }
+		AND = { has_character_flag = wizard_selected_spell_high_1 has_trait = lore_of_high_magic NOT = { has_character_flag = wizard_spell_high_1_learned } }
+		AND = { has_character_flag = wizard_selected_spell_high_2 has_trait = lore_of_high_magic NOT = { has_character_flag = wizard_spell_high_2_learned } }
+		AND = { has_character_flag = wizard_selected_spell_high_3 has_trait = lore_of_high_magic NOT = { has_character_flag = wizard_spell_high_3_learned } }
+	}
+}
+
+wizard_selected_spell_tier_1 = {
+	OR = {
+		has_character_flag = wizard_selected_spell_fire_1
+		has_character_flag = wizard_selected_spell_earth_1
+		has_character_flag = wizard_selected_spell_wind_1
+		has_character_flag = wizard_selected_spell_water_1
+		has_character_flag = wizard_selected_spell_death_1
+		has_character_flag = wizard_selected_spell_high_1
+	}
+}
+
+wizard_selected_spell_tier_2 = {
+	OR = {
+		has_character_flag = wizard_selected_spell_fire_2
+		has_character_flag = wizard_selected_spell_earth_2
+		has_character_flag = wizard_selected_spell_wind_2
+		has_character_flag = wizard_selected_spell_water_2
+		has_character_flag = wizard_selected_spell_death_2
+		has_character_flag = wizard_selected_spell_high_2
+	}
+}
+
+wizard_selected_spell_tier_3 = {
+	OR = {
+		has_character_flag = wizard_selected_spell_fire_3
+		has_character_flag = wizard_selected_spell_earth_3
+		has_character_flag = wizard_selected_spell_wind_3
+		has_character_flag = wizard_selected_spell_water_3
+		has_character_flag = wizard_selected_spell_death_3
+		has_character_flag = wizard_selected_spell_high_3
+	}
+}
+
+wizard_selected_spell_tier_4 = {
+	OR = {
+		has_character_flag = wizard_selected_spell_fire_4
+	}
+}
+
+wizard_selected_spell_has_mana = {
+	OR = {
+		AND = { wizard_selected_spell_tier_1 = yes wizard_mana_total >= 100 }
+		AND = { wizard_selected_spell_tier_2 = yes wizard_mana_total >= 220 }
+		AND = { wizard_selected_spell_tier_3 = yes wizard_mana_total >= 400 }
+		AND = { wizard_selected_spell_tier_4 = yes wizard_mana_total >= 600 }
+	}
+}
+
+wizard_selected_spell_can_be_cast = {
+	wizard_selected_spell_known = yes
+	wizard_selected_spell_has_mana = yes
+	# Per-spell fire cast cooldowns — prevent stacking
+	NOT = { AND = { has_character_flag = wizard_selected_spell_fire_1 has_character_modifier = wizard_fire_1_cast_cooldown } }
+	NOT = { AND = { has_character_flag = wizard_selected_spell_fire_2 has_character_modifier = wizard_fire_2_cast_cooldown } }
+	NOT = { AND = { has_character_flag = wizard_selected_spell_fire_3 has_character_modifier = wizard_fire_3_cast_cooldown } }
+	NOT = { AND = { has_character_flag = wizard_selected_spell_fire_4 has_character_modifier = wizard_fire_4_cast_cooldown } }
+}

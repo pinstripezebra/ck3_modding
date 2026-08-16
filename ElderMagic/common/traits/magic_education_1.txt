@@ -1,0 +1,18 @@
+magic_education_1 = {
+	category = education
+	icon = magic_education_1.dds
+	learning = 1
+
+	ruler_designer_cost = 10
+
+	on_add = {
+		wizard_update_mana_gain = yes
+		if = {
+			limit = { NOT = { has_global_variable = wizard_mana_start_year } }
+			set_global_variable = { name = wizard_mana_start_year value = current_year }
+		}
+	}
+	on_remove = {
+		wizard_update_mana_gain = yes
+	}
+}

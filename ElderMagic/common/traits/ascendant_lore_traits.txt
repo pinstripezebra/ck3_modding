@@ -1,0 +1,53 @@
+## Ascendant Lore traits — granted when a character fully masters a lore (XP = 100)
+## and succeeds at the ritual ascension attempt.
+## Flat bonus: +5 Prowess and a small health boost.
+
+ascendant_lore_of_fire = {
+	category = lifestyle
+	icon = ascendant_lore_of_fire.dds
+
+	prowess = 5
+	health = 0.5
+
+	ruler_designer_cost = 80
+}
+
+ascendant_lore_of_earth = {
+	category = lifestyle
+	icon = ascendant_lore_of_earth.dds
+
+	prowess = 5
+	health = 0.5
+
+	ruler_designer_cost = 80
+}
+
+ascendant_lore_of_water = {
+	category = lifestyle
+	icon = ascendant_lore_of_water.dds
+
+	prowess = 5
+	health = 0.5
+
+	ruler_designer_cost = 80
+}
+
+ascendant_lore_of_death = {
+	category = lifestyle
+	icon = ascendant_lore_of_death.dds
+
+	prowess = 5
+	health = 0.5
+
+	ruler_designer_cost = 80
+}
+
+ascendant_lore_of_high_magic = {
+	category = lifestyle
+	icon = ascendant_lore_of_high_magic.dds
+
+	prowess = 5
+	health = 0.5
+
+	ruler_designer_cost = 80
+}

@@ -1,0 +1,123 @@
+study_lore_interaction = {
+	category = interaction_category_personal
+	interface_priority = 70
+	icon = learning
+	desc = study_lore_interaction_desc
+	use_diplomatic_range = yes
+	auto_accept = no
+
+	is_shown = {
+		scope:actor = {
+			is_adult = yes
+			NOT = { wizard_is_on_study_lore_cooldown = yes }
+			wizard_has_missing_lore_from_recipient = yes
+		}
+		scope:recipient = {
+			is_adult = yes
+			wizard_has_any_lore_trait = yes
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		scope:actor = {
+			wizard_has_missing_lore_from_recipient = yes
+		}
+	}
+
+	is_valid = {
+		scope:actor = {
+			NOT = { wizard_is_on_study_lore_cooldown = yes }
+		}
+	}
+
+	ai_accept = {
+		base = -220
+		modifier = {
+			add = 280
+			scope:recipient = {
+				opinion = {
+					target = scope:actor
+					value >= 80
+				}
+			}
+		}
+		modifier = {
+			add = 190
+			scope:recipient = {
+				opinion = {
+					target = scope:actor
+					value >= 60
+				}
+			}
+		}
+		modifier = {
+			add = 120
+			scope:recipient = {
+				opinion = {
+					target = scope:actor
+					value >= 45
+				}
+			}
+		}
+		modifier = {
+			add = -140
+			scope:recipient = {
+				opinion = {
+					target = scope:actor
+					value < 20
+				}
+			}
+		}
+	}
+
+	on_accept = {
+		scope:actor = {
+			wizard_apply_study_lore_cooldown = yes
+			wizard_apply_studying_lore_modifier = yes
+			wizard_clear_pending_study_lore_flags = yes
+
+			random_list = {
+				100 = {
+					trigger = {
+						NOT = { has_trait = lore_of_fire }
+						scope:recipient = { has_trait = lore_of_fire }
+					}
+					add_character_flag = wizard_pending_lore_fire
+				}
+				100 = {
+					trigger = {
+						NOT = { has_trait = lore_of_earth }
+						scope:recipient = { has_trait = lore_of_earth }
+					}
+					add_character_flag = wizard_pending_lore_earth
+				}
+				100 = {
+					trigger = {
+						NOT = { has_trait = lore_of_water }
+						scope:recipient = { has_trait = lore_of_water }
+					}
+					add_character_flag = wizard_pending_lore_water
+				}
+				100 = {
+					trigger = {
+						NOT = { has_trait = lore_of_death }
+						scope:recipient = { has_trait = lore_of_death }
+					}
+					add_character_flag = wizard_pending_lore_death
+				}
+				100 = {
+					trigger = {
+						NOT = { has_trait = lore_of_high_magic }
+						scope:recipient = { has_trait = lore_of_high_magic }
+					}
+					add_character_flag = wizard_pending_lore_high_magic
+				}
+			}
+
+			trigger_event = {
+				id = wizard_study_lore.0001
+				days = 180
+			}
+		}
+	}
+}

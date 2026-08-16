@@ -1,0 +1,34 @@
+# Wizard Mod — Military Innovations
+# Three innovations that integrate magic into a culture's military.
+# Each unlocks a progressively more powerful magical men-at-arms unit.
+
+@mage_commune_icon = "gfx/interface/icons/culture_innovations/innovation_mage_commune.dds"
+@empowered_mages_icon = "gfx/interface/icons/culture_innovations/innovation_empowered_mages.dds"
+@ascendant_magic_icon = "gfx/interface/icons/culture_innovations/innovation_ascendant_magic.dds"
+
+innovation_mage_commune = {
+	group = culture_group_military
+	culture_era = culture_era_early_medieval
+
+	icon = @mage_commune_icon
+
+	unlock_maa = wandering_mages
+}
+
+innovation_empowered_mages = {
+	group = culture_group_military
+	culture_era = culture_era_late_medieval
+
+	icon = @empowered_mages_icon
+
+	unlock_maa = mage_squadron
+}
+
+innovation_ascendant_magic = {
+	group = culture_group_military
+	culture_era = culture_era_late_medieval
+
+	icon = @ascendant_magic_icon
+
+	unlock_maa = mage_regiment
+}

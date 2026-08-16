@@ -1,0 +1,264 @@
+# Arcane Codex — Main Spellbook Window (v2)
+# Clean rewrite. Uses wizard_lore_tile2 and wizard_spell_tile2 types.
+# Visibility: GetVariableSystem.Exists('wizard_spellbook_open') — never saved to disk.
+# Trigger bridge: converts wizard_spellbook_wants_to_open global var → VariableSystem var.
+
+# ─── Trigger bridge: 1×1 off-screen window ───────────────────────────────────
+# When interaction fires it sets wizard_spellbook_wants_to_open (a global trigger var).
+# This window becomes visible, fires _show, converts it to a session VariableSystem
+# var (not saved), and removes the global trigger so it won't reopen on load.
+window = {
+	name = "wizard_spellbook_trigger"
+	layer = top
+	size = { 1 1 }
+	position = { -200 -200 }
+	allow_outside = yes
+	visible = "[GetGlobalVariable('wizard_spellbook_wants_to_open').IsSet]"
+
+	state = {
+		name = _show
+		on_start = "[GetVariableSystem.Set( 'wizard_spellbook_open', 'yes' )]"
+		on_start = "[GetScriptedGui('wizard_clear_spellbook_trigger').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+	}
+}
+
+# ─── Close trigger bridge: clears wizard_spellbook_open when script sets close var ─
+window = {
+	name = "wizard_spellbook_close_trigger"
+	layer = top
+	size = { 1 1 }
+	position = { -202 -200 }
+	allow_outside = yes
+	visible = "[GetGlobalVariable('wizard_spellbook_wants_to_close').IsSet]"
+
+	state = {
+		name = _show
+		on_start = "[GetVariableSystem.Clear( 'wizard_spellbook_open' )]"
+		on_start = "[GetScriptedGui('wizard_clear_spellbook_close_trigger').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+	}
+}
+
+# ─── Main Arcane Codex window ────────────────────────────────────────────────
+window = {
+	name = "wizard_spellbook_main"
+	layer = top
+	parentanchor = center
+	widgetanchor = center
+	allow_outside = yes
+	size = { 820 540 }
+	movable = yes
+	visible = "[GetVariableSystem.Exists( 'wizard_spellbook_open' )]"
+	using = Window_Background
+
+	vbox = {
+		layoutpolicy_horizontal = expanding
+		layoutpolicy_vertical   = expanding
+
+		# ── Title bar ─────────────────────────────────────────────────────────
+		hbox = {
+			layoutpolicy_horizontal = expanding
+			margin = { 22 16 }
+			spacing = 8
+			icon = { texture = "gfx/interface/icons/traits/lore_of_high_magic.dds"  size = { 24 24 } }
+			text_single = {
+					raw_text = "Arcane Codex"
+				using = Font_Size_Large
+				default_format = "#bold"
+				autoresize = yes
+				layoutpolicy_horizontal = expanding
+				align = left|nobaseline
+			}
+			button = {
+				name = "arcane_close"
+				size = { 24 24 }
+				raw_text = "×"
+				using = Font_Size_Medium
+				onclick = "[GetVariableSystem.Clear( 'wizard_spellbook_open' )]"
+			}
+		}
+
+		divider = { layoutpolicy_horizontal = expanding }
+
+		# ── Body: lore tabs (left) | spell list (right) ───────────────────────
+		hbox = {
+			layoutpolicy_horizontal = expanding
+			layoutpolicy_vertical   = expanding			margin = { 16 0 }
+			# ─ Left: lore tabs ───────────────────────────────────────────────
+			vbox = {
+				minimumsize = { 192 0 }
+				maximumsize = { 192 -1 }
+				layoutpolicy_vertical = expanding
+				margin = { 12 8 }
+				spacing = 2
+
+				text_single = {
+					raw_text = "#low Lores of Magic"
+					autoresize = yes
+					minimumsize = { 180 0 }
+					align = hcenter|nobaseline
+					using = Font_Size_Small
+				}
+				divider = { minimumsize = { 180 0 } }
+				spacer = { size = { 0 4 } }
+
+				# Fire lore tab
+				widget = {
+					name = "lore_tab_fire"
+					layoutpolicy_horizontal = expanding
+					size = { 0 52 }
+					background = { color = { 0.95 0.40 0.10 0.14 }  visible = "[GetScriptedGui('wizard_spellbook_lore_fire_tab_active').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+					hbox = {
+						layoutpolicy_horizontal = expanding
+						layoutpolicy_vertical   = expanding
+						widget = { size = { 5 52 }  background = { color = { 0.95 0.40 0.10 0.95 }  visible = "[GetScriptedGui('wizard_spellbook_lore_fire_tab_active').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" } }
+						button = {
+							layoutpolicy_horizontal = expanding  size = { 0 52 }
+							enabled = "[GetScriptedGui('wizard_spellbook_lore_fire_available').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+							onclick  = "[GetScriptedGui('wizard_spellbook_select_lore_fire').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+							hbox = { layoutpolicy_horizontal = expanding  margin = { 8 0 }  spacing = 8
+								icon = { size = { 24 24 }  texture = "gfx/interface/icons/traits/lore_of_fire.dds" }
+								text_single = { layoutpolicy_horizontal = expanding  autoresize = no  minimumsize = { 0 28 }  align = left|vcenter|nobaseline  using = Font_Size_Medium  raw_text = "Lore of Fire" }
+							}
+						}
+					}
+				}
+
+				# Earth lore tab
+				widget = {
+					name = "lore_tab_earth"
+					layoutpolicy_horizontal = expanding
+					size = { 0 52 }
+					background = { color = { 0.50 0.75 0.30 0.14 }  visible = "[GetScriptedGui('wizard_spellbook_lore_earth_tab_active').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+					hbox = {
+						layoutpolicy_horizontal = expanding
+						layoutpolicy_vertical   = expanding
+						widget = { size = { 5 52 }  background = { color = { 0.50 0.75 0.30 0.95 }  visible = "[GetScriptedGui('wizard_spellbook_lore_earth_tab_active').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" } }
+						button = {
+							layoutpolicy_horizontal = expanding  size = { 0 52 }
+							enabled = "[GetScriptedGui('wizard_spellbook_lore_earth_available').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+							onclick  = "[GetScriptedGui('wizard_spellbook_select_lore_earth').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+							hbox = { layoutpolicy_horizontal = expanding  margin = { 8 0 }  spacing = 8
+								icon = { size = { 24 24 }  texture = "gfx/interface/icons/traits/lore_of_earth.dds" }
+								text_single = { layoutpolicy_horizontal = expanding  autoresize = no  minimumsize = { 0 28 }  align = left|vcenter|nobaseline  using = Font_Size_Medium  raw_text = "Lore of Earth" }
+							}
+						}
+					}
+				}
+
+				# Water lore tab
+				widget = {
+					name = "lore_tab_water"
+					layoutpolicy_horizontal = expanding
+					size = { 0 52 }
+					background = { color = { 0.20 0.60 1.00 0.14 }  visible = "[GetScriptedGui('wizard_spellbook_lore_water_tab_active').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+					hbox = {
+						layoutpolicy_horizontal = expanding
+						layoutpolicy_vertical   = expanding
+						widget = { size = { 5 52 }  background = { color = { 0.20 0.60 1.00 0.95 }  visible = "[GetScriptedGui('wizard_spellbook_lore_water_tab_active').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" } }
+						button = {
+							layoutpolicy_horizontal = expanding  size = { 0 52 }
+							enabled = "[GetScriptedGui('wizard_spellbook_lore_water_available').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+							onclick  = "[GetScriptedGui('wizard_spellbook_select_lore_water').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+							hbox = { layoutpolicy_horizontal = expanding  margin = { 8 0 }  spacing = 8
+								icon = { size = { 24 24 }  texture = "gfx/interface/icons/traits/lore_of_water.dds" }
+								text_single = { layoutpolicy_horizontal = expanding  autoresize = no  minimumsize = { 0 28 }  align = left|vcenter|nobaseline  using = Font_Size_Medium  raw_text = "Lore of Water" }
+							}
+						}
+					}
+				}
+
+				# Death lore tab
+				widget = {
+					name = "lore_tab_death"
+					layoutpolicy_horizontal = expanding
+					size = { 0 52 }
+					background = { color = { 0.65 0.20 0.80 0.14 }  visible = "[GetScriptedGui('wizard_spellbook_lore_death_tab_active').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+					hbox = {
+						layoutpolicy_horizontal = expanding
+						layoutpolicy_vertical   = expanding
+						widget = { size = { 5 52 }  background = { color = { 0.65 0.20 0.80 0.95 }  visible = "[GetScriptedGui('wizard_spellbook_lore_death_tab_active').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" } }
+						button = {
+							layoutpolicy_horizontal = expanding  size = { 0 52 }
+							enabled = "[GetScriptedGui('wizard_spellbook_lore_death_available').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+							onclick  = "[GetScriptedGui('wizard_spellbook_select_lore_death').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+							hbox = { layoutpolicy_horizontal = expanding  margin = { 8 0 }  spacing = 8
+								icon = { size = { 24 24 }  texture = "gfx/interface/icons/traits/lore_of_death.dds" }
+								text_single = { layoutpolicy_horizontal = expanding  autoresize = no  minimumsize = { 0 28 }  align = left|vcenter|nobaseline  using = Font_Size_Medium  raw_text = "Lore of Death" }
+							}
+						}
+					}
+				}
+
+				# High Magic lore tab
+				widget = {
+					name = "lore_tab_high"
+					layoutpolicy_horizontal = expanding
+					size = { 0 52 }
+					background = { color = { 0.85 0.75 0.20 0.14 }  visible = "[GetScriptedGui('wizard_spellbook_lore_high_tab_active').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+					hbox = {
+						layoutpolicy_horizontal = expanding
+						layoutpolicy_vertical   = expanding
+						widget = { size = { 5 52 }  background = { color = { 0.85 0.75 0.20 0.95 }  visible = "[GetScriptedGui('wizard_spellbook_lore_high_tab_active').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" } }
+						button = {
+							layoutpolicy_horizontal = expanding  size = { 0 52 }
+							enabled = "[GetScriptedGui('wizard_spellbook_lore_high_available').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+							onclick  = "[GetScriptedGui('wizard_spellbook_select_lore_high').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+							hbox = { layoutpolicy_horizontal = expanding  margin = { 8 0 }  spacing = 8
+								icon = { size = { 24 24 }  texture = "gfx/interface/icons/traits/lore_of_high_magic.dds" }
+								text_single = { layoutpolicy_horizontal = expanding  autoresize = no  minimumsize = { 0 28 }  align = left|vcenter|nobaseline  using = Font_Size_Medium  raw_text = "High Magic" }
+							}
+						}
+					}
+				}
+
+				expand = {}
+			}
+
+			# Vertical divider
+			widget = { size = { 1 0 }  layoutpolicy_vertical = expanding  background = { color = { 0.40 0.40 0.50 0.55 } } }
+
+			# ─ Right: spell panels (one per lore, only one visible at a time) ─
+			# Each lore's spells are defined in their own wizard_spells_<lore>.gui file.
+			widget = {
+				name = "spell_panels"
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical   = expanding
+
+				wizard_fire_spells_panel  = {}
+				wizard_earth_spells_panel = {}
+				wizard_water_spells_panel = {}
+				wizard_death_spells_panel = {}
+				wizard_high_spells_panel  = {}
+			}
+		}
+
+		divider = { layoutpolicy_horizontal = expanding }
+
+		# ── Footer: Cast button ───────────────────────────────────────────────
+		hbox = {
+			layoutpolicy_horizontal = expanding
+			margin  = { 0 8 }
+
+			widget = { layoutpolicy_horizontal = expanding }
+			button = {
+				name = "arcane_cast"
+				size = { 164 40 }
+				onclick  = "[GetScriptedGui('wizard_spellbook_cast_selected').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+				hbox = {
+					layoutpolicy_horizontal = expanding
+					layoutpolicy_vertical   = expanding
+					using = Window_Background_Subwindow
+					background = { color = { 0.20 0.25 0.70 0.75 } }
+					text_single = {
+						raw_text = "#bold #high Cast Spell"
+						autoresize = yes
+						layoutpolicy_horizontal = expanding
+						align = hcenter|vcenter|nobaseline
+						using = Font_Size_Medium
+					}
+				}
+			}
+			widget = { layoutpolicy_horizontal = expanding }
+		}
+	}
+}

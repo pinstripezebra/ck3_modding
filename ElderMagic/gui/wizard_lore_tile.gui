@@ -1,0 +1,21 @@
+types WizardLoreTiles
+{
+	# Reusable lore selection tile used in the left panel of the Arcane Codex.
+	# The type provides the card frame; all interior content is supplied by
+	# block "lore_content" in each instance so per-lore visibility conditions
+	# and click handlers stay fully encapsulated in the call site.
+	type wizard_lore_tile = widget
+	{
+		size = { 244 62 }
+
+		background = { using = Window_Background_Subwindow }
+
+		# Border lines
+		widget = { position = { 0  0  }  size = { 244   1 }  background = { color = { 0.45 0.45 0.65 0.8 } } }
+		widget = { position = { 0  61 }  size = { 244   1 }  background = { color = { 0.45 0.45 0.65 0.8 } } }
+		widget = { position = { 0  0  }  size = {   1  62 }  background = { color = { 0.45 0.45 0.65 0.8 } } }
+		widget = { position = { 243 0 }  size = {   1  62 }  background = { color = { 0.45 0.45 0.65 0.8 } } }
+
+		block "lore_content" {}
+	}
+}

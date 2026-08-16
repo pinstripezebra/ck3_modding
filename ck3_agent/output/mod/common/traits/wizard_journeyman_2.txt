@@ -1,0 +1,9 @@
+wizard_journeyman_2 = {
+	category = lifestyle
+	icon = wizard_journeyman_2
+
+	learning = 6
+	prowess = 3
+
+	opposites = { wizard_journeyman_1 }
+}

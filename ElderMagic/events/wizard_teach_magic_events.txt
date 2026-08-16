@@ -1,0 +1,89 @@
+﻿namespace = wizard_teach_magic
+
+# Success event
+wizard_teach_magic.0001 = {
+	type = character_event
+	title = wizard_teach_magic.0001.t
+	desc = wizard_teach_magic.0001.desc
+	theme = learning
+
+	immediate = {
+		if = {
+			limit = { exists = scope:target }
+			scope:target = { save_scope_as = target }
+		}
+		if = {
+			limit = { has_character_flag = wizard_teach_magic_pending_fire }
+			scope:target = { add_trait = lore_of_fire }
+			remove_character_flag = wizard_teach_magic_pending_fire
+		}
+		else_if = {
+			limit = { has_character_flag = wizard_teach_magic_pending_earth }
+			scope:target = { add_trait = lore_of_earth }
+			remove_character_flag = wizard_teach_magic_pending_earth
+		}
+		else_if = {
+			limit = { has_character_flag = wizard_teach_magic_pending_water }
+			scope:target = { add_trait = lore_of_water }
+			remove_character_flag = wizard_teach_magic_pending_water
+		}
+		else_if = {
+			limit = { has_character_flag = wizard_teach_magic_pending_death }
+			scope:target = { add_trait = lore_of_death }
+			remove_character_flag = wizard_teach_magic_pending_death
+		}
+		else_if = {
+			limit = { has_character_flag = wizard_teach_magic_pending_high_magic }
+			scope:target = { add_trait = lore_of_high_magic }
+			remove_character_flag = wizard_teach_magic_pending_high_magic
+		}
+	}
+
+	option = {
+		name = wizard_teach_magic.0001.a
+	}
+}
+
+# Failure event
+wizard_teach_magic.0002 = {
+	type = character_event
+	title = wizard_teach_magic.0002.t
+	desc = wizard_teach_magic.0002.desc
+	theme = learning
+
+	immediate = {
+		if = {
+			limit = { exists = scope:target }
+			scope:target = { save_scope_as = target }
+		}
+		set_variable = {
+			name = wizard_teach_failed_target
+			value = scope:target
+			days = 365
+		}
+		if = {
+			limit = { has_character_flag = wizard_teach_magic_pending_fire }
+			remove_character_flag = wizard_teach_magic_pending_fire
+		}
+		if = {
+			limit = { has_character_flag = wizard_teach_magic_pending_earth }
+			remove_character_flag = wizard_teach_magic_pending_earth
+		}
+		if = {
+			limit = { has_character_flag = wizard_teach_magic_pending_water }
+			remove_character_flag = wizard_teach_magic_pending_water
+		}
+		if = {
+			limit = { has_character_flag = wizard_teach_magic_pending_death }
+			remove_character_flag = wizard_teach_magic_pending_death
+		}
+		if = {
+			limit = { has_character_flag = wizard_teach_magic_pending_high_magic }
+			remove_character_flag = wizard_teach_magic_pending_high_magic
+		}
+	}
+
+	option = {
+		name = wizard_teach_magic.0002.a
+	}
+}

@@ -1,0 +1,32 @@
+# Mana Scarred - three-tiered health/prowess debuff from a magical accident.
+# Degrades 3 -> 2 -> 1 -> removed via monthly on_action checks.
+
+mana_scarred_1 = {
+	category = health
+	good = no
+	icon = mana_scarred_1.dds
+	health = -0.5
+	prowess = -2
+
+	ruler_designer_cost = -20
+}
+
+mana_scarred_2 = {
+	category = health
+	good = no
+	icon = mana_scarred_2.dds
+	health = -1.0
+	prowess = -4
+
+	ruler_designer_cost = -40
+}
+
+mana_scarred_3 = {
+	category = health
+	good = no
+	icon = mana_scarred_3.dds
+	health = -2.0
+	prowess = -6
+
+	ruler_designer_cost = -60
+}

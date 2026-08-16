@@ -1,0 +1,36 @@
+window = {
+	name = "wizard_magic_power_badge"
+	layer = top
+	parentanchor = top|left
+	# Aligned with the name row: after the 310px illustration + margin, right of the health icons
+	position = { 462 312 }
+	size = { 100 26 }
+	movable = no
+	allow_outside = yes
+	mousetransparent = yes
+
+	# Only visible when the character window is open and the character has any magic power
+	visible = "[And( CharacterWindow.GetCharacter.IsValid, GreaterThan_CFixedPoint( CharacterWindow.GetCharacter.MakeScope.ScriptValue('wizard_total_magic_power'), '(CFixedPoint)0' ) )]"
+
+	hbox = {
+		parentanchor = left|vcenter
+		widgetanchor = left|vcenter
+		spacing = 3
+
+		icon = {
+			size = { 18 18 }
+			parentanchor = vcenter
+			texture = "gfx/interface/icons/traits/mana_flame_small.dds"
+		}
+
+		text_single = {
+			parentanchor = vcenter
+			fontsize = 16
+			default_format = "#color:{0.45,0.8,1.0,1.0}"
+			align = nobaseline
+			autoresize = yes
+			raw_text = "[CharacterWindow.GetCharacter.MakeScope.ScriptValue('wizard_total_magic_power')]"
+			tooltip = WIZARD_MAGIC_POWER_TT
+		}
+	}
+}

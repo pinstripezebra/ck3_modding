@@ -1,0 +1,31 @@
+## Cast Spell / Spellbook interactions live here.
+## Ascendant Lore attempts are in common/decisions/ascendant_lore.txt.
+
+wizard_open_spellbook_interaction = {
+	category = interaction_category_wizard_magic
+	interface_priority = 80
+	icon = wizard_spellbook
+	desc = wizard_open_spellbook_interaction_desc
+
+	is_shown = {
+		scope:actor = { this = scope:recipient }
+		scope:actor = {
+			is_adult = yes
+			wizard_has_any_lore_trait = yes
+		}
+	}
+
+	auto_accept = yes
+
+	on_accept = {
+		scope:actor = {
+			wizard_set_spellbook_open = yes
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+
+

@@ -1,0 +1,4 @@
+myst_divination_modifier = {
+	learning = 2
+	monthly_piety = 0.2
+}

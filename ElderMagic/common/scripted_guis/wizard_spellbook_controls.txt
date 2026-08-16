@@ -1,0 +1,306 @@
+# Clears the trigger global var after the GUI bridge widget fires.
+# Called from wizard_spellbook_trigger's _show state.
+wizard_clear_spellbook_trigger = {
+	effect = {
+		remove_global_variable = wizard_spellbook_wants_to_open
+	}
+}
+
+# Clears the close-trigger global var after the close bridge fires.
+# Called from wizard_spellbook_close_trigger's _show state.
+wizard_clear_spellbook_close_trigger = {
+	effect = {
+		remove_global_variable = wizard_spellbook_wants_to_close
+	}
+}
+
+wizard_spellbook_toggle = {
+	effect = {
+		wizard_toggle_spellbook_window = yes
+	}
+}
+
+wizard_spellbook_open = {
+	effect = {
+		wizard_set_spellbook_open = yes
+	}
+}
+
+wizard_spellbook_close = {
+	effect = {
+		wizard_set_spellbook_closed = yes
+	}
+}
+
+wizard_spellbook_select_lore_fire = {
+	effect = { wizard_select_lore_fire = yes }
+}
+wizard_spellbook_select_lore_earth = {
+	effect = { wizard_select_lore_earth = yes }
+}
+wizard_spellbook_select_lore_wind = {
+	effect = { wizard_select_lore_wind = yes }
+}
+wizard_spellbook_select_lore_water = {
+	effect = { wizard_select_lore_water = yes }
+}
+wizard_spellbook_select_lore_death = {
+	effect = { wizard_select_lore_death = yes }
+}
+wizard_spellbook_select_lore_high = {
+	effect = { wizard_select_lore_high = yes }
+}
+
+wizard_spellbook_lore_fire_available = { is_shown = { has_trait = lore_of_fire } }
+wizard_spellbook_lore_earth_available = { is_shown = { has_trait = lore_of_earth } }
+wizard_spellbook_lore_water_available = { is_shown = { has_trait = lore_of_water } }
+wizard_spellbook_lore_death_available = { is_shown = { has_trait = lore_of_death } }
+wizard_spellbook_lore_high_available = { is_shown = { has_trait = lore_of_high_magic } }
+
+wizard_spellbook_lore_fire_unavailable = { is_shown = { NOT = { has_trait = lore_of_fire } } }
+wizard_spellbook_lore_earth_unavailable = { is_shown = { NOT = { has_trait = lore_of_earth } } }
+wizard_spellbook_lore_water_unavailable = { is_shown = { NOT = { has_trait = lore_of_water } } }
+wizard_spellbook_lore_death_unavailable = { is_shown = { NOT = { has_trait = lore_of_death } } }
+wizard_spellbook_lore_high_unavailable = { is_shown = { NOT = { has_trait = lore_of_high_magic } } }
+
+wizard_spellbook_lore_fire_tab_active  = { is_shown = { has_character_flag = wizard_spellbook_lore_fire_selected } }
+wizard_spellbook_lore_earth_tab_active = { is_shown = { has_character_flag = wizard_spellbook_lore_earth_selected } }
+wizard_spellbook_lore_water_tab_active = { is_shown = { has_character_flag = wizard_spellbook_lore_water_selected } }
+wizard_spellbook_lore_death_tab_active = { is_shown = { has_character_flag = wizard_spellbook_lore_death_selected } }
+wizard_spellbook_lore_high_tab_active  = { is_shown = { has_character_flag = wizard_spellbook_lore_high_selected } }
+
+wizard_spellbook_lore_fire_selected = { is_shown = { has_character_flag = wizard_spellbook_lore_fire_selected } }
+wizard_spellbook_lore_earth_selected = { is_shown = { has_character_flag = wizard_spellbook_lore_earth_selected } }
+wizard_spellbook_lore_wind_selected = { is_shown = { has_character_flag = wizard_spellbook_lore_wind_selected } }
+wizard_spellbook_lore_water_selected = { is_shown = { has_character_flag = wizard_spellbook_lore_water_selected } }
+wizard_spellbook_lore_death_selected = { is_shown = { has_character_flag = wizard_spellbook_lore_death_selected } }
+wizard_spellbook_lore_high_selected = { is_shown = { has_character_flag = wizard_spellbook_lore_high_selected } }
+
+wizard_spellbook_show_spells_fire = {
+	is_shown = {
+		OR = {
+			has_character_flag = wizard_spellbook_lore_fire_selected
+			AND = {
+				NOT = { has_character_flag = wizard_spellbook_lore_fire_selected }
+				NOT = { has_character_flag = wizard_spellbook_lore_earth_selected }
+				NOT = { has_character_flag = wizard_spellbook_lore_wind_selected }
+				NOT = { has_character_flag = wizard_spellbook_lore_water_selected }
+				NOT = { has_character_flag = wizard_spellbook_lore_death_selected }
+				NOT = { has_character_flag = wizard_spellbook_lore_high_selected }
+				has_trait = lore_of_fire
+			}
+		}
+	}
+}
+
+wizard_spellbook_show_spells_earth = {
+	is_shown = {
+		OR = {
+			has_character_flag = wizard_spellbook_lore_earth_selected
+			AND = {
+				NOT = { has_character_flag = wizard_spellbook_lore_fire_selected }
+				NOT = { has_character_flag = wizard_spellbook_lore_earth_selected }
+				NOT = { has_character_flag = wizard_spellbook_lore_wind_selected }
+				NOT = { has_character_flag = wizard_spellbook_lore_water_selected }
+				NOT = { has_character_flag = wizard_spellbook_lore_death_selected }
+				NOT = { has_character_flag = wizard_spellbook_lore_high_selected }
+				NOT = { has_trait = lore_of_fire }
+				has_trait = lore_of_earth
+			}
+		}
+	}
+}
+
+wizard_spellbook_show_spells_wind = {
+	is_shown = {
+		OR = {
+			has_character_flag = wizard_spellbook_lore_wind_selected
+			AND = {
+				NOT = { has_character_flag = wizard_spellbook_lore_fire_selected }
+				NOT = { has_character_flag = wizard_spellbook_lore_earth_selected }
+				NOT = { has_character_flag = wizard_spellbook_lore_wind_selected }
+				NOT = { has_character_flag = wizard_spellbook_lore_water_selected }
+				NOT = { has_character_flag = wizard_spellbook_lore_death_selected }
+				NOT = { has_character_flag = wizard_spellbook_lore_high_selected }
+				NOT = { has_trait = lore_of_fire }
+				NOT = { has_trait = lore_of_earth }
+			}
+		}
+	}
+}
+
+wizard_spellbook_show_spells_water = {
+	is_shown = {
+		OR = {
+			has_character_flag = wizard_spellbook_lore_water_selected
+			AND = {
+				NOT = { has_character_flag = wizard_spellbook_lore_fire_selected }
+				NOT = { has_character_flag = wizard_spellbook_lore_earth_selected }
+				NOT = { has_character_flag = wizard_spellbook_lore_wind_selected }
+				NOT = { has_character_flag = wizard_spellbook_lore_water_selected }
+				NOT = { has_character_flag = wizard_spellbook_lore_death_selected }
+				NOT = { has_character_flag = wizard_spellbook_lore_high_selected }
+				NOT = { has_trait = lore_of_fire }
+				NOT = { has_trait = lore_of_earth }
+				has_trait = lore_of_water
+			}
+		}
+	}
+}
+
+wizard_spellbook_show_spells_death = {
+	is_shown = {
+		OR = {
+			has_character_flag = wizard_spellbook_lore_death_selected
+			AND = {
+				NOT = { has_character_flag = wizard_spellbook_lore_fire_selected }
+				NOT = { has_character_flag = wizard_spellbook_lore_earth_selected }
+				NOT = { has_character_flag = wizard_spellbook_lore_wind_selected }
+				NOT = { has_character_flag = wizard_spellbook_lore_water_selected }
+				NOT = { has_character_flag = wizard_spellbook_lore_death_selected }
+				NOT = { has_character_flag = wizard_spellbook_lore_high_selected }
+				NOT = { has_trait = lore_of_fire }
+				NOT = { has_trait = lore_of_earth }
+				NOT = { has_trait = lore_of_water }
+				has_trait = lore_of_death
+			}
+		}
+	}
+}
+
+wizard_spellbook_show_spells_high = {
+	is_shown = {
+		OR = {
+			has_character_flag = wizard_spellbook_lore_high_selected
+			AND = {
+				NOT = { has_character_flag = wizard_spellbook_lore_fire_selected }
+				NOT = { has_character_flag = wizard_spellbook_lore_earth_selected }
+				NOT = { has_character_flag = wizard_spellbook_lore_wind_selected }
+				NOT = { has_character_flag = wizard_spellbook_lore_water_selected }
+				NOT = { has_character_flag = wizard_spellbook_lore_death_selected }
+				NOT = { has_character_flag = wizard_spellbook_lore_high_selected }
+				NOT = { has_trait = lore_of_fire }
+				NOT = { has_trait = lore_of_earth }
+				NOT = { has_trait = lore_of_water }
+				NOT = { has_trait = lore_of_death }
+				has_trait = lore_of_high_magic
+			}
+		}
+	}
+}
+
+wizard_spellbook_select_spell_fire_1 = { effect = { wizard_select_spell_fire_1 = yes } }
+wizard_spellbook_select_spell_fire_2 = { effect = { wizard_select_spell_fire_2 = yes } }
+wizard_spellbook_select_spell_fire_3 = { effect = { wizard_select_spell_fire_3 = yes } }
+wizard_spellbook_select_spell_fire_4 = { effect = { wizard_select_spell_fire_4 = yes } }
+wizard_spellbook_select_spell_earth_1 = { effect = { wizard_select_spell_earth_1 = yes } }
+wizard_spellbook_select_spell_earth_2 = { effect = { wizard_select_spell_earth_2 = yes } }
+wizard_spellbook_select_spell_earth_3 = { effect = { wizard_select_spell_earth_3 = yes } }
+wizard_spellbook_select_spell_wind_1 = { effect = { wizard_select_spell_wind_1 = yes } }
+wizard_spellbook_select_spell_wind_2 = { effect = { wizard_select_spell_wind_2 = yes } }
+wizard_spellbook_select_spell_wind_3 = { effect = { wizard_select_spell_wind_3 = yes } }
+wizard_spellbook_select_spell_water_1 = { effect = { wizard_select_spell_water_1 = yes } }
+wizard_spellbook_select_spell_water_2 = { effect = { wizard_select_spell_water_2 = yes } }
+wizard_spellbook_select_spell_water_3 = { effect = { wizard_select_spell_water_3 = yes } }
+wizard_spellbook_select_spell_death_1 = { effect = { wizard_select_spell_death_1 = yes } }
+wizard_spellbook_select_spell_death_2 = { effect = { wizard_select_spell_death_2 = yes } }
+wizard_spellbook_select_spell_death_3 = { effect = { wizard_select_spell_death_3 = yes } }
+wizard_spellbook_select_spell_high_1 = { effect = { wizard_select_spell_high_1 = yes } }
+wizard_spellbook_select_spell_high_2 = { effect = { wizard_select_spell_high_2 = yes } }
+wizard_spellbook_select_spell_high_3 = { effect = { wizard_select_spell_high_3 = yes } }
+
+wizard_spell_fire_1_known = { is_shown = { has_trait = lore_of_fire } }
+wizard_spell_fire_2_known = { is_shown = { has_trait_xp = { trait = lore_of_fire value >= 25 } } }
+wizard_spell_fire_3_known = { is_shown = { has_trait_xp = { trait = lore_of_fire value >= 50 } } }
+wizard_spell_fire_4_known = { is_shown = { has_trait_xp = { trait = lore_of_fire value >= 75 } } }
+wizard_spell_earth_1_known = { is_shown = { has_trait = lore_of_earth } }
+wizard_spell_earth_2_known = { is_shown = { has_trait_xp = { trait = lore_of_earth value >= 25 } } }
+wizard_spell_earth_3_known = { is_shown = { has_trait_xp = { trait = lore_of_earth value >= 50 } } }
+wizard_spell_wind_1_known = { is_shown = { always = no } }
+wizard_spell_wind_2_known = { is_shown = { always = no } }
+wizard_spell_wind_3_known = { is_shown = { always = no } }
+wizard_spell_water_1_known = { is_shown = { has_trait = lore_of_water } }
+wizard_spell_water_2_known = { is_shown = { has_trait_xp = { trait = lore_of_water value >= 25 } } }
+wizard_spell_water_3_known = { is_shown = { has_trait_xp = { trait = lore_of_water value >= 50 } } }
+wizard_spell_death_1_known = { is_shown = { has_trait = lore_of_death } }
+wizard_spell_death_2_known = { is_shown = { has_trait_xp = { trait = lore_of_death value >= 25 } } }
+wizard_spell_death_3_known = { is_shown = { has_trait_xp = { trait = lore_of_death value >= 50 } } }
+wizard_spell_high_1_known = { is_shown = { has_trait = lore_of_high_magic } }
+wizard_spell_high_2_known = { is_shown = { has_trait_xp = { trait = lore_of_high_magic value >= 25 } } }
+wizard_spell_high_3_known = { is_shown = { has_trait_xp = { trait = lore_of_high_magic value >= 50 } } }
+
+wizard_spell_fire_1_unknown = { is_shown = { NOT = { has_trait = lore_of_fire } } }
+wizard_spell_fire_2_unknown = { is_shown = { NOT = { has_trait_xp = { trait = lore_of_fire value >= 25 } } } }
+wizard_spell_fire_3_unknown = { is_shown = { NOT = { has_trait_xp = { trait = lore_of_fire value >= 50 } } } }
+wizard_spell_fire_4_unknown = { is_shown = { NOT = { has_trait_xp = { trait = lore_of_fire value >= 75 } } } }
+wizard_spell_earth_1_unknown = { is_shown = { NOT = { has_trait = lore_of_earth } } }
+wizard_spell_earth_2_unknown = { is_shown = { NOT = { has_trait_xp = { trait = lore_of_earth value >= 25 } } } }
+wizard_spell_earth_3_unknown = { is_shown = { NOT = { has_trait_xp = { trait = lore_of_earth value >= 50 } } } }
+wizard_spell_wind_1_unknown = { is_shown = { always = yes } }
+wizard_spell_wind_2_unknown = { is_shown = { always = yes } }
+wizard_spell_wind_3_unknown = { is_shown = { always = yes } }
+wizard_spell_water_1_unknown = { is_shown = { NOT = { has_trait = lore_of_water } } }
+wizard_spell_water_2_unknown = { is_shown = { NOT = { has_trait_xp = { trait = lore_of_water value >= 25 } } } }
+wizard_spell_water_3_unknown = { is_shown = { NOT = { has_trait_xp = { trait = lore_of_water value >= 50 } } } }
+wizard_spell_death_1_unknown = { is_shown = { NOT = { has_trait = lore_of_death } } }
+wizard_spell_death_2_unknown = { is_shown = { NOT = { has_trait_xp = { trait = lore_of_death value >= 25 } } } }
+wizard_spell_death_3_unknown = { is_shown = { NOT = { has_trait_xp = { trait = lore_of_death value >= 50 } } } }
+wizard_spell_high_1_unknown = { is_shown = { NOT = { has_trait = lore_of_high_magic } } }
+wizard_spell_high_2_unknown = { is_shown = { NOT = { has_trait_xp = { trait = lore_of_high_magic value >= 25 } } } }
+wizard_spell_high_3_unknown = { is_shown = { NOT = { has_trait_xp = { trait = lore_of_high_magic value >= 50 } } } }
+
+wizard_spellbook_can_learn_selected = {
+	is_shown = {
+		wizard_any_spell_selected = yes
+		wizard_selected_spell_can_be_learned = yes
+		NOT = { wizard_spell_learning_on_cooldown = yes }
+	}
+}
+
+wizard_spellbook_can_cast_selected = {
+	is_shown = {
+		wizard_any_spell_selected = yes
+		wizard_selected_spell_can_be_cast = yes
+	}
+}
+
+wizard_spellbook_learn_selected = {
+	is_valid = {
+		wizard_any_spell_selected = yes
+		wizard_selected_spell_can_be_learned = yes
+		NOT = { wizard_spell_learning_on_cooldown = yes }
+	}
+	effect = {
+		trigger_event = wizard_spells.1000
+	}
+}
+
+wizard_spellbook_cast_selected = {
+	is_valid = {
+		wizard_any_spell_selected = yes
+		wizard_selected_spell_can_be_cast = yes
+	}
+	effect = {
+		trigger_event = wizard_spells.2000
+	}
+}
+
+wizard_spell_fire_1_selected = { is_shown = { has_character_flag = wizard_selected_spell_fire_1 } }
+wizard_spell_fire_2_selected = { is_shown = { has_character_flag = wizard_selected_spell_fire_2 } }
+wizard_spell_fire_3_selected = { is_shown = { has_character_flag = wizard_selected_spell_fire_3 } }
+wizard_spell_fire_4_selected = { is_shown = { has_character_flag = wizard_selected_spell_fire_4 } }
+wizard_spell_earth_1_selected = { is_shown = { has_character_flag = wizard_selected_spell_earth_1 } }
+wizard_spell_earth_2_selected = { is_shown = { has_character_flag = wizard_selected_spell_earth_2 } }
+wizard_spell_earth_3_selected = { is_shown = { has_character_flag = wizard_selected_spell_earth_3 } }
+wizard_spell_wind_1_selected = { is_shown = { has_character_flag = wizard_selected_spell_wind_1 } }
+wizard_spell_wind_2_selected = { is_shown = { has_character_flag = wizard_selected_spell_wind_2 } }
+wizard_spell_wind_3_selected = { is_shown = { has_character_flag = wizard_selected_spell_wind_3 } }
+wizard_spell_water_1_selected = { is_shown = { has_character_flag = wizard_selected_spell_water_1 } }
+wizard_spell_water_2_selected = { is_shown = { has_character_flag = wizard_selected_spell_water_2 } }
+wizard_spell_water_3_selected = { is_shown = { has_character_flag = wizard_selected_spell_water_3 } }
+wizard_spell_death_1_selected = { is_shown = { has_character_flag = wizard_selected_spell_death_1 } }
+wizard_spell_death_2_selected = { is_shown = { has_character_flag = wizard_selected_spell_death_2 } }
+wizard_spell_death_3_selected = { is_shown = { has_character_flag = wizard_selected_spell_death_3 } }
+wizard_spell_high_1_selected = { is_shown = { has_character_flag = wizard_selected_spell_high_1 } }
+wizard_spell_high_2_selected = { is_shown = { has_character_flag = wizard_selected_spell_high_2 } }
+wizard_spell_high_3_selected = { is_shown = { has_character_flag = wizard_selected_spell_high_3 } }

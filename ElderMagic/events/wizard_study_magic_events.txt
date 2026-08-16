@@ -1,0 +1,74 @@
+namespace = wizard_study_magic
+
+# Completion event — fires 6 months after the Study Magic decision is taken.
+# Awards XP to all lore traits the character holds, then fires a toast notification.
+wizard_study_magic.1001 = {
+	type = character_event
+	hidden = yes
+
+	immediate = {
+		remove_character_modifier = wizard_currently_studying
+
+		random_list = {
+			75 = {
+				# Normal completion — award XP and notify
+				wizard_award_study_xp = yes
+			}
+			25 = {
+				# Dangerous surge — player must choose how to respond
+				trigger_event = { id = wizard_study_magic.2001 }
+			}
+		}
+	}
+}
+
+# Dangerous Study of Magic — wild surge event (25% chance on study completion)
+wizard_study_magic.2001 = {
+	type = character_event
+	title = wizard_study_magic.2001.t
+	desc = wizard_study_magic.2001.desc
+	theme = dark
+
+	option = {
+		# Flee the laboratory — 40 % success / 60 % failure
+		name = wizard_study_magic.2001.a
+		custom_tooltip = wizard_study_magic.2001.a.tt
+		random_list = {
+			40 = {
+				# Success — escaped with no damage, no XP (study abandoned)
+				send_interface_toast = {
+					type = event_toast_effect_neutral
+					title = wizard_dangerous_study_fled_title
+					desc = wizard_dangerous_study_fled_desc
+					left_icon = ROOT
+				}
+			}
+			60 = {
+				# Failure — injured trying to escape
+				random_list = {
+					70 = { add_trait = injured }
+					30 = { add_trait = maimed }
+				}
+			}
+		}
+	}
+
+	option = {
+		# Attempt to control the magic — learning-scaled (10 % at L5, 90 % at L40)
+		name = wizard_study_magic.2001.b
+		custom_tooltip = wizard_study_magic.2001.b.tt
+		random_list = {
+			0 = {
+				modifier = { add = wizard_dangerous_study_success_chance }
+				# Success — controlled the surge, study XP awarded normally
+				wizard_award_study_xp = yes
+			}
+			0 = {
+				modifier = { add = wizard_dangerous_study_failure_chance }
+				# Failure — mana wells scarred
+				add_trait = mana_scarred_1
+			}
+		}
+	}
+}
+

@@ -1,0 +1,5 @@
+﻿myst_ritualist_modifier = {
+	monthly_piety = 0.25
+}
+
+

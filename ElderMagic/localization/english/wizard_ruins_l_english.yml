@@ -1,0 +1,20 @@
+l_english:
+ wizard_ruins.0001.t:0 "Ancient Ruins"
+ wizard_ruins.0001.desc:0 "While traveling, you notice a crumbling structure half-swallowed by earth and vine. The air here feels charged — heavy with some lingering, unnatural energy that makes the hairs on your neck stand on end. These ruins are old, older perhaps than the kingdom itself.\n\nWhatever once dwelt here left something of itself behind."
+ wizard_ruins.0001.a:0 "Proceed further into the ruins."
+ wizard_ruins.0001.b:0 "This place unsettles me. I will leave it."
+
+ wizard_ruins.0003.t:0 "Deeper in the Ruins"
+ wizard_ruins.0003.desc_tomb:0 "Further in, past collapsed arches and weathered stone carvings, you find a sealed chamber. At its centre stands a forbidding tomb of black stone etched with unfamiliar script. The arcane energy in the air is strongest here — it seems to emanate from the tomb itself."
+ wizard_ruins.0003.desc_empty:0 "You pick your way through rubble and shadow, but find nothing of note. Whatever power once suffused this place has long since faded, leaving only dust and the memory of something greater."
+ wizard_ruins.0003.a:0 "Open the tomb."
+ wizard_ruins.0003.b:0 "Leave the tomb undisturbed."
+ wizard_ruins.0003.c:0 "Nothing here. Time to move on."
+
+ wizard_ruins.0005.t:0 "Knowledge from Beyond"
+ wizard_ruins.0005.desc:0 "As the seal breaks, a cascade of arcane light floods the chamber. Ancient knowledge — raw, unfiltered, and overwhelming — washes over you. Your mind seizes it instinctively, weaving the power into understanding. When the light fades, you carry something with you that was not there before: a new lore of magic, awakened in an instant."
+ wizard_ruins.0005.a:0 "This was worth every step."
+
+ wizard_ruins.0006.t:0 "The Tomb Rejects You"
+ wizard_ruins.0006.desc:0 "The moment the seal fractures, something strikes back. A wave of alien force crashes through your mind, raw and merciless, finding nothing in you to anchor itself to. You are hurled backward, your thoughts scattered, your body trembling. The chamber goes dark and silent once more.\n\nYou crawl out of the ruins shaken, empty-handed, and haunted by what you glimpsed inside."
+ wizard_ruins.0006.a:0 "I was not ready for that."

@@ -1,0 +1,7 @@
+wizard_novice_1 = {
+	category = lifestyle
+	icon = wizard_novice_1
+
+	learning = 1
+	monthly_prestige = 0.05
+}

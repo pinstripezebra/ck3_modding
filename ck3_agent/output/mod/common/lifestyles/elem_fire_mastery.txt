@@ -1,0 +1,18 @@
+elem_fire_mastery = {
+	lifestyle = learning_lifestyle
+	tree = elementalism
+	position = { 0 2 }
+	icon = elem_fire_mastery
+
+	parent = elem_flame_touch
+
+	effect = {
+		add_character_modifier = {
+			modifier = elem_fire_mastery_modifier
+		}
+	}
+
+	ai_will_do = {
+		base = 100
+	}
+}

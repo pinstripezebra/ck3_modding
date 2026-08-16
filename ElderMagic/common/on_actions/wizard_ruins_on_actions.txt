@@ -1,0 +1,23 @@
+# 1% yearly chance for any playable character to stumble upon ancient ruins.
+# Cooldown flag prevents re-firing for 5 years after each encounter.
+
+random_yearly_playable_pulse = {
+	on_actions = { wizard_ruins_travel_check }
+}
+
+wizard_ruins_travel_check = {
+	effect = {
+		if = {
+			limit = {
+				is_adult = yes
+				is_imprisoned = no
+				NOT = { has_character_flag = wizard_ruins_cooldown }
+			}
+			random = {
+				chance = 1
+				trigger_event = wizard_ruins.0001
+				add_character_flag = { flag = wizard_ruins_cooldown days = 1825 }
+			}
+		}
+	}
+}

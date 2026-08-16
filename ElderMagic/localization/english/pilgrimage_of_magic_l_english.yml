@@ -1,0 +1,39 @@
+﻿l_english:
+ pilgrimage_of_magic_decision:0 "Pilgrimage of Magic"
+ pilgrimage_of_magic_decision_desc:0 "Undertake a costly journey to one of the hidden places of power and return with deeper arcane knowledge."
+ pilgrimage_of_magic_decision_tooltip:0 "Spend 500 gold and travel for several months to seek magical revelation."
+ pilgrimage_of_magic_decision_confirm:0 "Begin Pilgrimage"
+
+ activity_wizard_magic_pilgrimage:0 "Pilgrimage of Magic"
+ activity_wizard_magic_pilgrimage_desc:0 "Journey to one of the great arcane sites of the world and return with deeper magical knowledge. Select your destination on the map — only sites of true power are worthy of this pilgrimage."
+ wizard_magic_pilgrimage_gold_requirement:0 "500 gold required"
+ wizard_magic_pilgrimage_province_desc:0 "A site of ancient arcane power."
+
+ interaction_category_wizard_magic:0 "Magic"
+ interaction_category_wizard_magic_desc:0 "Arcane actions and mystical journeys."
+
+ wizard_pilgrimage_magic_self:0 "Embark on a Pilgrimage of Magic"
+ wizard_pilgrimage_magic_interaction_desc:0 "Spend [500|E] gold to journey to one of the hidden places of power and return with deeper arcane knowledge. The journey takes several months."
+
+ wizard_magic_pilgrimage.option_begin:0 "Set out at once."
+ wizard_magic_pilgrimage.option_complete:0 "The journey has changed me."
+
+ wizard_magic_pilgrimage.1001.t:0 "Pilgrimage to the Ashen Sanctuary"
+ wizard_magic_pilgrimage.1001.desc:0 "You set your course for a scorched sanctuary where old pyromancers etched their doctrine into black stone."
+ wizard_magic_pilgrimage.1002.t:0 "Pilgrimage to the Rootbound Archive"
+ wizard_magic_pilgrimage.1002.desc:0 "Your journey leads to a hidden archive beneath ancient roots where earth-lore is preserved in living bark."
+ wizard_magic_pilgrimage.1003.t:0 "Pilgrimage to the Gale Monastery"
+ wizard_magic_pilgrimage.1003.desc:0 "You travel to a high and wind-beaten monastery famed for meditations on movement and breath."
+ wizard_magic_pilgrimage.1004.t:0 "Pilgrimage to the Tide Vault"
+ wizard_magic_pilgrimage.1004.desc:0 "You seek a flooded vault where water-sages recorded healing currents and fluid wards."
+ wizard_magic_pilgrimage.1005.t:0 "Pilgrimage to the Silent Ossuary"
+ wizard_magic_pilgrimage.1005.desc:0 "You descend into a silent ossuary where death-lore was studied among the bones of kings."
+ wizard_magic_pilgrimage.1006.t:0 "Pilgrimage to the Mirror Spire"
+ wizard_magic_pilgrimage.1006.desc:0 "You climb a cliffside spire where high-magic adepts tested paradoxes of will and reality."
+ wizard_magic_pilgrimage.1007.t:0 "Pilgrimage to the Luminous Catacomb"
+ wizard_magic_pilgrimage.1007.desc:0 "You wander through radiant catacombs where many traditions intersect in a maze of symbols."
+ wizard_magic_pilgrimage.1008.t:0 "Pilgrimage to the Horizon Crucible"
+ wizard_magic_pilgrimage.1008.desc:0 "You trek to a remote mountain crucible where the boundaries between schools of magic grow thin."
+
+ wizard_magic_pilgrimage.2001.t:0 "Return from the Pilgrimage"
+ wizard_magic_pilgrimage.2001.desc:0 "Months of hardship and contemplation leave your mind sharper and your understanding of magic deeper."

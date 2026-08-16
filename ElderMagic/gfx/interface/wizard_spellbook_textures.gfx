@@ -1,0 +1,21 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_wizard_tile_contract_3_flat"
+		texturefile = "gfx/interface/tiles/tile_contract_3_flat.dds"
+	}
+
+	spriteType = {
+		name = "GFX_wizard_tile_contract_3_texture"
+		texturefile = "gfx/interface/tiles/tile_contract_3_texture.dds"
+	}
+
+	spriteType = {
+		name = "GFX_wizard_tile_contract_2_flat"
+		texturefile = "gfx/interface/tiles/tile_contract_2_flat.dds"
+	}
+
+	spriteType = {
+		name = "GFX_wizard_arcane_stars_overlay"
+		texturefile = "gfx/interface/_stars_2.dds"
+	}
+}

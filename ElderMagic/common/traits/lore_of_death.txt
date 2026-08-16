@@ -1,0 +1,40 @@
+﻿lore_of_death = {
+	category = lifestyle
+	icon = lore_of_death.dds
+	intrigue = 1
+
+	on_add = {
+		if = {
+			limit = { NOT = { has_variable = wizard_death_xp_total } }
+			set_variable = { name = wizard_death_xp_total value = 0 }
+		}
+	}
+
+	track = {
+	25 = {
+		intrigue = 2
+		prowess = 1
+		hard_casualty_modifier = 0.05
+	}
+	50 = {
+		intrigue = 3
+		prowess = 2
+		monthly_prestige = 0.05
+		hard_casualty_modifier = 0.10
+	}
+	75 = {
+		intrigue = 4
+		prowess = 3
+		monthly_prestige = 0.1
+		hard_casualty_modifier = 0.15
+	}
+	100 = {
+		intrigue = 5
+		prowess = 4
+		monthly_prestige = 0.2
+		hard_casualty_modifier = 0.20
+	}
+	}
+
+	ruler_designer_cost = 35
+}

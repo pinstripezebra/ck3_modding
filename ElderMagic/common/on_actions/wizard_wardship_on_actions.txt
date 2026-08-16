@@ -1,0 +1,42 @@
+# Childhood magical education: guardian with a lore trait has a high chance
+# each year to pass that lore on to a child ward.
+
+yearly_playable_pulse = {
+	on_actions = { wizard_wardship_magic_check }
+}
+
+wizard_wardship_magic_check = {
+	effect = {
+		if = {
+			limit = {
+				wizard_has_any_lore_trait = yes
+				any_ward = {
+					age < 16
+					NOT = { has_character_flag = wizard_wardship_lore_cooldown }
+					OR = {
+						AND = { prev = { has_trait = lore_of_fire }      NOT = { has_trait = lore_of_fire } }
+						AND = { prev = { has_trait = lore_of_earth }     NOT = { has_trait = lore_of_earth } }
+						AND = { prev = { has_trait = lore_of_water }     NOT = { has_trait = lore_of_water } }
+						AND = { prev = { has_trait = lore_of_death }     NOT = { has_trait = lore_of_death } }
+						AND = { prev = { has_trait = lore_of_high_magic } NOT = { has_trait = lore_of_high_magic } }
+					}
+				}
+			}
+			save_scope_as = warding_guardian
+			every_ward = {
+				limit = {
+					age < 16
+					NOT = { has_character_flag = wizard_wardship_lore_cooldown }
+					OR = {
+						AND = { prev = { has_trait = lore_of_fire }      NOT = { has_trait = lore_of_fire } }
+						AND = { prev = { has_trait = lore_of_earth }     NOT = { has_trait = lore_of_earth } }
+						AND = { prev = { has_trait = lore_of_water }     NOT = { has_trait = lore_of_water } }
+						AND = { prev = { has_trait = lore_of_death }     NOT = { has_trait = lore_of_death } }
+						AND = { prev = { has_trait = lore_of_high_magic } NOT = { has_trait = lore_of_high_magic } }
+					}
+				}
+				trigger_event = { id = wizard_wardship.0001 }
+			}
+		}
+	}
+}

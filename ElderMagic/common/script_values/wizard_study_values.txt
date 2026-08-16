@@ -1,0 +1,54 @@
+# XP gained per 6-month study session.
+# Formula: floor(learning * 0.25) + education_bonus, clamped 1-10.
+# Examples (with no edu bonus):  learning 4 -> 1, 8 -> 2, 12 -> 3, 20 -> 5, 36 -> 9, 40+ -> 10
+# Education bonus:  edu2 +1, edu3 +2, edu4 +4, edu5 +5
+# Chance of succeeding an ascendant lore ritual (20-80%).
+
+# Ruins tomb: 3*learning - 10, clamped 5-80.
+# At learning 10 → 20%, 20 → 50%, 40 → 80%.
+wizard_ruins_lore_success_chance = {
+	value = learning
+	multiply = 3
+	subtract = 10
+	min = 5
+	max = 80
+}
+# Base 10 + learning stat + education bonus, clamped to 20-80.
+# Examples: learning 10 + edu1 = 20%, learning 25 + edu5 = 65%, learning 40+ + edu5 = 80%
+wizard_ascendant_success_chance = {
+	value = 10
+	add = learning
+	if = { limit = { has_trait = magic_education_2 } add = 5 }
+	if = { limit = { has_trait = magic_education_3 } add = 10 }
+	if = { limit = { has_trait = magic_education_4 } add = 20 }
+	if = { limit = { has_trait = magic_education_5 } add = 30 }
+	min = 20
+	max = 80
+}
+wizard_study_xp_gain = {
+	value = 0
+	add = learning
+	multiply = 0.25
+	if = { limit = { has_trait = magic_education_2 } add = 1 }
+	if = { limit = { has_trait = magic_education_3 } add = 2 }
+	if = { limit = { has_trait = magic_education_4 } add = 4 }
+	if = { limit = { has_trait = magic_education_5 } add = 5 }
+	min = 1
+	max = 10
+}
+
+# Option B success chance for the Dangerous Study event.
+# Scales linearly from 10% at learning 5 to 90% at learning 40.
+wizard_dangerous_study_success_chance = {
+	value = learning
+	multiply = 2.2857
+	subtract = 1.4286
+	min = 10
+	max = 90
+}
+
+# Failure weight is the complement of the success chance.
+wizard_dangerous_study_failure_chance = {
+	value = 100
+	subtract = wizard_dangerous_study_success_chance
+}

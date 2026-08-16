@@ -1,0 +1,5 @@
+interaction_category_wizard_magic = {
+	index = 16
+	desc = interaction_category_wizard_magic_desc
+	color = { 0.5 0.2 0.8 1 }
+}

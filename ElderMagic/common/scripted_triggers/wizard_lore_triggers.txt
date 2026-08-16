@@ -1,0 +1,63 @@
+wizard_has_any_lore_trait = {
+	OR = {
+		has_trait = lore_of_fire
+		has_trait = lore_of_earth
+		has_trait = lore_of_water
+		has_trait = lore_of_death
+		has_trait = lore_of_high_magic
+	}
+}
+
+wizard_has_any_magic_potential_trait = {
+	OR = {
+		has_trait = the_spark
+		has_trait = the_conduit
+		has_trait = the_resonator
+		has_trait = the_vector
+		has_trait = the_capacitor
+		has_trait = the_dynamo
+		has_trait = the_nexus
+		has_trait = the_singularity
+		has_trait = the_catalyst
+		has_trait = the_horizon
+	}
+}
+
+wizard_has_missing_lore_from_recipient = {
+	OR = {
+		AND = {
+			NOT = { has_trait = lore_of_fire }
+			scope:recipient = { has_trait = lore_of_fire }
+		}
+		AND = {
+			NOT = { has_trait = lore_of_earth }
+			scope:recipient = { has_trait = lore_of_earth }
+		}
+		AND = {
+			NOT = { has_trait = lore_of_water }
+			scope:recipient = { has_trait = lore_of_water }
+		}
+		AND = {
+			NOT = { has_trait = lore_of_death }
+			scope:recipient = { has_trait = lore_of_death }
+		}
+		AND = {
+			NOT = { has_trait = lore_of_high_magic }
+			scope:recipient = { has_trait = lore_of_high_magic }
+		}
+	}
+}
+
+wizard_is_on_study_lore_cooldown = {
+	has_character_modifier = wizard_study_lore_cooldown
+}
+
+wizard_missing_any_lore_trait = {
+	OR = {
+		NOT = { has_trait = lore_of_fire }
+		NOT = { has_trait = lore_of_earth }
+		NOT = { has_trait = lore_of_water }
+		NOT = { has_trait = lore_of_death }
+		NOT = { has_trait = lore_of_high_magic }
+	}
+}

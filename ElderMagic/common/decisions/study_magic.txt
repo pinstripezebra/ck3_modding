@@ -1,0 +1,41 @@
+study_magic_decision = {
+	title = study_magic_decision
+	desc = study_magic_decision_desc
+	selection_tooltip = study_magic_decision_tooltip
+	confirm_text = study_magic_decision_confirm
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_study_magic.dds"
+	}
+	ai_check_interval = 6
+
+	# Only show when the character has a lore trait and is not already studying
+	is_shown = {
+		is_adult = yes
+		wizard_has_any_lore_trait = yes
+		NOT = { has_character_modifier = wizard_currently_studying }
+	}
+
+	is_valid = {
+		is_adult = yes
+		wizard_has_any_lore_trait = yes
+	}
+
+	ai_potential = {
+		always = yes
+	}
+
+	ai_will_do = {
+		base = 50
+	}
+
+	effect = {
+		add_character_modifier = {
+			modifier = wizard_currently_studying
+			months = 13
+		}
+		trigger_event = {
+			id = wizard_study_magic.1001
+			months = 12
+		}
+	}
+}

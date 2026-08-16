@@ -1,0 +1,364 @@
+﻿# Teach Magic Interactions â€” one per Lore of Magic.
+# Actor = teacher (has the lore), Recipient = student (lacks the lore).
+# Each interaction:
+#   â€¢ is_shown: actor has lore X + recipient lacks lore X + not on pair cooldown
+#   â€¢ on_accept: set a pending flag + start wizard_teach_magic scheme
+# The pending flag (e.g. wizard_teach_magic_pending_fire) tells the scheme which lore
+# to confer on success.
+
+wizard_teach_lore_of_fire_interaction = {
+	category = interaction_category_friendly
+	interface_priority = 75
+	icon = learning
+	desc = wizard_teach_lore_of_fire_interaction_desc
+	use_diplomatic_range = yes
+	auto_accept = no
+
+	is_shown = {
+		scope:actor = {
+			is_adult = yes
+			has_trait = lore_of_fire
+			NOT = {
+				AND = {
+					has_variable = wizard_teach_failed_target
+					var:wizard_teach_failed_target = scope:recipient
+				}
+			}
+			NOT = {
+				any_scheme = {
+					scheme_type = wizard_teach_magic
+					scheme_target_character = scope:recipient
+				}
+			}
+		}
+		scope:recipient = {
+			is_adult = yes
+			NOT = { has_trait = lore_of_fire }
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		scope:actor = {
+			is_imprisoned = no
+		}
+		scope:recipient = {
+			in_diplomatic_range = scope:actor
+		}
+	}
+
+	ai_accept = {
+		base = -50
+		modifier = {
+			add = 60
+			scope:recipient = {
+				opinion = { target = scope:actor value >= 25 }
+			}
+		}
+		modifier = {
+			add = 60
+			scope:recipient = {
+				opinion = { target = scope:actor value >= 50 }
+			}
+		}
+		modifier = {
+			add = 30
+			scope:recipient = {
+				has_trait = curious
+			}
+		}
+	}
+
+	on_accept = {
+		scope:actor = {
+			add_character_flag = { flag = wizard_teach_magic_pending_fire days = 3650 }
+			start_scheme = {
+				type = wizard_teach_magic
+				target_character = scope:recipient
+			}
+		}
+	}
+}
+
+wizard_teach_lore_of_earth_interaction = {
+	category = interaction_category_friendly
+	interface_priority = 75
+	icon = learning
+	desc = wizard_teach_lore_of_earth_interaction_desc
+	use_diplomatic_range = yes
+	auto_accept = no
+
+	is_shown = {
+		scope:actor = {
+			is_adult = yes
+			has_trait = lore_of_earth
+			NOT = {
+				AND = {
+					has_variable = wizard_teach_failed_target
+					var:wizard_teach_failed_target = scope:recipient
+				}
+			}
+			NOT = {
+				any_scheme = {
+					scheme_type = wizard_teach_magic
+					scheme_target_character = scope:recipient
+				}
+			}
+		}
+		scope:recipient = {
+			is_adult = yes
+			NOT = { has_trait = lore_of_earth }
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		scope:actor = {
+			is_imprisoned = no
+		}
+		scope:recipient = {
+			in_diplomatic_range = scope:actor
+		}
+	}
+
+	ai_accept = {
+		base = -50
+		modifier = {
+			add = 60
+			scope:recipient = {
+				opinion = { target = scope:actor value >= 25 }
+			}
+		}
+		modifier = {
+			add = 60
+			scope:recipient = {
+				opinion = { target = scope:actor value >= 50 }
+			}
+		}
+		modifier = {
+			add = 30
+			scope:recipient = { has_trait = curious }
+		}
+	}
+
+	on_accept = {
+		scope:actor = {
+			add_character_flag = { flag = wizard_teach_magic_pending_earth days = 3650 }
+			start_scheme = {
+				type = wizard_teach_magic
+				target_character = scope:recipient
+			}
+		}
+	}
+}
+
+wizard_teach_lore_of_water_interaction = {
+	category = interaction_category_friendly
+	interface_priority = 75
+	icon = learning
+	desc = wizard_teach_lore_of_water_interaction_desc
+	use_diplomatic_range = yes
+	auto_accept = no
+
+	is_shown = {
+		scope:actor = {
+			is_adult = yes
+			has_trait = lore_of_water
+			NOT = {
+				AND = {
+					has_variable = wizard_teach_failed_target
+					var:wizard_teach_failed_target = scope:recipient
+				}
+			}
+			NOT = {
+				any_scheme = {
+					scheme_type = wizard_teach_magic
+					scheme_target_character = scope:recipient
+				}
+			}
+		}
+		scope:recipient = {
+			is_adult = yes
+			NOT = { has_trait = lore_of_water }
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		scope:actor = {
+			is_imprisoned = no
+		}
+		scope:recipient = {
+			in_diplomatic_range = scope:actor
+		}
+	}
+
+	ai_accept = {
+		base = -50
+		modifier = {
+			add = 60
+			scope:recipient = {
+				opinion = { target = scope:actor value >= 25 }
+			}
+		}
+		modifier = {
+			add = 60
+			scope:recipient = {
+				opinion = { target = scope:actor value >= 50 }
+			}
+		}
+		modifier = {
+			add = 30
+			scope:recipient = { has_trait = curious }
+		}
+	}
+
+	on_accept = {
+		scope:actor = {
+			add_character_flag = { flag = wizard_teach_magic_pending_water days = 3650 }
+			start_scheme = {
+				type = wizard_teach_magic
+				target_character = scope:recipient
+			}
+		}
+	}
+}
+
+wizard_teach_lore_of_death_interaction = {
+	category = interaction_category_friendly
+	interface_priority = 75
+	icon = learning
+	desc = wizard_teach_lore_of_death_interaction_desc
+	use_diplomatic_range = yes
+	auto_accept = no
+
+	is_shown = {
+		scope:actor = {
+			is_adult = yes
+			has_trait = lore_of_death
+			NOT = {
+				AND = {
+					has_variable = wizard_teach_failed_target
+					var:wizard_teach_failed_target = scope:recipient
+				}
+			}
+			NOT = {
+				any_scheme = {
+					scheme_type = wizard_teach_magic
+					scheme_target_character = scope:recipient
+				}
+			}
+		}
+		scope:recipient = {
+			is_adult = yes
+			NOT = { has_trait = lore_of_death }
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		scope:actor = {
+			is_imprisoned = no
+		}
+		scope:recipient = {
+			in_diplomatic_range = scope:actor
+		}
+	}
+
+	ai_accept = {
+		base = -50
+		modifier = {
+			add = 60
+			scope:recipient = {
+				opinion = { target = scope:actor value >= 25 }
+			}
+		}
+		modifier = {
+			add = 60
+			scope:recipient = {
+				opinion = { target = scope:actor value >= 50 }
+			}
+		}
+		modifier = {
+			add = 30
+			scope:recipient = { has_trait = curious }
+		}
+	}
+
+	on_accept = {
+		scope:actor = {
+			add_character_flag = { flag = wizard_teach_magic_pending_death days = 3650 }
+			start_scheme = {
+				type = wizard_teach_magic
+				target_character = scope:recipient
+			}
+		}
+	}
+}
+
+wizard_teach_lore_of_high_magic_interaction = {
+	category = interaction_category_friendly
+	interface_priority = 75
+	icon = learning
+	desc = wizard_teach_lore_of_high_magic_interaction_desc
+	use_diplomatic_range = yes
+	auto_accept = no
+
+	is_shown = {
+		scope:actor = {
+			is_adult = yes
+			has_trait = lore_of_high_magic
+			NOT = {
+				AND = {
+					has_variable = wizard_teach_failed_target
+					var:wizard_teach_failed_target = scope:recipient
+				}
+			}
+			NOT = {
+				any_scheme = {
+					scheme_type = wizard_teach_magic
+					scheme_target_character = scope:recipient
+				}
+			}
+		}
+		scope:recipient = {
+			is_adult = yes
+			NOT = { has_trait = lore_of_high_magic }
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		scope:actor = {
+			is_imprisoned = no
+		}
+		scope:recipient = {
+			in_diplomatic_range = scope:actor
+		}
+	}
+
+	ai_accept = {
+		base = -50
+		modifier = {
+			add = 60
+			scope:recipient = {
+				opinion = { target = scope:actor value >= 25 }
+			}
+		}
+		modifier = {
+			add = 60
+			scope:recipient = {
+				opinion = { target = scope:actor value >= 50 }
+			}
+		}
+		modifier = {
+			add = 30
+			scope:recipient = { has_trait = curious }
+		}
+	}
+
+	on_accept = {
+		scope:actor = {
+			add_character_flag = { flag = wizard_teach_magic_pending_high_magic days = 3650 }
+			start_scheme = {
+				type = wizard_teach_magic
+				target_character = scope:recipient
+			}
+		}
+	}
+}

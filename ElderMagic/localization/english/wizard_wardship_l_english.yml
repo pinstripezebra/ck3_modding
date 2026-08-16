@@ -1,0 +1,7 @@
+l_english:
+ wizard_wardship_toast_title:0 "Magical Upbringing"
+ wizard_wardship_toast_fire_desc:0 "[ROOT.GetFirstName] has absorbed the principles of pyromancy from their guardian's tutelage, awakening the Lore of Fire within them."
+ wizard_wardship_toast_earth_desc:0 "[ROOT.GetFirstName] has learned the slow, enduring wisdom of stone from their guardian's teachings, awakening the Lore of Earth within them."
+ wizard_wardship_toast_water_desc:0 "[ROOT.GetFirstName] has absorbed the flowing mysteries of water from their guardian's tutelage, awakening the Lore of Water within them."
+ wizard_wardship_toast_death_desc:0 "[ROOT.GetFirstName] has glimpsed the boundary between the living and dead under their guardian's guidance, awakening the Lore of Death within them."
+ wizard_wardship_toast_high_magic_desc:0 "[ROOT.GetFirstName] has begun to grasp the unified theory of arcane forces through their guardian's teachings, awakening the Lore of High Magic within them."

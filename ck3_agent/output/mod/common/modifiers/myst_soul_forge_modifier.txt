@@ -1,4 +1,0 @@
-myst_soul_forge_modifier = {
-	intrigue = 2
-	monthly_piety = 0.3
-}

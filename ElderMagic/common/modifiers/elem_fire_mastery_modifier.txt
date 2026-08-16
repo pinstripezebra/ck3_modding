@@ -1,5 +1,0 @@
-﻿elem_fire_mastery_modifier = {
-	martial = 2
-}
-
-

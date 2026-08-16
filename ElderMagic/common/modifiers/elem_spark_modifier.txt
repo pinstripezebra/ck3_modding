@@ -1,5 +1,0 @@
-﻿elem_spark_modifier = {
-	prowess = 1
-}
-
-

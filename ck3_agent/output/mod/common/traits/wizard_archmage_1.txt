@@ -1,8 +1,0 @@
-wizard_archmage_1 = {
-	category = lifestyle
-	icon = wizard_archmage_1
-
-	learning = 12
-	prowess = 7
-	monthly_prestige = 0.3
-}

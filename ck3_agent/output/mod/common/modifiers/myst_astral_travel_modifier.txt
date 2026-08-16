@@ -1,4 +1,0 @@
-myst_astral_travel_modifier = {
-	learning = 3
-	stress_loss_mult = 0.2
-}

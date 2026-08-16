@@ -1,7 +1,0 @@
-﻿myst_archmage_modifier = {
-	intrigue = 3
-	learning = 4
-	monthly_piety = 0.5
-}
-
-

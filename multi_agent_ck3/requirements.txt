@@ -1,0 +1,24 @@
+# Core LLM / agent framework
+langchain>=1.3.2
+langchain-core>=1.4.8
+langchain-openai>=1.2.2
+langchain-chroma>=1.1.0
+langgraph>=1.2.2
+langgraph-prebuilt>=1.1.0
+
+# Vector store
+chromadb>=1.5.9
+
+# MCP server
+mcp>=1.27.1
+
+# Image generation / processing
+replicate>=1.0.7
+Pillow>=12.3.0
+
+# Knowledge map
+networkx>=3.6.1
+pyvis>=0.3.2
+
+# Utilities
+python-dotenv>=1.2.2

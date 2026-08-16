@@ -1,4 +1,0 @@
-myst_prophecy_modifier = {
-	learning = 2
-	monthly_prestige = 0.1
-}

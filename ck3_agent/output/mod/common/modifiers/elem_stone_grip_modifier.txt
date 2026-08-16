@@ -1,3 +1,0 @@
-elem_stone_grip_modifier = {
-	health = 0.2
-}

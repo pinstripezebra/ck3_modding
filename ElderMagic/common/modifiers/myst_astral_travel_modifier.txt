@@ -1,6 +1,0 @@
-﻿myst_astral_travel_modifier = {
-	intrigue = 2
-	learning = 2
-}
-
-

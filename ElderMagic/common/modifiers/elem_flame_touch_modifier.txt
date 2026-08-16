@@ -1,5 +1,0 @@
-﻿elem_flame_touch_modifier = {
-	prowess = 2
-}
-
-

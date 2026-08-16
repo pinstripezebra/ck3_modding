@@ -1,9 +1,0 @@
-wizard_master_2 = {
-	category = lifestyle
-	icon = wizard_master_2
-
-	learning = 10
-	prowess = 6
-
-	opposites = { wizard_master_1 }
-}

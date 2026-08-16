@@ -1,5 +1,0 @@
-﻿elem_water_flow_modifier = {
-	health = 0.5
-}
-
-

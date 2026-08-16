@@ -1,3 +1,0 @@
-myst_spirit_bind_modifier = {
-	intrigue = 2
-}

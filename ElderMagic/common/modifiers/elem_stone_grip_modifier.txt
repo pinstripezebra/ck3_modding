@@ -1,5 +1,0 @@
-﻿elem_stone_grip_modifier = {
-	prowess = 2
-}
-
-

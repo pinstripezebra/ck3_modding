@@ -1,0 +1,15 @@
+{
+  "servers": {
+    "ck3-docs": {
+      "type": "stdio",
+      "command": "c:\\dev\\ck3_modding\\.venv\\Scripts\\python.exe",
+      "args": ["c:\\dev\\ck3_modding\\ck3_agent\\src\\main.py"]
+    },
+    "ck3-multi-agent": {
+      "type": "stdio",
+      "command": "c:\\dev\\ck3_modding\\.venv\\Scripts\\python.exe",
+      "args": ["-m", "mcp_server"],
+      "cwd": "c:\\dev\\ck3_modding\\multi_agent_ck3"
+    }
+  }
+}

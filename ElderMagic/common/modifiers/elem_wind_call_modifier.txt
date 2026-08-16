@@ -1,5 +1,0 @@
-﻿elem_wind_call_modifier = {
-	monthly_prestige = 0.25
-}
-
-

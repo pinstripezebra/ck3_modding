@@ -1,3 +1,0 @@
-myst_inner_eye_modifier = {
-	learning = 1
-}

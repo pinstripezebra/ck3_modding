@@ -1,7 +1,0 @@
-wizard_expert_1 = {
-	category = lifestyle
-	icon = wizard_expert_1
-
-	learning = 7
-	prowess = 3
-}

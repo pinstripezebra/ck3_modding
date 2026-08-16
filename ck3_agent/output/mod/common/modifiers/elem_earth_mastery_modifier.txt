@@ -1,4 +1,0 @@
-elem_earth_mastery_modifier = {
-	health = 0.3
-	stewardship = 1
-}

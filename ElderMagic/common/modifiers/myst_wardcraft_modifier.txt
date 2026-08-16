@@ -1,5 +1,0 @@
-﻿myst_wardcraft_modifier = {
-	health = 0.5
-}
-
-

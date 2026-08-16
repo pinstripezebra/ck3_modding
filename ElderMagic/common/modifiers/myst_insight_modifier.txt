@@ -1,5 +1,0 @@
-﻿myst_insight_modifier = {
-	learning = 1
-}
-
-

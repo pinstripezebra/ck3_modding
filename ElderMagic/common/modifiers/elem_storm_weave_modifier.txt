@@ -1,6 +1,0 @@
-﻿elem_storm_weave_modifier = {
-	martial = 2
-	prowess = 3
-}
-
-

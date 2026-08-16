@@ -1,3 +1,0 @@
-myst_ley_attune_modifier = {
-	diplomacy = 1
-}

@@ -1,4 +1,0 @@
-elem_fire_mastery_modifier = {
-	prowess = 2
-	monthly_prestige = 0.1
-}

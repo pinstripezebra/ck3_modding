@@ -1,5 +1,0 @@
-﻿myst_soul_binding_modifier = {
-	monthly_piety = 0.5
-}
-
-

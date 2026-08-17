@@ -2,15 +2,15 @@ window = {
 	name = "wizard_magic_power_badge"
 	layer = top
 	parentanchor = top|left
-	# Aligned with the name row: after the 310px illustration + margin, right of the health icons
-	position = { 462 312 }
+	# Aligned with the name row: portrait 310px + character_info 5px margin + name row 1px margin_top = 316
+	position = { 462 316 }
 	size = { 100 26 }
 	movable = no
 	allow_outside = yes
 	mousetransparent = yes
 
-	# Only visible when the character window is open and the character has any magic power
-	visible = "[And( CharacterWindow.GetCharacter.IsValid, GreaterThan_CFixedPoint( CharacterWindow.GetCharacter.MakeScope.ScriptValue('wizard_total_magic_power'), '(CFixedPoint)0' ) )]"
+	# hide_bottom_left_HUD is set by character_window on _show and cleared on _hide; guards against stale CharacterWindow cache
+	visible = "[And( GetVariableSystem.Exists('hide_bottom_left_HUD'), And( CharacterWindow.GetCharacter.IsValid, GreaterThan_CFixedPoint( CharacterWindow.GetCharacter.MakeScope.ScriptValue('wizard_total_magic_power'), '(CFixedPoint)0' ) ) )]"
 
 	hbox = {
 		parentanchor = left|vcenter

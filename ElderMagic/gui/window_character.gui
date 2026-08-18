@@ -1153,6 +1153,28 @@ window = {
 							}
 						}
 
+						# Elder Magic: total magic power, styled to match skill stats
+						vbox = {
+							spacing = -3
+							margin_right = 3
+
+							using = Animation_Character_Window_Refresh
+
+							tooltip = WIZARD_MAGIC_POWER_TT
+							using = tooltip_ne
+
+							icon = {
+								size = { 32 32 }
+								texture = "gfx/interface/icons/traits/mana_flame.dds"
+							}
+
+							text_single = {
+								default_format = "#color:{0.45,0.8,1.0,1.0}"
+								raw_text = "[Character.MakeScope.ScriptValue('wizard_total_magic_power')]"
+								align = nobaseline
+							}
+						}
+
 						vbox = {
 							visible = "[Character.HasLandedTitles]"
 							margin_right = 3
@@ -4358,30 +4380,6 @@ types CharacterWindow
 				texture = "gfx/interface/icons/character_status/icon_dead.dds"
 
 				tooltip = "CHARACTER_DEAD_TOOLTIP"
-			}
-		}
-
-		# Elder Magic: total magic power display, inline with name row; always shown so 0 is visible
-		hbox = {
-			spacing = 3
-			margin_left = 4
-
-			icon = {
-				size = { 18 18 }
-				parentanchor = vcenter
-				widgetanchor = vcenter
-				texture = "gfx/interface/icons/traits/mana_flame_small.dds"
-			}
-
-			text_single = {
-				parentanchor = vcenter
-				widgetanchor = vcenter
-				fontsize = 16
-				default_format = "#color:{0.45,0.8,1.0,1.0}"
-				align = nobaseline
-				autoresize = yes
-				raw_text = "[Character.MakeScope.ScriptValue('wizard_total_magic_power')]"
-				tooltip = WIZARD_MAGIC_POWER_TT
 			}
 		}
 

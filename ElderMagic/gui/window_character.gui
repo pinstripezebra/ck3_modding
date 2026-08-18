@@ -4361,20 +4361,21 @@ types CharacterWindow
 			}
 		}
 
-		# Elder Magic: total magic power display, inline with name row
+		# Elder Magic: total magic power display, inline with name row; always shown so 0 is visible
 		hbox = {
-			visible = "[GreaterThan_CFixedPoint( Character.MakeScope.ScriptValue('wizard_total_magic_power'), '(CFixedPoint)0' )]"
 			spacing = 3
 			margin_left = 4
 
 			icon = {
 				size = { 18 18 }
 				parentanchor = vcenter
+				widgetanchor = vcenter
 				texture = "gfx/interface/icons/traits/mana_flame_small.dds"
 			}
 
 			text_single = {
 				parentanchor = vcenter
+				widgetanchor = vcenter
 				fontsize = 16
 				default_format = "#color:{0.45,0.8,1.0,1.0}"
 				align = nobaseline

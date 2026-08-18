@@ -9,8 +9,8 @@ window = {
 	allow_outside = yes
 	mousetransparent = yes
 
-	# hide_bottom_left_HUD is set by character_window on _show and cleared on _hide; guards against stale CharacterWindow cache
-	visible = "[And( GetVariableSystem.Exists('hide_bottom_left_HUD'), And( CharacterWindow.GetCharacter.IsValid, GreaterThan_CFixedPoint( CharacterWindow.GetCharacter.MakeScope.ScriptValue('wizard_total_magic_power'), '(CFixedPoint)0' ) ) )]"
+	# wizard_char_win_open is set/cleared in the window_character.gui override's _show/_hide states
+	visible = "[And( GetVariableSystem.Exists('wizard_char_win_open'), And( CharacterWindow.GetCharacter.IsValid, GreaterThan_CFixedPoint( CharacterWindow.GetCharacter.MakeScope.ScriptValue('wizard_total_magic_power'), '(CFixedPoint)0' ) ) )]"
 
 	hbox = {
 		parentanchor = left|vcenter

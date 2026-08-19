@@ -11417,11 +11417,83 @@ types WizardMagicPowerTypes {
 				}
 
 				hbox = {
-					visible = "[GreaterThan_CFixedPoint( Character.MakeScope.ScriptValue('wizard_potential_power'), '(CFixedPoint)0' )]"
+					visible = "[Character.HasTrait( GetTrait( 'the_spark' ) )]"
 					spacing = 10
-					text_single = { text = "WIZARD_MAGIC_POWER_POTENTIAL_LABEL" default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small }
+					text_single = { text = "trait_the_spark" default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small }
 					expand = {}
-					text_single = { raw_text = "+[Character.MakeScope.ScriptValue('wizard_potential_power')]" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
+					text_single = { raw_text = "+1" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
+				}
+
+				hbox = {
+					visible = "[Character.HasTrait( GetTrait( 'the_conduit' ) )]"
+					spacing = 10
+					text_single = { text = "trait_the_conduit" default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small }
+					expand = {}
+					text_single = { raw_text = "+2" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
+				}
+
+				hbox = {
+					visible = "[Character.HasTrait( GetTrait( 'the_resonator' ) )]"
+					spacing = 10
+					text_single = { text = "trait_the_resonator" default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small }
+					expand = {}
+					text_single = { raw_text = "+3" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
+				}
+
+				hbox = {
+					visible = "[Character.HasTrait( GetTrait( 'the_vector' ) )]"
+					spacing = 10
+					text_single = { text = "trait_the_vector" default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small }
+					expand = {}
+					text_single = { raw_text = "+4" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
+				}
+
+				hbox = {
+					visible = "[Character.HasTrait( GetTrait( 'the_capacitor' ) )]"
+					spacing = 10
+					text_single = { text = "trait_the_capacitor" default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small }
+					expand = {}
+					text_single = { raw_text = "+5" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
+				}
+
+				hbox = {
+					visible = "[Character.HasTrait( GetTrait( 'the_dynamo' ) )]"
+					spacing = 10
+					text_single = { text = "trait_the_dynamo" default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small }
+					expand = {}
+					text_single = { raw_text = "+6" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
+				}
+
+				hbox = {
+					visible = "[Character.HasTrait( GetTrait( 'the_nexus' ) )]"
+					spacing = 10
+					text_single = { text = "trait_the_nexus" default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small }
+					expand = {}
+					text_single = { raw_text = "+7" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
+				}
+
+				hbox = {
+					visible = "[Character.HasTrait( GetTrait( 'the_singularity' ) )]"
+					spacing = 10
+					text_single = { text = "trait_the_singularity" default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small }
+					expand = {}
+					text_single = { raw_text = "+8" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
+				}
+
+				hbox = {
+					visible = "[Character.HasTrait( GetTrait( 'the_catalyst' ) )]"
+					spacing = 10
+					text_single = { text = "trait_the_catalyst" default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small }
+					expand = {}
+					text_single = { raw_text = "+9" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
+				}
+
+				hbox = {
+					visible = "[Character.HasTrait( GetTrait( 'the_horizon' ) )]"
+					spacing = 10
+					text_single = { text = "trait_the_horizon" default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small }
+					expand = {}
+					text_single = { raw_text = "+10" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
 				}
 			}
 

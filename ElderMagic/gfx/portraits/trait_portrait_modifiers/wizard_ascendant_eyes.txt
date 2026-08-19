@@ -1,9 +1,7 @@
-# Ascendant Lore mages have vivid glowing red eyes.
-# Clausewitz UV is y-inverted; x=0.0 y=0.81 = RGB(206,38,0) in eye_palette.dds.
-# Three independent groups: iris colour (all genders), bloodshot whites (per gender).
-
-wizard_ascendant_eye_color = {
-	ascendant_red_iris = {
+# Ascendant Lore mages: vivid red iris + bloodshot_eyes (confirmed gender-neutral template).
+# bloodshot_eyes uses mode=modify as seen in base game illness modifier.
+wizard_ascendant_eyes = {
+	ascendant_glowing_eyes = {
 		traits = {
 			ascendant_lore_of_fire
 			ascendant_lore_of_earth
@@ -20,55 +18,10 @@ wizard_ascendant_eye_color = {
 					x = 0.0
 					y = 0.81
 				}
-			}
-		}
-	}
-}
-
-# Bloodshot whites make the entire eye area appear red/glowing.
-wizard_ascendant_eye_accessory_female = {
-	ascendant_bloodshot_female = {
-		traits = {
-			ascendant_lore_of_fire
-			ascendant_lore_of_earth
-			ascendant_lore_of_water
-			ascendant_lore_of_death
-			ascendant_lore_of_high_magic
-		}
-
-		trigger = { is_female = yes }
-
-		dna_modifiers = {
-			human = {
 				accessory = {
-					mode = replace
+					mode = modify
 					gene = eye_accessory
-					template = female_eyes_bloodshot
-					value = 0.5
-				}
-			}
-		}
-	}
-}
-
-wizard_ascendant_eye_accessory_male = {
-	ascendant_bloodshot_male = {
-		traits = {
-			ascendant_lore_of_fire
-			ascendant_lore_of_earth
-			ascendant_lore_of_water
-			ascendant_lore_of_death
-			ascendant_lore_of_high_magic
-		}
-
-		trigger = { is_female = no }
-
-		dna_modifiers = {
-			human = {
-				accessory = {
-					mode = replace
-					gene = eye_accessory
-					template = male_eyes_bloodshot
+					template = bloodshot_eyes
 					value = 0.5
 				}
 			}

@@ -1,7 +1,7 @@
 ﻿lore_of_fire = {
 	category = lifestyle
 	icon = lore_of_fire.dds
-	learning = 1
+	prowess = 1
 
 	on_add = {
 		if = {
@@ -11,25 +11,21 @@
 	}
 	track = {
 	25 = {
-		learning = 1
-		prowess = 2
+		prowess = 3
 		hard_casualty_modifier = 0.05
 	}
 	50 = {
-		learning = 3
-		prowess = 4
+		prowess = 5
 		monthly_prestige = 0.05
 		hard_casualty_modifier = 0.10
 	}
 	75 = {
-		learning = 2
-		prowess = 6
+		prowess = 8
 		monthly_prestige = 0.1
 		hard_casualty_modifier = 0.15
 	}
 	100 = {
-		learning = 3
-		prowess = 9
+		prowess = 10
 		monthly_prestige = 0.2
 		hard_casualty_modifier = 0.20
 	}

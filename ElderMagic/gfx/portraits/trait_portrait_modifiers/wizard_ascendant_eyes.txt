@@ -1,5 +1,5 @@
-# Ascendant Lore mages: vivid red iris + bloodshot_eyes (confirmed gender-neutral template).
-# bloodshot_eyes uses mode=modify as seen in base game illness modifier.
+# Ascendant Lore mages: vivid red iris + additive bloom glow (custom uncompressed DDS).
+# bloodshot_eyes (confirmed base-game template) makes the whites red too.
 wizard_ascendant_eyes = {
 	ascendant_glowing_eyes = {
 		traits = {
@@ -21,7 +21,7 @@ wizard_ascendant_eyes = {
 				accessory = {
 					mode = modify
 					gene = eye_accessory
-					template = bloodshot_eyes
+					template = wizard_ascendant_eyes_glow
 					value = 0.5
 				}
 			}

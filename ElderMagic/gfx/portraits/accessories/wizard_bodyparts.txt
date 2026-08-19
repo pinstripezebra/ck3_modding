@@ -1,0 +1,3 @@
+wizard_ascendant_eyes_glow = {
+	entity = { entity = "wizard_ascendant_eyes_glow_entity"	shared_pose_entity = head }
+}

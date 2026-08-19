@@ -1,5 +1,5 @@
-# Ascendant Lore mages: vivid red iris + additive bloom glow (custom uncompressed DDS).
-# bloodshot_eyes (confirmed base-game template) makes the whites red too.
+# Ascendant Lore mages: vivid blue arcane iris + bloom glow (custom uncompressed DDS).
+# eye_color x=0.99 y=0.79 = RGB(24,92,157), bluest point in eye_palette.dds (y-inverted UV).
 wizard_ascendant_eyes = {
 	ascendant_glowing_eyes = {
 		traits = {
@@ -15,8 +15,8 @@ wizard_ascendant_eyes = {
 				color = {
 					gene = eye_color
 					mode = replace
-					x = 0.0
-					y = 0.81
+					x = 0.99
+					y = 0.79
 				}
 				accessory = {
 					mode = modify

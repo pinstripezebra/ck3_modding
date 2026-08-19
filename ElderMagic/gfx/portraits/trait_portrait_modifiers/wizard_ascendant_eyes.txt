@@ -1,5 +1,5 @@
 # Ascendant Lore mages have red glowing eyes.
-# x=0.0, y=0.19 is RGB(206,38,0) — the reddest point in eye_palette.dds.
+# Clausewitz UV is y-inverted; x=0.0 y=0.81 = RGB(206,38,0) in eye_palette.dds.
 wizard_ascendant_eyes = {
 	ascendant_red_eyes = {
 		traits = {
@@ -16,7 +16,7 @@ wizard_ascendant_eyes = {
 					gene = eye_color
 					mode = replace
 					x = 0.0
-					y = 0.19
+					y = 0.81
 				}
 			}
 		}

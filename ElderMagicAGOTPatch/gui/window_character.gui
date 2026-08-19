@@ -1185,8 +1185,7 @@ window = {
 							}
 						}
 
-						
-						# Elder Magic: total magic power, styled to match skill stats
+												# Elder Magic: total magic power, styled to match skill stats
 						vbox = {
 							visible = "[GreaterThan_CFixedPoint( Character.MakeScope.ScriptValue('wizard_total_magic_power'), '(CFixedPoint)0' )]"
 							spacing = -3
@@ -1209,7 +1208,7 @@ window = {
 							}
 						}
 
-vbox = {
+						vbox = {
 							visible = "[Character.HasLandedTitles]"
 							margin_right = 3
 							spacing = -3
@@ -4542,7 +4541,7 @@ types CharacterWindow
 				name = "other_player_name"
 				visible = "[And( Character.IsPlayer, Not( Character.IsLocalPlayer ) )]"
 
-				raw_text = " â€¢ #L [Character.GetHumanName]#!"
+				raw_text = " • #L [Character.GetHumanName]#!"
 				tooltip = "AI_PERSONALITY_IS_PLAYER_TOOLTIP"
 				using = tooltip_se
 
@@ -4555,7 +4554,7 @@ types CharacterWindow
 				name = "ai_personality"
 				visible = "[Not( Character.IsPlayer )]"
 
-				raw_text = " â€¢ #L [Character.GetAIPersonalityNoTooltip]#!"
+				raw_text = " • #L [Character.GetAIPersonalityNoTooltip]#!"
 				tooltip = "AI_PERSONALITY_TT"
 				using = tooltip_se
 
@@ -5815,143 +5814,30 @@ template Character_Window_Relation_Icon
 			}
 		}
 	}
-}
+}
+
 
 types WizardMagicPowerTypes {
 	type wizard_magic_power_breakdown = widget {
 		using = GeneralTooltipSetup
 		using = DefaultTooltipBackground
 		alwaystransparent = no
-
 		vbox = {
 			set_parent_size_to_minimum = yes
 			margin = { 10 10 }
-			spacing = 4
-			ignoreinvisible = yes
-
 			hbox = {
 				name = "heading"
 				layoutpolicy_horizontal = expanding
 				margin = { 5 5 }
 				background = { using = Background_Area }
-				text_single = {
-					text = "WIZARD_MAGIC_POWER_TOOLTIP_HEADER"
-					default_format = "#T"
-					layoutpolicy_horizontal = expanding
-					min_width = 200
-					autoresize = yes
-				}
+				text_single = { text = "WIZARD_MAGIC_POWER_TOOLTIP_HEADER" default_format = "#T" layoutpolicy_horizontal = expanding min_width = 200 autoresize = yes }
 			}
-
-			vbox = {
-				margin = { 8 4 }
-				spacing = 3
-				ignoreinvisible = yes
-
-				hbox = {
-					visible = "[GreaterThan_CFixedPoint( CharacterWindow.GetCharacter.MakeScope.ScriptValue('wizard_fire_lore_power'), '(CFixedPoint)0' )]"
-					spacing = 10
-					text_single = { text = "trait_lore_of_fire" default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small }
-					expand = {}
-					text_single = { raw_text = "+[CharacterWindow.GetCharacter.MakeScope.ScriptValue('wizard_fire_lore_power')]" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
-				}
-
-				hbox = {
-					visible = "[GreaterThan_CFixedPoint( CharacterWindow.GetCharacter.MakeScope.ScriptValue('wizard_earth_lore_power'), '(CFixedPoint)0' )]"
-					spacing = 10
-					text_single = { text = "trait_lore_of_earth" default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small }
-					expand = {}
-					text_single = { raw_text = "+[CharacterWindow.GetCharacter.MakeScope.ScriptValue('wizard_earth_lore_power')]" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
-				}
-
-				hbox = {
-					visible = "[GreaterThan_CFixedPoint( CharacterWindow.GetCharacter.MakeScope.ScriptValue('wizard_water_lore_power'), '(CFixedPoint)0' )]"
-					spacing = 10
-					text_single = { text = "trait_lore_of_water" default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small }
-					expand = {}
-					text_single = { raw_text = "+[CharacterWindow.GetCharacter.MakeScope.ScriptValue('wizard_water_lore_power')]" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
-				}
-
-				hbox = {
-					visible = "[GreaterThan_CFixedPoint( CharacterWindow.GetCharacter.MakeScope.ScriptValue('wizard_death_lore_power'), '(CFixedPoint)0' )]"
-					spacing = 10
-					text_single = { text = "trait_lore_of_death" default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small }
-					expand = {}
-					text_single = { raw_text = "+[CharacterWindow.GetCharacter.MakeScope.ScriptValue('wizard_death_lore_power')]" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
-				}
-
-				hbox = {
-					visible = "[GreaterThan_CFixedPoint( CharacterWindow.GetCharacter.MakeScope.ScriptValue('wizard_high_lore_power'), '(CFixedPoint)0' )]"
-					spacing = 10
-					text_single = { text = "trait_lore_of_high_magic" default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small }
-					expand = {}
-					text_single = { raw_text = "+[CharacterWindow.GetCharacter.MakeScope.ScriptValue('wizard_high_lore_power')]" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
-				}
-
-				hbox = {
-					visible = "[CharacterWindow.GetCharacter.HasTrait( GetTrait( 'ascendant_lore_of_fire' ) )]"
-					spacing = 10
-					text_single = { text = "trait_ascendant_lore_of_fire" default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small }
-					expand = {}
-					text_single = { raw_text = "+3" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
-				}
-				hbox = {
-					visible = "[CharacterWindow.GetCharacter.HasTrait( GetTrait( 'ascendant_lore_of_earth' ) )]"
-					spacing = 10
-					text_single = { text = "trait_ascendant_lore_of_earth" default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small }
-					expand = {}
-					text_single = { raw_text = "+3" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
-				}
-				hbox = {
-					visible = "[CharacterWindow.GetCharacter.HasTrait( GetTrait( 'ascendant_lore_of_water' ) )]"
-					spacing = 10
-					text_single = { text = "trait_ascendant_lore_of_water" default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small }
-					expand = {}
-					text_single = { raw_text = "+3" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
-				}
-				hbox = {
-					visible = "[CharacterWindow.GetCharacter.HasTrait( GetTrait( 'ascendant_lore_of_death' ) )]"
-					spacing = 10
-					text_single = { text = "trait_ascendant_lore_of_death" default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small }
-					expand = {}
-					text_single = { raw_text = "+3" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
-				}
-				hbox = {
-					visible = "[CharacterWindow.GetCharacter.HasTrait( GetTrait( 'ascendant_lore_of_high_magic' ) )]"
-					spacing = 10
-					text_single = { text = "trait_ascendant_lore_of_high_magic" default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small }
-					expand = {}
-					text_single = { raw_text = "+3" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
-				}
-
-				hbox = {
-					visible = "[CharacterWindow.GetCharacter.HasTrait( GetTrait( 'battlemage' ) )]"
-					spacing = 10
-					text_single = { text = "trait_battlemage" default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small }
-					expand = {}
-					text_single = { raw_text = "+[CharacterWindow.GetCharacter.MakeScope.ScriptValue('wizard_battlemage_power')]" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
-				}
-
-				hbox = { visible = "[CharacterWindow.GetCharacter.HasTrait( GetTrait( 'the_spark' ) )]"       spacing = 10 text_single = { text = "trait_the_spark"       default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small } expand = {} text_single = { raw_text = "+1"  default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline } }
-				hbox = { visible = "[CharacterWindow.GetCharacter.HasTrait( GetTrait( 'the_conduit' ) )]"     spacing = 10 text_single = { text = "trait_the_conduit"     default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small } expand = {} text_single = { raw_text = "+2"  default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline } }
-				hbox = { visible = "[CharacterWindow.GetCharacter.HasTrait( GetTrait( 'the_resonator' ) )]"   spacing = 10 text_single = { text = "trait_the_resonator"   default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small } expand = {} text_single = { raw_text = "+3"  default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline } }
-				hbox = { visible = "[CharacterWindow.GetCharacter.HasTrait( GetTrait( 'the_vector' ) )]"      spacing = 10 text_single = { text = "trait_the_vector"      default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small } expand = {} text_single = { raw_text = "+4"  default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline } }
-				hbox = { visible = "[CharacterWindow.GetCharacter.HasTrait( GetTrait( 'the_capacitor' ) )]"   spacing = 10 text_single = { text = "trait_the_capacitor"   default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small } expand = {} text_single = { raw_text = "+5"  default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline } }
-				hbox = { visible = "[CharacterWindow.GetCharacter.HasTrait( GetTrait( 'the_dynamo' ) )]"      spacing = 10 text_single = { text = "trait_the_dynamo"      default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small } expand = {} text_single = { raw_text = "+6"  default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline } }
-				hbox = { visible = "[CharacterWindow.GetCharacter.HasTrait( GetTrait( 'the_nexus' ) )]"       spacing = 10 text_single = { text = "trait_the_nexus"       default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small } expand = {} text_single = { raw_text = "+7"  default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline } }
-				hbox = { visible = "[CharacterWindow.GetCharacter.HasTrait( GetTrait( 'the_singularity' ) )]" spacing = 10 text_single = { text = "trait_the_singularity" default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small } expand = {} text_single = { raw_text = "+8"  default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline } }
-				hbox = { visible = "[CharacterWindow.GetCharacter.HasTrait( GetTrait( 'the_catalyst' ) )]"    spacing = 10 text_single = { text = "trait_the_catalyst"    default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small } expand = {} text_single = { raw_text = "+9"  default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline } }
-				hbox = { visible = "[CharacterWindow.GetCharacter.HasTrait( GetTrait( 'the_horizon' ) )]"     spacing = 10 text_single = { text = "trait_the_horizon"     default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small } expand = {} text_single = { raw_text = "+10" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline } }
-			}
-
-			divider_light = { layoutpolicy_horizontal = expanding }
-
 			hbox = {
 				margin = { 8 4 }
 				spacing = 10
 				text_single = { text = "WIZARD_MAGIC_POWER_TOTAL_LABEL" default_format = "#bold" min_width = 180 autoresize = yes using = Font_Size_Small }
 				expand = {}
-				text_single = { raw_text = "[CharacterWindow.GetCharacter.MakeScope.ScriptValue('wizard_total_magic_power')]" default_format = "#bold #color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
+				text_single = { raw_text = "[Character.MakeScope.ScriptValue('wizard_total_magic_power')]" default_format = "#bold #color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
 			}
 		}
 	}

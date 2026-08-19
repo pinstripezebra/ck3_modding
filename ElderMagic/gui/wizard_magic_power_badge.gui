@@ -1,40 +1,41 @@
 # Floating magic power badge — scripted widget, no window_character.gui override needed.
-# Visible when a sidebar is open (hide_bottom_left_HUD) AND the character has non-zero magic power.
-# This makes the mod compatible with AGOT and any other mod that overrides window_character.gui.
+# Only visible when the character window has a valid wizard character (magic power > 0).
 window = {
 	name = "wizard_magic_power_badge"
 	layer = top
 	parentanchor = top|left
-	# Positioned in the skills row area, left of where dread counter sits
-	position = { 462 420 }
-	size = { 110 55 }
+	position = { 462 316 }
+	size = { 120 26 }
 	movable = no
 	allow_outside = yes
 	mousetransparent = yes
 
-	visible = "[And( GetVariableSystem.Exists('hide_bottom_left_HUD'), GreaterThan_CFixedPoint( CharacterWindow.GetCharacter.MakeScope.ScriptValue('wizard_total_magic_power'), '(CFixedPoint)0' ) )]"
+	visible = "[And( CharacterWindow.GetCharacter.IsValid, GreaterThan_CFixedPoint( CharacterWindow.GetCharacter.MakeScope.ScriptValue('wizard_total_magic_power'), '(CFixedPoint)0' ) )]"
 
-	vbox = {
-		spacing = -3
+	background = {
+		using = Background_Area_Dark
+	}
+
+	hbox = {
 		parentanchor = left|vcenter
 		widgetanchor = left|vcenter
-
-		using = Animation_Character_Window_Refresh
-
-		tooltipwidget = { wizard_magic_power_breakdown = {} }
-		using = tooltip_ne
+		margin = { 4 0 }
+		spacing = 4
 
 		icon = {
-			size = { 32 32 }
-			parentanchor = hcenter
-			texture = "gfx/interface/icons/traits/mana_flame.dds"
+			size = { 18 18 }
+			parentanchor = vcenter
+			texture = "gfx/interface/icons/traits/mana_flame_small.dds"
 		}
 
 		text_single = {
+			parentanchor = vcenter
+			fontsize = 16
 			default_format = "#color:{0.45,0.8,1.0,1.0}"
-			raw_text = "[CharacterWindow.GetCharacter.MakeScope.ScriptValue('wizard_total_magic_power')]"
-			align = hcenter|nobaseline
+			align = nobaseline
 			autoresize = yes
+			raw_text = "[CharacterWindow.GetCharacter.MakeScope.ScriptValue('wizard_total_magic_power')]"
+			tooltipwidget = { wizard_magic_power_breakdown = {} }
 		}
 	}
 }

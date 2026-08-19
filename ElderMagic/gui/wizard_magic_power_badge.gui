@@ -1,36 +1,40 @@
+# Floating magic power badge — scripted widget, no window_character.gui override needed.
+# Visible when a sidebar is open (hide_bottom_left_HUD) AND the character has non-zero magic power.
+# This makes the mod compatible with AGOT and any other mod that overrides window_character.gui.
 window = {
 	name = "wizard_magic_power_badge"
 	layer = top
 	parentanchor = top|left
-	# Aligned with the name row: portrait 310px + character_info 5px margin + name row 1px margin_top = 316
-	position = { 462 316 }
-	size = { 100 26 }
+	# Positioned in the skills row area, left of where dread counter sits
+	position = { 462 420 }
+	size = { 110 55 }
 	movable = no
 	allow_outside = yes
 	mousetransparent = yes
 
-	# wizard_char_win_open is set/cleared in the window_character.gui override's _show/_hide states
-	visible = "[And( GetVariableSystem.Exists('wizard_char_win_open'), And( CharacterWindow.GetCharacter.IsValid, GreaterThan_CFixedPoint( CharacterWindow.GetCharacter.MakeScope.ScriptValue('wizard_total_magic_power'), '(CFixedPoint)0' ) ) )]"
+	visible = "[And( GetVariableSystem.Exists('hide_bottom_left_HUD'), GreaterThan_CFixedPoint( CharacterWindow.GetCharacter.MakeScope.ScriptValue('wizard_total_magic_power'), '(CFixedPoint)0' ) )]"
 
-	hbox = {
+	vbox = {
+		spacing = -3
 		parentanchor = left|vcenter
 		widgetanchor = left|vcenter
-		spacing = 3
+
+		using = Animation_Character_Window_Refresh
+
+		tooltipwidget = { wizard_magic_power_breakdown = {} }
+		using = tooltip_ne
 
 		icon = {
-			size = { 18 18 }
-			parentanchor = vcenter
-			texture = "gfx/interface/icons/traits/mana_flame_small.dds"
+			size = { 32 32 }
+			parentanchor = hcenter
+			texture = "gfx/interface/icons/traits/mana_flame.dds"
 		}
 
 		text_single = {
-			parentanchor = vcenter
-			fontsize = 16
 			default_format = "#color:{0.45,0.8,1.0,1.0}"
-			align = nobaseline
-			autoresize = yes
 			raw_text = "[CharacterWindow.GetCharacter.MakeScope.ScriptValue('wizard_total_magic_power')]"
-			tooltip = WIZARD_MAGIC_POWER_TT
+			align = hcenter|nobaseline
+			autoresize = yes
 		}
 	}
 }

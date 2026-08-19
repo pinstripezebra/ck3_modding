@@ -1,5 +1,5 @@
 # Floating magic power badge — scripted widget, no window_character.gui override needed.
-# Only visible when the character window has a valid wizard character (magic power > 0).
+# Uses datacontext to resolve Character scope; button overlay handles the tooltip.
 window = {
 	name = "wizard_magic_power_badge"
 	layer = top
@@ -8,9 +8,10 @@ window = {
 	size = { 120 26 }
 	movable = no
 	allow_outside = yes
-	mousetransparent = yes
+	datacontext = "[CharacterWindow.GetCharacter]"
 
-	visible = "[And( CharacterWindow.GetCharacter.IsValid, GreaterThan_CFixedPoint( CharacterWindow.GetCharacter.MakeScope.ScriptValue('wizard_total_magic_power'), '(CFixedPoint)0' ) )]"
+	# hide_bottom_left_HUD gates to "a sidebar is open"; Character.IsValid + power>0 gates to "it's a wizard"
+	visible = "[And( GetVariableSystem.Exists('hide_bottom_left_HUD'), And( Character.IsValid, GreaterThan_CFixedPoint( Character.MakeScope.ScriptValue('wizard_total_magic_power'), '(CFixedPoint)0' ) ) )]"
 
 	background = {
 		using = Background_Area_Dark
@@ -34,8 +35,16 @@ window = {
 			default_format = "#color:{0.45,0.8,1.0,1.0}"
 			align = nobaseline
 			autoresize = yes
-			raw_text = "[CharacterWindow.GetCharacter.MakeScope.ScriptValue('wizard_total_magic_power')]"
-			tooltipwidget = { wizard_magic_power_breakdown = {} }
+			raw_text = "[Character.MakeScope.ScriptValue('wizard_total_magic_power')]"
 		}
+	}
+
+	# Invisible button overlay provides tooltip — same pattern as wizard_mana_bar.gui
+	button = {
+		parentanchor = center
+		widgetanchor = center
+		size = { 120 26 }
+		using = tooltip_ne
+		tooltipwidget = { wizard_magic_power_breakdown = {} }
 	}
 }

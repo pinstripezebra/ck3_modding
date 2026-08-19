@@ -2311,6 +2311,8 @@ window = {
 						# Elder Magic: total magic power, styled to match skill stats
 
 						vbox = {
+							# only render for characters who have non-zero magic power
+							visible = "[GreaterThan_CFixedPoint( Character.MakeScope.ScriptValue('wizard_total_magic_power'), '(CFixedPoint)0' )]"
 
 							spacing = -3
 

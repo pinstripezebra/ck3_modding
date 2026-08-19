@@ -1,6 +1,5 @@
 # Ascendant Lore mages have red glowing eyes.
-# x=0.05 targets the red/crimson band at the left edge of eye_palette.dds.
-# Adjust x toward 0.0 for brighter red, toward 0.15 for deeper crimson.
+# x=0.0, y=0.19 is RGB(206,38,0) — the reddest point in eye_palette.dds.
 wizard_ascendant_eyes = {
 	ascendant_red_eyes = {
 		traits = {
@@ -16,8 +15,8 @@ wizard_ascendant_eyes = {
 				color = {
 					gene = eye_color
 					mode = replace
-					x = 0.05
-					y = 0.1
+					x = 0.0
+					y = 0.19
 				}
 			}
 		}

@@ -1,7 +1,9 @@
-# Ascendant Lore mages have red glowing eyes.
+# Ascendant Lore mages have vivid glowing red eyes.
 # Clausewitz UV is y-inverted; x=0.0 y=0.81 = RGB(206,38,0) in eye_palette.dds.
-wizard_ascendant_eyes = {
-	ascendant_red_eyes = {
+# Three independent groups: iris colour (all genders), bloodshot whites (per gender).
+
+wizard_ascendant_eye_color = {
+	ascendant_red_iris = {
 		traits = {
 			ascendant_lore_of_fire
 			ascendant_lore_of_earth
@@ -22,3 +24,55 @@ wizard_ascendant_eyes = {
 		}
 	}
 }
+
+# Bloodshot whites make the entire eye area appear red/glowing.
+wizard_ascendant_eye_accessory_female = {
+	ascendant_bloodshot_female = {
+		traits = {
+			ascendant_lore_of_fire
+			ascendant_lore_of_earth
+			ascendant_lore_of_water
+			ascendant_lore_of_death
+			ascendant_lore_of_high_magic
+		}
+
+		trigger = { is_female = yes }
+
+		dna_modifiers = {
+			human = {
+				accessory = {
+					mode = replace
+					gene = eye_accessory
+					template = female_eyes_bloodshot
+					value = 0.5
+				}
+			}
+		}
+	}
+}
+
+wizard_ascendant_eye_accessory_male = {
+	ascendant_bloodshot_male = {
+		traits = {
+			ascendant_lore_of_fire
+			ascendant_lore_of_earth
+			ascendant_lore_of_water
+			ascendant_lore_of_death
+			ascendant_lore_of_high_magic
+		}
+
+		trigger = { is_female = no }
+
+		dna_modifiers = {
+			human = {
+				accessory = {
+					mode = replace
+					gene = eye_accessory
+					template = male_eyes_bloodshot
+					value = 0.5
+				}
+			}
+		}
+	}
+}
+

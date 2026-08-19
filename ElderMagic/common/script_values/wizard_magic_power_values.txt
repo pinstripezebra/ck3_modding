@@ -38,6 +38,14 @@ wizard_high_lore_power = {
 	if = { limit = { has_trait_xp = { trait = lore_of_high_magic value >= 75  } } add = 1 }
 	if = { limit = { has_trait_xp = { trait = lore_of_high_magic value >= 100 } } add = 1 }
 }
+# Battlemage tier contribution (0–3, one per XP threshold).
+wizard_battlemage_power = {
+	value = 0
+	if = { limit = { has_trait = battlemage } add = 1 }
+	if = { limit = { has_trait_xp = { trait = battlemage value >= 33 } } add = 1 }
+	if = { limit = { has_trait_xp = { trait = battlemage value >= 66 } } add = 1 }
+}
+
 # Potential ladder rank (0–10); traits are mutually exclusive so only one add fires.
 wizard_potential_power = {
 	value = 0
@@ -85,6 +93,18 @@ wizard_total_magic_power = {
 	if = { limit = { has_trait_xp = { trait = lore_of_high_magic value >= 50  } } add = 1 }
 	if = { limit = { has_trait_xp = { trait = lore_of_high_magic value >= 75  } } add = 1 }
 	if = { limit = { has_trait_xp = { trait = lore_of_high_magic value >= 100 } } add = 1 }
+
+	# Ascendant Lore traits — +3 each
+	if = { limit = { has_trait = ascendant_lore_of_fire       } add = 3 }
+	if = { limit = { has_trait = ascendant_lore_of_earth      } add = 3 }
+	if = { limit = { has_trait = ascendant_lore_of_water      } add = 3 }
+	if = { limit = { has_trait = ascendant_lore_of_death      } add = 3 }
+	if = { limit = { has_trait = ascendant_lore_of_high_magic } add = 3 }
+
+	# Battlemage — +1 per tier
+	if = { limit = { has_trait = battlemage } add = 1 }
+	if = { limit = { has_trait_xp = { trait = battlemage value >= 33 } } add = 1 }
+	if = { limit = { has_trait_xp = { trait = battlemage value >= 66 } } add = 1 }
 
 	# Wizard potential ladder — rank value, traits are exclusive so only one fires
 	if = { limit = { has_trait = the_spark       } add = 1  }

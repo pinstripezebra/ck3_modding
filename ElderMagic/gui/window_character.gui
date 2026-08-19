@@ -11495,6 +11495,55 @@ types WizardMagicPowerTypes {
 					expand = {}
 					text_single = { raw_text = "+10" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
 				}
+
+
+				hbox = {
+					visible = "[Character.HasTrait( GetTrait( 'ascendant_lore_of_fire' ) )]"
+					spacing = 10
+					text_single = { text = "trait_ascendant_lore_of_fire" default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small }
+					expand = {}
+					text_single = { raw_text = "+3" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
+				}
+
+				hbox = {
+					visible = "[Character.HasTrait( GetTrait( 'ascendant_lore_of_earth' ) )]"
+					spacing = 10
+					text_single = { text = "trait_ascendant_lore_of_earth" default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small }
+					expand = {}
+					text_single = { raw_text = "+3" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
+				}
+
+				hbox = {
+					visible = "[Character.HasTrait( GetTrait( 'ascendant_lore_of_water' ) )]"
+					spacing = 10
+					text_single = { text = "trait_ascendant_lore_of_water" default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small }
+					expand = {}
+					text_single = { raw_text = "+3" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
+				}
+
+				hbox = {
+					visible = "[Character.HasTrait( GetTrait( 'ascendant_lore_of_death' ) )]"
+					spacing = 10
+					text_single = { text = "trait_ascendant_lore_of_death" default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small }
+					expand = {}
+					text_single = { raw_text = "+3" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
+				}
+
+				hbox = {
+					visible = "[Character.HasTrait( GetTrait( 'ascendant_lore_of_high_magic' ) )]"
+					spacing = 10
+					text_single = { text = "trait_ascendant_lore_of_high_magic" default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small }
+					expand = {}
+					text_single = { raw_text = "+3" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
+				}
+
+				hbox = {
+					visible = "[Character.HasTrait( GetTrait( 'battlemage' ) )]"
+					spacing = 10
+					text_single = { text = "trait_battlemage" default_format = "#low" min_width = 180 autoresize = yes using = Font_Size_Small }
+					expand = {}
+					text_single = { raw_text = "+[Character.MakeScope.ScriptValue('wizard_battlemage_power')]" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
+				}
 			}
 
 			divider_light = { layoutpolicy_horizontal = expanding }

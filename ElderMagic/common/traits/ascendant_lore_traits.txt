@@ -8,6 +8,7 @@ ascendant_lore_of_fire = {
 
 	prowess = 5
 	health = 0.5
+	life_expectancy = 15
 
 	ruler_designer_cost = 80
 }
@@ -18,6 +19,7 @@ ascendant_lore_of_earth = {
 
 	prowess = 5
 	health = 0.5
+	life_expectancy = 15
 
 	ruler_designer_cost = 80
 }
@@ -28,6 +30,7 @@ ascendant_lore_of_water = {
 
 	prowess = 5
 	health = 0.5
+	life_expectancy = 15
 
 	ruler_designer_cost = 80
 }
@@ -38,6 +41,7 @@ ascendant_lore_of_death = {
 
 	prowess = 5
 	health = 0.5
+	life_expectancy = 15
 
 	ruler_designer_cost = 80
 }
@@ -48,6 +52,7 @@ ascendant_lore_of_high_magic = {
 
 	prowess = 5
 	health = 0.5
+	life_expectancy = 15
 
 	ruler_designer_cost = 80
 }

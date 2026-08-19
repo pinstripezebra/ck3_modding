@@ -1,119 +1,119 @@
-the_spark = {
-	genetic = yes
-	good = yes
-	icon = the_spark.dds
-	learning = 1
-	prowess = 1
-	life_expectancy = 5
+﻿the_spark = {
+genetic = yes
+good = yes
+icon = the_spark.dds
+prowess = 2
+health = 0.1
+life_expectancy = 5
 
-	ruler_designer_cost = 12
+ruler_designer_cost = 15
 
 }
 
 the_conduit = {
-	genetic = yes
-	good = yes
-	icon = the_conduit.dds
-	learning = 1
-	prowess = 2
-	life_expectancy = 10
+genetic = yes
+good = yes
+icon = the_conduit.dds
+prowess = 3
+health = 0.2
+life_expectancy = 10
 
-	ruler_designer_cost = 14
+ruler_designer_cost = 18
 
 }
 
 the_resonator = {
-	genetic = yes
-	good = yes
-	icon = the_resonator.dds
-	learning = 2
-	prowess = 3
-	life_expectancy = 15
+genetic = yes
+good = yes
+icon = the_resonator.dds
+prowess = 5
+health = 0.3
+life_expectancy = 15
 
-	ruler_designer_cost = 18
+ruler_designer_cost = 22
 
 }
 
 the_vector = {
-	genetic = yes
-	good = yes
-	icon = the_vector.dds
-	learning = 3
-	prowess = 5
-	life_expectancy = 20
+genetic = yes
+good = yes
+icon = the_vector.dds
+prowess = 7
+health = 0.4
+life_expectancy = 20
 
-	ruler_designer_cost = 24
+ruler_designer_cost = 30
 
 }
 
 the_capacitor = {
-	genetic = yes
-	good = yes
-	icon = the_capacitor.dds
-	learning = 4
-	prowess = 7
-	life_expectancy = 25
+genetic = yes
+good = yes
+icon = the_capacitor.dds
+prowess = 9
+health = 0.5
+life_expectancy = 25
 
-	ruler_designer_cost = 30
+ruler_designer_cost = 40
 
 }
 
 the_dynamo = {
-	genetic = yes
-	good = yes
-	icon = the_dynamo.dds
-	learning = 5
-	prowess = 8
-	life_expectancy = 30
+genetic = yes
+good = yes
+icon = the_dynamo.dds
+prowess = 11
+health = 0.6
+life_expectancy = 30
 
-	ruler_designer_cost = 36
+ruler_designer_cost = 45
 
 }
 
 the_nexus = {
-	genetic = yes
-	good = yes
-	icon = the_nexus.dds
-	learning = 6
-	prowess = 9
-	life_expectancy = 35
+genetic = yes
+good = yes
+icon = the_nexus.dds
+prowess = 12
+health = 0.8
+life_expectancy = 35
 
-	ruler_designer_cost = 44
+ruler_designer_cost = 55
 
 }
 
 the_singularity = {
-	genetic = yes
-	good = yes
-	icon = the_singularity.dds
-	learning = 8
-	prowess = 10
-	life_expectancy = 40
+genetic = yes
+good = yes
+icon = the_singularity.dds
+prowess = 13
+health = 1.0
+life_expectancy = 40
 
-	ruler_designer_cost = 52
+ruler_designer_cost = 65
 
 }
 
 the_catalyst = {
-	genetic = yes
-	good = yes
-	icon = the_catalyst.dds
-	learning = 8
-	prowess = 11
-	life_expectancy = 45
+genetic = yes
+good = yes
+icon = the_catalyst.dds
+prowess = 15
+health = 1.2
+life_expectancy = 45
 
-	ruler_designer_cost = 62
+ruler_designer_cost = 80
 
 }
 
 the_horizon = {
-	genetic = yes
-	good = yes
-	icon = the_horizon.dds
-	learning = 10
-	prowess = 12
-	life_expectancy = 50
+genetic = yes
+good = yes
+icon = the_horizon.dds
+prowess = 16
+health = 1.5
+life_expectancy = 50
 
-	ruler_designer_cost = 74
+ruler_designer_cost = 95
 
 }

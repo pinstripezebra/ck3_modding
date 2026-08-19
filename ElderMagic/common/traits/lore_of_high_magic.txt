@@ -1,7 +1,7 @@
 ﻿lore_of_high_magic = {
 	category = lifestyle
 	icon = lore_of_high_magic.dds
-	learning = 2
+	health = 0.25
 
 	on_add = {
 		if = {
@@ -12,22 +12,21 @@
 
 	track = {
 	25 = {
-		learning = 1
 		prowess = 2
 	}
 	50 = {
-		learning = 2
-		prowess = 3
+		health = 0.5
+		prowess = 4
 		monthly_prestige = 0.05
 	}
 	75 = {
-		learning = 3
-		prowess = 4
+		health = 0.75
+		prowess = 6
 		monthly_prestige = 0.1
 	}
 	100 = {
-		learning = 4
-		prowess = 5
+		health = 1
+		prowess = 8
 		monthly_prestige = 0.2
 	}
 	}

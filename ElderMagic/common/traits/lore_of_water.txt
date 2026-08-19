@@ -1,7 +1,6 @@
 ﻿lore_of_water = {
 	category = lifestyle
 	icon = lore_of_water.dds
-	learning = 1
 	health = 0.25
 
 	on_add = {
@@ -13,25 +12,21 @@
 
 	track = {
 	25 = {
-		learning = 1
-		prowess = 1
+		prowess = 2
 	}
 	50 = {
-		learning = 2
 		health = 0.5
-		prowess = 2
+		prowess = 4
 		monthly_prestige = 0.05
 	}
 	75 = {
-		learning = 3
 		health = 0.75
-		prowess = 3
+		prowess = 6
 		monthly_prestige = 0.1
 	}
 	100 = {
-		learning = 4
 		health = 1
-		prowess = 4
+		prowess = 8
 		monthly_prestige = 0.2
 	}
 	}

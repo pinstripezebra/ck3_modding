@@ -1,4 +1,5 @@
 *.dds
 !gfx/models/portraits/**/*.dds
+!traits/*.dds
 *.png
 *.zip

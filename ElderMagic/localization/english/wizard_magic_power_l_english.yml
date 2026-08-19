@@ -1,2 +1,6 @@
 ﻿l_english:
  WIZARD_MAGIC_POWER_TT:0 "Total Magic Power\n\nSum of XP tiers reached across all Lore of Magic traits (up to 4 per lore, 20 total) plus the rank of the wizard potential ladder (1 through 10)."
+ WIZARD_MAGIC_POWER_TOOLTIP_HEADER:0 "Total Magic Power"
+ WIZARD_MAGIC_POWER_LORE_SECTION:0 "Lore Mastery"
+ WIZARD_MAGIC_POWER_POTENTIAL_LABEL:0 "Magical Potential"
+ WIZARD_MAGIC_POWER_TOTAL_LABEL:0 "Total"

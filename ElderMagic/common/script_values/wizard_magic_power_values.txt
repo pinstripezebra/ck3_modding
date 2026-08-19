@@ -2,6 +2,57 @@
 # +1 per XP tier reached in each lore trait (max 4 per trait, 20 total).
 # +rank for wizard potential ladder (the_spark=1 ... the_horizon=10).
 
+# Per-lore contributions (0–4 each), used by the magic power breakdown tooltip.
+wizard_fire_lore_power = {
+	value = 0
+	if = { limit = { has_trait_xp = { trait = lore_of_fire value >= 25  } } add = 1 }
+	if = { limit = { has_trait_xp = { trait = lore_of_fire value >= 50  } } add = 1 }
+	if = { limit = { has_trait_xp = { trait = lore_of_fire value >= 75  } } add = 1 }
+	if = { limit = { has_trait_xp = { trait = lore_of_fire value >= 100 } } add = 1 }
+}
+wizard_earth_lore_power = {
+	value = 0
+	if = { limit = { has_trait_xp = { trait = lore_of_earth value >= 25  } } add = 1 }
+	if = { limit = { has_trait_xp = { trait = lore_of_earth value >= 50  } } add = 1 }
+	if = { limit = { has_trait_xp = { trait = lore_of_earth value >= 75  } } add = 1 }
+	if = { limit = { has_trait_xp = { trait = lore_of_earth value >= 100 } } add = 1 }
+}
+wizard_water_lore_power = {
+	value = 0
+	if = { limit = { has_trait_xp = { trait = lore_of_water value >= 25  } } add = 1 }
+	if = { limit = { has_trait_xp = { trait = lore_of_water value >= 50  } } add = 1 }
+	if = { limit = { has_trait_xp = { trait = lore_of_water value >= 75  } } add = 1 }
+	if = { limit = { has_trait_xp = { trait = lore_of_water value >= 100 } } add = 1 }
+}
+wizard_death_lore_power = {
+	value = 0
+	if = { limit = { has_trait_xp = { trait = lore_of_death value >= 25  } } add = 1 }
+	if = { limit = { has_trait_xp = { trait = lore_of_death value >= 50  } } add = 1 }
+	if = { limit = { has_trait_xp = { trait = lore_of_death value >= 75  } } add = 1 }
+	if = { limit = { has_trait_xp = { trait = lore_of_death value >= 100 } } add = 1 }
+}
+wizard_high_lore_power = {
+	value = 0
+	if = { limit = { has_trait_xp = { trait = lore_of_high_magic value >= 25  } } add = 1 }
+	if = { limit = { has_trait_xp = { trait = lore_of_high_magic value >= 50  } } add = 1 }
+	if = { limit = { has_trait_xp = { trait = lore_of_high_magic value >= 75  } } add = 1 }
+	if = { limit = { has_trait_xp = { trait = lore_of_high_magic value >= 100 } } add = 1 }
+}
+# Potential ladder rank (0–10); traits are mutually exclusive so only one add fires.
+wizard_potential_power = {
+	value = 0
+	if = { limit = { has_trait = the_spark       } add = 1  }
+	if = { limit = { has_trait = the_conduit     } add = 2  }
+	if = { limit = { has_trait = the_resonator   } add = 3  }
+	if = { limit = { has_trait = the_vector      } add = 4  }
+	if = { limit = { has_trait = the_capacitor   } add = 5  }
+	if = { limit = { has_trait = the_dynamo      } add = 6  }
+	if = { limit = { has_trait = the_nexus       } add = 7  }
+	if = { limit = { has_trait = the_singularity } add = 8  }
+	if = { limit = { has_trait = the_catalyst    } add = 9  }
+	if = { limit = { has_trait = the_horizon     } add = 10 }
+}
+
 wizard_total_magic_power = {
 	value = 0
 

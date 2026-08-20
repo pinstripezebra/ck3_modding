@@ -17,7 +17,7 @@ innovation_mage_commune = {
 
 innovation_empowered_mages = {
 	group = culture_group_military
-	culture_era = culture_era_late_medieval
+	culture_era = culture_era_high_medieval
 
 	icon = @empowered_mages_icon
 

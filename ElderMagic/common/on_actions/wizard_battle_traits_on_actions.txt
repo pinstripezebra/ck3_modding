@@ -1,6 +1,10 @@
 # Monthly recovery for Mana Scarred trait — degrades tier by tier over time.
+# Uses both monthly_playable_pulse (player) and quarterly_playable_pulse (broader coverage).
 monthly_playable_pulse = {
 	on_actions = { wizard_mana_scarred_recovery }
+}
+quarterly_playable_pulse = {
+	on_actions = { wizard_mana_scarred_recovery_quarterly }
 }
 
 wizard_mana_scarred_recovery = {
@@ -30,6 +34,25 @@ wizard_mana_scarred_recovery = {
 				chance = 40
 				remove_trait = mana_scarred_1
 			}
+		}
+	}
+}
+
+# Quarterly pulse runs the same logic but with higher chances to catch cases
+# where the monthly pulse may not fire (e.g. AI characters in some CK3 builds).
+wizard_mana_scarred_recovery_quarterly = {
+	effect = {
+		if = {
+			limit = { has_trait = mana_scarred_3 }
+			random = { chance = 30 remove_trait = mana_scarred_3 add_trait = mana_scarred_2 }
+		}
+		else_if = {
+			limit = { has_trait = mana_scarred_2 }
+			random = { chance = 50 remove_trait = mana_scarred_2 add_trait = mana_scarred_1 }
+		}
+		else_if = {
+			limit = { has_trait = mana_scarred_1 }
+			random = { chance = 70 remove_trait = mana_scarred_1 }
 		}
 	}
 }

@@ -1,6 +1,90 @@
 # Wizard potential ladder — natural distribution.
-# Rates: the_spark 1%, the_conduit 0.5% (nested 1%×50%), the_resonator 0.25% (nested 1%×25%).
-# Checks are mutually exclusive — highest tier wins.
+# Rates: the_spark 1%, the_conduit 0.5% (1%×50%), the_resonator 0.25% (1%×25%).
+# If either parent has a ladder trait the child's base chance is tripled.
+
+on_birth = {
+	on_actions = { wizard_potential_birth_check }
+}
+
+on_game_start_after_lobby = {
+	on_actions = { wizard_potential_seed_population }
+}
+
+wizard_potential_birth_check = {
+	effect = {
+		if = {
+			limit = {
+				is_alive = yes
+				NOR = {
+					has_trait = the_spark   has_trait = the_conduit   has_trait = the_resonator
+					has_trait = the_vector  has_trait = the_capacitor has_trait = the_dynamo
+					has_trait = the_nexus   has_trait = the_singularity has_trait = the_catalyst
+					has_trait = the_horizon
+				}
+			}
+			# Check if either parent carries ladder potential — triple the chance if so
+			if = {
+				limit = {
+					any_parent = {
+						OR = {
+							has_trait = the_spark   has_trait = the_conduit   has_trait = the_resonator
+							has_trait = the_vector  has_trait = the_capacitor has_trait = the_dynamo
+							has_trait = the_nexus   has_trait = the_singularity has_trait = the_catalyst
+							has_trait = the_horizon
+						}
+					}
+				}
+				# Parent has potential: 3% resonator, 1.5% conduit, 3% spark
+				random = { chance = 3 random = { chance = 25 add_trait = the_resonator } }
+				if = {
+					limit = { NOT = { has_trait = the_resonator } }
+					random = { chance = 3 random = { chance = 50 add_trait = the_conduit } }
+				}
+				if = {
+					limit = { NOT = { has_trait = the_resonator } NOT = { has_trait = the_conduit } }
+					random = { chance = 3 add_trait = the_spark }
+				}
+			}
+			else = {
+				# No magic parent: 0.25% resonator, 0.5% conduit, 1% spark
+				random = { chance = 1 random = { chance = 25 add_trait = the_resonator } }
+				if = {
+					limit = { NOT = { has_trait = the_resonator } }
+					random = { chance = 1 random = { chance = 50 add_trait = the_conduit } }
+				}
+				if = {
+					limit = { NOT = { has_trait = the_resonator } NOT = { has_trait = the_conduit } }
+					random = { chance = 1 add_trait = the_spark }
+				}
+			}
+		}
+	}
+}
+
+wizard_potential_seed_population = {
+	effect = {
+		# every_living_character iterates all living characters globally at game start
+		every_living_character = {
+			limit = {
+				NOR = {
+					has_trait = the_spark   has_trait = the_conduit   has_trait = the_resonator
+					has_trait = the_vector  has_trait = the_capacitor has_trait = the_dynamo
+					has_trait = the_nexus   has_trait = the_singularity has_trait = the_catalyst
+					has_trait = the_horizon
+				}
+			}
+			random = { chance = 1 random = { chance = 25 add_trait = the_resonator } }
+			if = {
+				limit = { NOT = { has_trait = the_resonator } }
+				random = { chance = 1 random = { chance = 50 add_trait = the_conduit } }
+			}
+			if = {
+				limit = { NOT = { has_trait = the_resonator } NOT = { has_trait = the_conduit } }
+				random = { chance = 1 add_trait = the_spark }
+			}
+		}
+	}
+}
 
 on_birth = {
 	on_actions = { wizard_potential_birth_check }

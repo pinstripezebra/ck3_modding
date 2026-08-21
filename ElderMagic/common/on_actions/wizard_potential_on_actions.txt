@@ -6,8 +6,19 @@ on_birth = {
 	on_actions = { wizard_potential_birth_check }
 }
 
-on_game_start_after_lobby = {
-	on_actions = { wizard_potential_seed_population }
+# yearly_playable_pulse fires from player character scope — every_ruler works correctly from there.
+# The flag wizard_potential_seeded ensures seeding runs exactly once per save (including existing saves).
+yearly_playable_pulse = {
+	on_actions = { wizard_potential_seed_if_needed }
+}
+
+wizard_potential_seed_if_needed = {
+	effect = {
+		if = {
+			limit = { NOT = { has_global_variable = wizard_potential_seeded } }
+			wizard_potential_seed_population = yes
+		}
+	}
 }
 
 wizard_potential_birth_check = {
@@ -63,8 +74,8 @@ wizard_potential_birth_check = {
 
 wizard_potential_seed_population = {
 	effect = {
-		# every_living_character iterates all living characters globally at game start
-		every_living_character = {
+		set_global_variable = { name = wizard_potential_seeded value = yes }
+		every_ruler = {
 			limit = {
 				NOR = {
 					has_trait = the_spark   has_trait = the_conduit   has_trait = the_resonator
@@ -86,177 +97,5 @@ wizard_potential_seed_population = {
 	}
 }
 
-on_birth = {
-	on_actions = { wizard_potential_birth_check }
-}
 
-on_game_start_after_lobby = {
-	on_actions = { wizard_potential_seed_population }
-}
 
-wizard_potential_birth_check = {
-	effect = {
-		if = {
-			limit = {
-				is_alive = yes
-				NOT = { has_trait = the_spark }
-				NOT = { has_trait = the_conduit }
-				NOT = { has_trait = the_resonator }
-				NOT = { has_trait = the_vector }
-				NOT = { has_trait = the_capacitor }
-				NOT = { has_trait = the_dynamo }
-				NOT = { has_trait = the_nexus }
-				NOT = { has_trait = the_singularity }
-				NOT = { has_trait = the_catalyst }
-				NOT = { has_trait = the_horizon }
-			}
-			# 0.25% → the_resonator
-			random = {
-				chance = 1
-				random = { chance = 25 add_trait = the_resonator }
-			}
-			# 0.5% → the_conduit (only if no resonator was granted)
-			if = {
-				limit = { NOT = { has_trait = the_resonator } }
-				random = {
-					chance = 1
-					random = { chance = 50 add_trait = the_conduit }
-				}
-			}
-			# 1% → the_spark (only if neither higher tier was granted)
-			if = {
-				limit = {
-					NOT = { has_trait = the_resonator }
-					NOT = { has_trait = the_conduit }
-				}
-				random = { chance = 1 add_trait = the_spark }
-			}
-		}
-	}
-}
-
-wizard_potential_seed_population = {
-	effect = {
-		every_ruler = {
-			limit = {
-				is_alive = yes
-				NOR = {
-					has_trait = the_spark   has_trait = the_conduit   has_trait = the_resonator
-					has_trait = the_vector  has_trait = the_capacitor has_trait = the_dynamo
-					has_trait = the_nexus   has_trait = the_singularity has_trait = the_catalyst
-					has_trait = the_horizon
-				}
-			}
-			random = {
-				chance = 1
-				random = { chance = 25 add_trait = the_resonator }
-			}
-			if = {
-				limit = { NOT = { has_trait = the_resonator } }
-				random = { chance = 1 random = { chance = 50 add_trait = the_conduit } }
-			}
-			if = {
-				limit = { NOT = { has_trait = the_resonator } NOT = { has_trait = the_conduit } }
-				random = { chance = 1 add_trait = the_spark }
-			}
-		}
-		every_courtier_or_guest = {
-			limit = {
-				is_alive = yes
-				NOR = {
-					has_trait = the_spark   has_trait = the_conduit   has_trait = the_resonator
-					has_trait = the_vector  has_trait = the_capacitor has_trait = the_dynamo
-					has_trait = the_nexus   has_trait = the_singularity has_trait = the_catalyst
-					has_trait = the_horizon
-				}
-			}
-			random = {
-				chance = 1
-				random = { chance = 25 add_trait = the_resonator }
-			}
-			if = {
-				limit = { NOT = { has_trait = the_resonator } }
-				random = { chance = 1 random = { chance = 50 add_trait = the_conduit } }
-			}
-			if = {
-				limit = { NOT = { has_trait = the_resonator } NOT = { has_trait = the_conduit } }
-				random = { chance = 1 add_trait = the_spark }
-			}
-		}
-	}
-}
-
-on_game_start_after_lobby = {
-	on_actions = { wizard_potential_seed_population }
-}
-
-wizard_potential_birth_check = {
-	effect = {
-		# Only fire for human characters who don't already have magical potential
-		if = {
-			limit = {
-				is_alive = yes
-				is_ai = yes
-				NOT = { has_trait = the_spark }
-				NOT = { has_trait = the_conduit }
-				NOT = { has_trait = the_resonator }
-				NOT = { has_trait = the_vector }
-				NOT = { has_trait = the_capacitor }
-				NOT = { has_trait = the_dynamo }
-				NOT = { has_trait = the_nexus }
-				NOT = { has_trait = the_singularity }
-				NOT = { has_trait = the_catalyst }
-				NOT = { has_trait = the_horizon }
-			}
-			random = {
-				chance = 3
-				add_trait = the_spark
-			}
-		}
-	}
-}
-
-wizard_potential_seed_population = {
-	effect = {
-		# Seed the_spark into approximately 3% of living characters at game start.
-		# Limited to rulers, heirs, and courtiers to avoid excessive computation.
-		every_ruler = {
-			limit = {
-				is_alive = yes
-				NOT = { has_trait = the_spark }
-				NOT = { has_trait = the_conduit }
-				NOT = { has_trait = the_resonator }
-				NOT = { has_trait = the_vector }
-				NOT = { has_trait = the_capacitor }
-				NOT = { has_trait = the_dynamo }
-				NOT = { has_trait = the_nexus }
-				NOT = { has_trait = the_singularity }
-				NOT = { has_trait = the_catalyst }
-				NOT = { has_trait = the_horizon }
-			}
-			random = {
-				chance = 3
-				add_trait = the_spark
-			}
-		}
-		every_courtier_or_guest = {
-			limit = {
-				is_alive = yes
-				NOT = { has_trait = the_spark }
-				NOT = { has_trait = the_conduit }
-				NOT = { has_trait = the_resonator }
-				NOT = { has_trait = the_vector }
-				NOT = { has_trait = the_capacitor }
-				NOT = { has_trait = the_dynamo }
-				NOT = { has_trait = the_nexus }
-				NOT = { has_trait = the_singularity }
-				NOT = { has_trait = the_catalyst }
-				NOT = { has_trait = the_horizon }
-			}
-			random = {
-				chance = 3
-				add_trait = the_spark
-			}
-		}
-	}
-}

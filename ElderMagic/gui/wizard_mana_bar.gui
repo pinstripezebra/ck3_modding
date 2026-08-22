@@ -6,7 +6,7 @@ window = {
 	size = { 110 46 }
 	movable = no
 	allow_outside = yes
-	visible = "[GetPlayer.IsValid]"
+	visible = "[And( GetPlayer.IsValid, Not( GetVariableSystem.Exists( 'wizard_char_win_open' ) ) )]"
 
 	state = { name = _show  using = Animation_FadeIn_Quick  on_start = "[GetScriptedGui('wizard_mana_start_init').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
 	state = { name = _hide  using = Animation_FadeOut_Quick }

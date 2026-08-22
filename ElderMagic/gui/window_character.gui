@@ -11331,20 +11331,86 @@ types WizardMagicPowerTypes {
 		vbox = {
 			set_parent_size_to_minimum = yes
 			margin = { 10 10 }
-			hbox = {
-				name = "heading"
-				layoutpolicy_horizontal = expanding
-				margin = { 5 5 }
-				background = { using = Background_Area }
-				text_single = { text = "WIZARD_MAGIC_POWER_TOOLTIP_HEADER" default_format = "#T" layoutpolicy_horizontal = expanding min_width = 200 autoresize = yes }
-			}
-			hbox = {
-				margin = { 8 4 }
-				spacing = 10
-				text_single = { text = "WIZARD_MAGIC_POWER_TOTAL_LABEL" default_format = "#bold" min_width = 180 autoresize = yes using = Font_Size_Small }
-				expand = {}
-				text_single = { raw_text = "[Character.MakeScope.ScriptValue('wizard_total_magic_power')]" default_format = "#bold #color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
-			}
-		}
-	}
-}
+                        spacing = 1
+                        min_width = 240
+
+                        hbox = {
+                                name = "heading"
+                                layoutpolicy_horizontal = expanding
+                                margin = { 5 5 }
+                                background = { using = Background_Area }
+                                text_single = { text = "WIZARD_MAGIC_POWER_TOOLTIP_HEADER" default_format = "#T" layoutpolicy_horizontal = expanding min_width = 220 autoresize = yes align = hcenter|nobaseline }
+                        }
+
+                        divider_light = { layoutpolicy_horizontal = expanding margin = { 0 4 } }
+
+                        # Potential ladder — one tier is active at most
+                        hbox = {
+                                visible = "[GreaterThan_CFixedPoint( Character.MakeScope.ScriptValue('wizard_potential_power'), '(CFixedPoint)0' )]"
+                                layoutpolicy_horizontal = expanding
+                                margin = { 6 2 }
+                                spacing = 4
+                                text_single = { text = "WIZARD_MAGIC_POWER_POTENTIAL_LABEL" default_format = "#low" using = Font_Size_Small layoutpolicy_horizontal = expanding autoresize = yes }
+                                text_single = { raw_text = "+[Character.MakeScope.ScriptValue('wizard_potential_power')]" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
+                        }
+
+                        # Lore mastery rows — each shown only when the character has lore XP above 0
+                        hbox = {
+                                visible = "[GreaterThan_CFixedPoint( Character.MakeScope.ScriptValue('wizard_fire_lore_power'), '(CFixedPoint)0' )]"
+                                layoutpolicy_horizontal = expanding
+                                margin = { 6 2 }
+                                spacing = 4
+                                text_single = { text = "trait_lore_of_fire" default_format = "#low" using = Font_Size_Small layoutpolicy_horizontal = expanding autoresize = yes }
+                                text_single = { raw_text = "+[Character.MakeScope.ScriptValue('wizard_fire_lore_power')]" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
+                        }
+                        hbox = {
+                                visible = "[GreaterThan_CFixedPoint( Character.MakeScope.ScriptValue('wizard_earth_lore_power'), '(CFixedPoint)0' )]"
+                                layoutpolicy_horizontal = expanding
+                                margin = { 6 2 }
+                                spacing = 4
+                                text_single = { text = "trait_lore_of_earth" default_format = "#low" using = Font_Size_Small layoutpolicy_horizontal = expanding autoresize = yes }
+                                text_single = { raw_text = "+[Character.MakeScope.ScriptValue('wizard_earth_lore_power')]" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
+                        }
+                        hbox = {
+                                visible = "[GreaterThan_CFixedPoint( Character.MakeScope.ScriptValue('wizard_water_lore_power'), '(CFixedPoint)0' )]"
+                                layoutpolicy_horizontal = expanding
+                                margin = { 6 2 }
+                                spacing = 4
+                                text_single = { text = "trait_lore_of_water" default_format = "#low" using = Font_Size_Small layoutpolicy_horizontal = expanding autoresize = yes }
+                                text_single = { raw_text = "+[Character.MakeScope.ScriptValue('wizard_water_lore_power')]" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
+                        }
+                        hbox = {
+                                visible = "[GreaterThan_CFixedPoint( Character.MakeScope.ScriptValue('wizard_death_lore_power'), '(CFixedPoint)0' )]"
+                                layoutpolicy_horizontal = expanding
+                                margin = { 6 2 }
+                                spacing = 4
+                                text_single = { text = "trait_lore_of_death" default_format = "#low" using = Font_Size_Small layoutpolicy_horizontal = expanding autoresize = yes }
+                                text_single = { raw_text = "+[Character.MakeScope.ScriptValue('wizard_death_lore_power')]" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
+                        }
+                        hbox = {
+                                visible = "[GreaterThan_CFixedPoint( Character.MakeScope.ScriptValue('wizard_high_lore_power'), '(CFixedPoint)0' )]"
+                                layoutpolicy_horizontal = expanding
+                                margin = { 6 2 }
+                                spacing = 4
+                                text_single = { text = "trait_lore_of_high_magic" default_format = "#low" using = Font_Size_Small layoutpolicy_horizontal = expanding autoresize = yes }
+                                text_single = { raw_text = "+[Character.MakeScope.ScriptValue('wizard_high_lore_power')]" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
+                        }
+
+                        # Battlemage
+                        hbox = {
+                                visible = "[GreaterThan_CFixedPoint( Character.MakeScope.ScriptValue('wizard_battlemage_power'), '(CFixedPoint)0' )]"
+                                layoutpolicy_horizontal = expanding
+                                margin = { 6 2 }
+                                spacing = 4
+                                text_single = { text = "trait_battlemage" default_format = "#low" using = Font_Size_Small layoutpolicy_horizontal = expanding autoresize = yes }
+                                text_single = { raw_text = "+[Character.MakeScope.ScriptValue('wizard_battlemage_power')]" default_format = "#color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
+                        }
+
+                        divider_light = { layoutpolicy_horizontal = expanding margin = { 0 4 } }
+
+                        # Total
+                        hbox = {
+                                layoutpolicy_horizontal = expanding
+                                margin = { 6 2 }
+                                spacing = 4
+                                text_single = { text = "WIZARD_MAGIC_POWER_TOTAL_LABEL" default_format = "#bold" using = Font_Size_Small layoutpolicy_horizontal = expanding autoresize = yes }

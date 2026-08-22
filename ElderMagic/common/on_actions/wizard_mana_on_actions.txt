@@ -1,6 +1,4 @@
-# Confirmed working pattern from CK3 wiki (Shrek TC example):
-# on_game_start + on_actions = {} is append-safe and fires in global scope.
-# set_global_variable works from global scope - no every_player needed.
+# on_game_start fires in global scope; set_global_variable works from there.
 on_game_start = {
 	on_actions = { wizard_mana_init }
 }
@@ -12,4 +10,9 @@ wizard_mana_init = {
 			set_global_variable = { name = wizard_mana_start_year value = current_year }
 		}
 	}
+}
+
+# quarterly_playable_pulse is the most frequent scripted pulse in CK3 (fires 4x per year)
+quarterly_playable_pulse = {
+	events = { wizard_mana.0002 }
 }

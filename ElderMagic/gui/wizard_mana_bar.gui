@@ -6,7 +6,7 @@ window = {
 	size = { 110 46 }
 	movable = no
 	allow_outside = yes
-	visible = "[And( GetPlayer.IsValid, Not( GetVariableSystem.Exists( 'wizard_char_win_open' ) ) )]"
+	visible = "[And( GetPlayer.IsValid, Not( GetVariableSystem.Exists( 'hide_bottom_left_HUD' ) ) )]"
 
 	state = { name = _show  using = Animation_FadeIn_Quick  on_start = "[GetScriptedGui('wizard_mana_start_init').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
 	state = { name = _hide  using = Animation_FadeOut_Quick }
@@ -38,7 +38,7 @@ window = {
 		parentanchor = left|vcenter
 		widgetanchor = left|vcenter
 		position = { 44 10 }
-		raw_text = "+[GetPlayer.MakeScope.ScriptValue('wizard_mana_gain_rate')]/mo"
+		raw_text = "+[GetPlayer.MakeScope.ScriptValue('wizard_mana_annual_rate')]/yr"
 		using = Font_Size_Small
 		default_format = "#color:{0.3,0.65,0.95,1.0}"
 		align = left|nobaseline

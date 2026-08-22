@@ -21,21 +21,35 @@ wizard_mana_gain_rate = {
 	if = { limit = { has_trait = magic_education_5 } add = 5 }
 }
 
-# Computes total accumulated mana without any periodic events.
-# Formula: (current_year - start_year) x 12 months x monthly_rate - mana_spent
-# wizard_mana_start_year is set on trait on_add.
-# wizard_mana_spent tracks cumulative spell costs.
+wizard_mana_annual_rate = {
+	value = 0
+	add = wizard_mana_gain_rate
+	multiply = 12
+}
+
+# wizard_mana (gross accumulated) grows monthly via wizard_mana.0002 event.
+# Falls back to yearly formula for saves before the first monthly tick.
 wizard_mana_total = {
 	value = 0
+	# Primary: stored monthly gross pool
 	if = {
-		limit = { has_global_variable = wizard_mana_start_year }
+		limit = { has_global_variable = wizard_mana }
+		add = global_var:wizard_mana
+	}
+	if = {
+		limit = { has_global_variable = wizard_mana  has_global_variable = wizard_mana_spent }
+		subtract = global_var:wizard_mana_spent
+	}
+	# Legacy fallback: yearly formula until first monthly event fires
+	if = {
+		limit = { NOT = { has_global_variable = wizard_mana }  has_global_variable = wizard_mana_start_year }
 		add = current_year
 		subtract = global_var:wizard_mana_start_year
 		multiply = 12
 		multiply = wizard_mana_gain_rate
 	}
 	if = {
-		limit = { has_global_variable = wizard_mana_spent }
+		limit = { NOT = { has_global_variable = wizard_mana }  has_global_variable = wizard_mana_start_year  has_global_variable = wizard_mana_spent }
 		subtract = global_var:wizard_mana_spent
 	}
 	min = 0

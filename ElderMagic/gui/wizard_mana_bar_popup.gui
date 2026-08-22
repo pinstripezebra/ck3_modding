@@ -32,7 +32,7 @@ autoresize = yes
 using = Font_Size_Small
 }
 text_single = {
-raw_text = "+[GetPlayer.MakeScope.ScriptValue('wizard_mana_gain_rate')]/mo"
+raw_text = "+[GetPlayer.MakeScope.ScriptValue('wizard_mana_annual_rate')]/yr"
 default_format = "#color:{0.45,0.8,1.0,1.0}"
 using = Font_Size_Small
 }

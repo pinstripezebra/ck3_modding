@@ -1,26 +1,3 @@
-# Accumulates one year of mana. Uses global variable — works from any event scope.
-wizard_accumulate_mana = {
-	if = {
-		limit = { NOT = { has_global_variable = wizard_mana } }
-		set_global_variable = { name = wizard_mana value = 0 }
-	}
-	# Add 12x monthly rate (one full year's worth)
-	if = { limit = { has_trait = the_spark }       change_global_variable = { name = wizard_mana add = 12 } }
-	if = { limit = { has_trait = the_conduit }     change_global_variable = { name = wizard_mana add = 24 } }
-	if = { limit = { has_trait = the_resonator }   change_global_variable = { name = wizard_mana add = 48 } }
-	if = { limit = { has_trait = the_vector }      change_global_variable = { name = wizard_mana add = 72 } }
-	if = { limit = { has_trait = the_capacitor }   change_global_variable = { name = wizard_mana add = 96 } }
-	if = { limit = { has_trait = the_dynamo }      change_global_variable = { name = wizard_mana add = 120 } }
-	if = { limit = { has_trait = the_nexus }       change_global_variable = { name = wizard_mana add = 144 } }
-	if = { limit = { has_trait = the_singularity } change_global_variable = { name = wizard_mana add = 168 } }
-	if = { limit = { has_trait = the_catalyst }    change_global_variable = { name = wizard_mana add = 192 } }
-	if = { limit = { has_trait = the_horizon }     change_global_variable = { name = wizard_mana add = 240 } }
-	if = {
-		limit = { global_var:wizard_mana > 1000 }
-		set_global_variable = { name = wizard_mana value = 1000 }
-	}
-}
-
 # Recalculates wizard_mana_gain display variable only (no pool change).
 wizard_update_mana_gain = {
 	set_variable = { name = wizard_mana_gain value = 0 }

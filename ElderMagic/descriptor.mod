@@ -4,3 +4,4 @@ tags={
 }
 name="Elder Magic"
 supported_version="1.19.*"
+picture="thumbnail.png"

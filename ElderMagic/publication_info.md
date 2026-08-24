@@ -5,59 +5,35 @@
 
 ---
 
-## Title
+[h2] Overview[/h2]
+Elder Magic adds a progression-driven magic system to Crusader Kings III, including magic traits, education, and spellcasting system.
 
-Elder Magic
 
----
+Characters with the innate potential to wield magic, represented by 10 levels of wizard potential traits,  can study different lores of magic, unlocking the ability to cast spells as well as passive bonuses. Mage themed innovations, men at arms units, and building add additional immersion.
 
-## Description
+[h2]  Magic Progression[/h2]
+[list]
+[*] Lores of Magic: Five Lores -  Fire, Earth, Water, Death, and High Magic — each with XP-tracked traits that unlock new bonuses as mastery grows from 25 → 50 → 75 → 100
+[*] Magic Potential Traits - Representing a characters innate magic potential these genetic traits range from level 1(novice) to level 10(godlike) and provide increasing buffs to lifespan, prowess, and mana generation
+[*] Magic Education: tiers (1–5) that shape a character's magical aptitude from childhood
+[/list]
 
-Elder Magic adds a deep, progression-driven magic system to Crusader Kings III.
+[h2] Mana System[/h2]
+Characters maintain a mana pool that regenerates passively and is spent when casting spells. Spells are unlocked as a character gains more xp in a given field of magic and can be cast from a Spellbook menu accessed from within the character menu.
 
-### Overview
+[h2] Learning and Improving Magic Lores[/h2]
+- Learning Lore of Magic: Done with the 'Pilgrimage of Magic Decision', has a % chance of the character either learning a lore of magic, suffering an injury, or acquiring stress on failure
+- Improving Lore of Magic: Done with 'study lore of magic' decision, taking this decision will grant xp after a 6 month period but comes with risks - a chance of accident resulting in Injury or a new Mana-Scarred debuff  trait(3 tiers) 
 
-Characters with the innate potential to wield magic can study the ancient lores, master elemental and mystical disciplines, and rise to become feared Archmages — or be broken by the strain of it.
+[h2] Technologies and Units[/h2]
+- Three tiered magic technologies resulting in the ability to recruit steadily improving magic men at arms units - from humble hedge mages to battle mages
 
-### Magic Progression
+[h2] Unique Buildings[/h2]
+- Wizard Tower: Upgradeable tower that buffs income and development, linked to first magic technology.
 
-- Five Lore schools: Fire, Earth, Water, Death, and High Magic — each with XP-tracked traits that unlock new bonuses as mastery grows from 25 → 50 → 75 → 100
-- Potential ladder traits (The Spark → The Conduit → … → The Horizon) that scale your mana pool as you grow in power
-- Ascendant Lore traits granted upon fully mastering a school and passing a ritual — permanent +5 Prowess and a health boost
-- Magic Education tiers (1–5) that shape a character's magical aptitude from childhood
 
-### Mana System
+[h2] Progressing with Mod [/h2]
+As a general note most event checks and xp from studying magic are tied to learning to characters with a high learning state will progress better.
 
-- Characters maintain a mana pool that regenerates passively and is spent when casting spells
-- The Mana-Scarred debuff (3 tiers) can afflict characters who overextend — degrading health and prowess until it clears
-
-### Spells & the Arcane Codex
-
-- Open the Arcane Codex spellbook to browse and select spells organised by lore
-- Learn spells through study (success chance scales with Learning skill)
-- Cast spells via decision — effects vary by school and tier (Fire: devastation; Earth: resilience; Water: healing; Death: curses; High Magic: reality-bending)
-- Spell tiers 1 / 2 / 3 with escalating mana costs
-
-### Wizard Tower
-
-5-level duchy capital building that boosts castle income and county development.
-
-### Magic Religions
-
-- **Order of the White Council** — guardians of arcane law
-- **The Dragon Worshipers** — who seek power through draconic communion
-- **The Naturalists** — who draw magic from the living world
-- **The Necromancers** — who harvest power from death itself
-
-### Events & Interactions
-
-- Study lore and study magic events with outcomes weighted by your Learning skill
-- Teach magic interactions to pass lore knowledge to another character
-- Wardship events for young mages under a mentor
-- Pilgrimage of Magic — a multi-step journey that can deepen mastery or go catastrophically wrong
-- Ancient Ruins exploration events
-- Ascendant ritual events with success/failure outcomes
-
-### Compatibility
-
-CK3 1.19.\* — No vanilla files overwritten. Uses scripted triggers, scripted effects, and scripted GUIs throughout. Compatible with most other mods.
+[h2] Compatibility [/h2]
+This mod will likely have conflicts with ones that modify the character menu; there is a compatibility patch for AGOT.

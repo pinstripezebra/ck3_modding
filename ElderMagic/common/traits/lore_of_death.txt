@@ -12,22 +12,22 @@
 	track = {
 	25 = {
 		prowess = 2
-		hard_casualty_modifier = 0.05
+		enemy_hard_casualty_modifier = 0.05
 	}
 	50 = {
 		prowess = 4
 		monthly_prestige = 0.05
-		hard_casualty_modifier = 0.10
+		enemy_hard_casualty_modifier = 0.10
 	}
 	75 = {
 		prowess = 6
 		monthly_prestige = 0.1
-		hard_casualty_modifier = 0.15
+		enemy_hard_casualty_modifier = 0.15
 	}
 	100 = {
 		prowess = 8
 		monthly_prestige = 0.2
-		hard_casualty_modifier = 0.20
+		enemy_hard_casualty_modifier = 0.20
 	}
 	}
 

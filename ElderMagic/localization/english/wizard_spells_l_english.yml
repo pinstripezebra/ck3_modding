@@ -15,11 +15,6 @@
  learn_spell_decision_tooltip:0 "Success chance scales with your Learning."
  learn_spell_decision_confirm:0 "Begin Study"
 
- cast_spell_decision:0 "Cast Spell"
- cast_spell_decision_desc:0 "Channel mana to cast your currently selected learned spell."
- cast_spell_decision_tooltip:0 "Consumes mana based on spell tier."
- cast_spell_decision_confirm:0 "Cast"
-
  wizard_learn_spell_cooldown:0 "Recently Studied a Spell"
  wizard_learn_spell_cooldown_desc:0 "This character recently focused on learning a spell and must wait before attempting another."
 

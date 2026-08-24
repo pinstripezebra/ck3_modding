@@ -81,6 +81,9 @@ wizard_spells.2001 = {
 	type = character_event
 	title = wizard_spells.2001.t
 	desc = wizard_spells.2001.desc
+	theme = learning
+	left_portrait = { character = root animation = personality_bold }
+	override_background = { reference = "study" }
 
 	option = {
 		name = wizard_spells.2001.a

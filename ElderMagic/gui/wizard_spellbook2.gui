@@ -244,6 +244,7 @@ window = {
 				name = "arcane_cast"
 				size = { 164 40 }
 				onclick  = "[GetScriptedGui('wizard_spellbook_cast_selected').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+				onclick  = "[GetVariableSystem.Clear( 'wizard_spellbook_open' )]"
 				hbox = {
 					layoutpolicy_horizontal = expanding
 					layoutpolicy_vertical   = expanding

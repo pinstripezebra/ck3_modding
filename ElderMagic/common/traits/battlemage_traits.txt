@@ -11,10 +11,12 @@ battlemage = {
 	33 = {
 		prowess = 4
 		advantage = 5
+		enemy_hard_casualty_modifier = 0.05
 	}
 	66 = {
 		prowess = 6
 		advantage = 8
+		enemy_hard_casualty_modifier = 0.10
 	}
 	}
 

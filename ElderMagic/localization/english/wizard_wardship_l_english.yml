@@ -5,3 +5,7 @@ l_english:
  wizard_wardship_toast_water_desc:0 "[ROOT.GetFirstName] has absorbed the flowing mysteries of water from their guardian's tutelage, awakening the Lore of Water within them."
  wizard_wardship_toast_death_desc:0 "[ROOT.GetFirstName] has glimpsed the boundary between the living and dead under their guardian's guidance, awakening the Lore of Death within them."
  wizard_wardship_toast_high_magic_desc:0 "[ROOT.GetFirstName] has begun to grasp the unified theory of arcane forces through their guardian's teachings, awakening the Lore of High Magic within them."
+
+ wizard_wardship.0002.t:0 "A Mage Comes of Age"
+ wizard_wardship.0002.desc:0 "Years spent learning at the feet of your guardian have prepared you well. The arcane principles woven into your upbringing have taken root, awakening a true Lore of Magic within you on this, your sixteenth year."
+ wizard_wardship.0002.a:0 "My guardian's teachings have made me what I am."

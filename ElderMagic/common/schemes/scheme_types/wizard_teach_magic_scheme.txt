@@ -14,7 +14,7 @@
 	uses_resistance = no
 	base_progress_goal = 100
 	base_maximum_success = 85
-	minimum_success = 20
+	minimum_success = 40
 
 	allow = {
 		is_adult = yes
@@ -45,12 +45,16 @@
 			}
 		}
 		scope:owner = {
+			set_variable = {
+				name = wizard_teach_target
+				value = scope:target
+			}
 			if = {
 				limit = { exists = scope:scheme_successful }
-				trigger_event = { on_action = wizard_teach_magic_success }
+				trigger_event = wizard_teach_magic.0001
 			}
 			else = {
-				trigger_event = { on_action = wizard_teach_magic_failure }
+				trigger_event = wizard_teach_magic.0002
 			}
 		}
 		end_scheme = yes

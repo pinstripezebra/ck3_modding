@@ -5,6 +5,37 @@ yearly_playable_pulse = {
 	on_actions = { wizard_wardship_magic_check }
 }
 
+# Coming-of-age lore grant: fires once when a potential-bearing ward turns 16.
+on_comes_of_age = {
+	on_actions = { wizard_wardship_coming_of_age_check }
+}
+
+wizard_wardship_coming_of_age_check = {
+	effect = {
+		if = {
+			limit = {
+				wizard_has_any_magic_potential_trait = yes
+				liege = {
+					wizard_has_any_lore_trait = yes
+					any_ward = { this = prev }
+				}
+				OR = {
+					AND = { liege = { has_trait = lore_of_fire }       NOT = { has_trait = lore_of_fire } }
+					AND = { liege = { has_trait = lore_of_earth }      NOT = { has_trait = lore_of_earth } }
+					AND = { liege = { has_trait = lore_of_water }      NOT = { has_trait = lore_of_water } }
+					AND = { liege = { has_trait = lore_of_death }      NOT = { has_trait = lore_of_death } }
+					AND = { liege = { has_trait = lore_of_high_magic } NOT = { has_trait = lore_of_high_magic } }
+				}
+			}
+			liege = { save_scope_as = warding_guardian }
+			random = {
+				chance = 85
+				trigger_event = wizard_wardship.0002
+			}
+		}
+	}
+}
+
 wizard_wardship_magic_check = {
 	effect = {
 		if = {

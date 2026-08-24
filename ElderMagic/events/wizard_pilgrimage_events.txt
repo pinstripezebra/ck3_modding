@@ -5,11 +5,12 @@ wizard_magic_pilgrimage.1001 = {
 	title = wizard_magic_pilgrimage.1001.t
 	desc = wizard_magic_pilgrimage.1001.desc
 	theme = learning
+	left_portrait = { character = root }
 
 	immediate = {
 		add_character_flag = wizard_magic_destination_1
 		trigger_event = {
-			id = wizard_magic_pilgrimage.2001
+			id = wizard_magic_pilgrimage.2000
 			days = 120
 		}
 	}
@@ -24,11 +25,12 @@ wizard_magic_pilgrimage.1002 = {
 	title = wizard_magic_pilgrimage.1002.t
 	desc = wizard_magic_pilgrimage.1002.desc
 	theme = learning
+	left_portrait = { character = root }
 
 	immediate = {
 		add_character_flag = wizard_magic_destination_2
 		trigger_event = {
-			id = wizard_magic_pilgrimage.2001
+			id = wizard_magic_pilgrimage.2000
 			days = 120
 		}
 	}
@@ -43,11 +45,12 @@ wizard_magic_pilgrimage.1003 = {
 	title = wizard_magic_pilgrimage.1003.t
 	desc = wizard_magic_pilgrimage.1003.desc
 	theme = learning
+	left_portrait = { character = root }
 
 	immediate = {
 		add_character_flag = wizard_magic_destination_3
 		trigger_event = {
-			id = wizard_magic_pilgrimage.2001
+			id = wizard_magic_pilgrimage.2000
 			days = 120
 		}
 	}
@@ -62,11 +65,12 @@ wizard_magic_pilgrimage.1004 = {
 	title = wizard_magic_pilgrimage.1004.t
 	desc = wizard_magic_pilgrimage.1004.desc
 	theme = learning
+	left_portrait = { character = root }
 
 	immediate = {
 		add_character_flag = wizard_magic_destination_4
 		trigger_event = {
-			id = wizard_magic_pilgrimage.2001
+			id = wizard_magic_pilgrimage.2000
 			days = 120
 		}
 	}
@@ -81,11 +85,12 @@ wizard_magic_pilgrimage.1005 = {
 	title = wizard_magic_pilgrimage.1005.t
 	desc = wizard_magic_pilgrimage.1005.desc
 	theme = learning
+	left_portrait = { character = root }
 
 	immediate = {
 		add_character_flag = wizard_magic_destination_5
 		trigger_event = {
-			id = wizard_magic_pilgrimage.2001
+			id = wizard_magic_pilgrimage.2000
 			days = 120
 		}
 	}
@@ -100,11 +105,12 @@ wizard_magic_pilgrimage.1006 = {
 	title = wizard_magic_pilgrimage.1006.t
 	desc = wizard_magic_pilgrimage.1006.desc
 	theme = learning
+	left_portrait = { character = root }
 
 	immediate = {
 		add_character_flag = wizard_magic_destination_6
 		trigger_event = {
-			id = wizard_magic_pilgrimage.2001
+			id = wizard_magic_pilgrimage.2000
 			days = 120
 		}
 	}
@@ -119,11 +125,12 @@ wizard_magic_pilgrimage.1007 = {
 	title = wizard_magic_pilgrimage.1007.t
 	desc = wizard_magic_pilgrimage.1007.desc
 	theme = learning
+	left_portrait = { character = root }
 
 	immediate = {
 		add_character_flag = wizard_magic_destination_7
 		trigger_event = {
-			id = wizard_magic_pilgrimage.2001
+			id = wizard_magic_pilgrimage.2000
 			days = 120
 		}
 	}
@@ -138,11 +145,12 @@ wizard_magic_pilgrimage.1008 = {
 	title = wizard_magic_pilgrimage.1008.t
 	desc = wizard_magic_pilgrimage.1008.desc
 	theme = learning
+	left_portrait = { character = root }
 
 	immediate = {
 		add_character_flag = wizard_magic_destination_8
 		trigger_event = {
-			id = wizard_magic_pilgrimage.2001
+			id = wizard_magic_pilgrimage.2000
 			days = 120
 		}
 	}
@@ -157,6 +165,8 @@ wizard_magic_pilgrimage.2001 = {
 	title = wizard_magic_pilgrimage.2001.t
 	desc = wizard_magic_pilgrimage.2001.desc
 	theme = learning
+	left_portrait = { character = root animation = personality_content }
+	override_background = { reference = "study" }
 
 	immediate = {
 		remove_character_modifier = wizard_magic_pilgrimage_traveling
@@ -181,5 +191,49 @@ wizard_magic_pilgrimage.2001 = {
 
 	option = {
 		name = wizard_magic_pilgrimage.option_complete
+	}
+}
+
+# Hidden intermediary: rolls 50/50 success before showing the result event
+wizard_magic_pilgrimage.2000 = {
+	type = character_event
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_list = {
+			50 = { trigger_event = wizard_magic_pilgrimage.2001 }
+			50 = { trigger_event = wizard_magic_pilgrimage.2002 }
+		}
+	}
+}
+
+wizard_magic_pilgrimage.2002 = {
+	type = character_event
+	title = wizard_magic_pilgrimage.2002.t
+	desc = wizard_magic_pilgrimage.2002.desc
+	theme = learning
+	left_portrait = { character = root animation = personality_afraid }
+	override_background = { reference = "study" }
+
+	immediate = {
+		remove_character_modifier = wizard_magic_pilgrimage_traveling
+		remove_character_flag = wizard_magic_destination_1
+		remove_character_flag = wizard_magic_destination_2
+		remove_character_flag = wizard_magic_destination_3
+		remove_character_flag = wizard_magic_destination_4
+		remove_character_flag = wizard_magic_destination_5
+		remove_character_flag = wizard_magic_destination_6
+		remove_character_flag = wizard_magic_destination_7
+		remove_character_flag = wizard_magic_destination_8
+		random_list = {
+			30 = { add_stress = 50 }
+			40 = { add_trait = wounded_1 }
+			30 = {}
+		}
+	}
+
+	option = {
+		name = wizard_magic_pilgrimage.2002.a
 	}
 }

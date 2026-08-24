@@ -4,17 +4,11 @@
  wizard_learn_spell_btn:0 "Learn Spell"
  wizard_cast_spell_btn:0 "Cast Spell"
 
-
  WIZARD_MANA_BAR_MAX:0 "/ 1000"
  WIZARD_MANA_GAIN_PREFIX:0 "+"
  WIZARD_MANA_GAIN_SUFFIX:0 " mana/mo"
  WIZARD_MANA_TOOLTIP_HEADER:0 "Mana Generation"
  WIZARD_MANA_TOOLTIP_TOTAL:0 "Total"
- learn_spell_decision:0 "Learn Spell"
- learn_spell_decision_desc:0 "Attempt to master the currently selected spell from your spellbook."
- learn_spell_decision_tooltip:0 "Success chance scales with your Learning."
- learn_spell_decision_confirm:0 "Begin Study"
-
  wizard_learn_spell_cooldown:0 "Recently Studied a Spell"
  wizard_learn_spell_cooldown_desc:0 "This character recently focused on learning a spell and must wait before attempting another."
 

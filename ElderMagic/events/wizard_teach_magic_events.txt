@@ -6,8 +6,14 @@ wizard_teach_magic.0001 = {
 	title = wizard_teach_magic.0001.t
 	desc = wizard_teach_magic.0001.desc
 	theme = learning
+	left_portrait = { character = root animation = personality_bold }
+	right_portrait = { character = scope:target animation = personality_content }
 
 	immediate = {
+		if = {
+			limit = { has_variable = wizard_teach_target }
+			var:wizard_teach_target = { save_scope_as = target }
+		}
 		if = {
 			limit = { exists = scope:target }
 			scope:target = { save_scope_as = target }
@@ -50,8 +56,14 @@ wizard_teach_magic.0002 = {
 	title = wizard_teach_magic.0002.t
 	desc = wizard_teach_magic.0002.desc
 	theme = learning
+	left_portrait = { character = root animation = personality_calm }
+	right_portrait = { character = scope:target animation = personality_pensive }
 
 	immediate = {
+		if = {
+			limit = { has_variable = wizard_teach_target }
+			var:wizard_teach_target = { save_scope_as = target }
+		}
 		if = {
 			limit = { exists = scope:target }
 			scope:target = { save_scope_as = target }

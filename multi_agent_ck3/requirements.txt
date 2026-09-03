@@ -9,8 +9,8 @@ langgraph-prebuilt>=1.1.0
 # Vector store
 chromadb>=1.5.9
 
-# MCP server
-mcp>=1.27.1
+# MCP server (2.x renamed FastMCP -> MCPServer; stay on 1.x)
+mcp>=1.27.1,<2
 
 # Image generation / processing
 replicate>=1.0.7

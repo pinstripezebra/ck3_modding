@@ -3,6 +3,11 @@
 	icon = lore_of_water.dds
 	health = 0.25
 
+	culture_modifier = {
+		parameter = sorcerous_heritage_lore_opinion
+		courtly_opinion = 15
+	}
+
 	on_add = {
 		if = {
 			limit = { NOT = { has_variable = wizard_water_xp_total } }

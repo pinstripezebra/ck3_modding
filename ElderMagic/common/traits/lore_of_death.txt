@@ -2,6 +2,11 @@
 	category = lifestyle
 	icon = lore_of_death.dds
 
+	culture_modifier = {
+		parameter = sorcerous_heritage_lore_opinion
+		courtly_opinion = 15
+	}
+
 	on_add = {
 		if = {
 			limit = { NOT = { has_variable = wizard_death_xp_total } }

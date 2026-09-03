@@ -1,0 +1,24 @@
+﻿l_english:
+
+ # --- Cultural Traditions ---
+ tradition_sorcerous_heritage:0 "Sorcerous Heritage"
+ tradition_sorcerous_heritage_desc:0 "Ages of unbroken sorcerous practice underpin this culture. Its mages inherit the refined workings, hard-won corrections, and buried warnings of countless forebears — and are made stronger for it."
+
+ tradition_necrotic_reanimators:0 "Necrotic Reanimators"
+ tradition_necrotic_reanimators_desc:0 "The dead do not rest in these lands; they labor. Centuries of refined necromantic practice have made corpse-craft an everyday trade, and this culture's necromancers raise the buried with inherited, unflinching skill."
+
+ # --- Tradition Parameters ---
+ culture_parameter_sorcerous_heritage_lore_opinion:0 "Characters with a Lore of Magic [trait|E] gain $courtly_vassal$ Opinion"
+
+ # --- Undead Men-at-Arms ---
+ skeleton_warriors:0 "Skeleton Warriors"
+ skeleton_warriors_desc:0 "Raised from the burial pits by rote and ritual, these bone-thin ranks feel neither fear nor fatigue. They strike weakly, but they hold a line long after living men would break — and they cost their master almost nothing."
+ skeleton_warriors_name:0 "Skeleton Warrior"
+ skeleton_warriors_name_plural:0 "Skeleton Warriors"
+ skeleton_warriors_name_flavor:0 "#F Raised from the burial pits by rote and ritual, these bone-thin ranks feel neither fear nor fatigue. They strike weakly, but they hold a line long after living men would break.#!"
+
+ corpse_colossus:0 "Corpse Colossus"
+ corpse_colossus_desc:0 "A mountain of stitched dead, bound with iron chain and necromantic sigil and driven forward by the will of its makers. It shrugs off wounds that would fell a company and walks through gates that would take an army days to breach."
+ corpse_colossus_name:0 "Corpse Colossus"
+ corpse_colossus_name_plural:0 "Corpse Colossi"
+ corpse_colossus_name_flavor:0 "#F A mountain of stitched dead, bound with iron chain and necromantic sigil and driven forward by the will of its makers.#!"

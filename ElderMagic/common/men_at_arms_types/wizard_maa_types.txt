@@ -91,3 +91,64 @@ mage_regiment = {
 
 	ai_quality = { value = 200 }
 }
+
+
+# --- Undead Men-at-Arms ---
+# Unlocked by the Necrotic Reanimators cultural tradition.
+
+skeleton_warriors = {
+	type = heavy_infantry
+	icon = skeleton_warriors
+
+	damage = 20
+	toughness = 60
+	pursuit = 0
+	screen = 0
+
+	stack = 100
+
+	terrain_bonus = {
+		plains = { damage = 10 }
+		drylands = { damage = 10 }
+	}
+
+	buy_cost = { gold = 50 }
+	low_maintenance_cost = { gold = 0.10 }
+	high_maintenance_cost = { gold = 0.20 }
+
+	can_recruit = {
+		valid_for_maa_trigger = { PARAMETER = unlock_maa_skeleton_warriors }
+	}
+
+	ai_quality = { value = 60 }
+}
+
+corpse_colossus = {
+	type = heavy_infantry
+	icon = corpse_colossus
+
+	damage = 80
+	toughness = 150
+	pursuit = 0
+	screen = 0
+
+	siege_tier = 1
+	siege_value = 0.2
+
+	stack = 25
+
+	terrain_bonus = {
+		plains = { damage = 10 }
+		drylands = { damage = 10 }
+	}
+
+	buy_cost = { gold = 100 }
+	low_maintenance_cost = { gold = 0.20 }
+	high_maintenance_cost = { gold = 0.40 }
+
+	can_recruit = {
+		valid_for_maa_trigger = { PARAMETER = unlock_maa_corpse_colossus }
+	}
+
+	ai_quality = { value = 140 }
+}

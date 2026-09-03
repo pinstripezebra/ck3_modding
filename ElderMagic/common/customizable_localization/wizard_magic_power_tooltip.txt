@@ -1,0 +1,80 @@
+WizardMagicPowerPotentialContribution = {
+	type = character
+	text = { trigger = { has_trait = the_spark } localization_key = WIZARD_MAGIC_POWER_POTENTIAL_1 }
+	text = { trigger = { has_trait = the_conduit } localization_key = WIZARD_MAGIC_POWER_POTENTIAL_2 }
+	text = { trigger = { has_trait = the_resonator } localization_key = WIZARD_MAGIC_POWER_POTENTIAL_3 }
+	text = { trigger = { has_trait = the_vector } localization_key = WIZARD_MAGIC_POWER_POTENTIAL_4 }
+	text = { trigger = { has_trait = the_capacitor } localization_key = WIZARD_MAGIC_POWER_POTENTIAL_5 }
+	text = { trigger = { has_trait = the_dynamo } localization_key = WIZARD_MAGIC_POWER_POTENTIAL_6 }
+	text = { trigger = { has_trait = the_nexus } localization_key = WIZARD_MAGIC_POWER_POTENTIAL_7 }
+	text = { trigger = { has_trait = the_singularity } localization_key = WIZARD_MAGIC_POWER_POTENTIAL_8 }
+	text = { trigger = { has_trait = the_catalyst } localization_key = WIZARD_MAGIC_POWER_POTENTIAL_9 }
+	text = { trigger = { has_trait = the_horizon } localization_key = WIZARD_MAGIC_POWER_POTENTIAL_10 }
+	text = { localization_key = WIZARD_MAGIC_POWER_EMPTY }
+}
+
+WizardMagicPowerFireContribution = {
+	type = character
+	text = { trigger = { has_trait = lore_of_fire } localization_key = WIZARD_MAGIC_POWER_FIRE_CONTRIBUTION }
+	text = { localization_key = WIZARD_MAGIC_POWER_EMPTY }
+}
+
+WizardMagicPowerEarthContribution = {
+	type = character
+	text = { trigger = { has_trait = lore_of_earth } localization_key = WIZARD_MAGIC_POWER_EARTH_CONTRIBUTION }
+	text = { localization_key = WIZARD_MAGIC_POWER_EMPTY }
+}
+
+WizardMagicPowerWaterContribution = {
+	type = character
+	text = { trigger = { has_trait = lore_of_water } localization_key = WIZARD_MAGIC_POWER_WATER_CONTRIBUTION }
+	text = { localization_key = WIZARD_MAGIC_POWER_EMPTY }
+}
+
+WizardMagicPowerDeathContribution = {
+	type = character
+	text = { trigger = { has_trait = lore_of_death } localization_key = WIZARD_MAGIC_POWER_DEATH_CONTRIBUTION }
+	text = { localization_key = WIZARD_MAGIC_POWER_EMPTY }
+}
+
+WizardMagicPowerHighContribution = {
+	type = character
+	text = { trigger = { has_trait = lore_of_high_magic } localization_key = WIZARD_MAGIC_POWER_HIGH_CONTRIBUTION }
+	text = { localization_key = WIZARD_MAGIC_POWER_EMPTY }
+}
+
+WizardMagicPowerAscendantFireContribution = {
+	type = character
+	text = { trigger = { has_trait = ascendant_lore_of_fire } localization_key = WIZARD_MAGIC_POWER_ASCENDANT_FIRE_CONTRIBUTION }
+	text = { localization_key = WIZARD_MAGIC_POWER_EMPTY }
+}
+
+WizardMagicPowerAscendantEarthContribution = {
+	type = character
+	text = { trigger = { has_trait = ascendant_lore_of_earth } localization_key = WIZARD_MAGIC_POWER_ASCENDANT_EARTH_CONTRIBUTION }
+	text = { localization_key = WIZARD_MAGIC_POWER_EMPTY }
+}
+
+WizardMagicPowerAscendantWaterContribution = {
+	type = character
+	text = { trigger = { has_trait = ascendant_lore_of_water } localization_key = WIZARD_MAGIC_POWER_ASCENDANT_WATER_CONTRIBUTION }
+	text = { localization_key = WIZARD_MAGIC_POWER_EMPTY }
+}
+
+WizardMagicPowerAscendantDeathContribution = {
+	type = character
+	text = { trigger = { has_trait = ascendant_lore_of_death } localization_key = WIZARD_MAGIC_POWER_ASCENDANT_DEATH_CONTRIBUTION }
+	text = { localization_key = WIZARD_MAGIC_POWER_EMPTY }
+}
+
+WizardMagicPowerAscendantHighContribution = {
+	type = character
+	text = { trigger = { has_trait = ascendant_lore_of_high_magic } localization_key = WIZARD_MAGIC_POWER_ASCENDANT_HIGH_CONTRIBUTION }
+	text = { localization_key = WIZARD_MAGIC_POWER_EMPTY }
+}
+
+WizardMagicPowerBattlemageContribution = {
+	type = character
+	text = { trigger = { has_trait = battlemage } localization_key = WIZARD_MAGIC_POWER_BATTLEMAGE_CONTRIBUTION }
+	text = { localization_key = WIZARD_MAGIC_POWER_EMPTY }
+}

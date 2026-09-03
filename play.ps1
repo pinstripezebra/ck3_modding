@@ -19,6 +19,8 @@ $RepoRoot  = $PSScriptRoot
 $CK3Exe    = "C:\Program Files (x86)\Steam\steamapps\common\Crusader Kings III\binaries\ck3.exe"
 $PythonExe = Join-Path $RepoRoot ".venv\Scripts\python.exe"
 $PubScript = Join-Path $RepoRoot "multi_agent_ck3\tools\publication.py"
+$DocumentsDir = [Environment]::GetFolderPath("MyDocuments")
+$ModDescriptor = Join-Path $DocumentsDir "Paradox Interactive\Crusader Kings III\mod\ElderMagic.mod"
 
 # --- resolve version from descriptor.mod when not supplied ---
 if (-not $Version) {
@@ -35,5 +37,10 @@ if (-not $SkipDeploy) {
 }
 
 # --- launch ---
-Write-Host "Launching CK3 (skipping launcher) ..." -ForegroundColor Green
-Start-Process -FilePath $CK3Exe -ArgumentList "-skiplauncher"
+if (-not (Test-Path $ModDescriptor)) {
+    throw "Local Elder Magic descriptor not found: $ModDescriptor"
+}
+
+Write-Host "Launching CK3 with the local Elder Magic mod (skipping launcher) ..." -ForegroundColor Green
+$ModArgument = '-mod="' + $ModDescriptor + '"'
+Start-Process -FilePath $CK3Exe -ArgumentList "-skiplauncher", $ModArgument

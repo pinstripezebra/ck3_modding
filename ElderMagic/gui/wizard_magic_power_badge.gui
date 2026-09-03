@@ -39,12 +39,4 @@ window = {
 		}
 	}
 
-	# Invisible button overlay provides tooltip — same pattern as wizard_mana_bar.gui
-	button = {
-		parentanchor = center
-		widgetanchor = center
-		size = { 120 26 }
-		using = tooltip_ne
-		tooltipwidget = { wizard_magic_power_breakdown = {} }
-	}
 }

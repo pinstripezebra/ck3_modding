@@ -34,8 +34,9 @@ Available layers (ascending z-order): bottom < middle < top < frontend.
 == Tooltip / popup widgets ==
 - `tooltipwidget = { my_type = {} }` renders adjacent to the element that owns it (hover element).
   It does NOT obey `parentanchor` of its enclosing `window`.
-- The root type for a tooltipwidget MUST be `vbox` (NOT `widget` or `container`).
-  Using `widget` or `container` as root causes CK3 to render the popup at the screen centre.
+- Use a `widget` root with `GeneralTooltipSetup`, `DefaultTooltipBackground`, and an inner
+    auto-sized `vbox` for a standard CK3 tooltip. A `vbox` root is also valid for simple popups.
+    Do not use a `container` root, which does not provide a compact anchored tooltip layout.
 - Define each tooltip type EXACTLY ONCE across all loaded .gui files. Duplicate type definitions
   cause CK3 to silently pick one and discard the other — this is a common cause of wrong-position popups.
 
@@ -115,9 +116,8 @@ COMPONENT_TEMPLATES: Dict[str, str] = {
 \t}
 }
 """,
-    # ── Tooltip/popup breakdown widget (MUST use vbox root) ───────────────────
-    # IMPORTANT: root type must be `vbox` — NOT `widget` or `container`.
-    # Using widget/container as root renders the popup at screen centre.
+    # ── Tooltip/popup breakdown widget ─────────────────────────────────────────
+    # CK3's standard pattern uses a widget root with an auto-sized inner vbox.
     # Reference: popup.gui (achievement_popup_window pattern).
     "popup_breakdown": """types MyNamespace
 {
@@ -375,19 +375,19 @@ def lint_gui_text(gui_text: str, file_hint: str = "(inline)") -> List[str]:
             issues.append(f"{file_hint}: duplicate type definition '{t}' — CK3 will silently drop one; causes wrong-position popups.")
         seen.add(t)
 
-    # ── CK3-specific: tooltipwidget with non-vbox root type ──────────────────
-    # If `tooltipwidget` references a type whose root is `widget` or `container`
-    # CK3 renders the popup at screen centre instead of near the element.
+    # ── CK3-specific: tooltipwidget with container root type ─────────────────
+    # Vanilla structured tooltips use `widget` roots. A `container` root lacks
+    # the compact, anchored layout contract required for these popups.
     tooltip_types = re.findall(r'tooltipwidget\s*=\s*\{\s*(\w+)\s*=', gui_text, re.IGNORECASE)
     for tt in tooltip_types:
         # Find the type definition root: `type <name> = <root>`
         root_match = re.search(rf'\btype\s+{re.escape(tt)}\s*=\s*(\w+)', gui_text, re.IGNORECASE)
         if root_match:
             root = root_match.group(1).lower()
-            if root in ("widget", "container"):
+            if root == "container":
                 issues.append(
                     f"{file_hint}: tooltipwidget type '{tt}' has root '{root}' — "
-                    f"must be 'vbox' or the popup will render at screen centre, not near the element."
+                    f"use a 'widget' root with an auto-sized inner vbox, or a 'vbox' root, for an anchored tooltip."
                 )
 
     # ── CK3-specific: bottom/right-anchored window missing allow_outside ─────

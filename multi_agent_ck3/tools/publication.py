@@ -66,15 +66,22 @@ def build_descriptor(
     mod_folder: pathlib.Path,
     version: str,
     supported_version: str,
+    picture: str | None = None,
+    remote_file_id: str | None = None,
 ) -> str:
     """Build the ``.mod`` / ``descriptor.mod`` contents with an absolute path."""
-    return (
+    out = (
         f'version="{version}"\n'
         f"tags={{\n\t\"Gameplay\"\n}}\n"
         f'name="{mod_name}"\n'
         f'supported_version="{supported_version}"\n'
         f'path="{mod_folder.as_posix()}"\n'
     )
+    if picture:
+        out += f'picture="{picture}"\n'
+    if remote_file_id:
+        out += f'remote_file_id="{remote_file_id}"\n'
+    return out
 
 
 def enable_in_dlc_load(ck3_dir: pathlib.Path, mod_name: str) -> None:
@@ -138,8 +145,26 @@ def publish_mod(
     if stripped:
         print(f"Stripped UTF-8 BOM from {stripped} script file(s).")
 
+    # Preserve picture= from source descriptor.mod
+    picture = None
+    src_descriptor = source / "descriptor.mod"
+    if src_descriptor.exists():
+        for line in src_descriptor.read_text(encoding="utf-8").splitlines():
+            if line.startswith("picture="):
+                picture = line.split('"')[1]
+                break
+
+    # Preserve remote_file_id= from existing deployed .mod pointer file
+    remote_file_id = None
+    pointer = mod_root / f"{mod_name}.mod"
+    if pointer.exists():
+        for line in pointer.read_text(encoding="utf-8").splitlines():
+            if line.startswith("remote_file_id="):
+                remote_file_id = line.split('"')[1]
+                break
+
     name_in_descriptor = display_name or mod_name
-    descriptor = build_descriptor(name_in_descriptor, target, version, supported_version)
+    descriptor = build_descriptor(name_in_descriptor, target, version, supported_version, picture, remote_file_id)
     (target / "descriptor.mod").write_text(descriptor, encoding="utf-8")
     (mod_root / f"{mod_name}.mod").write_text(descriptor, encoding="utf-8")
 

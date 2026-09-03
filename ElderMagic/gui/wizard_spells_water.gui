@@ -49,7 +49,7 @@ types WizardWaterSpells
 				}
 				widget = { size = { 1 90 }  background = { color = { 0.30 0.30 0.50 0.5 } } }
 				widget = { size = { 36 90 }
-					textbox = { parentanchor = center  widgetanchor = center  size = { 30 30 }  autoresize = no  align = hcenter|vcenter  using = Font_Size_Small  default_format = "#bold #color:{0.35,0.88,0.35,1.0}"  raw_text = "✓"  visible = "[GetScriptedGui('wizard_spell_water_1_selected').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+					textbox = { parentanchor = center  widgetanchor = center  size = { 30 30 }  autoresize = no  align = hcenter|vcenter  using = Font_Size_Small  default_format = "#bold #color:{0.35,0.88,0.35,1.0}"  raw_text = "✓"  visible = "[And( GetScriptedGui('wizard_spell_water_1_selected').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End ), GetScriptedGui('wizard_spell_water_1_known').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) )]" }
 				}
 			}
 		}
@@ -90,7 +90,7 @@ types WizardWaterSpells
 				}
 				widget = { size = { 1 90 }  background = { color = { 0.30 0.30 0.50 0.5 } } }
 				widget = { size = { 36 90 }
-					textbox = { parentanchor = center  widgetanchor = center  size = { 30 30 }  autoresize = no  align = hcenter|vcenter  using = Font_Size_Small  default_format = "#bold #color:{0.35,0.88,0.35,1.0}"  raw_text = "✓"  visible = "[GetScriptedGui('wizard_spell_water_2_selected').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+					textbox = { parentanchor = center  widgetanchor = center  size = { 30 30 }  autoresize = no  align = hcenter|vcenter  using = Font_Size_Small  default_format = "#bold #color:{0.35,0.88,0.35,1.0}"  raw_text = "✓"  visible = "[And( GetScriptedGui('wizard_spell_water_2_selected').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End ), GetScriptedGui('wizard_spell_water_2_known').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) )]" }
 				}
 			}
 		}
@@ -131,7 +131,7 @@ types WizardWaterSpells
 				}
 				widget = { size = { 1 90 }  background = { color = { 0.30 0.30 0.50 0.5 } } }
 				widget = { size = { 36 90 }
-					textbox = { parentanchor = center  widgetanchor = center  size = { 30 30 }  autoresize = no  align = hcenter|vcenter  using = Font_Size_Small  default_format = "#bold #color:{0.35,0.88,0.35,1.0}"  raw_text = "✓"  visible = "[GetScriptedGui('wizard_spell_water_3_selected').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]" }
+					textbox = { parentanchor = center  widgetanchor = center  size = { 30 30 }  autoresize = no  align = hcenter|vcenter  using = Font_Size_Small  default_format = "#bold #color:{0.35,0.88,0.35,1.0}"  raw_text = "✓"  visible = "[And( GetScriptedGui('wizard_spell_water_3_selected').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End ), GetScriptedGui('wizard_spell_water_3_known').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) )]" }
 				}
 			}
 		}

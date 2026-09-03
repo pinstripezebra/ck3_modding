@@ -83,8 +83,8 @@ def register(mcp, repo_root: pathlib.Path):
         Supported component names:
           modal_standard        - single-column vbox modal with close button
           modal_two_column      - two-pane container modal (left nav + right content)
-          popup_breakdown       - vbox-root tooltipwidget (achievement popup.gui pattern)
-                                  NOTE: root MUST be vbox — widget/container roots render at screen centre
+          popup_breakdown       - structured tooltipwidget (CK3 widget + inner vbox pattern)
+                                  NOTE: do not use a container root; widget and vbox roots are valid
           resource_row          - hbox label+value row for embedding in a vbox
           hud_overlay_widget    - bottom-centre persistent HUD overlay with allow_outside
           mana_progressbar      - bottom-left window with native progressbar element

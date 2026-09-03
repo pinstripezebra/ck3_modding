@@ -2313,8 +2313,7 @@ window = {
 							margin_right = 3
 
 							using = Animation_Character_Window_Refresh
-
-							tooltipwidget = { wizard_magic_power_breakdown = {} }
+							tooltip = "WIZARD_MAGIC_POWER_BREAKDOWN_TT"
 							using = tooltip_ne
 
 							icon = {
@@ -11325,14 +11324,16 @@ template Character_Window_Relation_Icon
 
 types WizardMagicPowerTypes {
 	type wizard_magic_power_breakdown = widget {
+		size = { 50 50 }
 		using = GeneralTooltipSetup
 		using = DefaultTooltipBackground
 		alwaystransparent = no
 		vbox = {
 			set_parent_size_to_minimum = yes
 			margin = { 10 10 }
-                        spacing = 1
-                        min_width = 240
+			spacing = 1
+			min_width = 240
+			ignoreinvisible = yes
 
                         hbox = {
                                 name = "heading"
@@ -11413,4 +11414,9 @@ types WizardMagicPowerTypes {
                                 layoutpolicy_horizontal = expanding
                                 margin = { 6 2 }
                                 spacing = 4
-                                text_single = { text = "WIZARD_MAGIC_POWER_TOTAL_LABEL" default_format = "#bold" using = Font_Size_Small layoutpolicy_horizontal = expanding autoresize = yes }
+								text_single = { text = "WIZARD_MAGIC_POWER_TOTAL_LABEL" default_format = "#bold" using = Font_Size_Small layoutpolicy_horizontal = expanding autoresize = yes }
+								text_single = { raw_text = "[Character.MakeScope.ScriptValue('wizard_total_magic_power')]" default_format = "#bold #color:{0.45,0.8,1.0,1.0}" using = Font_Size_Small align = right|nobaseline }
+							}
+				}
+			}
+		}

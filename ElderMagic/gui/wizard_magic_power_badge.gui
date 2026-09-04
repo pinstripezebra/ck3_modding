@@ -27,6 +27,8 @@ window = {
 			size = { 18 18 }
 			parentanchor = vcenter
 			texture = "gfx/interface/icons/traits/mana_flame_small.dds"
+			tooltip = "WIZARD_MAGIC_POWER_TT"
+			using = tooltip_ne
 		}
 
 		text_single = {

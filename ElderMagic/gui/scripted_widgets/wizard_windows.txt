@@ -1,4 +1,5 @@
 gui/wizard_mana_bar.gui = wizard_mana_bar
 gui/wizard_spellbook2.gui = wizard_spellbook_trigger
 gui/wizard_spellbook2.gui = wizard_spellbook_main
-# wizard_magic_power_badge removed — magic power is embedded in window_character.gui
+# wizard_magic_power_badge stays unregistered: hide_bottom_left_HUD is set by 15 vanilla
+# windows, so the badge floated on screen whenever any sidebar was open.

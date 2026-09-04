@@ -17,11 +17,13 @@ import argparse
 import json
 import os
 import pathlib
+import re
 import shutil
 import sqlite3
 import subprocess
 import sys
 import time
+from typing import Optional
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
@@ -44,7 +46,7 @@ MODS: list[tuple[str, str]] = [
 ]
 
 # .gui files the patch mod forks from a different base but must keep in sync.
-FORKED_GUI: list[str] = ["gui/window_character.gui"]
+FORKED_GUI: list[str] = []
 
 
 def check_gui_drift() -> list[str]:
@@ -190,6 +192,133 @@ def restore(ck3_dir: pathlib.Path) -> None:
             print(f"Removed {pointer.name}")
 
 
+def crash_report(ck3_dir: pathlib.Path) -> int:
+    """Summarize the most recent crash: mods loaded, exception, last game action."""
+    crashes = ck3_dir / "crashes"
+    folders = sorted(
+        (p for p in crashes.iterdir() if p.is_dir()) if crashes.is_dir() else [],
+        key=lambda p: p.stat().st_mtime,
+    )
+    if not folders:
+        print("No crash reports found.")
+        return 0
+
+    latest = folders[-1]
+    print(f"Latest crash: {latest.name}")
+
+    meta = latest / "meta.yml"
+    if meta.is_file():
+        for line in meta.read_text(encoding="utf-8", errors="ignore").splitlines():
+            if line.startswith(("DateTime:", "LaunchArguments:", "Mod_")):
+                print(f"  {line.strip()}")
+
+    exc = latest / "exception.txt"
+    if exc.is_file():
+        for line in exc.read_text(encoding="utf-8", errors="ignore").splitlines():
+            if "Exception" in line:
+                print(f"  {line.strip()}")
+
+    game_log = latest / "logs" / "game.log"
+    if game_log.is_file():
+        actions = [
+            ln.strip()
+            for ln in game_log.read_text(encoding="utf-8", errors="ignore").splitlines()
+            if "]: Open " in ln or "Loading save" in ln
+        ]
+        print("\n  Last UI actions before the crash:")
+        for line in actions[-3:]:
+            print(f"    {line}")
+    return 0
+
+
+def _category_indices(mod_root: pathlib.Path) -> dict[int, str]:
+    """category index -> category key, for one mod folder."""
+    found: dict[int, str] = {}
+    folder = mod_root / "common" / "character_interaction_categories"
+    if not folder.is_dir():
+        return found
+    for path in folder.rglob("*.txt"):
+        text = path.read_text(encoding="utf-8-sig", errors="ignore")
+        for key, index in re.findall(r"(\w+)\s*=\s*\{[^}]*?\bindex\s*=\s*(\d+)", text, re.S):
+            found[int(index)] = key
+    return found
+
+
+def check_interaction_category_indices(ck3_dir: pathlib.Path) -> list[str]:
+    """Interaction category indices must be unique AND contiguous from 0.
+
+    Vanilla's 00_character_interaction_categories.txt warns that a gap crashes the
+    game; a duplicate index breaks the interaction menu the same way.
+    """
+    ours: dict[int, str] = {}
+    for mod_name, _ in MODS:
+        ours.update(_category_indices(REPO_ROOT / mod_name))
+    if not ours:
+        return []
+
+    game_dir = CK3_EXE.parent.parent / "game"
+    others: dict[int, tuple[str, str]] = {
+        idx: (key, "vanilla") for idx, key in _category_indices(game_dir).items()
+    }
+    for entry in active_playset_mods(ck3_dir):
+        mod_dir = _mod_dir_for(ck3_dir, entry)
+        if mod_dir is None:
+            continue
+        for idx, key in _category_indices(mod_dir).items():
+            others[idx] = (key, mod_dir.name)
+
+    issues = []
+    for idx, key in sorted(ours.items()):
+        if idx in others:
+            other_key, source = others[idx]
+            issues.append(f"'{key}' index {idx} collides with '{other_key}' ({source})")
+
+    combined = set(others) | set(ours)
+    gaps = sorted(set(range(max(combined) + 1)) - combined)
+    if gaps:
+        issues.append(
+            f"index gap(s) at {gaps} — indices must run 0..{max(combined)} with no holes"
+        )
+    return issues
+
+
+def _mod_dir_for(ck3_dir: pathlib.Path, registry_entry: str) -> Optional[pathlib.Path]:
+    """Resolve `mod/x.mod` to the folder it points at."""
+    pointer = ck3_dir / registry_entry.replace("/", os.sep)
+    if not pointer.is_file():
+        return None
+    for line in pointer.read_text(encoding="utf-8", errors="ignore").splitlines():
+        if line.startswith("path="):
+            return pathlib.Path(line.split('"')[1])
+    return None
+
+
+def check_interaction_categories_exist(ck3_dir: pathlib.Path) -> list[str]:
+    """Every `category =` used by our interactions must resolve to a defined category.
+
+    An unresolved category is a null pointer and crashes the interaction menu.
+    """
+    defined: set[str] = set()
+    for source in [CK3_EXE.parent.parent / "game", *(REPO_ROOT / m for m, _ in MODS)]:
+        defined.update(_category_indices(source).values())
+    for entry in active_playset_mods(ck3_dir):
+        mod_dir = _mod_dir_for(ck3_dir, entry)
+        if mod_dir is not None:
+            defined.update(_category_indices(mod_dir).values())
+
+    issues = []
+    for mod_name, _ in MODS:
+        folder = REPO_ROOT / mod_name / "common" / "character_interactions"
+        if not folder.is_dir():
+            continue
+        for path in folder.rglob("*.txt"):
+            text = path.read_text(encoding="utf-8-sig", errors="ignore")
+            for category in set(re.findall(r"^\s*category\s*=\s*(\w+)", text, re.M)):
+                if category not in defined:
+                    issues.append(f"{path.name}: category '{category}' is not defined anywhere")
+    return sorted(issues)
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--no-launch", action="store_true", help="Deploy without starting CK3.")
@@ -203,9 +332,21 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="Deploy even when the forked .gui copies disagree.",
     )
+    parser.add_argument(
+        "--debug",
+        action="store_true",
+        help="Launch with -debug_mode, enabling the in-game console.",
+    )
+    parser.add_argument(
+        "--crash-report",
+        action="store_true",
+        help="Summarize the most recent crash instead of deploying.",
+    )
     args = parser.parse_args(argv)
 
     ck3_dir = ck3_user_dir()
+    if args.crash_report:
+        return crash_report(ck3_dir)
     if args.restore:
         restore(ck3_dir)
         return 0
@@ -218,6 +359,14 @@ def main(argv: list[str] | None = None) -> int:
         if not args.allow_gui_drift:
             print("\nAborting. Re-run with --allow-gui-drift to deploy anyway.", file=sys.stderr)
             return 1
+
+    clashes = check_interaction_category_indices(ck3_dir)
+    missing = check_interaction_categories_exist(ck3_dir)
+    if clashes or missing:
+        print("Interaction category problems (these crash the interaction menu):", file=sys.stderr)
+        for issue in clashes + missing:
+            print(f"  {issue}", file=sys.stderr)
+        return 1
 
     display_names = {display for _, display in MODS}
     shadowing = steam_ids_for(ck3_dir, display_names)
@@ -242,8 +391,11 @@ def main(argv: list[str] | None = None) -> int:
         print(f"Error: CK3 not found at {CK3_EXE}", file=sys.stderr)
         return 1
 
-    print("\nLaunching CK3 ...")
-    subprocess.Popen([str(CK3_EXE), "-skiplauncher"])
+    launch_args = [str(CK3_EXE), "-skiplauncher"]
+    if args.debug:
+        launch_args.append("-debug_mode")
+    print("\nLaunching CK3 ..." + (" (debug mode)" if args.debug else ""))
+    subprocess.Popen(launch_args)
     print("Verifying mods mount (this takes a moment) ...")
     ok = verify_mounted(ck3_dir, [f"{name}{PLAYTEST_SUFFIX}" for name, _ in MODS])
     print("\nAll playtest mods mounted." if ok else "\nSome mods failed to mount, see above.")

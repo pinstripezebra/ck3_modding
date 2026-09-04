@@ -1,5 +1,5 @@
 study_lore_interaction = {
-	category = interaction_category_personal
+	category = interaction_category_wizard_magic
 	interface_priority = 70
 	icon = learning
 	desc = study_lore_interaction_desc

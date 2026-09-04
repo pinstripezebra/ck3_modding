@@ -12,11 +12,17 @@
     Restore the original load order and delete the playtest copies.
 .PARAMETER AllowGuiDrift
     Deploy even when the forked .gui copies disagree on Elder Magic content.
+.PARAMETER DebugMode
+    Launch with -debug_mode so the in-game console is available.
+.PARAMETER CrashReport
+    Summarize the most recent crash instead of deploying.
 #>
 param(
     [switch]$NoLaunch,
     [switch]$Restore,
-    [switch]$AllowGuiDrift
+    [switch]$AllowGuiDrift,
+    [switch]$DebugMode,
+    [switch]$CrashReport
 )
 
 Set-StrictMode -Version Latest
@@ -29,6 +35,8 @@ $ScriptArgs = @()
 if ($NoLaunch)      { $ScriptArgs += "--no-launch" }
 if ($Restore)       { $ScriptArgs += "--restore" }
 if ($AllowGuiDrift) { $ScriptArgs += "--allow-gui-drift" }
+if ($DebugMode)     { $ScriptArgs += "--debug" }
+if ($CrashReport)   { $ScriptArgs += "--crash-report" }
 
 & $PythonExe $Script @ScriptArgs
 exit $LASTEXITCODE

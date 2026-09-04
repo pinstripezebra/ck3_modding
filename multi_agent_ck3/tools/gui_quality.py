@@ -1,5 +1,6 @@
 import pathlib
 import re
+from collections import Counter
 from typing import Dict, List, Optional
 
 
@@ -479,6 +480,50 @@ def lint_mod_gui(mod_path: pathlib.Path) -> Dict[str, List[str]]:
                 type_to_file[t] = str(gui_file)
 
     return findings
+
+
+# ── Forked-GUI drift check ────────────────────────────────────────────────────
+
+# ElderMagic and ElderMagicAgotCompPatch each override window_character.gui from a
+# different base (vanilla vs AGOT). Only the mod's own additions must stay in sync;
+# a fix applied to one copy and not the other has crashed the character window twice.
+_EM_MARKER_RE = re.compile(r"wizard_|WIZARD_|Elder Magic", re.IGNORECASE)
+_TYPES_BLOCK_RE = re.compile(r"^\s*types\s+\w+", re.IGNORECASE)
+
+
+def extract_mod_specific_lines(gui_text: str) -> List[str]:
+    """Normalized, non-comment lines that reference Elder Magic content.
+
+    Stops at the first top-level ``types`` block: shared widget types must be
+    defined in exactly one file, so they are expected to differ.
+    """
+    lines = []
+    for raw in gui_text.splitlines():
+        if _TYPES_BLOCK_RE.match(raw):
+            break
+        stripped = raw.strip()
+        if not stripped or stripped.startswith("#"):
+            continue
+        if _EM_MARKER_RE.search(stripped):
+            lines.append(" ".join(stripped.split()))
+    return lines
+
+
+def lint_forked_gui(base_path: pathlib.Path, fork_path: pathlib.Path) -> List[str]:
+    """Report Elder Magic lines present in one copy of a forked .gui but not the other."""
+    issues: List[str] = []
+    try:
+        base_lines = extract_mod_specific_lines(base_path.read_text(encoding="utf-8-sig"))
+        fork_lines = extract_mod_specific_lines(fork_path.read_text(encoding="utf-8-sig"))
+    except OSError as exc:
+        return [f"failed to read forked GUI pair: {exc}"]
+
+    base_counts, fork_counts = Counter(base_lines), Counter(fork_lines)
+    for line in sorted((base_counts - fork_counts).keys()):
+        issues.append(f"only in {base_path.name} ({base_path.parent.parent.name}): {line}")
+    for line in sorted((fork_counts - base_counts).keys()):
+        issues.append(f"only in {fork_path.name} ({fork_path.parent.parent.name}): {line}")
+    return issues
 
 
 # ── Spellbook generator ───────────────────────────────────────────────────────

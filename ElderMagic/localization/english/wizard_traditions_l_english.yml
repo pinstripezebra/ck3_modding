@@ -2,13 +2,17 @@
 
  # --- Cultural Traditions ---
  tradition_sorcerous_heritage:0 "Sorcerous Heritage"
+ tradition_sorcerous_heritage_name:0 "Sorcerous Heritage"
  tradition_sorcerous_heritage_desc:0 "Ages of unbroken sorcerous practice underpin this culture. Its mages inherit the refined workings, hard-won corrections, and buried warnings of countless forebears — and are made stronger for it."
 
  tradition_necrotic_reanimators:0 "Necrotic Reanimators"
+ tradition_necrotic_reanimators_name:0 "Necrotic Reanimators"
  tradition_necrotic_reanimators_desc:0 "The dead do not rest in these lands; they labor. Centuries of refined necromantic practice have made corpse-craft an everyday trade, and this culture's necromancers raise the buried with inherited, unflinching skill."
 
  # --- Tradition Parameters ---
  culture_parameter_sorcerous_heritage_lore_opinion:0 "Characters with a Lore of Magic [trait|E] gain $courtly_vassal$ Opinion"
+ culture_parameter_unlock_maa_skeleton_warriors:0 "Can recruit [GetMaA('skeleton_warriors').GetName] as [men_at_arms|E]"
+ culture_parameter_unlock_maa_corpse_colossus:0 "Can recruit [GetMaA('corpse_colossus').GetName] as [men_at_arms|E]"
 
  # --- Undead Men-at-Arms ---
  skeleton_warriors:0 "Skeleton Warriors"

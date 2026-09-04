@@ -10,10 +10,13 @@
     Deploy and set the load order without starting the game.
 .PARAMETER Restore
     Restore the original load order and delete the playtest copies.
+.PARAMETER AllowGuiDrift
+    Deploy even when the forked .gui copies disagree on Elder Magic content.
 #>
 param(
     [switch]$NoLaunch,
-    [switch]$Restore
+    [switch]$Restore,
+    [switch]$AllowGuiDrift
 )
 
 Set-StrictMode -Version Latest
@@ -23,8 +26,9 @@ $PythonExe = Join-Path $PSScriptRoot ".venv\Scripts\python.exe"
 $Script    = Join-Path $PSScriptRoot "multi_agent_ck3\tools\playtest.py"
 
 $ScriptArgs = @()
-if ($NoLaunch) { $ScriptArgs += "--no-launch" }
-if ($Restore)  { $ScriptArgs += "--restore" }
+if ($NoLaunch)      { $ScriptArgs += "--no-launch" }
+if ($Restore)       { $ScriptArgs += "--restore" }
+if ($AllowGuiDrift) { $ScriptArgs += "--allow-gui-drift" }
 
 & $PythonExe $Script @ScriptArgs
 exit $LASTEXITCODE

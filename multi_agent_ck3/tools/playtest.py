@@ -28,6 +28,8 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
 from tools import publication  # noqa: E402
 
+import gui_quality  # noqa: E402
+
 REPO_ROOT = pathlib.Path(__file__).resolve().parents[2]
 CK3_EXE = pathlib.Path(
     r"C:\Program Files (x86)\Steam\steamapps\common\Crusader Kings III\binaries\ck3.exe"
@@ -40,6 +42,19 @@ MODS: list[tuple[str, str]] = [
     ("ElderMagic", "Elder Magic"),
     ("ElderMagicAgotCompPatch", "Elder Magic - AGOT Compatibility Patch"),
 ]
+
+# .gui files the patch mod forks from a different base but must keep in sync.
+FORKED_GUI: list[str] = ["gui/window_character.gui"]
+
+
+def check_gui_drift() -> list[str]:
+    base_mod, fork_mod = MODS[0][0], MODS[1][0]
+    issues: list[str] = []
+    for rel in FORKED_GUI:
+        base, fork = REPO_ROOT / base_mod / rel, REPO_ROOT / fork_mod / rel
+        if base.is_file() and fork.is_file():
+            issues += gui_quality.lint_forked_gui(base, fork)
+    return issues
 
 
 def ck3_user_dir() -> pathlib.Path:
@@ -183,12 +198,26 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="Restore the original load order and delete the playtest copies.",
     )
+    parser.add_argument(
+        "--allow-gui-drift",
+        action="store_true",
+        help="Deploy even when the forked .gui copies disagree.",
+    )
     args = parser.parse_args(argv)
 
     ck3_dir = ck3_user_dir()
     if args.restore:
         restore(ck3_dir)
         return 0
+
+    drift = check_gui_drift()
+    if drift:
+        print("Forked GUI drift detected (a fix was applied to only one copy):", file=sys.stderr)
+        for issue in drift:
+            print(f"  {issue}", file=sys.stderr)
+        if not args.allow_gui_drift:
+            print("\nAborting. Re-run with --allow-gui-drift to deploy anyway.", file=sys.stderr)
+            return 1
 
     display_names = {display for _, display in MODS}
     shadowing = steam_ids_for(ck3_dir, display_names)

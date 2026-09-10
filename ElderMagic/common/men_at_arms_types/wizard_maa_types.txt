@@ -16,6 +16,11 @@ wandering_mages = {
 
 	stack = 25
 
+	counters = {
+		heavy_cavalry = 1
+		heavy_infantry = 0.5
+	}
+
 	terrain_bonus = {
 		plains = { damage = 10 }
 		drylands = { damage = 10 }
@@ -46,6 +51,11 @@ mage_squadron = {
 
 	stack = 25
 
+	counters = {
+		heavy_cavalry = 1
+		heavy_infantry = 0.5
+	}
+
 	terrain_bonus = {
 		plains = { damage = 10 }
 		drylands = { damage = 10 }
@@ -75,6 +85,11 @@ mage_regiment = {
 	siege_value = 0.4
 
 	stack = 25
+
+	counters = {
+		heavy_cavalry = 1
+		heavy_infantry = 0.5
+	}
 
 	terrain_bonus = {
 		plains = { damage = 10 }
@@ -107,6 +122,11 @@ skeleton_warriors = {
 
 	stack = 100
 
+	counters = {
+		skirmishers = 1
+		archers = 0.5
+	}
+
 	terrain_bonus = {
 		plains = { damage = 10 }
 		drylands = { damage = 10 }
@@ -136,6 +156,11 @@ corpse_colossus = {
 	siege_value = 0.2
 
 	stack = 25
+
+	counters = {
+		skirmishers = 1
+		archers = 0.5
+	}
 
 	terrain_bonus = {
 		plains = { damage = 10 }

@@ -19,7 +19,24 @@ wizard_mana_gain_rate = {
 	if = { limit = { has_trait = magic_education_3 } add = 3 }
 	if = { limit = { has_trait = magic_education_4 } add = 4 }
 	if = { limit = { has_trait = magic_education_5 } add = 5 }
+
+	# Light Magic lifestyle perks (Battlemage tree)
+	if = { limit = { has_perk = overcharged_casting_perk } add = 2 }
+	if = { limit = { has_perk = arcane_reserves_perk     } add = 3 }
 }
+
+# Multiplier applied to spell mana costs — stacks the Battlemage tree's two
+# casting-efficiency perks. Floored at 0.5 so costs can never hit zero.
+wizard_spell_cost_discount_mult = {
+	value = 1
+	if = { limit = { has_perk = efficient_casting_perk } subtract = 0.2 }
+	if = { limit = { has_perk = arcane_reserves_perk   } subtract = 0.15 }
+	min = 0.5
+}
+wizard_spell_mana_cost_tier_1 = { value = 100 multiply = wizard_spell_cost_discount_mult }
+wizard_spell_mana_cost_tier_2 = { value = 220 multiply = wizard_spell_cost_discount_mult }
+wizard_spell_mana_cost_tier_3 = { value = 400 multiply = wizard_spell_cost_discount_mult }
+wizard_spell_mana_cost_tier_4 = { value = 600 multiply = wizard_spell_cost_discount_mult }
 
 wizard_mana_annual_rate = {
 	value = 0

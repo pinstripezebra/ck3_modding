@@ -13,12 +13,12 @@ tradition_sorcerous_heritage = {
 		sorcerous_heritage_lore_opinion = yes
 	}
 
-	# CK3 only registers MaA modifiers per archetype, not per unit key, and every
-	# Elder Magic mage regiment is heavy_infantry.
+	# CK3 only registers MaA modifiers per archetype, not per unit key; every
+	# Elder Magic mage regiment uses the custom magi type.
 	character_modifier = {
-		heavy_infantry_max_size_add = 4
-		heavy_infantry_recruitment_cost_mult = -0.2
-		heavy_infantry_maintenance_mult = -0.2
+		magi_max_size_add = 4
+		magi_recruitment_cost_mult = -0.2
+		magi_maintenance_mult = -0.2
 	}
 
 	cost = {

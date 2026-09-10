@@ -1,0 +1,137 @@
+
+# Light Magic — Tree 1: The Battlemage
+# Combat-focused branch: bigger personal power, then two paths (defensive wards
+# / efficient casting) that both terminate in bonuses to the mage regiments
+# (wandering_mages, mage_squadron, mage_regiment — all type = magi).
+# These magi modifiers are only ever granted through this lifestyle, which is
+# only valid for characters with a Lore of Magic trait, so vanilla heavy
+# infantry (and Elder Magic's own undead MaA) is never buffed by them.
+
+focused_magic_perk = {
+	lifestyle = light_magic_lifestyle
+	tree = battlemage
+	position = { 2 0 }
+	icon = node_battlemage
+
+	character_modifier = {
+		prowess = 2
+		advantage = 2
+		owned_personal_scheme_success_chance_add = 10
+	}
+
+	effect = {
+		custom_description_no_bullet = {
+			text = focused_magic_effect
+		}
+	}
+}
+
+spell_wards_perk = {
+	lifestyle = light_magic_lifestyle
+	tree = battlemage
+	position = { 0 1.25 }
+	icon = node_battlemage
+
+	parent = focused_magic_perk
+
+	character_modifier = {
+		character_travel_safety = 15
+	}
+}
+
+efficient_casting_perk = {
+	lifestyle = light_magic_lifestyle
+	tree = battlemage
+	position = { 4 1.25 }
+	icon = node_battlemage
+
+	parent = focused_magic_perk
+
+	effect = {
+		custom_description_no_bullet = {
+			text = efficient_casting_effect
+		}
+	}
+}
+
+battle_wards_perk = {
+	lifestyle = light_magic_lifestyle
+	tree = battlemage
+	position = { 0 2.5 }
+	icon = node_battlemage
+
+	parent = spell_wards_perk
+
+	character_modifier = {
+		magi_toughness_add = 4
+	}
+}
+
+overcharged_casting_perk = {
+	lifestyle = light_magic_lifestyle
+	tree = battlemage
+	position = { 4 2.5 }
+	icon = node_battlemage
+
+	parent = efficient_casting_perk
+
+	character_modifier = {
+		magi_damage_add = 3
+	}
+
+	effect = {
+		custom_description_no_bullet = {
+			text = overcharged_casting_effect
+		}
+	}
+}
+
+battle_trance_perk = {
+	lifestyle = light_magic_lifestyle
+	tree = battlemage
+	position = { 0 3.75 }
+	icon = node_battlemage
+
+	parent = battle_wards_perk
+
+	character_modifier = {
+		prowess = 3
+		magi_damage_add = 4
+		magi_toughness_add = 4
+	}
+}
+
+arcane_reserves_perk = {
+	lifestyle = light_magic_lifestyle
+	tree = battlemage
+	position = { 4 3.75 }
+	icon = node_battlemage
+
+	parent = overcharged_casting_perk
+
+	effect = {
+		custom_description_no_bullet = {
+			text = arcane_reserves_effect
+		}
+	}
+}
+
+sage_perk = {
+	lifestyle = light_magic_lifestyle
+	tree = battlemage
+	position = { 2 5 }
+	icon = node_battlemage
+
+	parent = battle_trance_perk
+	parent = arcane_reserves_perk
+
+	character_modifier = {
+		general_opinion = 15
+	}
+
+	effect = {
+		custom_description_no_bullet = {
+			text = sage_effect
+		}
+	}
+}

@@ -1,0 +1,42 @@
+﻿l_english:
+ # --- Lifestyle ---
+ light_magic_lifestyle_name:0 "Light Magic"
+ light_magic_lifestyle_desc:0 "Focus on channeling your magic into battle and scholarship, sharpening your spellcraft and the soldiers who fight at your side."
+ light_magic_lifestyle_highlight_desc:0 "Because you have awakened a Lore of Magic trait, you can pursue the Light Magic lifestyle."
+
+ # --- Trees (both a bare key and a _name variant are provided since the perk
+ # tree header can resolve either way depending on engine version) ---
+ battlemage:0 "The Battlemage"
+ battlemage_name:0 "The Battlemage"
+ scholar:0 "The Scholar"
+ scholar_name:0 "The Scholar"
+
+ # --- Tree 1: The Battlemage ---
+ focused_magic_perk_name:0 "Focused Magic"
+ focused_magic_effect:0 "Increases total Magic Power and the success chance of the Teach Lore of Magic scheme."
+ spell_wards_perk_name:0 "Spell Wards"
+ efficient_casting_perk_name:0 "Efficient Casting"
+ efficient_casting_effect:0 "Reduces the mana cost of casting spells by 20%."
+ battle_wards_perk_name:0 "Battle Wards"
+ overcharged_casting_perk_name:0 "Overcharged Casting"
+ overcharged_casting_effect:0 "Increases the monthly mana generation rate."
+ battle_trance_perk_name:0 "Battle Trance"
+ arcane_reserves_perk_name:0 "Arcane Reserves"
+ arcane_reserves_effect:0 "Further reduces the mana cost of casting spells and increases the monthly mana generation rate."
+ sage_perk_name:0 "Sage"
+ sage_effect:0 "Increases total Magic Power."
+
+ # --- Tree 2: The Scholar ---
+ attuned_equipment_perk_name:0 "Attuned Equipment"
+ magic_instruction_perk_name:0 "Magic Instruction"
+ magic_instruction_effect:0 "Wards you are teaching are guaranteed to awaken every Lore of Magic trait you hold when they come of age, instead of merely being likely to."
+ sorcerous_scholarship_perk_name:0 "Sorcerous Scholarship"
+ sorcerous_scholarship_effect:0 "Increases the experience gained from studying lore and the success chance of the Teach Lore of Magic scheme."
+ archivist_perk_name:0 "Archivist"
+ archivist_effect:0 "Increases the success chance of Ascendant Lore rituals."
+ enchanted_armory_perk_name:0 "Enchanted Armory"
+ lorekeeper_perk_name:0 "Lorekeeper"
+ lorekeeper_effect:0 "Increases total Magic Power."
+ master_artificer_perk_name:0 "Master Artificer"
+ arcanist_perk_name:0 "Arcanist"
+ arcanist_effect:0 "Increases total Magic Power."

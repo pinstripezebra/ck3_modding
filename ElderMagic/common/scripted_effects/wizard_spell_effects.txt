@@ -49,10 +49,12 @@ wizard_spend_mana_for_selected_spell = {
 		set_global_variable = { name = wizard_mana_spent value = 0 }
 	}
 
-	if = { limit = { wizard_selected_spell_tier_1 = yes } change_global_variable = { name = wizard_mana_spent add = 100 } }
-	if = { limit = { wizard_selected_spell_tier_2 = yes } change_global_variable = { name = wizard_mana_spent add = 220 } }
-	if = { limit = { wizard_selected_spell_tier_3 = yes } change_global_variable = { name = wizard_mana_spent add = 400 } }
-	if = { limit = { wizard_selected_spell_tier_4 = yes } change_global_variable = { name = wizard_mana_spent add = 600 } }
+	# Costs are discounted by the Battlemage tree's casting-efficiency perks
+	# (efficient_casting_perk, arcane_reserves_perk) via wizard_spell_cost_discount_mult.
+	if = { limit = { wizard_selected_spell_tier_1 = yes } change_global_variable = { name = wizard_mana_spent add = wizard_spell_mana_cost_tier_1 } }
+	if = { limit = { wizard_selected_spell_tier_2 = yes } change_global_variable = { name = wizard_mana_spent add = wizard_spell_mana_cost_tier_2 } }
+	if = { limit = { wizard_selected_spell_tier_3 = yes } change_global_variable = { name = wizard_mana_spent add = wizard_spell_mana_cost_tier_3 } }
+	if = { limit = { wizard_selected_spell_tier_4 = yes } change_global_variable = { name = wizard_mana_spent add = wizard_spell_mana_cost_tier_4 } }
 
 	# Clamp spent so total can't go below 0
 	if = {

@@ -1,8 +1,0 @@
-interaction_category_wizard_magic = {
-	# Indices must be unique AND contiguous across every loaded mod or the game
-	# crashes (see vanilla 00_character_interaction_categories.txt).
-	# Vanilla uses 0-14; AGOT's interaction_category_agot_debug takes 15.
-	index = 16
-	desc = interaction_category_wizard_magic_desc
-	color = { 0.5 0.2 0.8 1 }
-}

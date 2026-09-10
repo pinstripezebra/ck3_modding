@@ -257,7 +257,7 @@ def crash_report(ck3_dir: pathlib.Path) -> int:
 
 
 def _category_indices(mod_root: pathlib.Path) -> dict[int, str]:
-    """category index -> category key, for one mod folder."""
+    """category index -> category key, for one mod folder (all files flattened)."""
     found: dict[int, str] = {}
     folder = mod_root / "common" / "character_interaction_categories"
     if not folder.is_dir():
@@ -269,40 +269,74 @@ def _category_indices(mod_root: pathlib.Path) -> dict[int, str]:
     return found
 
 
-def check_interaction_category_indices(ck3_dir: pathlib.Path) -> list[str]:
-    """Interaction category indices must be unique AND contiguous from 0.
+def _category_files(mod_root: pathlib.Path) -> dict[str, dict[int, str]]:
+    """relative file path -> {index: key}, for one mod folder, file-by-file.
+
+    CK3 resolves same-relative-path files across vanilla/mods by full
+    replacement, not merge, so callers must key on path, not flatten blindly.
+    """
+    found: dict[str, dict[int, str]] = {}
+    folder = mod_root / "common" / "character_interaction_categories"
+    if not folder.is_dir():
+        return found
+    for path in folder.rglob("*.txt"):
+        text = path.read_text(encoding="utf-8-sig", errors="ignore")
+        entries = {
+            int(index): key
+            for key, index in re.findall(r"(\w+)\s*=\s*\{[^}]*?\bindex\s*=\s*(\d+)", text, re.S)
+        }
+        if entries:
+            found[path.relative_to(mod_root).as_posix().lower()] = entries
+    return found
+
+
+def check_interaction_category_indices(
+    ck3_dir: pathlib.Path, mods: list[tuple[str, str]] = MODS
+) -> list[str]:
+    """Interaction category indices must be unique AND contiguous from 0 in the
+    FINAL merged state actually loaded by the game.
 
     Vanilla's 00_character_interaction_categories.txt warns that a gap crashes the
-    game; a duplicate index breaks the interaction menu the same way.
+    game; a duplicate index breaks the interaction menu the same way. Files with
+    the same relative path (e.g. a mod overriding 00_character_interaction_categories.txt)
+    fully replace earlier sources for that path rather than merging with them —
+    load order is vanilla, then the active playset (in order), then our own mods
+    last (matching write_load_order's `base + playtest_entries`). `mods` should be
+    only the subset of MODS actually being deployed this run (see `active_mods`).
     """
-    ours: dict[int, str] = {}
-    for mod_name, _ in MODS:
-        ours.update(_category_indices(REPO_ROOT / mod_name))
-    if not ours:
-        return []
-
     game_dir = CK3_EXE.parent.parent / "game"
-    others: dict[int, tuple[str, str]] = {
-        idx: (key, "vanilla") for idx, key in _category_indices(game_dir).items()
-    }
+    sources: list[tuple[str, pathlib.Path]] = [("vanilla", game_dir)]
     for entry in active_playset_mods(ck3_dir):
         mod_dir = _mod_dir_for(ck3_dir, entry)
-        if mod_dir is None:
-            continue
-        for idx, key in _category_indices(mod_dir).items():
-            others[idx] = (key, mod_dir.name)
+        if mod_dir is not None:
+            sources.append((entry, mod_dir))
+    for mod_name, _ in mods:
+        sources.append((mod_name, REPO_ROOT / mod_name))
 
+    by_path: dict[str, tuple[str, dict[int, str]]] = {}
+    for label, root in sources:
+        for rel, entries in _category_files(root).items():
+            by_path[rel] = (label, entries)  # later source wins outright for this path
+
+    if not by_path:
+        return []
+
+    final: dict[int, tuple[str, str]] = {}  # index -> (key, source rel path)
     issues = []
-    for idx, key in sorted(ours.items()):
-        if idx in others:
-            other_key, source = others[idx]
-            issues.append(f"'{key}' index {idx} collides with '{other_key}' ({source})")
+    for rel, (_label, entries) in by_path.items():
+        for idx, key in entries.items():
+            if idx in final and final[idx] != (key, rel):
+                other_key, other_rel = final[idx]
+                issues.append(
+                    f"'{key}' index {idx} ({rel}) collides with '{other_key}' ({other_rel})"
+                )
+            else:
+                final[idx] = (key, rel)
 
-    combined = set(others) | set(ours)
-    gaps = sorted(set(range(max(combined) + 1)) - combined)
+    gaps = sorted(set(range(max(final) + 1)) - set(final))
     if gaps:
         issues.append(
-            f"index gap(s) at {gaps} — indices must run 0..{max(combined)} with no holes"
+            f"index gap(s) at {gaps} — indices must run 0..{max(final)} with no holes"
         )
     return issues
 
@@ -318,13 +352,15 @@ def _mod_dir_for(ck3_dir: pathlib.Path, registry_entry: str) -> Optional[pathlib
     return None
 
 
-def check_interaction_categories_exist(ck3_dir: pathlib.Path) -> list[str]:
+def check_interaction_categories_exist(
+    ck3_dir: pathlib.Path, mods: list[tuple[str, str]] = MODS
+) -> list[str]:
     """Every `category =` used by our interactions must resolve to a defined category.
 
     An unresolved category is a null pointer and crashes the interaction menu.
     """
     defined: set[str] = set()
-    for source in [CK3_EXE.parent.parent / "game", *(REPO_ROOT / m for m, _ in MODS)]:
+    for source in [CK3_EXE.parent.parent / "game", *(REPO_ROOT / m for m, _ in mods)]:
         defined.update(_category_indices(source).values())
     for entry in active_playset_mods(ck3_dir):
         mod_dir = _mod_dir_for(ck3_dir, entry)
@@ -332,7 +368,7 @@ def check_interaction_categories_exist(ck3_dir: pathlib.Path) -> list[str]:
             defined.update(_category_indices(mod_dir).values())
 
     issues = []
-    for mod_name, _ in MODS:
+    for mod_name, _ in mods:
         folder = REPO_ROOT / mod_name / "common" / "character_interactions"
         if not folder.is_dir():
             continue
@@ -371,8 +407,12 @@ def main(argv: list[str] | None = None) -> int:
         restore(ck3_dir)
         return 0
 
-    clashes = check_interaction_category_indices(ck3_dir)
-    missing = check_interaction_categories_exist(ck3_dir)
+    # Only deploy/enable the AGOT compat patch when AGOT is actually loaded —
+    # Elder Magic itself must not depend on any other specific mod being present.
+    active_mods = MODS if _agot_dir(ck3_dir) is not None else MODS[:1]
+
+    clashes = check_interaction_category_indices(ck3_dir, active_mods)
+    missing = check_interaction_categories_exist(ck3_dir, active_mods)
     if clashes or missing:
         print("Interaction category problems (these crash the interaction menu):", file=sys.stderr)
         for issue in clashes + missing:
@@ -391,14 +431,14 @@ def main(argv: list[str] | None = None) -> int:
         )
         return 1
 
-    display_names = {display for _, display in MODS}
+    display_names = {display for _, display in active_mods}
     shadowing = steam_ids_for(ck3_dir, display_names)
 
     base = [e for e in active_playset_mods(ck3_dir) if e not in shadowing]
-    playtest_entries = [f"mod/{name}{PLAYTEST_SUFFIX}.mod" for name, _ in MODS]
+    playtest_entries = [f"mod/{name}{PLAYTEST_SUFFIX}.mod" for name, _ in active_mods]
     base = [e for e in base if e not in playtest_entries]
 
-    for mod_name, display_name in MODS:
+    for mod_name, display_name in active_mods:
         target = deploy(mod_name, display_name, source_version(mod_name))
         print(f"Deployed {mod_name} -> {target}")
 
@@ -420,7 +460,7 @@ def main(argv: list[str] | None = None) -> int:
     print("\nLaunching CK3 ..." + (" (debug mode)" if args.debug else ""))
     subprocess.Popen(launch_args)
     print("Verifying mods mount (this takes a moment) ...")
-    ok = verify_mounted(ck3_dir, [f"{name}{PLAYTEST_SUFFIX}" for name, _ in MODS])
+    ok = verify_mounted(ck3_dir, [f"{name}{PLAYTEST_SUFFIX}" for name, _ in active_mods])
     print("\nAll playtest mods mounted." if ok else "\nSome mods failed to mount, see above.")
     return 0 if ok else 1
 

@@ -21,7 +21,7 @@ wizard_wardship_coming_of_age_check = {
 			}
 			liege = { save_scope_as = warding_guardian }
 			random = {
-				chance = 85
+				chance = wizard_wardship_coming_of_age_chance
 				trigger_event = wizard_wardship.0002
 			}
 		}

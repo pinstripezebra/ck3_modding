@@ -127,4 +127,10 @@ wizard_total_magic_power = {
 	if = { limit = { has_trait = the_singularity } add = 8  }
 	if = { limit = { has_trait = the_catalyst    } add = 9  }
 	if = { limit = { has_trait = the_horizon     } add = 10 }
+
+	# Light Magic lifestyle perks
+	if = { limit = { has_perk = focused_magic_perk } add = 2 }
+	if = { limit = { has_perk = sage_perk           } add = 3 }
+	if = { limit = { has_perk = lorekeeper_perk     } add = 2 }
+	if = { limit = { has_perk = arcanist_perk       } add = 2 }
 }

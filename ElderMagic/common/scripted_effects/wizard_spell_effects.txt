@@ -6,9 +6,6 @@ wizard_clear_selected_spell_flags = {
 	remove_character_flag = wizard_selected_spell_earth_1
 	remove_character_flag = wizard_selected_spell_earth_2
 	remove_character_flag = wizard_selected_spell_earth_3
-	remove_character_flag = wizard_selected_spell_wind_1
-	remove_character_flag = wizard_selected_spell_wind_2
-	remove_character_flag = wizard_selected_spell_wind_3
 	remove_character_flag = wizard_selected_spell_water_1
 	remove_character_flag = wizard_selected_spell_water_2
 	remove_character_flag = wizard_selected_spell_water_3
@@ -35,9 +32,6 @@ wizard_learn_selected_spell = {
 	if = { limit = { has_character_flag = wizard_selected_spell_earth_1 } add_character_flag = wizard_spell_earth_1_learned }
 	if = { limit = { has_character_flag = wizard_selected_spell_earth_2 } add_character_flag = wizard_spell_earth_2_learned }
 	if = { limit = { has_character_flag = wizard_selected_spell_earth_3 } add_character_flag = wizard_spell_earth_3_learned }
-	if = { limit = { has_character_flag = wizard_selected_spell_wind_1 } add_character_flag = wizard_spell_wind_1_learned }
-	if = { limit = { has_character_flag = wizard_selected_spell_wind_2 } add_character_flag = wizard_spell_wind_2_learned }
-	if = { limit = { has_character_flag = wizard_selected_spell_wind_3 } add_character_flag = wizard_spell_wind_3_learned }
 	if = { limit = { has_character_flag = wizard_selected_spell_water_1 } add_character_flag = wizard_spell_water_1_learned }
 	if = { limit = { has_character_flag = wizard_selected_spell_water_2 } add_character_flag = wizard_spell_water_2_learned }
 	if = { limit = { has_character_flag = wizard_selected_spell_water_3 } add_character_flag = wizard_spell_water_3_learned }
@@ -118,7 +112,6 @@ wizard_set_spellbook_open = {
 		limit = {
 			NOT = { has_character_flag = wizard_spellbook_lore_fire_selected }
 			NOT = { has_character_flag = wizard_spellbook_lore_earth_selected }
-			NOT = { has_character_flag = wizard_spellbook_lore_wind_selected }
 			NOT = { has_character_flag = wizard_spellbook_lore_water_selected }
 			NOT = { has_character_flag = wizard_spellbook_lore_death_selected }
 			NOT = { has_character_flag = wizard_spellbook_lore_high_selected }
@@ -174,7 +167,6 @@ wizard_toggle_spellbook_window = {
 wizard_clear_spellbook_lore_selection = {
 	remove_character_flag = wizard_spellbook_lore_fire_selected
 	remove_character_flag = wizard_spellbook_lore_earth_selected
-	remove_character_flag = wizard_spellbook_lore_wind_selected
 	remove_character_flag = wizard_spellbook_lore_water_selected
 	remove_character_flag = wizard_spellbook_lore_death_selected
 	remove_character_flag = wizard_spellbook_lore_high_selected
@@ -189,11 +181,6 @@ wizard_select_lore_earth = {
 	wizard_clear_spellbook_lore_selection = yes
 	add_character_flag = wizard_spellbook_lore_earth_selected
 	wizard_select_spell_earth_1 = yes
-}
-wizard_select_lore_wind = {
-	wizard_clear_spellbook_lore_selection = yes
-	add_character_flag = wizard_spellbook_lore_wind_selected
-	wizard_select_spell_wind_1 = yes
 }
 wizard_select_lore_water = {
 	wizard_clear_spellbook_lore_selection = yes
@@ -219,10 +206,6 @@ wizard_select_spell_fire_4 = { wizard_clear_selected_spell_flags = yes add_chara
 wizard_select_spell_earth_1 = { wizard_clear_selected_spell_flags = yes add_character_flag = wizard_selected_spell_earth_1 }
 wizard_select_spell_earth_2 = { wizard_clear_selected_spell_flags = yes add_character_flag = wizard_selected_spell_earth_2 }
 wizard_select_spell_earth_3 = { wizard_clear_selected_spell_flags = yes add_character_flag = wizard_selected_spell_earth_3 }
-
-wizard_select_spell_wind_1 = { wizard_clear_selected_spell_flags = yes add_character_flag = wizard_selected_spell_wind_1 }
-wizard_select_spell_wind_2 = { wizard_clear_selected_spell_flags = yes add_character_flag = wizard_selected_spell_wind_2 }
-wizard_select_spell_wind_3 = { wizard_clear_selected_spell_flags = yes add_character_flag = wizard_selected_spell_wind_3 }
 
 wizard_select_spell_water_1 = { wizard_clear_selected_spell_flags = yes add_character_flag = wizard_selected_spell_water_1 }
 wizard_select_spell_water_2 = { wizard_clear_selected_spell_flags = yes add_character_flag = wizard_selected_spell_water_2 }

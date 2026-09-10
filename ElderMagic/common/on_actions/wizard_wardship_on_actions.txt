@@ -17,14 +17,6 @@ wizard_wardship_coming_of_age_check = {
 				wizard_has_any_magic_potential_trait = yes
 				liege = {
 					wizard_has_any_lore_trait = yes
-					any_ward = { this = prev }
-				}
-				OR = {
-					AND = { liege = { has_trait = lore_of_fire }       NOT = { has_trait = lore_of_fire } }
-					AND = { liege = { has_trait = lore_of_earth }      NOT = { has_trait = lore_of_earth } }
-					AND = { liege = { has_trait = lore_of_water }      NOT = { has_trait = lore_of_water } }
-					AND = { liege = { has_trait = lore_of_death }      NOT = { has_trait = lore_of_death } }
-					AND = { liege = { has_trait = lore_of_high_magic } NOT = { has_trait = lore_of_high_magic } }
 				}
 			}
 			liege = { save_scope_as = warding_guardian }

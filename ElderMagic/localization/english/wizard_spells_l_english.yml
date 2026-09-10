@@ -71,12 +71,6 @@
  wizard_spell_earth_3_name:0 "Mountain's Judgment"
  wizard_spell_earth_3_desc:0 "A crushing invocation of weight and stone that overwhelms resistance."
 
- wizard_spell_wind_1_name:0 "Whisper Step"
- wizard_spell_wind_1_desc:0 "Light air currents carry your movement with effortless precision."
- wizard_spell_wind_2_name:0 "Gale Shield"
- wizard_spell_wind_2_desc:0 "A spinning wall of wind bends arrows and throws foes off balance."
- wizard_spell_wind_3_name:0 "Tempest Crown"
- wizard_spell_wind_3_desc:0 "Storm-force currents gather at your command and break opposing lines."
 
  wizard_spell_water_1_name:0 "Healing Current"
  wizard_spell_water_1_desc:0 "A restorative tide calms pain and steadies body and mind."

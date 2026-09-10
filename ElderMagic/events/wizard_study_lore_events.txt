@@ -105,54 +105,6 @@ wizard_study_lore.0001 = {
 		if = {
 			limit = {
 				learning >= 22
-				has_character_flag = wizard_pending_lore_wind
-			}
-			random = {
-				chance = 88
-				wizard_grant_pending_lore = yes
-			}
-		}
-		else_if = {
-			limit = {
-				learning >= 18
-				has_character_flag = wizard_pending_lore_wind
-			}
-			random = {
-				chance = 75
-				wizard_grant_pending_lore = yes
-			}
-		}
-		else_if = {
-			limit = {
-				learning >= 14
-				has_character_flag = wizard_pending_lore_wind
-			}
-			random = {
-				chance = 60
-				wizard_grant_pending_lore = yes
-			}
-		}
-		else_if = {
-			limit = {
-				learning >= 10
-				has_character_flag = wizard_pending_lore_wind
-			}
-			random = {
-				chance = 45
-				wizard_grant_pending_lore = yes
-			}
-		}
-		else_if = {
-			limit = { has_character_flag = wizard_pending_lore_wind }
-			random = {
-				chance = 30
-				wizard_grant_pending_lore = yes
-			}
-		}
-
-		if = {
-			limit = {
-				learning >= 22
 				has_character_flag = wizard_pending_lore_water
 			}
 			random = {

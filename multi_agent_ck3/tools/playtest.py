@@ -30,7 +30,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
 from tools import publication  # noqa: E402
 
-import gui_quality  # noqa: E402
+import character_window  # noqa: E402
 
 REPO_ROOT = pathlib.Path(__file__).resolve().parents[2]
 CK3_EXE = pathlib.Path(
@@ -45,18 +45,43 @@ MODS: list[tuple[str, str]] = [
     ("ElderMagicAgotCompPatch", "Elder Magic - AGOT Compatibility Patch"),
 ]
 
-# .gui files the patch mod forks from a different base but must keep in sync.
-FORKED_GUI: list[str] = []
+# window_character.gui is generated per mod from the upstream it overrides.
+AGOT_STEAM_ID = "2962333032"
 
 
-def check_gui_drift() -> list[str]:
-    base_mod, fork_mod = MODS[0][0], MODS[1][0]
-    issues: list[str] = []
-    for rel in FORKED_GUI:
-        base, fork = REPO_ROOT / base_mod / rel, REPO_ROOT / fork_mod / rel
-        if base.is_file() and fork.is_file():
-            issues += gui_quality.lint_forked_gui(base, fork)
+def generate_character_windows(ck3_dir: pathlib.Path) -> list[str]:
+    """Rebuild both window_character.gui overrides from their current upstreams."""
+    game_dir = CK3_EXE.parent.parent / "game"
+    agot_dir = _agot_dir(ck3_dir)
+
+    targets = [
+        (game_dir / "gui" / "window_character.gui", "ElderMagic", "CK3 vanilla"),
+    ]
+    if agot_dir is not None:
+        targets.append(
+            (
+                agot_dir / "gui" / "window_character.gui",
+                "ElderMagicAgotCompPatch",
+                "A Game of Thrones",
+            )
+        )
+
+    issues = []
+    for upstream, mod_name, label in targets:
+        target = REPO_ROOT / mod_name / "gui" / "window_character.gui"
+        try:
+            character_window.generate(upstream, target, label)
+            print(f"Generated {mod_name}/gui/window_character.gui from {label}")
+        except character_window.AnchorError as exc:
+            issues.append(f"{mod_name}: {exc}")
     return issues
+
+
+def _agot_dir(ck3_dir: pathlib.Path) -> Optional[pathlib.Path]:
+    for entry in active_playset_mods(ck3_dir):
+        if AGOT_STEAM_ID in entry:
+            return _mod_dir_for(ck3_dir, entry)
+    return None
 
 
 def ck3_user_dir() -> pathlib.Path:
@@ -328,11 +353,6 @@ def main(argv: list[str] | None = None) -> int:
         help="Restore the original load order and delete the playtest copies.",
     )
     parser.add_argument(
-        "--allow-gui-drift",
-        action="store_true",
-        help="Deploy even when the forked .gui copies disagree.",
-    )
-    parser.add_argument(
         "--debug",
         action="store_true",
         help="Launch with -debug_mode, enabling the in-game console.",
@@ -351,21 +371,24 @@ def main(argv: list[str] | None = None) -> int:
         restore(ck3_dir)
         return 0
 
-    drift = check_gui_drift()
-    if drift:
-        print("Forked GUI drift detected (a fix was applied to only one copy):", file=sys.stderr)
-        for issue in drift:
-            print(f"  {issue}", file=sys.stderr)
-        if not args.allow_gui_drift:
-            print("\nAborting. Re-run with --allow-gui-drift to deploy anyway.", file=sys.stderr)
-            return 1
-
     clashes = check_interaction_category_indices(ck3_dir)
     missing = check_interaction_categories_exist(ck3_dir)
     if clashes or missing:
         print("Interaction category problems (these crash the interaction menu):", file=sys.stderr)
         for issue in clashes + missing:
             print(f"  {issue}", file=sys.stderr)
+        return 1
+
+    stale = generate_character_windows(ck3_dir)
+    if stale:
+        print("\nCould not generate window_character.gui:", file=sys.stderr)
+        for issue in stale:
+            print(f"  {issue}", file=sys.stderr)
+        print(
+            "The upstream window changed shape. Update ANCHOR/MAGIC_POWER_BLOCK in"
+            " tools/character_window.py.",
+            file=sys.stderr,
+        )
         return 1
 
     display_names = {display for _, display in MODS}

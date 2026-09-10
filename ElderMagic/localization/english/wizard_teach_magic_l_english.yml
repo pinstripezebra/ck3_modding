@@ -19,10 +19,10 @@
 
  # ─── Success Event (001) ─────────────────────────────────────────────────────
  wizard_teach_magic.0001.t:0 "The Teaching Bears Fruit"
- wizard_teach_magic.0001.desc:0 "The long months of study have paid off. [scope:target.GetFirstName] has absorbed the lore and made it their own. Their understanding of magic will never be the same."
+ wizard_teach_magic.0001.desc:0 "The long months of study have paid off. [ROOT.Var('wizard_teach_target').Char.GetFirstName] has absorbed the lore and made it their own. Their understanding of magic will never be the same."
  wizard_teach_magic.0001.a:0 "A worthy student indeed."
 
  # ─── Failure Event (002) ─────────────────────────────────────────────────────
  wizard_teach_magic.0002.t:0 "The Teaching Has Failed"
- wizard_teach_magic.0002.desc:0 "Despite sustained effort, [scope:target.GetFirstName] could not bridge the final gap in understanding. The fundamental connection simply did not form. This teaching is finished — and a period of years must pass before it can be attempted with this student again."
+ wizard_teach_magic.0002.desc:0 "Despite sustained effort, [ROOT.Var('wizard_teach_target').Char.GetFirstName] could not bridge the final gap in understanding. The fundamental connection simply did not form. This teaching is finished — and a period of years must pass before it can be attempted with this student again."
  wizard_teach_magic.0002.a:0 "This student was not ready."

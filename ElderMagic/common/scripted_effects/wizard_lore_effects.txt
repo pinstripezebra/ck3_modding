@@ -16,7 +16,6 @@ wizard_update_mana_gain = {
 wizard_clear_pending_study_lore_flags = {
 	remove_character_flag = wizard_pending_lore_fire
 	remove_character_flag = wizard_pending_lore_earth
-	remove_character_flag = wizard_pending_lore_wind
 	remove_character_flag = wizard_pending_lore_water
 	remove_character_flag = wizard_pending_lore_death
 	remove_character_flag = wizard_pending_lore_high_magic

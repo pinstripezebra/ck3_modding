@@ -91,7 +91,7 @@ wizard_wardship.0001 = {
 	}
 }
 
-# Visible coming-of-age event: ward with magic potential receives their guardian's lore on turning 16.
+# Visible coming-of-age event: ward receives every missing lore held by their guardian.
 wizard_wardship.0002 = {
 	type = character_event
 	title = wizard_wardship.0002.t
@@ -102,43 +102,11 @@ wizard_wardship.0002 = {
 	override_background = { reference = "study" }
 
 	immediate = {
-		random_list = {
-			1 = {
-				trigger = {
-					NOT = { has_trait = lore_of_fire }
-					scope:warding_guardian = { has_trait = lore_of_fire }
-				}
-				add_trait = lore_of_fire
-			}
-			1 = {
-				trigger = {
-					NOT = { has_trait = lore_of_earth }
-					scope:warding_guardian = { has_trait = lore_of_earth }
-				}
-				add_trait = lore_of_earth
-			}
-			1 = {
-				trigger = {
-					NOT = { has_trait = lore_of_water }
-					scope:warding_guardian = { has_trait = lore_of_water }
-				}
-				add_trait = lore_of_water
-			}
-			1 = {
-				trigger = {
-					NOT = { has_trait = lore_of_death }
-					scope:warding_guardian = { has_trait = lore_of_death }
-				}
-				add_trait = lore_of_death
-			}
-			1 = {
-				trigger = {
-					NOT = { has_trait = lore_of_high_magic }
-					scope:warding_guardian = { has_trait = lore_of_high_magic }
-				}
-				add_trait = lore_of_high_magic
-			}
-		}
+		if = { limit = { NOT = { has_trait = lore_of_fire } scope:warding_guardian = { has_trait = lore_of_fire } } add_trait = lore_of_fire }
+		if = { limit = { NOT = { has_trait = lore_of_earth } scope:warding_guardian = { has_trait = lore_of_earth } } add_trait = lore_of_earth }
+		if = { limit = { NOT = { has_trait = lore_of_water } scope:warding_guardian = { has_trait = lore_of_water } } add_trait = lore_of_water }
+		if = { limit = { NOT = { has_trait = lore_of_death } scope:warding_guardian = { has_trait = lore_of_death } } add_trait = lore_of_death }
+		if = { limit = { NOT = { has_trait = lore_of_high_magic } scope:warding_guardian = { has_trait = lore_of_high_magic } } add_trait = lore_of_high_magic }
 	}
 
 	option = {

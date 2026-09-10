@@ -15,9 +15,6 @@ wizard_any_spell_selected = {
 		has_character_flag = wizard_selected_spell_earth_1
 		has_character_flag = wizard_selected_spell_earth_2
 		has_character_flag = wizard_selected_spell_earth_3
-		has_character_flag = wizard_selected_spell_wind_1
-		has_character_flag = wizard_selected_spell_wind_2
-		has_character_flag = wizard_selected_spell_wind_3
 		has_character_flag = wizard_selected_spell_water_1
 		has_character_flag = wizard_selected_spell_water_2
 		has_character_flag = wizard_selected_spell_water_3
@@ -65,7 +62,6 @@ wizard_selected_spell_can_be_learned = {
 		AND = { has_character_flag = wizard_selected_spell_earth_1 has_trait = lore_of_earth NOT = { has_character_flag = wizard_spell_earth_1_learned } }
 		AND = { has_character_flag = wizard_selected_spell_earth_2 has_trait = lore_of_earth NOT = { has_character_flag = wizard_spell_earth_2_learned } }
 		AND = { has_character_flag = wizard_selected_spell_earth_3 has_trait = lore_of_earth NOT = { has_character_flag = wizard_spell_earth_3_learned } }
-		AND = { has_character_flag = wizard_selected_spell_wind_2 has_trait = lore_of_wind NOT = { has_character_flag = wizard_spell_wind_2_learned } }
 		AND = { has_character_flag = wizard_selected_spell_water_1 has_trait = lore_of_water NOT = { has_character_flag = wizard_spell_water_1_learned } }
 		AND = { has_character_flag = wizard_selected_spell_water_2 has_trait = lore_of_water NOT = { has_character_flag = wizard_spell_water_2_learned } }
 		AND = { has_character_flag = wizard_selected_spell_water_3 has_trait = lore_of_water NOT = { has_character_flag = wizard_spell_water_3_learned } }
@@ -82,7 +78,6 @@ wizard_selected_spell_tier_1 = {
 	OR = {
 		has_character_flag = wizard_selected_spell_fire_1
 		has_character_flag = wizard_selected_spell_earth_1
-		has_character_flag = wizard_selected_spell_wind_1
 		has_character_flag = wizard_selected_spell_water_1
 		has_character_flag = wizard_selected_spell_death_1
 		has_character_flag = wizard_selected_spell_high_1
@@ -93,7 +88,6 @@ wizard_selected_spell_tier_2 = {
 	OR = {
 		has_character_flag = wizard_selected_spell_fire_2
 		has_character_flag = wizard_selected_spell_earth_2
-		has_character_flag = wizard_selected_spell_wind_2
 		has_character_flag = wizard_selected_spell_water_2
 		has_character_flag = wizard_selected_spell_death_2
 		has_character_flag = wizard_selected_spell_high_2
@@ -104,7 +98,6 @@ wizard_selected_spell_tier_3 = {
 	OR = {
 		has_character_flag = wizard_selected_spell_fire_3
 		has_character_flag = wizard_selected_spell_earth_3
-		has_character_flag = wizard_selected_spell_wind_3
 		has_character_flag = wizard_selected_spell_water_3
 		has_character_flag = wizard_selected_spell_death_3
 		has_character_flag = wizard_selected_spell_high_3

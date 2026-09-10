@@ -54,5 +54,43 @@ def ck3_mod_task(task: str) -> str:
     return result["messages"][-1].content
 
 
+@mcp.tool()
+def ck3_check_references(mod_name: str, other_mods: list | None = None) -> str:
+    """Check a mod's cross-mod references for crash-causing errors. Deterministic.
+
+    Runs directly, without the LLM supervisor, so it is fast and gives the same
+    answer every time. Use this FIRST when diagnosing a crash — most CK3 hard
+    crashes are an unresolved or colliding reference against another mod, which
+    per-file validators cannot see.
+
+    Checks interaction category index uniqueness/contiguity, undefined category
+    references, men-at-arms modifiers targeting a unit key instead of an
+    archetype, and undefined trait references.
+
+    Args:
+        mod_name: Mod folder name inside the repo root (e.g. 'ElderMagic').
+        other_mods: Absolute paths to other mod folders in the load order.
+    Returns:
+        A grouped report of issues, or 'No reference issues found.'
+    """
+    from shared.paths import REPO_ROOT, CK3_GAME_DIR
+    from tools import cross_reference
+
+    mod_root = REPO_ROOT / mod_name
+    if not mod_root.is_dir():
+        return f"Mod folder not found: {mod_root}"
+
+    others = [pathlib.Path(p) for p in (other_mods or [])]
+    results = cross_reference.audit(
+        mod_root, CK3_GAME_DIR, [p for p in others if p.is_dir()]
+    )
+    lines = []
+    for group, issues in results.items():
+        if issues:
+            lines.append(f"[{group}]")
+            lines.extend(f"  - {i}" for i in issues)
+    return "\n".join(lines) if lines else "No reference issues found."
+
+
 if __name__ == "__main__":
     mcp.run()

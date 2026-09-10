@@ -10,8 +10,6 @@
     Deploy and set the load order without starting the game.
 .PARAMETER Restore
     Restore the original load order and delete the playtest copies.
-.PARAMETER AllowGuiDrift
-    Deploy even when the forked .gui copies disagree on Elder Magic content.
 .PARAMETER DebugMode
     Launch with -debug_mode so the in-game console is available.
 .PARAMETER CrashReport
@@ -20,7 +18,6 @@
 param(
     [switch]$NoLaunch,
     [switch]$Restore,
-    [switch]$AllowGuiDrift,
     [switch]$DebugMode,
     [switch]$CrashReport
 )
@@ -34,7 +31,6 @@ $Script    = Join-Path $PSScriptRoot "multi_agent_ck3\tools\playtest.py"
 $ScriptArgs = @()
 if ($NoLaunch)      { $ScriptArgs += "--no-launch" }
 if ($Restore)       { $ScriptArgs += "--restore" }
-if ($AllowGuiDrift) { $ScriptArgs += "--allow-gui-drift" }
 if ($DebugMode)     { $ScriptArgs += "--debug" }
 if ($CrashReport)   { $ScriptArgs += "--crash-report" }
 

@@ -14,7 +14,14 @@
 	uses_resistance = no
 	base_progress_goal = 100
 	base_maximum_success = 85
-	minimum_success = 40
+	minimum_success = 60
+	modifier = {
+		desc = SCHEME_TARGET_LEARNING
+		add = {
+			value = scope:target.learning
+			multiply = -1
+		}
+	}
 
 	allow = {
 		is_adult = yes

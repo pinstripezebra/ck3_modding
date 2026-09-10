@@ -68,19 +68,6 @@ window = {
 				layoutpolicy_horizontal = expanding
 				align = left|nobaseline
 			}
-			icon = {
-				texture = "gfx/interface/icons/traits/mana_flame_small.dds"
-				size = { 18 18 }
-				parentanchor = vcenter
-				tooltip = "WIZARD_MAGIC_POWER_TT"
-				using = tooltip_ne
-			}
-			text_single = {
-				raw_text = "[GetPlayer.MakeScope.ScriptValue('wizard_total_magic_power')]"
-				default_format = "#bold #color:{0.45,0.8,1.0,1.0}"
-				autoresize = yes
-				align = right|nobaseline
-			}
 			button = {
 				name = "arcane_close"
 				size = { 24 24 }

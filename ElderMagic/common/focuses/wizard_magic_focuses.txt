@@ -1,0 +1,75 @@
+
+# Lifestyle focuses for Light Magic and Dark Magic. Same three focuses for
+# both lifestyles for now (Magical Might, Longevity, Learning).
+
+wizard_light_magic_might_focus = {
+	lifestyle = light_magic_lifestyle
+
+	modifier = {
+		prowess = 3
+	}
+
+	desc = {
+		desc = wizard_light_magic_might_focus_desc
+	}
+}
+
+wizard_light_magic_longevity_focus = {
+	lifestyle = light_magic_lifestyle
+
+	modifier = {
+		health = 0.5
+	}
+
+	desc = {
+		desc = wizard_light_magic_longevity_focus_desc
+	}
+}
+
+wizard_light_magic_learning_focus = {
+	lifestyle = light_magic_lifestyle
+
+	modifier = {
+		learning = 3
+	}
+
+	desc = {
+		desc = wizard_light_magic_learning_focus_desc
+	}
+}
+
+wizard_dark_magic_might_focus = {
+	lifestyle = dark_magic_lifestyle
+
+	modifier = {
+		prowess = 3
+	}
+
+	desc = {
+		desc = wizard_dark_magic_might_focus_desc
+	}
+}
+
+wizard_dark_magic_longevity_focus = {
+	lifestyle = dark_magic_lifestyle
+
+	modifier = {
+		health = 0.5
+	}
+
+	desc = {
+		desc = wizard_dark_magic_longevity_focus_desc
+	}
+}
+
+wizard_dark_magic_learning_focus = {
+	lifestyle = dark_magic_lifestyle
+
+	modifier = {
+		learning = 3
+	}
+
+	desc = {
+		desc = wizard_dark_magic_learning_focus_desc
+	}
+}

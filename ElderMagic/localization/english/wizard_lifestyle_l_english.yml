@@ -4,6 +4,25 @@
  light_magic_lifestyle_desc:0 "Focus on channeling your magic into battle and scholarship, sharpening your spellcraft and the soldiers who fight at your side."
  light_magic_lifestyle_highlight_desc:0 "Because you have awakened a Lore of Magic trait, you can pursue the Light Magic lifestyle."
 
+ dark_magic_lifestyle_name:0 "Dark Magic"
+ dark_magic_lifestyle_desc:0 "Focus on channeling your magic into battle and scholarship, sharpening your spellcraft and the soldiers who fight at your side."
+ dark_magic_lifestyle_highlight_desc:0 "Because you have awakened a Lore of Magic trait, you can pursue the Dark Magic lifestyle."
+
+ # --- Lifestyle focuses ---
+ wizard_light_magic_might_focus:0 "Magical Might"
+ wizard_light_magic_might_focus_desc:0 "Channel your magic into raw physical prowess."
+ wizard_light_magic_longevity_focus:0 "Longevity"
+ wizard_light_magic_longevity_focus_desc:0 "Use your magic to ward off illness and old age."
+ wizard_light_magic_learning_focus:0 "Learning"
+ wizard_light_magic_learning_focus_desc:0 "Deepen your understanding of the arcane arts."
+
+ wizard_dark_magic_might_focus:0 "Magical Might"
+ wizard_dark_magic_might_focus_desc:0 "Channel your magic into raw physical prowess."
+ wizard_dark_magic_longevity_focus:0 "Longevity"
+ wizard_dark_magic_longevity_focus_desc:0 "Use your magic to ward off illness and old age."
+ wizard_dark_magic_learning_focus:0 "Learning"
+ wizard_dark_magic_learning_focus_desc:0 "Deepen your understanding of the arcane arts."
+
  # --- Trees (both a bare key and a _name variant are provided since the perk
  # tree header can resolve either way depending on engine version) ---
  battlemage:0 "The Battlemage"

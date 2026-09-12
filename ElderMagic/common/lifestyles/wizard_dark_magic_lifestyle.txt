@@ -1,0 +1,29 @@
+
+# Dark Magic — the wizard lifestyle. Placeholder: gated the same as Light Magic
+# for now since no dark-specific lore traits exist yet; revisit once they do.
+dark_magic_lifestyle = {
+	# is_valid/is_highlighted can't use scripted triggers (see vanilla
+	# common/lifestyles/_lifestyles.info) — inlined from wizard_has_any_lore_trait.
+	is_valid = {
+		OR = {
+			has_trait = lore_of_fire
+			has_trait = lore_of_earth
+			has_trait = lore_of_water
+			has_trait = lore_of_death
+			has_trait = lore_of_high_magic
+		}
+	}
+
+	is_highlighted = {
+		OR = {
+			has_trait = lore_of_fire
+			has_trait = lore_of_earth
+			has_trait = lore_of_water
+			has_trait = lore_of_death
+			has_trait = lore_of_high_magic
+		}
+	}
+
+	xp_per_level = 1000
+	base_xp_gain = 25
+}

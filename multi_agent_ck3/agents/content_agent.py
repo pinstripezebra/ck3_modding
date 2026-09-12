@@ -20,4 +20,4 @@ def get_agent(llm: ChatOpenAI):
         + artifacts.get_tools(OUTPUT_DIR)
         + decisions.get_tools(REPO_ROOT)
     )
-    return create_react_agent(llm, tool_list, state_modifier=_SYSTEM)
+    return create_react_agent(llm, tool_list, prompt=_SYSTEM)

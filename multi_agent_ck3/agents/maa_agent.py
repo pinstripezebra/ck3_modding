@@ -28,4 +28,4 @@ def get_agent(llm: ChatOpenAI):
         + ck3_file_checker.get_tools(CK3_GAME_DIR)
         + validation.get_tools(vectorstore=None)  # brace/encoding checks; no vectorstore needed
     )
-    return create_react_agent(llm, tool_list, state_modifier=_SYSTEM)
+    return create_react_agent(llm, tool_list, prompt=_SYSTEM)

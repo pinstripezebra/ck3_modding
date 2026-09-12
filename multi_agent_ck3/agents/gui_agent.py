@@ -16,4 +16,4 @@ def get_agent(llm: ChatOpenAI):
         gui_tooling.get_tools(REPO_ROOT)
         + icons.get_tools(OUTPUT_DIR, mods_dir=REPO_ROOT)
     )
-    return create_react_agent(llm, tool_list, state_modifier=_SYSTEM)
+    return create_react_agent(llm, tool_list, prompt=_SYSTEM)

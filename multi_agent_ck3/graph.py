@@ -157,7 +157,7 @@ def build_graph(model: str | None = None):
         ),
     ]
 
-    return create_react_agent(llm, agent_tools, state_modifier=_SUPERVISOR_SYSTEM)
+    return create_react_agent(llm, agent_tools, prompt=_SUPERVISOR_SYSTEM)
 
 
 # Entry point used by langgraph.json

@@ -13,4 +13,4 @@ Validate every generated script with validate_script before reporting success.""
 
 def get_agent(llm: ChatOpenAI):
     tool_list = interactions_events.get_tools(REPO_ROOT)
-    return create_react_agent(llm, tool_list, state_modifier=_SYSTEM)
+    return create_react_agent(llm, tool_list, prompt=_SYSTEM)

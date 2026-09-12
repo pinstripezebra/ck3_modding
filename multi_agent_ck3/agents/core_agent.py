@@ -32,14 +32,19 @@ When diagnosing a crash or bug, work in this order:
 
 
 def get_agent(llm: ChatOpenAI):
-    vs = get_vectorstore()
     tool_list = (
         ck3_file_checker.get_tools(CK3_GAME_DIR)
         + cross_reference.get_tools(REPO_ROOT, CK3_GAME_DIR)
-        + docs.get_tools(vs)
-        + validation.get_tools(vs)
         + mod_management.get_tools(OUTPUT_DIR, mods_dir=REPO_ROOT)
         + error_logs.get_tools()
         + knowledge_map.get_tools(REPO_ROOT)
     )
-    return create_react_agent(llm, tool_list, state_modifier=_SYSTEM)
+    try:
+        # Doc/validation tools need a vectorstore, which needs OpenAI embeddings
+        # (Anthropic has no embeddings API) — skip them rather than blocking the
+        # whole supervisor when OPENAI_API_KEY isn't set.
+        vs = get_vectorstore()
+        tool_list += docs.get_tools(vs) + validation.get_tools(vs)
+    except Exception:
+        pass
+    return create_react_agent(llm, tool_list, prompt=_SYSTEM)

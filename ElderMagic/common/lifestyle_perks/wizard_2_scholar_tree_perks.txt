@@ -8,7 +8,7 @@ attuned_equipment_perk = {
 	lifestyle = light_magic_lifestyle
 	tree = scholar
 	position = { 2 0 }
-	icon = node_scholar
+	icon = node_light_magic
 
 	character_modifier = {
 		magi_damage_add = 3
@@ -19,7 +19,7 @@ magic_instruction_perk = {
 	lifestyle = light_magic_lifestyle
 	tree = scholar
 	position = { 0 1.25 }
-	icon = node_scholar
+	icon = node_light_magic
 
 	parent = attuned_equipment_perk
 
@@ -38,7 +38,7 @@ sorcerous_scholarship_perk = {
 	lifestyle = light_magic_lifestyle
 	tree = scholar
 	position = { 4 1.25 }
-	icon = node_scholar
+	icon = node_light_magic
 
 	parent = attuned_equipment_perk
 
@@ -57,7 +57,7 @@ archivist_perk = {
 	lifestyle = light_magic_lifestyle
 	tree = scholar
 	position = { 0 2.5 }
-	icon = node_scholar
+	icon = node_light_magic
 
 	parent = magic_instruction_perk
 
@@ -76,7 +76,7 @@ enchanted_armory_perk = {
 	lifestyle = light_magic_lifestyle
 	tree = scholar
 	position = { 4 2.5 }
-	icon = node_scholar
+	icon = node_light_magic
 
 	parent = sorcerous_scholarship_perk
 
@@ -90,7 +90,7 @@ lorekeeper_perk = {
 	lifestyle = light_magic_lifestyle
 	tree = scholar
 	position = { 0 3.75 }
-	icon = node_scholar
+	icon = node_light_magic
 
 	parent = archivist_perk
 
@@ -110,7 +110,7 @@ master_artificer_perk = {
 	lifestyle = light_magic_lifestyle
 	tree = scholar
 	position = { 4 3.75 }
-	icon = node_scholar
+	icon = node_light_magic
 
 	parent = enchanted_armory_perk
 

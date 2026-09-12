@@ -11,7 +11,7 @@ focused_magic_perk = {
 	lifestyle = light_magic_lifestyle
 	tree = battlemage
 	position = { 2 0 }
-	icon = node_battlemage
+	icon = node_light_magic
 
 	character_modifier = {
 		prowess = 2
@@ -30,7 +30,7 @@ spell_wards_perk = {
 	lifestyle = light_magic_lifestyle
 	tree = battlemage
 	position = { 0 1.25 }
-	icon = node_battlemage
+	icon = node_light_magic
 
 	parent = focused_magic_perk
 
@@ -43,7 +43,7 @@ efficient_casting_perk = {
 	lifestyle = light_magic_lifestyle
 	tree = battlemage
 	position = { 4 1.25 }
-	icon = node_battlemage
+	icon = node_light_magic
 
 	parent = focused_magic_perk
 
@@ -58,7 +58,7 @@ battle_wards_perk = {
 	lifestyle = light_magic_lifestyle
 	tree = battlemage
 	position = { 0 2.5 }
-	icon = node_battlemage
+	icon = node_light_magic
 
 	parent = spell_wards_perk
 
@@ -71,7 +71,7 @@ overcharged_casting_perk = {
 	lifestyle = light_magic_lifestyle
 	tree = battlemage
 	position = { 4 2.5 }
-	icon = node_battlemage
+	icon = node_light_magic
 
 	parent = efficient_casting_perk
 
@@ -90,7 +90,7 @@ battle_trance_perk = {
 	lifestyle = light_magic_lifestyle
 	tree = battlemage
 	position = { 0 3.75 }
-	icon = node_battlemage
+	icon = node_light_magic
 
 	parent = battle_wards_perk
 
@@ -105,7 +105,7 @@ arcane_reserves_perk = {
 	lifestyle = light_magic_lifestyle
 	tree = battlemage
 	position = { 4 3.75 }
-	icon = node_battlemage
+	icon = node_light_magic
 
 	parent = overcharged_casting_perk
 

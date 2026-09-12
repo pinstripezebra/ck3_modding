@@ -127,6 +127,7 @@ sage_perk = {
 
 	character_modifier = {
 		general_opinion = 15
+		prowess = 4
 	}
 
 	effect = {

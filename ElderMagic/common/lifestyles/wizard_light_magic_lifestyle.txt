@@ -1,16 +1,14 @@
 
-# Light Magic — the wizard lifestyle. Only ever valid for characters who have
-# actually awakened a Lore of Magic trait, so non-wizard characters (including
-# the AI) never see this tab and never receive its perk modifiers.
+# Light Magic — the wizard lifestyle. Valid for elemental/high-magic lore
+# traits; Lore of Death belongs to Dark Magic instead.
 light_magic_lifestyle = {
 	# is_valid/is_highlighted can't use scripted triggers (see vanilla
-	# common/lifestyles/_lifestyles.info) — inlined from wizard_has_any_lore_trait.
+	# common/lifestyles/_lifestyles.info).
 	is_valid = {
 		OR = {
 			has_trait = lore_of_fire
 			has_trait = lore_of_earth
 			has_trait = lore_of_water
-			has_trait = lore_of_death
 			has_trait = lore_of_high_magic
 		}
 	}
@@ -20,7 +18,6 @@ light_magic_lifestyle = {
 			has_trait = lore_of_fire
 			has_trait = lore_of_earth
 			has_trait = lore_of_water
-			has_trait = lore_of_death
 			has_trait = lore_of_high_magic
 		}
 	}

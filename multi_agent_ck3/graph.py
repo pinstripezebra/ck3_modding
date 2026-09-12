@@ -94,7 +94,8 @@ def _build_llm(model: str | None):
     are available, since that's the credential most likely to be set up."""
     if os.environ.get("ANTHROPIC_API_KEY"):
         from langchain_anthropic import ChatAnthropic
-        return ChatAnthropic(model=model or "claude-sonnet-4-5-latest", temperature=0)
+        # `temperature` is deprecated/rejected on current Claude models.
+        return ChatAnthropic(model=model or "claude-sonnet-5")
     from langchain_openai import ChatOpenAI
     return ChatOpenAI(model=model or "gpt-4o", temperature=0)
 

@@ -14,7 +14,9 @@ from dotenv import load_dotenv
 from langchain_core.messages import HumanMessage
 from mcp.server.fastmcp import FastMCP
 
-load_dotenv()
+# Explicit path: the server's cwd is multi_agent_ck3/, and load_dotenv()'s
+# default upward search does not reliably run from a VS-Code-spawned process.
+load_dotenv(pathlib.Path(__file__).resolve().parent.parent / ".env")
 
 mcp = FastMCP("ck3-multi-agent")
 
@@ -26,9 +28,30 @@ _supervisor = None
 def _get_supervisor():
     global _supervisor
     if _supervisor is None:
+        print("[mcp_server] building supervisor graph...", file=sys.stderr, flush=True)
         from graph import build_graph
         _supervisor = build_graph()
+        print("[mcp_server] supervisor graph built", file=sys.stderr, flush=True)
     return _supervisor
+
+
+def _invoke_with_timeout(supervisor, task: str, timeout: float = 90.0) -> str:
+    """Run supervisor.invoke in a thread so a hang raises instead of blocking forever."""
+    import concurrent.futures
+
+    def _run():
+        print("[mcp_server] invoke starting...", file=sys.stderr, flush=True)
+        result = supervisor.invoke({"messages": [HumanMessage(content=task)]})
+        print("[mcp_server] invoke finished", file=sys.stderr, flush=True)
+        return result["messages"][-1].content
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=1) as pool:
+        future = pool.submit(_run)
+        try:
+            return future.result(timeout=timeout)
+        except concurrent.futures.TimeoutError:
+            print(f"[mcp_server] invoke TIMED OUT after {timeout}s", file=sys.stderr, flush=True)
+            raise RuntimeError(f"supervisor.invoke timed out after {timeout}s") from None
 
 
 @mcp.tool()
@@ -50,8 +73,7 @@ def ck3_mod_task(task: str) -> str:
         A summary of everything that was created or found, including file paths.
     """
     supervisor = _get_supervisor()
-    result = supervisor.invoke({"messages": [HumanMessage(content=task)]})
-    return result["messages"][-1].content
+    return _invoke_with_timeout(supervisor, task)
 
 
 @mcp.tool()

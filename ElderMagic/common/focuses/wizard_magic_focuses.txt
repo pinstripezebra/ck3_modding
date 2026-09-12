@@ -4,7 +4,6 @@
 
 wizard_light_magic_might_focus = {
 	lifestyle = light_magic_lifestyle
-	icon = martial_chivalry_focus
 
 	modifier = {
 		prowess = 3
@@ -17,7 +16,6 @@ wizard_light_magic_might_focus = {
 
 wizard_light_magic_longevity_focus = {
 	lifestyle = light_magic_lifestyle
-	icon = learning_medicine_focus
 
 	modifier = {
 		health = 0.5
@@ -30,7 +28,6 @@ wizard_light_magic_longevity_focus = {
 
 wizard_light_magic_learning_focus = {
 	lifestyle = light_magic_lifestyle
-	icon = learning_scholarship_focus
 
 	modifier = {
 		learning = 3
@@ -43,7 +40,6 @@ wizard_light_magic_learning_focus = {
 
 wizard_dark_magic_might_focus = {
 	lifestyle = dark_magic_lifestyle
-	icon = martial_chivalry_focus
 
 	modifier = {
 		prowess = 3
@@ -56,7 +52,6 @@ wizard_dark_magic_might_focus = {
 
 wizard_dark_magic_longevity_focus = {
 	lifestyle = dark_magic_lifestyle
-	icon = learning_medicine_focus
 
 	modifier = {
 		health = 0.5
@@ -69,7 +64,6 @@ wizard_dark_magic_longevity_focus = {
 
 wizard_dark_magic_learning_focus = {
 	lifestyle = dark_magic_lifestyle
-	icon = learning_scholarship_focus
 
 	modifier = {
 		learning = 3

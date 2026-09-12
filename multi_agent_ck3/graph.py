@@ -20,7 +20,6 @@ import os
 from dotenv import load_dotenv
 from langchain_core.messages import HumanMessage
 from langchain_core.tools import StructuredTool
-from langchain_openai import ChatOpenAI
 from langgraph.prebuilt import create_react_agent
 
 from agents import (
@@ -90,8 +89,18 @@ def _make_agent_tool(name: str, description: str, agent):
     )
 
 
-def build_graph(model: str = "gpt-4o"):
-    llm = ChatOpenAI(model=model, temperature=0)
+def _build_llm(model: str | None):
+    """Prefer Anthropic (ANTHROPIC_API_KEY) over OpenAI (OPENAI_API_KEY) when both
+    are available, since that's the credential most likely to be set up."""
+    if os.environ.get("ANTHROPIC_API_KEY"):
+        from langchain_anthropic import ChatAnthropic
+        return ChatAnthropic(model=model or "claude-sonnet-4-5-latest", temperature=0)
+    from langchain_openai import ChatOpenAI
+    return ChatOpenAI(model=model or "gpt-4o", temperature=0)
+
+
+def build_graph(model: str | None = None):
+    llm = _build_llm(model)
 
     content = content_agent.get_agent(llm)
     world   = world_agent.get_agent(llm)

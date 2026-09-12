@@ -11,17 +11,23 @@
  # --- Lifestyle focuses ---
  wizard_light_magic_might_focus:0 "Magical Might"
  wizard_light_magic_might_focus_desc:0 "Channel your magic into raw physical prowess."
+ wizard_light_magic_might_focus_effect_desc:0 "Focusing on Magical Might grants:"
  wizard_light_magic_longevity_focus:0 "Longevity"
  wizard_light_magic_longevity_focus_desc:0 "Use your magic to ward off illness and old age."
+ wizard_light_magic_longevity_focus_effect_desc:0 "Focusing on Longevity grants:"
  wizard_light_magic_learning_focus:0 "Learning"
  wizard_light_magic_learning_focus_desc:0 "Deepen your understanding of the arcane arts."
+ wizard_light_magic_learning_focus_effect_desc:0 "Focusing on Learning grants:"
 
  wizard_dark_magic_might_focus:0 "Magical Might"
  wizard_dark_magic_might_focus_desc:0 "Channel your magic into raw physical prowess."
+ wizard_dark_magic_might_focus_effect_desc:0 "Focusing on Magical Might grants:"
  wizard_dark_magic_longevity_focus:0 "Longevity"
  wizard_dark_magic_longevity_focus_desc:0 "Use your magic to ward off illness and old age."
+ wizard_dark_magic_longevity_focus_effect_desc:0 "Focusing on Longevity grants:"
  wizard_dark_magic_learning_focus:0 "Learning"
  wizard_dark_magic_learning_focus_desc:0 "Deepen your understanding of the arcane arts."
+ wizard_dark_magic_learning_focus_effect_desc:0 "Focusing on Learning grants:"
 
  # --- Trees (both a bare key and a _name variant are provided since the perk
  # tree header can resolve either way depending on engine version) ---

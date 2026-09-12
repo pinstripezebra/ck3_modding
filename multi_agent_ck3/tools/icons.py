@@ -1,12 +1,14 @@
 import math
+import os
 import pathlib
 import re
 import struct
+import time
 import zlib
 from io import BytesIO
 from typing import Optional
 
-import replicate
+import httpx
 from PIL import Image, ImageDraw
 
 
@@ -463,26 +465,53 @@ def _overlay_stars(img: Image.Image, filled: int, total: int = 5) -> Image.Image
 def _run_replicate_flux(prompt: str, width: int, height: int) -> Image.Image:
     """Run Flux Schnell via Replicate and return a PIL RGBA Image.
 
-    Handles both FileOutput objects (replicate-python < 1.0) and URL strings
-    (replicate-python >= 1.0) so either library version works correctly.
+    Uses a plain httpx POST + manual poll against the REST API instead of the
+    `replicate` SDK's blocking `replicate.run()`, which hangs with a ReadTimeout
+    in this environment. Requires REPLICATE_API_TOKEN in the environment (the
+    MCP server loads .env at startup).
 
     Raises RuntimeError on any failure so callers can decide how to handle it.
     """
-    import urllib.request
+    token = os.environ.get("REPLICATE_API_TOKEN")
+    if not token:
+        raise RuntimeError("REPLICATE_API_TOKEN is not set")
 
-    output = replicate.run(
-        "black-forest-labs/flux-schnell",
-        input={"prompt": prompt, "width": width, "height": height, "num_outputs": 1},
-    )
-    first = output[0] if isinstance(output, (list, tuple)) else output
-    if hasattr(first, "read"):
-        img_data = first.read()
-    elif isinstance(first, (str, bytes)):
-        url = first if isinstance(first, str) else first.decode()
-        with urllib.request.urlopen(url) as resp:
-            img_data = resp.read()
-    else:
-        raise RuntimeError(f"Unexpected Replicate output type: {type(first)}")
+    headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
+    with httpx.Client(timeout=60) as client:
+        resp = client.post(
+            "https://api.replicate.com/v1/models/black-forest-labs/flux-schnell/predictions",
+            headers=headers,
+            json={
+                "input": {
+                    "prompt": prompt,
+                    "width": width,
+                    "height": height,
+                    "num_outputs": 1,
+                    "output_format": "png",
+                }
+            },
+        )
+        resp.raise_for_status()
+        prediction = resp.json()
+
+        deadline = time.time() + 300
+        while prediction["status"] not in ("succeeded", "failed", "canceled"):
+            if time.time() > deadline:
+                raise RuntimeError("timed out waiting for prediction")
+            time.sleep(2)
+            poll = client.get(prediction["urls"]["get"], headers=headers)
+            if poll.status_code >= 500:  # transient API hiccup, keep polling
+                continue
+            poll.raise_for_status()
+            prediction = poll.json()
+
+        if prediction["status"] != "succeeded":
+            raise RuntimeError(f"prediction {prediction['status']}: {prediction.get('error')}")
+
+        output = prediction["output"]
+        url = output[0] if isinstance(output, list) else output
+        img_data = client.get(url, follow_redirects=True).content
+
     return Image.open(BytesIO(img_data)).convert("RGBA")
 
 

@@ -44,11 +44,29 @@
 		save_scope_as = scheme
 		scheme_target_character = { save_scope_as = target }
 		scheme_owner = { save_scope_as = owner }
-		random = {
-			chance = scope:scheme.scheme_success_chance
+		# magic_instruction_perk (Light Magic — Scholar tree) or dark_legacy_perk
+		# (Dark Magic — Necromancy tree) guarantees success.
+		if = {
+			limit = {
+				scope:owner = {
+					OR = {
+						has_perk = magic_instruction_perk
+						has_perk = dark_legacy_perk
+					}
+				}
+			}
 			save_scope_value_as = {
 				name = scheme_successful
 				value = yes
+			}
+		}
+		else = {
+			random = {
+				chance = scope:scheme.scheme_success_chance
+				save_scope_value_as = {
+					name = scheme_successful
+					value = yes
+				}
 			}
 		}
 		scope:owner = {

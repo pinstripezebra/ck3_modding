@@ -5,8 +5,8 @@
  light_magic_lifestyle_highlight_desc:0 "Because you have awakened a Lore of Magic trait, you can pursue the Light Magic lifestyle."
 
  dark_magic_lifestyle_name:0 "Dark Magic"
- dark_magic_lifestyle_desc:0 "Focus on channeling your magic into battle and scholarship, sharpening your spellcraft and the soldiers who fight at your side."
- dark_magic_lifestyle_highlight_desc:0 "Because you have awakened a Lore of Magic trait, you can pursue the Dark Magic lifestyle."
+ dark_magic_lifestyle_desc:0 "Delve into the forbidden art of necromancy, trading years of life and the goodwill of others for command over the undead."
+ dark_magic_lifestyle_highlight_desc:0 "Because you have awakened the Lore of Death trait, you can pursue the Dark Magic lifestyle."
 
  # --- Lifestyle focuses ---
  wizard_light_magic_might_focus:0 "Magical Might"
@@ -54,7 +54,7 @@
  # --- Tree 2: The Scholar ---
  attuned_equipment_perk_name:0 "Attuned Equipment"
  magic_instruction_perk_name:0 "Magic Instruction"
- magic_instruction_effect:0 "Wards you are teaching are guaranteed to awaken every Lore of Magic trait you hold when they come of age, instead of merely being likely to."
+ magic_instruction_effect:0 "Wards you are teaching are guaranteed to awaken every Lore of Magic trait you hold when they come of age, instead of merely being likely to. The Teach Lore of Magic scheme can no longer fail."
  sorcerous_scholarship_perk_name:0 "Sorcerous Scholarship"
  sorcerous_scholarship_effect:0 "Increases the experience gained from studying lore and the success chance of the Teach Lore of Magic scheme."
  archivist_perk_name:0 "Archivist"
@@ -65,3 +65,15 @@
  master_artificer_perk_name:0 "Master Artificer"
  arcanist_perk_name:0 "Arcanist"
  arcanist_effect:0 "Increases total Magic Power."
+
+ # --- Dark Magic Tree: Necromancy ---
+ necromancy:0 "Necromancy"
+ necromancy_name:0 "Necromancy"
+
+ lifestealer_perk_name:0 "Lifestealer"
+ dark_casting_perk_name:0 "Dark Casting"
+ reanimator_perk_name:0 "Reanimator"
+ resilient_constitution_perk_name:0 "Resilient Constitution"
+ dark_legacy_perk_name:0 "Dark Legacy"
+ dark_legacy_effect:0 "The Teach Lore of Magic scheme can no longer fail."
+ master_necromancer_perk_name:0 "Master Necromancer"

@@ -1,0 +1,88 @@
+
+# Dark Magic — Tree: Necromancy
+# Lifestealer (start) branches into Dark Casting / Reanimator, each leading to
+# Resilient Constitution / Dark Legacy, converging on the Master Necromancer
+# capstone.
+
+lifestealer_perk = {
+	lifestyle = dark_magic_lifestyle
+	tree = necromancy
+	position = { 2 0 }
+	icon = node_dark_magic
+
+	character_modifier = {
+		life_expectancy = 10
+		general_opinion = -15
+	}
+}
+
+dark_casting_perk = {
+	lifestyle = dark_magic_lifestyle
+	tree = necromancy
+	position = { 0 1.25 }
+	icon = node_dark_magic
+
+	parent = lifestealer_perk
+
+	character_modifier = {
+		prowess = 3
+	}
+}
+
+reanimator_perk = {
+	lifestyle = dark_magic_lifestyle
+	tree = necromancy
+	position = { 4 1.25 }
+	icon = node_dark_magic
+
+	parent = lifestealer_perk
+
+	character_modifier = {
+		general_opinion = -5
+		undead_max_size_add = 2
+	}
+}
+
+resilient_constitution_perk = {
+	lifestyle = dark_magic_lifestyle
+	tree = necromancy
+	position = { 0 2.5 }
+	icon = node_dark_magic
+
+	parent = dark_casting_perk
+
+	character_modifier = {
+		health = 0.5
+		fertility = -0.1
+	}
+}
+
+dark_legacy_perk = {
+	lifestyle = dark_magic_lifestyle
+	tree = necromancy
+	position = { 4 2.5 }
+	icon = node_dark_magic
+
+	parent = reanimator_perk
+
+	effect = {
+		custom_description_no_bullet = {
+			text = dark_legacy_effect
+		}
+	}
+}
+
+master_necromancer_perk = {
+	lifestyle = dark_magic_lifestyle
+	tree = necromancy
+	position = { 2 3.75 }
+	icon = node_master_necromancer
+
+	parent = resilient_constitution_perk
+	parent = dark_legacy_perk
+
+	character_modifier = {
+		undead_max_size_add = 3
+		life_expectancy = 15
+	}
+}

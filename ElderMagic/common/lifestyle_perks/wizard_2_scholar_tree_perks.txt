@@ -81,8 +81,8 @@ enchanted_armory_perk = {
 	parent = sorcerous_scholarship_perk
 
 	character_modifier = {
-		magi_damage_add = 2
-		magi_toughness_add = 3
+		prowess = 2
+		character_travel_safety = 5
 	}
 }
 
@@ -115,8 +115,8 @@ master_artificer_perk = {
 	parent = enchanted_armory_perk
 
 	character_modifier = {
-		magi_damage_add = 4
-		magi_max_size_add = 2
+		advantage = 5
+		hard_casualty_modifier = -0.1
 	}
 }
 

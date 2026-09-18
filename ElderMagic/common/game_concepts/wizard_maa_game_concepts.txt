@@ -1,0 +1,13 @@
+
+# Game concepts for our custom MaA archetypes (magi, undead), so unit tooltips
+# and the [magi|E]/[undead|E] concept tags resolve instead of falling back to
+# the generic "men_at_arms" concept.
+magi = {
+	texture = "gfx/interface/icons/maa_types/wandering_mages.dds"
+	parent = men_at_arms
+}
+
+undead = {
+	texture = "gfx/interface/icons/maa_types/skeleton_warriors.dds"
+	parent = men_at_arms
+}

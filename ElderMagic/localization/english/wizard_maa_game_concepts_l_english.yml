@@ -1,0 +1,8 @@
+﻿l_english:
+ magi:0 "[magi|E]"
+ game_concept_magi:0 "Magi"
+ game_concept_magi_desc:0 "Magi are [men_at_arms|E] who channel destructive magic against their enemies.\n\nWhile each kind of Magi is unique, they are recruited by cultures that have mastered the arcane arts."
+
+ undead:0 "[undead|E]"
+ game_concept_undead:0 "Undead"
+ game_concept_undead_desc:0 "Undead are [men_at_arms|E] raised from the dead by necromantic rites to serve without fear or fatigue.\n\nWhile each kind of Undead is unique, they are recruited by cultures that have mastered the art of reanimation."

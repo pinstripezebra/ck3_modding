@@ -41,7 +41,7 @@
  focused_magic_effect:0 "Increases total Magic Power and the success chance of the Teach Lore of Magic scheme."
  spell_wards_perk_name:0 "Spell Wards"
  efficient_casting_perk_name:0 "Efficient Casting"
- efficient_casting_effect:0 "Reduces the mana cost of casting spells by 20%."
+ efficient_casting_effect:0 "Reduces the mana cost of casting spells by 20% and grants a permanently lower chance of dying in battle."
  battle_wards_perk_name:0 "Battle Wards"
  overcharged_casting_perk_name:0 "Overcharged Casting"
  overcharged_casting_effect:0 "Increases the monthly mana generation rate."
@@ -77,3 +77,7 @@
  dark_legacy_perk_name:0 "Dark Legacy"
  dark_legacy_effect:0 "The Teach Lore of Magic scheme can no longer fail."
  master_necromancer_perk_name:0 "Master Necromancer"
+
+ # --- Granted traits ---
+ trait_wizard_battle_caution:0 "Battle-Wary"
+ trait_wizard_battle_caution_desc:0 "Your mastery of efficient casting has taught you to read a battlefield's ebb and flow, making you far less likely to fall in combat."

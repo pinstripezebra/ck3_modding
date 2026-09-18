@@ -1,4 +1,4 @@
-l_english:
+﻿l_english:
  wizard_wardship_toast_title:0 "Magical Upbringing"
  wizard_wardship_toast_fire_desc:0 "[ROOT.GetFirstName] has absorbed the principles of pyromancy from their guardian's tutelage, awakening the Lore of Fire within them."
  wizard_wardship_toast_earth_desc:0 "[ROOT.GetFirstName] has learned the slow, enduring wisdom of stone from their guardian's teachings, awakening the Lore of Earth within them."
@@ -9,3 +9,6 @@ l_english:
  wizard_wardship.0002.t:0 "A Mage Comes of Age"
  wizard_wardship.0002.desc:0 "Years spent learning at the feet of your guardian have prepared you well. The arcane principles woven into your upbringing have taken root, awakening a true Lore of Magic within you on this, your sixteenth year."
  wizard_wardship.0002.a:0 "My guardian's teachings have made me what I am."
+
+ wizard_wardship_guardian_hint_title:0 "A Question of Tutelage"
+ wizard_wardship_guardian_hint_desc:0 "Your lore of magic can only pass to children of your own blood automatically. Other young wards or hostages in your court must first be formally designated your Ward (via the 'Designate Guardian and Ward' interaction) before your teachings can awaken magic within them."

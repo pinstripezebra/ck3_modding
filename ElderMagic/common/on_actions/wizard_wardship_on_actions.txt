@@ -6,7 +6,10 @@ yearly_playable_pulse = {
 }
 
 # Coming-of-age lore grant: fires once when a potential-bearing ward turns 16.
-on_comes_of_age = {
+# NOTE: on_comes_of_age is not a real engine on_action (nothing ever calls it) —
+# the correct hook that actually fires on a character's 16th birthday is
+# on_16th_birthday (see vanilla common/on_action/childhood_on_actions.txt).
+on_16th_birthday = {
 	on_actions = { wizard_wardship_coming_of_age_check }
 }
 
@@ -15,11 +18,43 @@ wizard_wardship_coming_of_age_check = {
 		if = {
 			limit = {
 				wizard_has_any_magic_potential_trait = yes
-				liege = {
-					wizard_has_any_lore_trait = yes
+				# "guardian" is a relation only set via explicit fostering/hostage/assign-
+				# guardian actions (num_of_relation_guardian = 0 otherwise) — it is NOT set
+				# automatically for a character's own biological parents, so an ordinary
+				# child raised in their own parents' court must fall back to mother/father.
+				OR = {
+					any_relation = {
+						type = guardian
+						wizard_has_any_lore_trait = yes
+					}
+					mother = { wizard_has_any_lore_trait = yes }
+					father = { wizard_has_any_lore_trait = yes }
 				}
 			}
-			liege = { save_scope_as = warding_guardian }
+			if = {
+				limit = {
+					any_relation = {
+						type = guardian
+						wizard_has_any_lore_trait = yes
+					}
+				}
+				# Without this limit, random_relation picks uniformly among ALL guardians
+				# (e.g. both parents) even though only one may have a lore trait, which
+				# silently drops the grant in wizard_wardship.0002 when the non-wizard
+				# guardian gets picked — must restrict the pool to qualifying guardians.
+				random_relation = {
+					type = guardian
+					limit = { wizard_has_any_lore_trait = yes }
+					save_scope_as = warding_guardian
+				}
+			}
+			else_if = {
+				limit = { mother = { wizard_has_any_lore_trait = yes } }
+				mother = { save_scope_as = warding_guardian }
+			}
+			else = {
+				father = { save_scope_as = warding_guardian }
+			}
 			random = {
 				chance = wizard_wardship_coming_of_age_chance
 				trigger_event = wizard_wardship.0002
@@ -33,32 +68,51 @@ wizard_wardship_magic_check = {
 		if = {
 			limit = {
 				wizard_has_any_lore_trait = yes
-				any_ward = {
-					age < 16
-					NOT = { has_character_flag = wizard_wardship_lore_cooldown }
-					OR = {
-						AND = { prev = { has_trait = lore_of_fire }      NOT = { has_trait = lore_of_fire } }
-						AND = { prev = { has_trait = lore_of_earth }     NOT = { has_trait = lore_of_earth } }
-						AND = { prev = { has_trait = lore_of_water }     NOT = { has_trait = lore_of_water } }
-						AND = { prev = { has_trait = lore_of_death }     NOT = { has_trait = lore_of_death } }
-						AND = { prev = { has_trait = lore_of_high_magic } NOT = { has_trait = lore_of_high_magic } }
-					}
+				OR = {
+					# NOTE (09-17): "any_ward"/"every_ward" are NOT real CK3 scopes — the
+					# ward/guardian scripted relation is only accessible via the generic
+					# relation list, `any_relation`/`every_relation = { type = ward }`
+					# (confirmed against vanilla common/character_interactions/
+					# 00_education_interactions.txt). The old any_ward/every_ward calls
+					# silently matched nothing, so true fostered/hostage wards never got
+					# yearly teaching at all — only the any_child/every_child fallback
+					# (for biological children) ever worked.
+					any_relation = { type = ward  wizard_wardship_eligible_to_learn_lore_trigger = yes }
+					any_child = { wizard_wardship_eligible_to_learn_lore_trigger = yes }
 				}
 			}
 			save_scope_as = warding_guardian
-			every_ward = {
-				limit = {
-					age < 16
-					NOT = { has_character_flag = wizard_wardship_lore_cooldown }
-					OR = {
-						AND = { prev = { has_trait = lore_of_fire }      NOT = { has_trait = lore_of_fire } }
-						AND = { prev = { has_trait = lore_of_earth }     NOT = { has_trait = lore_of_earth } }
-						AND = { prev = { has_trait = lore_of_water }     NOT = { has_trait = lore_of_water } }
-						AND = { prev = { has_trait = lore_of_death }     NOT = { has_trait = lore_of_death } }
-						AND = { prev = { has_trait = lore_of_high_magic } NOT = { has_trait = lore_of_high_magic } }
-					}
-				}
+			every_relation = {
+				type = ward
+				limit = { wizard_wardship_eligible_to_learn_lore_trigger = yes }
 				trigger_event = { id = wizard_wardship.0001 }
+			}
+			# Own biological children living in their parents' court are NOT registered
+			# under the "ward" relation (that's only for fostered/hostage characters),
+			# so they must be checked separately here.
+			every_child = {
+				limit = { wizard_wardship_eligible_to_learn_lore_trigger = yes }
+				trigger_event = { id = wizard_wardship.0001 }
+			}
+		}
+		# One-time nudge: fostered/hostage court children need to be formally made your
+		# Ward (via the base game's "Designate Guardian and Ward" interaction) before
+		# wardship magic teaching applies to them — bio children work automatically.
+		if = {
+			limit = {
+				wizard_has_any_lore_trait = yes
+				NOT = { has_character_flag = wizard_wardship_guardian_hint_shown }
+				any_courtier = {
+					is_adult = no
+					NOR = { mother = root father = root }
+				}
+			}
+			add_character_flag = wizard_wardship_guardian_hint_shown
+			send_interface_toast = {
+				type = event_toast_effect_neutral
+				title = wizard_wardship_guardian_hint_title
+				desc = wizard_wardship_guardian_hint_desc
+				left_icon = ROOT
 			}
 		}
 	}

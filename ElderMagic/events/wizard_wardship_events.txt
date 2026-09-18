@@ -10,15 +10,28 @@ wizard_wardship.0001 = {
 	immediate = {
 		add_character_flag = { flag = wizard_wardship_lore_cooldown days = 365 }
 
-		# 75% chance to actually learn something this year
-		random = {
-			chance = 75
+		# Pity timer: guarantee a lesson after 3 consecutive missed years so a ward
+		# can never be perpetually unlucky (mirrors Godherja's
+		# magic_school_education_three_year_countdown design).
+		if = {
+			limit = {
+				exists = var:wizard_wardship_failed_years
+				var:wizard_wardship_failed_years >= 3
+			}
 			add_character_flag = wizard_wardship_will_learn
+		}
+		else = {
+			# 75% chance to actually learn something this year
+			random = {
+				chance = 75
+				add_character_flag = wizard_wardship_will_learn
+			}
 		}
 
 		if = {
 			limit = { has_character_flag = wizard_wardship_will_learn }
 			remove_character_flag = wizard_wardship_will_learn
+			set_variable = { name = wizard_wardship_failed_years value = 0 }
 
 			random_list = {
 				1 = {
@@ -87,6 +100,13 @@ wizard_wardship.0001 = {
 					}
 				}
 			}
+		}
+		else = {
+			if = {
+				limit = { NOT = { has_variable = wizard_wardship_failed_years } }
+				set_variable = { name = wizard_wardship_failed_years value = 0 }
+			}
+			change_variable = { name = wizard_wardship_failed_years add = 1 }
 		}
 	}
 }

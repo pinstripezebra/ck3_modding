@@ -25,11 +25,10 @@ wizard_mana_gain_rate = {
 	if = { limit = { has_perk = arcane_reserves_perk     } add = 3 }
 }
 
-# Multiplier applied to spell mana costs — stacks the Battlemage tree's two
-# casting-efficiency perks. Floored at 0.5 so costs can never hit zero.
+# Multiplier applied to spell mana costs — the Battlemage tree's remaining
+# casting-efficiency perk. Floored at 0.5 so costs can never hit zero.
 wizard_spell_cost_discount_mult = {
 	value = 1
-	if = { limit = { has_perk = efficient_casting_perk } subtract = 0.2 }
 	if = { limit = { has_perk = arcane_reserves_perk   } subtract = 0.15 }
 	min = 0.5
 }

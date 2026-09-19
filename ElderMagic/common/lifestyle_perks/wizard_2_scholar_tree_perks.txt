@@ -62,7 +62,7 @@ archivist_perk = {
 	parent = magic_instruction_perk
 
 	character_modifier = {
-		learning = 1
+		learning = 2
 	}
 
 	effect = {

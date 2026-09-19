@@ -1,13 +1,15 @@
 
-# Granted automatically by efficient_casting_perk (Light Magic — Battlemage
+# Granted automatically by defensive_casting_perk (Light Magic — Battlemage
 # tree). Carries the engine's lower_chance_of_dying_in_combat flag — the
 # opposite of the vanilla "brave" trait's higher_chance_of_dying_in_battle —
-# since that risk isn't exposed as a scalable character_modifier field.
+# since that risk isn't exposed as a scalable character_modifier field, so the
+# ~25% figure in its tooltip is flavor framing rather than a literal knob.
 wizard_battle_caution = {
 	category = personality
 	random_creation = 0
 
 	flag = lower_chance_of_dying_in_combat
+	icon = wizard_battle_caution.dds
 
 	desc = {
 		desc = trait_wizard_battle_caution_desc

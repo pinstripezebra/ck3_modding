@@ -23,20 +23,6 @@ wizard_has_any_magic_potential_trait = {
 	}
 }
 
-# Used from a lore-holder's perspective (root = teacher, this = potential student) to
-# see if `this` is still missing at least one lore the teacher (prev) already has.
-wizard_wardship_eligible_to_learn_lore_trigger = {
-	age < 16
-	NOT = { has_character_flag = wizard_wardship_lore_cooldown }
-	OR = {
-		AND = { prev = { has_trait = lore_of_fire }      NOT = { has_trait = lore_of_fire } }
-		AND = { prev = { has_trait = lore_of_earth }     NOT = { has_trait = lore_of_earth } }
-		AND = { prev = { has_trait = lore_of_water }     NOT = { has_trait = lore_of_water } }
-		AND = { prev = { has_trait = lore_of_death }     NOT = { has_trait = lore_of_death } }
-		AND = { prev = { has_trait = lore_of_high_magic } NOT = { has_trait = lore_of_high_magic } }
-	}
-}
-
 wizard_has_missing_lore_from_recipient = {
 	OR = {
 		AND = {

@@ -14,16 +14,6 @@ wizard_ruins_lore_success_chance = {
 	max = 80
 }
 
-# Chance a warded child awakens every Lore of Magic trait their guardian holds
-# at coming-of-age. Base 85%, raised to 100% if the guardian has taken
-# magic_instruction_perk (Light Magic — Scholar tree). Evaluated with the ward
-# as root and scope:warding_guardian already saved by the calling on_action.
-wizard_wardship_coming_of_age_chance = {
-	value = 85
-	if = { limit = { scope:warding_guardian = { has_perk = magic_instruction_perk } } add = 15 }
-	max = 100
-}
-
 # Base 10 + learning stat + education bonus, clamped to 20-80.
 # Examples: learning 10 + edu1 = 20%, learning 25 + edu5 = 65%, learning 40+ + edu5 = 80%
 wizard_ascendant_success_chance = {

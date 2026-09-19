@@ -12,3 +12,9 @@
 
  wizard_wardship_guardian_hint_title:0 "A Question of Tutelage"
  wizard_wardship_guardian_hint_desc:0 "Your lore of magic can only pass to children of your own blood automatically. Other young wards or hostages in your court must first be formally designated your Ward (via the 'Designate Guardian and Ward' interaction) before your teachings can awaken magic within them."
+ wizard_wardship_diag_has_mother:0 "[DIAG] has mother scope"
+ wizard_wardship_diag_has_father:0 "[DIAG] has father scope"
+ wizard_wardship_diag_has_guardian_rel:0 "[DIAG] has_relation type=guardian exists"
+ wizard_wardship_diag_guardian_has_lore:0 "[DIAG] guardian relation has a lore trait"
+ wizard_wardship_diag_mother_has_lore:0 "[DIAG] mother has a lore trait"
+ wizard_wardship_diag_father_has_lore:0 "[DIAG] father has a lore trait"

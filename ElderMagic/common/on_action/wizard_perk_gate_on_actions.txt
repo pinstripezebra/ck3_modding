@@ -1,0 +1,61 @@
+# Safety net: CK3's game-start/history population sometimes grants lifestyle perks to
+# characters who never actually qualify for the lifestyle (bookmark/world-population
+# character generation doesn't consistently respect a lifestyle's is_valid trigger or a
+# perk's can_be_picked gate the way the manual perk-tree UI does). This sweeps every
+# living character once at game start and strips wizard_battle_caution (and its granting
+# perk) from anyone without a qualifying Lore of Magic trait.
+on_game_start = {
+	on_actions = { wizard_perk_gate_cleanup }
+}
+
+wizard_perk_gate_cleanup = {
+	effect = {
+		every_living_character = {
+			limit = {
+				has_trait = wizard_battle_caution
+				NOR = {
+					has_trait = lore_of_fire
+					has_trait = lore_of_earth
+					has_trait = lore_of_water
+					has_trait = lore_of_high_magic
+				}
+			}
+			remove_trait = wizard_battle_caution
+			if = {
+				limit = { has_perk = defensive_casting_perk }
+				remove_perk = defensive_casting_perk
+			}
+		}
+	}
+}
+
+# The one-time on_game_start sweep above only catches the population that exists at the
+# instant the game starts. CK3's background NPC growth/perk simulation keeps handing this
+# perk to ineligible characters afterward too (can_be_picked only governs the player-facing
+# perk-tree UI and a ruler's own auto-selection on becoming landed, not the general
+# population's background simulation) — so also self-correct every character once a year,
+# on their birthday, same as the wardship mechanic elsewhere in this mod.
+on_birthday = {
+	on_actions = { wizard_perk_gate_yearly_check }
+}
+
+wizard_perk_gate_yearly_check = {
+	effect = {
+		if = {
+			limit = {
+				has_trait = wizard_battle_caution
+				NOR = {
+					has_trait = lore_of_fire
+					has_trait = lore_of_earth
+					has_trait = lore_of_water
+					has_trait = lore_of_high_magic
+				}
+			}
+			remove_trait = wizard_battle_caution
+			if = {
+				limit = { has_perk = defensive_casting_perk }
+				remove_perk = defensive_casting_perk
+			}
+		}
+	}
+}

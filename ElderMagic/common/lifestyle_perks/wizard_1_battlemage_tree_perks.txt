@@ -13,6 +13,17 @@ focused_magic_perk = {
 	position = { 2 0 }
 	icon = node_light_magic
 
+	# Auto-selection at game start/landing bypasses the lifestyle's own is_valid trigger,
+	# so the tree root must repeat the same Lore of Magic gate here.
+	can_be_picked = {
+		OR = {
+			has_trait = lore_of_fire
+			has_trait = lore_of_earth
+			has_trait = lore_of_water
+			has_trait = lore_of_high_magic
+		}
+	}
+
 	character_modifier = {
 		prowess = 2
 		advantage = 2

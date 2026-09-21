@@ -1,0 +1,33 @@
+# Assigns starting values for the new Elemental Magic / Dark Magic crime doctrines to every
+# faith once, at game start. Elemental Magic mirrors whatever the faith already believes
+# about Witchcraft (accepted cultures of magic start accepting); Dark Magic always starts
+# as a Crime, per design (Bugs/Update 6 spec).
+on_game_start = {
+	on_actions = { wizard_criminal_doctrine_init }
+}
+
+wizard_criminal_doctrine_init = {
+	effect = {
+		every_religion_global = {
+			every_faith = {
+				if = {
+					limit = { has_doctrine = doctrine_witchcraft_virtuous }
+					add_doctrine = doctrine_elemental_magic_virtuous
+				}
+				else_if = {
+					limit = { has_doctrine = doctrine_witchcraft_accepted }
+					add_doctrine = doctrine_elemental_magic_accepted
+				}
+				else_if = {
+					limit = { has_doctrine = doctrine_witchcraft_shunned }
+					add_doctrine = doctrine_elemental_magic_shunned
+				}
+				else = {
+					add_doctrine = doctrine_elemental_magic_crime
+				}
+
+				add_doctrine = doctrine_dark_magic_crime
+			}
+		}
+	}
+}

@@ -1,0 +1,172 @@
+# Elemental Magic and Dark Magic crime doctrines, mirroring vanilla's doctrine_witchcraft_*
+# (common/religion/doctrine_types/20_doctrines.txt) piety_cost/parameters structure.
+
+doctrine_elemental_magic_crime = {
+	piety_cost = {
+		value = faith_doctrine_cost_low
+		if = {
+			limit = { has_doctrine = doctrine_elemental_magic_crime }
+			multiply = faith_unchanged_doctrine_cost_mult
+		}
+		else_if = {
+			limit = { has_doctrine = doctrine_elemental_magic_accepted }
+			multiply = faith_changed_doctrine_cost_mult_two_step
+		}
+		else_if = {
+			limit = { has_doctrine = doctrine_elemental_magic_virtuous }
+			multiply = faith_changed_doctrine_cost_mult_three_step
+		}
+	}
+
+	parameters = {
+		elemental_magic_illegal = yes
+	}
+}
+
+doctrine_elemental_magic_shunned = {
+	piety_cost = {
+		value = faith_doctrine_cost_low
+		if = {
+			limit = { has_doctrine = doctrine_elemental_magic_shunned }
+			multiply = faith_unchanged_doctrine_cost_mult
+		}
+		else_if = {
+			limit = { has_doctrine = doctrine_elemental_magic_virtuous }
+			multiply = faith_changed_doctrine_cost_mult_two_step
+		}
+	}
+
+	parameters = {
+		elemental_magic_shunned = yes
+	}
+}
+
+doctrine_elemental_magic_accepted = {
+	piety_cost = {
+		value = faith_doctrine_cost_low
+		if = {
+			limit = { has_doctrine = doctrine_elemental_magic_accepted }
+			multiply = faith_unchanged_doctrine_cost_mult
+		}
+		else_if = {
+			limit = { has_doctrine = doctrine_elemental_magic_crime }
+			multiply = faith_changed_doctrine_cost_mult_two_step
+		}
+	}
+
+	parameters = {
+		elemental_magic_accepted = yes
+	}
+}
+
+doctrine_elemental_magic_virtuous = {
+	piety_cost = {
+		value = faith_tenet_cost_massive
+		if = {
+			limit = { has_doctrine = doctrine_elemental_magic_virtuous }
+			multiply = faith_unchanged_doctrine_cost_mult
+		}
+		else_if = {
+			limit = { has_doctrine = doctrine_elemental_magic_shunned }
+			multiply = faith_changed_doctrine_cost_mult_two_step
+		}
+		else_if = {
+			limit = { has_doctrine = doctrine_elemental_magic_crime }
+			multiply = faith_changed_doctrine_cost_mult_three_step
+		}
+	}
+
+	traits = {
+		virtues = { lore_of_fire lore_of_earth lore_of_water }
+	}
+
+	parameters = {
+		elemental_magic_accepted = yes
+	}
+}
+
+# Dark Magic mirrors the same 4-tier structure but is meant to default to Crime for every
+# faith at game start (see wizard_criminal_doctrine_on_actions.txt).
+doctrine_dark_magic_crime = {
+	piety_cost = {
+		value = faith_doctrine_cost_low
+		if = {
+			limit = { has_doctrine = doctrine_dark_magic_crime }
+			multiply = faith_unchanged_doctrine_cost_mult
+		}
+		else_if = {
+			limit = { has_doctrine = doctrine_dark_magic_accepted }
+			multiply = faith_changed_doctrine_cost_mult_two_step
+		}
+		else_if = {
+			limit = { has_doctrine = doctrine_dark_magic_virtuous }
+			multiply = faith_changed_doctrine_cost_mult_three_step
+		}
+	}
+
+	parameters = {
+		dark_magic_illegal = yes
+	}
+}
+
+doctrine_dark_magic_shunned = {
+	piety_cost = {
+		value = faith_doctrine_cost_low
+		if = {
+			limit = { has_doctrine = doctrine_dark_magic_shunned }
+			multiply = faith_unchanged_doctrine_cost_mult
+		}
+		else_if = {
+			limit = { has_doctrine = doctrine_dark_magic_virtuous }
+			multiply = faith_changed_doctrine_cost_mult_two_step
+		}
+	}
+
+	parameters = {
+		dark_magic_shunned = yes
+	}
+}
+
+doctrine_dark_magic_accepted = {
+	piety_cost = {
+		value = faith_doctrine_cost_low
+		if = {
+			limit = { has_doctrine = doctrine_dark_magic_accepted }
+			multiply = faith_unchanged_doctrine_cost_mult
+		}
+		else_if = {
+			limit = { has_doctrine = doctrine_dark_magic_crime }
+			multiply = faith_changed_doctrine_cost_mult_two_step
+		}
+	}
+
+	parameters = {
+		dark_magic_accepted = yes
+	}
+}
+
+doctrine_dark_magic_virtuous = {
+	piety_cost = {
+		value = faith_tenet_cost_massive
+		if = {
+			limit = { has_doctrine = doctrine_dark_magic_virtuous }
+			multiply = faith_unchanged_doctrine_cost_mult
+		}
+		else_if = {
+			limit = { has_doctrine = doctrine_dark_magic_shunned }
+			multiply = faith_changed_doctrine_cost_mult_two_step
+		}
+		else_if = {
+			limit = { has_doctrine = doctrine_dark_magic_crime }
+			multiply = faith_changed_doctrine_cost_mult_three_step
+		}
+	}
+
+	traits = {
+		virtues = { lore_of_death }
+	}
+
+	parameters = {
+		dark_magic_accepted = yes
+	}
+}

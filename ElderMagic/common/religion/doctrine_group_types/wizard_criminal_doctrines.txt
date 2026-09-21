@@ -1,0 +1,23 @@
+# New "crimes" doctrine groups for Elder Magic, mirroring vanilla's doctrine_witchcraft
+# (00_doctrine_group_types.txt) structure: a 4-tier Crime/Shunned/Accepted/Virtuous group.
+doctrine_elemental_magic = {
+	category = "crimes"
+
+	doctrine_types = {
+		doctrine_elemental_magic_crime
+		doctrine_elemental_magic_shunned
+		doctrine_elemental_magic_accepted
+		doctrine_elemental_magic_virtuous
+	}
+}
+
+doctrine_dark_magic = {
+	category = "crimes"
+
+	doctrine_types = {
+		doctrine_dark_magic_crime
+		doctrine_dark_magic_shunned
+		doctrine_dark_magic_accepted
+		doctrine_dark_magic_virtuous
+	}
+}

@@ -1,0 +1,177 @@
+# Necromancer Sanctum - Duchy Capital Building
+# Unlocked by the Necrotic Reanimators cultural tradition. 5 upgrade levels
+# trading opinion with other faiths for garrison strength, fortification,
+# dread generation, and learning.
+
+necromancer_sanctum_1 = {
+	type = duchy_capital
+	type_icon = "icon_building_necromancer_sanctum.dds"
+
+	next_building = necromancer_sanctum_2
+
+	cost = { gold = 250 }
+	construction_time = 730
+
+	can_construct_potential = {
+		culture = { has_cultural_tradition = tradition_necrotic_reanimators }
+	}
+
+	can_construct_showing_failures_only = {
+		building_requirement_tribal = no
+	}
+
+	max_garrison = 250
+
+	province_modifier = {
+		fort_level = 2
+	}
+
+	character_modifier = {
+		different_faith_opinion = -10
+		dread_gain_mult = 0.05
+		learning = 2
+	}
+
+	ai_value = {
+		base = 10
+		ai_general_building_modifier = yes
+	}
+}
+
+necromancer_sanctum_2 = {
+	type = duchy_capital
+	type_icon = "icon_building_necromancer_sanctum.dds"
+
+	next_building = necromancer_sanctum_3
+
+	cost = { gold = 450 }
+	construction_time = 730
+
+	can_construct_potential = {
+		always = no
+	}
+
+	can_construct_showing_failures_only = {
+		building_requirement_tribal = no
+	}
+
+	max_garrison = 500
+
+	province_modifier = {
+		fort_level = 4
+	}
+
+	character_modifier = {
+		different_faith_opinion = -20
+		dread_gain_mult = 0.10
+		learning = 3
+	}
+
+	ai_value = {
+		base = 10
+		ai_general_building_modifier = yes
+	}
+}
+
+necromancer_sanctum_3 = {
+	type = duchy_capital
+	type_icon = "icon_building_necromancer_sanctum.dds"
+
+	next_building = necromancer_sanctum_4
+
+	cost = { gold = 800 }
+	construction_time = 730
+
+	can_construct_potential = {
+		always = no
+	}
+
+	can_construct_showing_failures_only = {
+		building_requirement_tribal = no
+	}
+
+	max_garrison = 750
+
+	province_modifier = {
+		fort_level = 6
+	}
+
+	character_modifier = {
+		different_faith_opinion = -30
+		dread_gain_mult = 0.15
+		learning = 4
+	}
+
+	ai_value = {
+		base = 10
+		ai_general_building_modifier = yes
+	}
+}
+
+necromancer_sanctum_4 = {
+	type = duchy_capital
+	type_icon = "icon_building_necromancer_sanctum.dds"
+
+	next_building = necromancer_sanctum_5
+
+	cost = { gold = 1200 }
+	construction_time = 730
+
+	can_construct_potential = {
+		always = no
+	}
+
+	can_construct_showing_failures_only = {
+		building_requirement_tribal = no
+	}
+
+	max_garrison = 1000
+
+	province_modifier = {
+		fort_level = 8
+	}
+
+	character_modifier = {
+		different_faith_opinion = -40
+		dread_gain_mult = 0.20
+		learning = 5
+	}
+
+	ai_value = {
+		base = 10
+		ai_general_building_modifier = yes
+	}
+}
+
+necromancer_sanctum_5 = {
+	type = duchy_capital
+	type_icon = "icon_building_necromancer_sanctum.dds"
+
+	cost = { gold = 2000 }
+	construction_time = 730
+
+	can_construct_potential = {
+		always = no
+	}
+
+	can_construct_showing_failures_only = {
+		building_requirement_tribal = no
+	}
+
+	max_garrison = 1250
+
+	province_modifier = {
+		fort_level = 10
+	}
+
+	character_modifier = {
+		different_faith_opinion = -50
+		dread_gain_mult = 0.25
+		learning = 6
+	}
+
+	ai_value = {
+		base = 10
+		ai_general_building_modifier = yes
+	}
+}

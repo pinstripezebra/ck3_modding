@@ -11,6 +11,7 @@ tradition_sorcerous_heritage = {
 
 	parameters = {
 		sorcerous_heritage_lore_opinion = yes
+		unlock_building_elemental_tower = yes
 	}
 
 	# CK3 only registers MaA modifiers per archetype, not per unit key; every
@@ -69,6 +70,7 @@ tradition_necrotic_reanimators = {
 	parameters = {
 		unlock_maa_skeleton_warriors = yes
 		unlock_maa_corpse_colossus = yes
+		unlock_building_necromancer_sanctum = yes
 	}
 
 	character_modifier = {

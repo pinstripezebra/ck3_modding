@@ -11,8 +11,10 @@
 
  # --- Tradition Parameters ---
  culture_parameter_sorcerous_heritage_lore_opinion:0 "Characters with a Lore of Magic [trait|E] gain $courtly_vassal$ Opinion"
+ culture_parameter_unlock_building_elemental_tower:0 "Can construct the Elemental Tower building"
  culture_parameter_unlock_maa_skeleton_warriors:0 "Can recruit [GetMaA('skeleton_warriors').GetName] as [men_at_arms|E]"
  culture_parameter_unlock_maa_corpse_colossus:0 "Can recruit [GetMaA('corpse_colossus').GetName] as [men_at_arms|E]"
+ culture_parameter_unlock_building_necromancer_sanctum:0 "Can construct the Necromancer Sanctum building"
 
  # --- Undead Men-at-Arms ---
  skeleton_warriors:0 "Skeleton Warriors"

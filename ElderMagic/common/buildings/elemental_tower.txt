@@ -1,0 +1,187 @@
+# Elemental Tower - Duchy Capital Building
+# Unlocked by the Sorcerous Heritage cultural tradition. 5 upgrade levels
+# providing fortification, development growth, tax income, and boosted
+# Learning lifestyle progress alongside a flat learning bonus.
+
+elemental_tower_1 = {
+	type = duchy_capital
+	type_icon = "icon_building_elemental_tower.dds"
+
+	next_building = elemental_tower_2
+
+	cost = { gold = 250 }
+	construction_time = 730
+
+	can_construct_potential = {
+		culture = { has_cultural_tradition = tradition_sorcerous_heritage }
+	}
+
+	can_construct_showing_failures_only = {
+		building_requirement_tribal = no
+	}
+
+	county_modifier = {
+		development_growth_factor = 0.05
+	}
+
+	province_modifier = {
+		fort_level = 2
+		monthly_income = 1.0
+	}
+
+	character_modifier = {
+		monthly_learning_lifestyle_xp_gain_mult = 0.05
+		learning = 2
+	}
+
+	ai_value = {
+		base = 10
+		ai_general_building_modifier = yes
+	}
+}
+
+elemental_tower_2 = {
+	type = duchy_capital
+	type_icon = "icon_building_elemental_tower.dds"
+
+	next_building = elemental_tower_3
+
+	cost = { gold = 450 }
+	construction_time = 730
+
+	can_construct_potential = {
+		always = no
+	}
+
+	can_construct_showing_failures_only = {
+		building_requirement_tribal = no
+	}
+
+	county_modifier = {
+		development_growth_factor = 0.075
+	}
+
+	province_modifier = {
+		fort_level = 4
+		monthly_income = 1.5
+	}
+
+	character_modifier = {
+		monthly_learning_lifestyle_xp_gain_mult = 0.10
+		learning = 3
+	}
+
+	ai_value = {
+		base = 10
+		ai_general_building_modifier = yes
+	}
+}
+
+elemental_tower_3 = {
+	type = duchy_capital
+	type_icon = "icon_building_elemental_tower.dds"
+
+	next_building = elemental_tower_4
+
+	cost = { gold = 700 }
+	construction_time = 730
+
+	can_construct_potential = {
+		always = no
+	}
+
+	can_construct_showing_failures_only = {
+		building_requirement_tribal = no
+	}
+
+	county_modifier = {
+		development_growth_factor = 0.10
+	}
+
+	province_modifier = {
+		fort_level = 6
+		monthly_income = 2.0
+	}
+
+	character_modifier = {
+		monthly_learning_lifestyle_xp_gain_mult = 0.15
+		learning = 4
+	}
+
+	ai_value = {
+		base = 10
+		ai_general_building_modifier = yes
+	}
+}
+
+elemental_tower_4 = {
+	type = duchy_capital
+	type_icon = "icon_building_elemental_tower.dds"
+
+	next_building = elemental_tower_5
+
+	cost = { gold = 1200 }
+	construction_time = 730
+
+	can_construct_potential = {
+		always = no
+	}
+
+	can_construct_showing_failures_only = {
+		building_requirement_tribal = no
+	}
+
+	county_modifier = {
+		development_growth_factor = 0.125
+	}
+
+	province_modifier = {
+		fort_level = 8
+		monthly_income = 2.5
+	}
+
+	character_modifier = {
+		monthly_learning_lifestyle_xp_gain_mult = 0.20
+		learning = 5
+	}
+
+	ai_value = {
+		base = 10
+		ai_general_building_modifier = yes
+	}
+}
+
+elemental_tower_5 = {
+	type = duchy_capital
+	type_icon = "icon_building_elemental_tower.dds"
+
+	cost = { gold = 2000 }
+	construction_time = 730
+
+	can_construct_potential = {
+		always = no
+	}
+
+	can_construct_showing_failures_only = {
+		building_requirement_tribal = no
+	}
+
+	county_modifier = {
+		development_growth_factor = 0.15
+	}
+
+	province_modifier = {
+		fort_level = 10
+		monthly_income = 3.0
+	}
+
+	character_modifier = {
+		monthly_learning_lifestyle_xp_gain_mult = 0.25
+		learning = 6
+	}
+
+	ai_value = {
+		base = 10
+		ai_general_building_modifier = yes
+	}
+}

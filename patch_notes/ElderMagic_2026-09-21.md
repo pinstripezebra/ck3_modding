@@ -1,5 +1,5 @@
 # Elder Magic — Patch Notes
-**v1.3.4 — since September 18, 2026**
+**v1.3.5 — since September 18, 2026**
 
 ## Fixes
 - Wardship magic-lore inheritance: fixed the actual root cause — six on_action files (including wardship) were sitting in a wrongly-named `on_actions` folder that CK3 never loads. Wards and children of a lore-holding guardian now reliably learn Lore of Magic traits over time, with a guaranteed grant of every missing lore at age 16.
@@ -7,6 +7,7 @@
 - Fixed a localization bug where the Elemental Magic and Dark Magic doctrine tooltips displayed raw loc keys instead of descriptive text.
 - Fixed the "Teach Lore of Magic" interaction icon showing its flame on a solid black square instead of a transparent background.
 - Fixed Wandering Mages / Mage Squadron / Mage Regiment flavor text using the wrong loc key suffix (showed blank flavor text).
+- Fixed a duplicate localization entry for the High Magic tier-1/2/3 spells that left one set of descriptions unreachable.
 
 ## Buildings
 - Deleted the Wizard Tower building entirely.
@@ -18,3 +19,4 @@
 - Added two new faith doctrines: **Elemental Magic** and **Dark Magic**, each with Crime / Shunned / Accepted / Virtuous tiers, mirroring the base game's Witchcraft doctrine.
 - Elemental Magic starts at whatever stance a faith already holds toward Witchcraft; Dark Magic always starts as a Crime.
 - New flame and skull doctrine icons.
+

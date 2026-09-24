@@ -6,12 +6,12 @@ wizard_studying_lore = {
 	learning = 1
 }
 
-wizard_magic_pilgrimage_traveling = {
-	monthly_piety = 0.1
-}
-
 wizard_currently_studying = {
 	learning = 1
+}
+
+wizard_lore_tome_reading_cooldown = {
+	monthly_prestige = -0.02
 }
 
 # Ascendant attempt failure cooldowns — block re-attempt for 5 years per lore

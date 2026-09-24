@@ -61,3 +61,43 @@ wizard_missing_any_lore_trait = {
 		NOT = { has_trait = lore_of_high_magic }
 	}
 }
+
+# The "elemental" lore group (everything except Lore of Death) used by the
+# University of Magic Visit and lore tome mechanics.
+wizard_missing_any_elemental_lore_trigger = {
+	OR = {
+		NOT = { has_trait = lore_of_fire }
+		NOT = { has_trait = lore_of_earth }
+		NOT = { has_trait = lore_of_water }
+		NOT = { has_trait = lore_of_high_magic }
+	}
+}
+
+wizard_has_all_elemental_lore_trigger = {
+	has_trait = lore_of_fire
+	has_trait = lore_of_earth
+	has_trait = lore_of_water
+	has_trait = lore_of_high_magic
+}
+
+# Barony-scope checks for the University of Magic Visit destination gate —
+# any level of the chain counts, since upgrading replaces the lower-level key.
+wizard_barony_has_necromancer_sanctum_trigger = {
+	OR = {
+		has_building = necromancer_sanctum_1
+		has_building = necromancer_sanctum_2
+		has_building = necromancer_sanctum_3
+		has_building = necromancer_sanctum_4
+		has_building = necromancer_sanctum_5
+	}
+}
+
+wizard_barony_has_elemental_tower_trigger = {
+	OR = {
+		has_building = elemental_tower_1
+		has_building = elemental_tower_2
+		has_building = elemental_tower_3
+		has_building = elemental_tower_4
+		has_building = elemental_tower_5
+	}
+}

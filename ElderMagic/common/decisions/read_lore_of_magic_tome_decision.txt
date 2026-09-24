@@ -1,0 +1,166 @@
+# Reading an owned "Tome of Lore of X" artifact — 50% chance to learn that lore,
+# 10-year cooldown on failure. Shown whenever the character owns a tome that
+# teaches a lore they don't already have.
+
+read_lore_of_magic_tome_decision = {
+	title = read_lore_of_magic_tome_decision
+	desc = read_lore_of_magic_tome_decision_desc
+	selection_tooltip = read_lore_of_magic_tome_decision_tooltip
+	confirm_text = read_lore_of_magic_tome_decision_confirm
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_pilgrimage_of_magic.dds"
+	}
+	major = no
+	ai_check_interval = 12
+
+	is_shown = {
+		is_adult = yes
+		wizard_has_any_magic_potential_trait = yes
+		NOT = { has_character_modifier = wizard_lore_tome_reading_cooldown }
+		OR = {
+			AND = { any_character_artifact = { artifact_type = wizard_tome_fire } NOT = { has_trait = lore_of_fire } }
+			AND = { any_character_artifact = { artifact_type = wizard_tome_earth } NOT = { has_trait = lore_of_earth } }
+			AND = { any_character_artifact = { artifact_type = wizard_tome_water } NOT = { has_trait = lore_of_water } }
+			AND = { any_character_artifact = { artifact_type = wizard_tome_death } NOT = { has_trait = lore_of_death } }
+			AND = { any_character_artifact = { artifact_type = wizard_tome_high_magic } NOT = { has_trait = lore_of_high_magic } }
+		}
+	}
+
+	is_valid = {
+		is_adult = yes
+		NOT = { has_character_modifier = wizard_lore_tome_reading_cooldown }
+		OR = {
+			AND = { any_character_artifact = { artifact_type = wizard_tome_fire } NOT = { has_trait = lore_of_fire } }
+			AND = { any_character_artifact = { artifact_type = wizard_tome_earth } NOT = { has_trait = lore_of_earth } }
+			AND = { any_character_artifact = { artifact_type = wizard_tome_water } NOT = { has_trait = lore_of_water } }
+			AND = { any_character_artifact = { artifact_type = wizard_tome_death } NOT = { has_trait = lore_of_death } }
+			AND = { any_character_artifact = { artifact_type = wizard_tome_high_magic } NOT = { has_trait = lore_of_high_magic } }
+		}
+	}
+
+	ai_will_do = {
+		base = 40
+	}
+
+	ai_potential = {
+		always = yes
+	}
+
+	effect = {
+		if = {
+			limit = {
+				any_character_artifact = { artifact_type = wizard_tome_fire }
+				NOT = { has_trait = lore_of_fire }
+			}
+			random = {
+				chance = 50
+				add_trait = lore_of_fire
+				send_interface_toast = {
+					type = event_toast_effect_good
+					title = wizard_read_lore_tome_success_title
+					left_icon = ROOT
+				}
+			}
+			else = {
+				add_character_modifier = { modifier = wizard_lore_tome_reading_cooldown years = 10 }
+				send_interface_toast = {
+					type = event_toast_effect_bad
+					title = wizard_read_lore_tome_failure_title
+					left_icon = ROOT
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				any_character_artifact = { artifact_type = wizard_tome_earth }
+				NOT = { has_trait = lore_of_earth }
+			}
+			random = {
+				chance = 50
+				add_trait = lore_of_earth
+				send_interface_toast = {
+					type = event_toast_effect_good
+					title = wizard_read_lore_tome_success_title
+					left_icon = ROOT
+				}
+			}
+			else = {
+				add_character_modifier = { modifier = wizard_lore_tome_reading_cooldown years = 10 }
+				send_interface_toast = {
+					type = event_toast_effect_bad
+					title = wizard_read_lore_tome_failure_title
+					left_icon = ROOT
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				any_character_artifact = { artifact_type = wizard_tome_water }
+				NOT = { has_trait = lore_of_water }
+			}
+			random = {
+				chance = 50
+				add_trait = lore_of_water
+				send_interface_toast = {
+					type = event_toast_effect_good
+					title = wizard_read_lore_tome_success_title
+					left_icon = ROOT
+				}
+			}
+			else = {
+				add_character_modifier = { modifier = wizard_lore_tome_reading_cooldown years = 10 }
+				send_interface_toast = {
+					type = event_toast_effect_bad
+					title = wizard_read_lore_tome_failure_title
+					left_icon = ROOT
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				any_character_artifact = { artifact_type = wizard_tome_death }
+				NOT = { has_trait = lore_of_death }
+			}
+			random = {
+				chance = 50
+				add_trait = lore_of_death
+				send_interface_toast = {
+					type = event_toast_effect_good
+					title = wizard_read_lore_tome_success_title
+					left_icon = ROOT
+				}
+			}
+			else = {
+				add_character_modifier = { modifier = wizard_lore_tome_reading_cooldown years = 10 }
+				send_interface_toast = {
+					type = event_toast_effect_bad
+					title = wizard_read_lore_tome_failure_title
+					left_icon = ROOT
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				any_character_artifact = { artifact_type = wizard_tome_high_magic }
+				NOT = { has_trait = lore_of_high_magic }
+			}
+			random = {
+				chance = 50
+				add_trait = lore_of_high_magic
+				send_interface_toast = {
+					type = event_toast_effect_good
+					title = wizard_read_lore_tome_success_title
+					left_icon = ROOT
+				}
+			}
+			else = {
+				add_character_modifier = { modifier = wizard_lore_tome_reading_cooldown years = 10 }
+				send_interface_toast = {
+					type = event_toast_effect_bad
+					title = wizard_read_lore_tome_failure_title
+					left_icon = ROOT
+				}
+			}
+		}
+	}
+}

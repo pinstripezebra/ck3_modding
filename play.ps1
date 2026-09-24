@@ -6,10 +6,13 @@
     Mod version string written to descriptor.mod (default: reads from ElderMagic/descriptor.mod).
 .PARAMETER SkipDeploy
     Launch CK3 without re-deploying the mod files.
+.PARAMETER DebugMode
+    Launch with -debug_mode so the in-game console is available.
 #>
 param(
     [string]$Version,
-    [switch]$SkipDeploy
+    [switch]$SkipDeploy,
+    [switch]$DebugMode
 )
 
 Set-StrictMode -Version Latest
@@ -43,4 +46,6 @@ if (-not (Test-Path $ModDescriptor)) {
 
 Write-Host "Launching CK3 with the local Elder Magic mod (skipping launcher) ..." -ForegroundColor Green
 $ModArgument = '-mod="' + $ModDescriptor + '"'
-Start-Process -FilePath $CK3Exe -ArgumentList "-skiplauncher", $ModArgument
+$LaunchArgs = @("-skiplauncher", $ModArgument)
+if ($DebugMode) { $LaunchArgs += "-debug_mode" }
+Start-Process -FilePath $CK3Exe -ArgumentList $LaunchArgs

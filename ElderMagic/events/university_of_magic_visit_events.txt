@@ -1,0 +1,141 @@
+namespace = university_of_magic_visit
+
+# Elemental Tower branch — works toward Fire/Earth/Water/High Magic lore.
+university_of_magic_visit.0001 = {
+	type = character_event
+	title = university_of_magic_visit.0001.t
+	desc = university_of_magic_visit.0001.desc
+	theme = learning
+	left_icon = ROOT
+
+	immediate = {
+		if = { limit = { learning >= 24 } set_variable = { name = wizard_university_visit_tier value = 4 } }
+		else_if = { limit = { learning >= 16 } set_variable = { name = wizard_university_visit_tier value = 3 } }
+		else_if = { limit = { learning >= 8 } set_variable = { name = wizard_university_visit_tier value = 2 } }
+		else = { set_variable = { name = wizard_university_visit_tier value = 1 } }
+
+		if = { limit = { var:wizard_university_visit_tier = 4 } add_light_magic_lifestyle_xp = 2000 }
+		else_if = { limit = { var:wizard_university_visit_tier = 3 } add_light_magic_lifestyle_xp = 1500 }
+		else_if = { limit = { var:wizard_university_visit_tier = 2 } add_light_magic_lifestyle_xp = 1000 }
+		else = { add_light_magic_lifestyle_xp = 500 }
+
+		set_variable = { name = wizard_university_visit_success value = 0 }
+		if = {
+			limit = { wizard_missing_any_elemental_lore_trigger = yes }
+			if = {
+				limit = { var:wizard_university_visit_tier = 4 }
+				wizard_grant_random_missing_elemental_lore_with_xp_effect = { AMOUNT = 25 }
+				set_variable = { name = wizard_university_visit_success value = 1 }
+			}
+			else_if = {
+				limit = { var:wizard_university_visit_tier = 3 }
+				random = {
+					chance = 85
+					wizard_grant_random_missing_elemental_lore_with_xp_effect = { AMOUNT = 20 }
+					set_variable = { name = wizard_university_visit_success value = 1 }
+				}
+			}
+			else_if = {
+				limit = { var:wizard_university_visit_tier = 2 }
+				random = {
+					chance = 75
+					wizard_grant_random_missing_elemental_lore_with_xp_effect = { AMOUNT = 15 }
+					set_variable = { name = wizard_university_visit_success value = 1 }
+				}
+			}
+			else = {
+				random = {
+					chance = 65
+					wizard_grant_random_missing_elemental_lore_with_xp_effect = { AMOUNT = 10 }
+					set_variable = { name = wizard_university_visit_success value = 1 }
+				}
+			}
+		}
+		else = {
+			if = { limit = { var:wizard_university_visit_tier = 4 } wizard_add_xp_to_random_owned_elemental_lore_effect = { AMOUNT = 25 } }
+			else_if = { limit = { var:wizard_university_visit_tier = 3 } wizard_add_xp_to_random_owned_elemental_lore_effect = { AMOUNT = 20 } }
+			else_if = { limit = { var:wizard_university_visit_tier = 2 } wizard_add_xp_to_random_owned_elemental_lore_effect = { AMOUNT = 15 } }
+			else = { wizard_add_xp_to_random_owned_elemental_lore_effect = { AMOUNT = 10 } }
+		}
+	}
+
+	option = {
+		name = university_of_magic_visit.0001.a
+		remove_variable = wizard_university_visit_tier
+		remove_variable = wizard_university_visit_success
+	}
+}
+
+# Necromancer Sanctum branch — works toward Lore of Death.
+university_of_magic_visit.0002 = {
+	type = character_event
+	title = university_of_magic_visit.0002.t
+	desc = university_of_magic_visit.0002.desc
+	theme = learning
+	left_icon = ROOT
+
+	immediate = {
+		if = { limit = { learning >= 24 } set_variable = { name = wizard_university_visit_tier value = 4 } }
+		else_if = { limit = { learning >= 16 } set_variable = { name = wizard_university_visit_tier value = 3 } }
+		else_if = { limit = { learning >= 8 } set_variable = { name = wizard_university_visit_tier value = 2 } }
+		else = { set_variable = { name = wizard_university_visit_tier value = 1 } }
+
+		if = { limit = { var:wizard_university_visit_tier = 4 } add_dark_magic_lifestyle_xp = 2000 }
+		else_if = { limit = { var:wizard_university_visit_tier = 3 } add_dark_magic_lifestyle_xp = 1500 }
+		else_if = { limit = { var:wizard_university_visit_tier = 2 } add_dark_magic_lifestyle_xp = 1000 }
+		else = { add_dark_magic_lifestyle_xp = 500 }
+
+		set_variable = { name = wizard_university_visit_success value = 0 }
+		if = {
+			limit = { NOT = { has_trait = lore_of_death } }
+			if = {
+				limit = { var:wizard_university_visit_tier = 4 }
+				add_trait = lore_of_death
+				add_trait_xp = { trait = lore_of_death value = 25 }
+				set_variable = { name = wizard_death_xp_total value = 25 }
+				set_variable = { name = wizard_university_visit_success value = 1 }
+			}
+			else_if = {
+				limit = { var:wizard_university_visit_tier = 3 }
+				random = {
+					chance = 85
+					add_trait = lore_of_death
+					add_trait_xp = { trait = lore_of_death value = 20 }
+					set_variable = { name = wizard_death_xp_total value = 20 }
+					set_variable = { name = wizard_university_visit_success value = 1 }
+				}
+			}
+			else_if = {
+				limit = { var:wizard_university_visit_tier = 2 }
+				random = {
+					chance = 75
+					add_trait = lore_of_death
+					add_trait_xp = { trait = lore_of_death value = 15 }
+					set_variable = { name = wizard_death_xp_total value = 15 }
+					set_variable = { name = wizard_university_visit_success value = 1 }
+				}
+			}
+			else = {
+				random = {
+					chance = 65
+					add_trait = lore_of_death
+					add_trait_xp = { trait = lore_of_death value = 10 }
+					set_variable = { name = wizard_death_xp_total value = 10 }
+					set_variable = { name = wizard_university_visit_success value = 1 }
+				}
+			}
+		}
+		else = {
+			if = { limit = { var:wizard_university_visit_tier = 4 } add_trait_xp = { trait = lore_of_death value = 25 } change_variable = { name = wizard_death_xp_total add = 25 } }
+			else_if = { limit = { var:wizard_university_visit_tier = 3 } add_trait_xp = { trait = lore_of_death value = 20 } change_variable = { name = wizard_death_xp_total add = 20 } }
+			else_if = { limit = { var:wizard_university_visit_tier = 2 } add_trait_xp = { trait = lore_of_death value = 15 } change_variable = { name = wizard_death_xp_total add = 15 } }
+			else = { add_trait_xp = { trait = lore_of_death value = 10 } change_variable = { name = wizard_death_xp_total add = 10 } }
+		}
+	}
+
+	option = {
+		name = university_of_magic_visit.0002.a
+		remove_variable = wizard_university_visit_tier
+		remove_variable = wizard_university_visit_success
+	}
+}

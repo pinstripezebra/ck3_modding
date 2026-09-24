@@ -1,0 +1,12 @@
+﻿l_english:
+ activity_university_of_magic_visit:0 "University of Magic Visit"
+ activity_university_of_magic_visit_desc:0 "Travel to a settlement with a built Elemental Tower or Necromancer Sanctum and study under its resident scholars. Select your destination on the map â€” only sites with a completed magical academy are worthy of study."
+ university_of_magic_visit_province_desc:0 "A settlement with a magical academy where a mage of sufficient standing may study."
+
+ university_of_magic_visit.0001.t:0 "A Season at the Elemental Tower"
+ university_of_magic_visit.0001.desc:0 "You spend your time among the scholars of the Elemental Tower, poring over old treatises on fire, earth, water, and the higher mysteries."
+ university_of_magic_visit.0001.a:0 "A worthwhile visit."
+
+ university_of_magic_visit.0002.t:0 "A Season at the Necromancer Sanctum"
+ university_of_magic_visit.0002.desc:0 "You spend your time among the necromancers of the Sanctum, studying the boundary between life and death."
+ university_of_magic_visit.0002.a:0 "A worthwhile visit."

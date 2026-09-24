@@ -1,10 +1,10 @@
-# Necromancer Sanctum - Duchy Capital Building
+# Necromancer Sanctum - Castle/City Building
 # Unlocked by the Necrotic Reanimators cultural tradition. 5 upgrade levels
 # trading opinion with other faiths for garrison strength, fortification,
 # dread generation, and learning.
 
 necromancer_sanctum_1 = {
-	type = duchy_capital
+	type = regular
 	type_icon = "icon_building_necromancer_sanctum.dds"
 
 	next_building = necromancer_sanctum_2
@@ -14,6 +14,10 @@ necromancer_sanctum_1 = {
 
 	can_construct_potential = {
 		culture = { has_cultural_tradition = tradition_necrotic_reanimators }
+		OR = {
+			has_holding_type = castle_holding
+			has_holding_type = city_holding
+		}
 	}
 
 	can_construct_showing_failures_only = {
@@ -39,7 +43,7 @@ necromancer_sanctum_1 = {
 }
 
 necromancer_sanctum_2 = {
-	type = duchy_capital
+	type = regular
 	type_icon = "icon_building_necromancer_sanctum.dds"
 
 	next_building = necromancer_sanctum_3
@@ -74,7 +78,7 @@ necromancer_sanctum_2 = {
 }
 
 necromancer_sanctum_3 = {
-	type = duchy_capital
+	type = regular
 	type_icon = "icon_building_necromancer_sanctum.dds"
 
 	next_building = necromancer_sanctum_4
@@ -109,7 +113,7 @@ necromancer_sanctum_3 = {
 }
 
 necromancer_sanctum_4 = {
-	type = duchy_capital
+	type = regular
 	type_icon = "icon_building_necromancer_sanctum.dds"
 
 	next_building = necromancer_sanctum_5
@@ -144,7 +148,7 @@ necromancer_sanctum_4 = {
 }
 
 necromancer_sanctum_5 = {
-	type = duchy_capital
+	type = regular
 	type_icon = "icon_building_necromancer_sanctum.dds"
 
 	cost = { gold = 2000 }

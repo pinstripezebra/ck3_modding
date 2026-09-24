@@ -1,0 +1,62 @@
+# University of Magic Visit — replaces the deleted Pilgrimage of Magic decision.
+# Modeled on Pilgrimage of Magic's own travel-activity pattern (see the deleted
+# wizard_magic_pilgrimage.txt in git history), but the destination is any
+# barony holding a built Necromancer Sanctum or Elemental Tower rather than a
+# hard-coded list of sites. Visiting a Necromancer Sanctum works toward Lore of
+# Death; visiting an Elemental Tower works toward the elemental lores (Fire,
+# Earth, Water, High Magic).
+
+activity_university_of_magic_visit = {
+	is_shown = {
+		always = no
+		is_playable_character = yes
+		is_adult = yes
+		wizard_has_any_magic_potential_trait = yes
+	}
+
+	can_start_showing_failures_only = {
+		NOT = { is_activity_type_on_cooldown = activity_university_of_magic_visit }
+		is_available_adult = yes
+	}
+
+	is_valid = {
+		scope:host = {
+			is_alive = yes
+			is_imprisoned = no
+			NOT = { is_incapable = yes }
+		}
+	}
+
+	# Only baronies with a built Necromancer Sanctum or Elemental Tower are valid.
+	is_location_valid = {
+		barony ?= {
+			OR = {
+				wizard_barony_has_necromancer_sanctum_trigger = yes
+				wizard_barony_has_elemental_tower_trigger = yes
+			}
+		}
+	}
+
+	province_description = {
+		desc = university_of_magic_visit_province_desc
+	}
+
+	cooldown = { years = 10 }
+
+	# When the host arrives, branch to the Necromancer or Elemental outcome event
+	# depending on which building the destination barony actually has.
+	on_enter_active_state = {
+		if = {
+			limit = { this = scope:host }
+			if = {
+				limit = {
+					scope:activity.activity_location.barony ?= { wizard_barony_has_necromancer_sanctum_trigger = yes }
+				}
+				trigger_event = university_of_magic_visit.0002
+			}
+			else = {
+				trigger_event = university_of_magic_visit.0001
+			}
+		}
+	}
+}

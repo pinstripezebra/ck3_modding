@@ -7,8 +7,8 @@
 	health = 0.1
 	life_expectancy = 5
 
-	birth = 0.03
-	random_creation = 0.03
+	birth = 0.05
+	random_creation = 0.05
 
 	group = wizard_potential
 	level = 1
@@ -30,8 +30,8 @@ the_conduit = {
 	health = 0.2
 	life_expectancy = 10
 
-	birth = 0.02
-	random_creation = 0.02
+	birth = 0.03
+	random_creation = 0.03
 
 	group = wizard_potential
 	level = 2
@@ -53,8 +53,8 @@ the_resonator = {
 	health = 0.3
 	life_expectancy = 15
 
-	birth = 0.01
-	random_creation = 0.01
+	birth = 0.02
+	random_creation = 0.02
 
 	group = wizard_potential
 	level = 3
@@ -76,6 +76,9 @@ the_vector = {
 	health = 0.4
 	life_expectancy = 20
 
+	birth = 0.01
+	random_creation = 0.01
+
 	group = wizard_potential
 	level = 4
 
@@ -95,6 +98,9 @@ the_capacitor = {
 	prowess = 9
 	health = 0.5
 	life_expectancy = 25
+
+	birth = 0.005
+	random_creation = 0.005
 
 	group = wizard_potential
 	level = 5
@@ -116,6 +122,9 @@ the_dynamo = {
 	health = 0.6
 	life_expectancy = 30
 
+	birth = 0.0025
+	random_creation = 0.0025
+
 	group = wizard_potential
 	level = 6
 
@@ -135,6 +144,9 @@ the_nexus = {
 	prowess = 12
 	health = 0.8
 	life_expectancy = 35
+
+	birth = 0.001
+	random_creation = 0.001
 
 	group = wizard_potential
 	level = 7

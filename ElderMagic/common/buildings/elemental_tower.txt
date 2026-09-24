@@ -1,10 +1,10 @@
-# Elemental Tower - Duchy Capital Building
+# Elemental Tower - Castle/City Building
 # Unlocked by the Sorcerous Heritage cultural tradition. 5 upgrade levels
 # providing fortification, development growth, tax income, and boosted
 # Learning lifestyle progress alongside a flat learning bonus.
 
 elemental_tower_1 = {
-	type = duchy_capital
+	type = regular
 	type_icon = "icon_building_elemental_tower.dds"
 
 	next_building = elemental_tower_2
@@ -14,6 +14,10 @@ elemental_tower_1 = {
 
 	can_construct_potential = {
 		culture = { has_cultural_tradition = tradition_sorcerous_heritage }
+		OR = {
+			has_holding_type = castle_holding
+			has_holding_type = city_holding
+		}
 	}
 
 	can_construct_showing_failures_only = {
@@ -41,7 +45,7 @@ elemental_tower_1 = {
 }
 
 elemental_tower_2 = {
-	type = duchy_capital
+	type = regular
 	type_icon = "icon_building_elemental_tower.dds"
 
 	next_building = elemental_tower_3
@@ -78,7 +82,7 @@ elemental_tower_2 = {
 }
 
 elemental_tower_3 = {
-	type = duchy_capital
+	type = regular
 	type_icon = "icon_building_elemental_tower.dds"
 
 	next_building = elemental_tower_4
@@ -115,7 +119,7 @@ elemental_tower_3 = {
 }
 
 elemental_tower_4 = {
-	type = duchy_capital
+	type = regular
 	type_icon = "icon_building_elemental_tower.dds"
 
 	next_building = elemental_tower_5
@@ -152,7 +156,7 @@ elemental_tower_4 = {
 }
 
 elemental_tower_5 = {
-	type = duchy_capital
+	type = regular
 	type_icon = "icon_building_elemental_tower.dds"
 
 	cost = { gold = 2000 }

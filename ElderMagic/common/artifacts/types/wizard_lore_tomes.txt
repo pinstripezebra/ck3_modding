@@ -1,0 +1,28 @@
+# "Tome of Lore of X" artifacts — found via the ancient-ruins lore tome
+# discovery event. Modeled on vanilla's "chronicle" book template (no required
+# features, so they can be created directly via script without extra data).
+
+wizard_tome_fire = {
+	slot = book
+	optional_features = { book_topic book_title book_decoration decoration_pattern generic_material_wood decoration_material_gem decoration_material_inlay_HSB }
+}
+
+wizard_tome_earth = {
+	slot = book
+	optional_features = { book_topic book_title book_decoration decoration_pattern generic_material_wood decoration_material_gem decoration_material_inlay_HSB }
+}
+
+wizard_tome_water = {
+	slot = book
+	optional_features = { book_topic book_title book_decoration decoration_pattern generic_material_wood decoration_material_gem decoration_material_inlay_HSB }
+}
+
+wizard_tome_death = {
+	slot = book
+	optional_features = { book_topic book_title book_decoration decoration_pattern generic_material_wood decoration_material_gem decoration_material_inlay_HSB }
+}
+
+wizard_tome_high_magic = {
+	slot = book
+	optional_features = { book_topic book_title book_decoration decoration_pattern generic_material_wood decoration_material_gem decoration_material_inlay_HSB }
+}

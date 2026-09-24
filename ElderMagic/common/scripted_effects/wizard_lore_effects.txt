@@ -98,6 +98,88 @@ wizard_grant_random_missing_lore = {
 	}
 }
 
+# Elemental-group-only variant (excludes Lore of Death) for the University of
+# Magic Visit / lore tome mechanics.
+wizard_grant_random_missing_elemental_lore = {
+	random_list = {
+		100 = {
+			trigger = { NOT = { has_trait = lore_of_fire } }
+			add_trait = lore_of_fire
+		}
+		100 = {
+			trigger = { NOT = { has_trait = lore_of_earth } }
+			add_trait = lore_of_earth
+		}
+		100 = {
+			trigger = { NOT = { has_trait = lore_of_water } }
+			add_trait = lore_of_water
+		}
+		100 = {
+			trigger = { NOT = { has_trait = lore_of_high_magic } }
+			add_trait = lore_of_high_magic
+		}
+	}
+}
+
+# Grants $AMOUNT$ trait XP to one random elemental lore trait the character
+# already owns (used when a character owns all 4 and must be given XP instead
+# of a new trait).
+wizard_add_xp_to_random_owned_elemental_lore_effect = {
+	random_list = {
+		100 = {
+			trigger = { has_trait = lore_of_fire }
+			add_trait_xp = { trait = lore_of_fire value = $AMOUNT$ }
+			change_variable = { name = wizard_fire_xp_total add = $AMOUNT$ }
+		}
+		100 = {
+			trigger = { has_trait = lore_of_earth }
+			add_trait_xp = { trait = lore_of_earth value = $AMOUNT$ }
+			change_variable = { name = wizard_earth_xp_total add = $AMOUNT$ }
+		}
+		100 = {
+			trigger = { has_trait = lore_of_water }
+			add_trait_xp = { trait = lore_of_water value = $AMOUNT$ }
+			change_variable = { name = wizard_water_xp_total add = $AMOUNT$ }
+		}
+		100 = {
+			trigger = { has_trait = lore_of_high_magic }
+			add_trait_xp = { trait = lore_of_high_magic value = $AMOUNT$ }
+			change_variable = { name = wizard_high_magic_xp_total add = $AMOUNT$ }
+		}
+	}
+}
+
+# Grants an elemental lore trait with $AMOUNT$ starting trait XP (used when the
+# University of Magic Visit succeeds in teaching a brand-new elemental lore).
+wizard_grant_random_missing_elemental_lore_with_xp_effect = {
+	random_list = {
+		100 = {
+			trigger = { NOT = { has_trait = lore_of_fire } }
+			add_trait = lore_of_fire
+			add_trait_xp = { trait = lore_of_fire value = $AMOUNT$ }
+			set_variable = { name = wizard_fire_xp_total value = $AMOUNT$ }
+		}
+		100 = {
+			trigger = { NOT = { has_trait = lore_of_earth } }
+			add_trait = lore_of_earth
+			add_trait_xp = { trait = lore_of_earth value = $AMOUNT$ }
+			set_variable = { name = wizard_earth_xp_total value = $AMOUNT$ }
+		}
+		100 = {
+			trigger = { NOT = { has_trait = lore_of_water } }
+			add_trait = lore_of_water
+			add_trait_xp = { trait = lore_of_water value = $AMOUNT$ }
+			set_variable = { name = wizard_water_xp_total value = $AMOUNT$ }
+		}
+		100 = {
+			trigger = { NOT = { has_trait = lore_of_high_magic } }
+			add_trait = lore_of_high_magic
+			add_trait_xp = { trait = lore_of_high_magic value = $AMOUNT$ }
+			set_variable = { name = wizard_high_magic_xp_total value = $AMOUNT$ }
+		}
+	}
+}
+
 wizard_award_study_xp = {
 	# Award full study-session XP to all lore traits held.
 	if = {
@@ -173,5 +255,87 @@ wizard_gain_lore_progress = {
 		add_trait_xp = { trait = lore_of_high_magic value = 2 }
 		change_variable = { name = wizard_high_magic_xp_total add = 2 }
 		if = { limit = { var:wizard_high_magic_xp_total >= 100 } add_character_flag = wizard_lore_high_magic_maxed }
+	}
+}
+
+# Creates one randomly-chosen "Tome of Lore of X" artifact and gives it to
+# root, used by the ancient-ruins lore-tome discovery event.
+wizard_create_random_lore_tome_effect = {
+	random_list = {
+		20 = {
+			create_artifact = {
+				name = wizard_tome_of_lore_fire_name
+				description = wizard_tome_of_lore_fire_desc
+				visuals = wizard_tome_fire
+				type = wizard_tome_fire
+				wealth = 50
+				quality = 50
+				save_scope_as = wizard_new_lore_tome
+				history = {
+					recipient = root
+					type = discovered
+				}
+			}
+		}
+		20 = {
+			create_artifact = {
+				name = wizard_tome_of_lore_earth_name
+				description = wizard_tome_of_lore_earth_desc
+				visuals = wizard_tome_earth
+				type = wizard_tome_earth
+				wealth = 50
+				quality = 50
+				save_scope_as = wizard_new_lore_tome
+				history = {
+					recipient = root
+					type = discovered
+				}
+			}
+		}
+		20 = {
+			create_artifact = {
+				name = wizard_tome_of_lore_water_name
+				description = wizard_tome_of_lore_water_desc
+				visuals = wizard_tome_water
+				type = wizard_tome_water
+				wealth = 50
+				quality = 50
+				save_scope_as = wizard_new_lore_tome
+				history = {
+					recipient = root
+					type = discovered
+				}
+			}
+		}
+		20 = {
+			create_artifact = {
+				name = wizard_tome_of_lore_death_name
+				description = wizard_tome_of_lore_death_desc
+				visuals = wizard_tome_death
+				type = wizard_tome_death
+				wealth = 50
+				quality = 50
+				save_scope_as = wizard_new_lore_tome
+				history = {
+					recipient = root
+					type = discovered
+				}
+			}
+		}
+		20 = {
+			create_artifact = {
+				name = wizard_tome_of_lore_high_magic_name
+				description = wizard_tome_of_lore_high_magic_desc
+				visuals = wizard_tome_high_magic
+				type = wizard_tome_high_magic
+				wealth = 50
+				quality = 50
+				save_scope_as = wizard_new_lore_tome
+				history = {
+					recipient = root
+					type = discovered
+				}
+			}
+		}
 	}
 }

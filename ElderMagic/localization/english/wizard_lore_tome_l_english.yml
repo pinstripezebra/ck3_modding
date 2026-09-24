@@ -1,0 +1,35 @@
+﻿l_english:
+ wizard_lore_tome.0001.t:0 "A Forgotten Ruin"
+ wizard_lore_tome.0001.desc:0 "While traveling, you come across the crumbling remains of an old ruin. Local rumor speaks of arcane tomes buried within, but the structure looks unstable."
+ wizard_lore_tome.0001.a:0 "Explore the ruin."
+ wizard_lore_tome.0001.b:0 "Leave it be."
+
+ wizard_lore_tome.0003.t:0 "A Tome of Lore"
+ wizard_lore_tome.0003.desc:0 "Beneath the rubble you find an ancient tome, its pages still legible. It may yet teach its secrets to whoever studies it."
+ wizard_lore_tome.0003.a:0 "A fortunate find."
+
+ wizard_lore_tome.0004.t:0 "The Ruin Collapses"
+ wizard_lore_tome.0004.desc:0 "The old stones give way beneath you. You escape with your life, but not without injury."
+ wizard_lore_tome.0004.a:0 "That was foolish."
+
+ wizard_tome_of_lore_fire_name:0 "Tome of Lore of Fire"
+ wizard_tome_of_lore_fire_desc:0 "A weathered tome describing the fundamentals of fire magic."
+ wizard_tome_of_lore_earth_name:0 "Tome of Lore of Earth"
+ wizard_tome_of_lore_earth_desc:0 "A weathered tome describing the fundamentals of earth magic."
+ wizard_tome_of_lore_water_name:0 "Tome of Lore of Water"
+ wizard_tome_of_lore_water_desc:0 "A weathered tome describing the fundamentals of water magic."
+ wizard_tome_of_lore_death_name:0 "Tome of Lore of Death"
+ wizard_tome_of_lore_death_desc:0 "A weathered tome describing the fundamentals of death magic."
+ wizard_tome_of_lore_high_magic_name:0 "Tome of Lore of High Magic"
+ wizard_tome_of_lore_high_magic_desc:0 "A weathered tome describing the fundamentals of high magic."
+
+ read_lore_of_magic_tome_decision:0 "Read Lore of Magic Tome"
+ read_lore_of_magic_tome_decision_desc:0 "You possess a tome of magical lore you have not yet mastered. Study it, and you may unlock the secrets it holds."
+ read_lore_of_magic_tome_decision_tooltip:0 "Study the tome you carry. There is a chance you will learn the lore it teaches."
+ read_lore_of_magic_tome_decision_confirm:0 "Begin Reading"
+
+ wizard_read_lore_tome_success_title:0 "You have unlocked the tome's secrets!"
+ wizard_read_lore_tome_failure_title:0 "The tome's secrets elude you."
+
+ wizard_lore_tome_reading_cooldown:0 "Recently Studied a Tome"
+ wizard_lore_tome_reading_cooldown_desc:0 "This character recently failed to unlock a lore tome's secrets and must let their mind rest before trying again."

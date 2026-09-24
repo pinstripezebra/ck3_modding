@@ -1,0 +1,79 @@
+namespace = wizard_lore_tome
+
+# Event 1: Character finds a ruin rumored to hold an ancient tome — explore or leave.
+wizard_lore_tome.0001 = {
+	type = character_event
+	title = wizard_lore_tome.0001.t
+	desc = wizard_lore_tome.0001.desc
+	theme = learning
+	left_portrait = { character = root animation = personality_curious }
+	override_background = { reference = "dungeon" }
+
+	option = {
+		name = wizard_lore_tome.0001.a  # Explore the ruin
+		trigger_event = { id = wizard_lore_tome.0002 }
+	}
+	option = {
+		name = wizard_lore_tome.0001.b  # Leave it be — nothing happens
+	}
+}
+
+# Event 2: Hidden resolver — 50% chance to find the tome, 50% chance of a collapse.
+wizard_lore_tome.0002 = {
+	type = character_event
+	hidden = yes
+
+	immediate = {
+		random = {
+			chance = 50
+			wizard_create_random_lore_tome_effect = yes
+			trigger_event = wizard_lore_tome.0003
+		}
+		else = {
+			trigger_event = wizard_lore_tome.0004
+		}
+	}
+}
+
+# Event 3: Success — found a tome of magical lore.
+wizard_lore_tome.0003 = {
+	type = character_event
+	title = wizard_lore_tome.0003.t
+	desc = wizard_lore_tome.0003.desc
+	theme = learning
+	left_portrait = { character = root animation = personality_bold }
+	override_background = { reference = "study" }
+
+	option = {
+		name = wizard_lore_tome.0003.a
+	}
+}
+
+# Event 4: Failure — injured by a collapse.
+wizard_lore_tome.0004 = {
+	type = character_event
+	title = wizard_lore_tome.0004.t
+	desc = wizard_lore_tome.0004.desc
+	theme = learning
+	left_portrait = { character = root animation = stress }
+	override_background = { reference = "dungeon" }
+
+	immediate = {
+		add_stress = 30
+		if = {
+			limit = {
+				NOT = { has_trait = wounded_1 }
+				NOT = { has_trait = wounded_2 }
+				NOT = { has_trait = wounded_3 }
+			}
+			random = {
+				chance = 50
+				add_trait = wounded_1
+			}
+		}
+	}
+
+	option = {
+		name = wizard_lore_tome.0004.a
+	}
+}

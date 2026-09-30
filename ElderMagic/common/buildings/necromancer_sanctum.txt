@@ -51,10 +51,6 @@ necromancer_sanctum_2 = {
 	cost = { gold = 450 }
 	construction_time = 730
 
-	can_construct_potential = {
-		always = no
-	}
-
 	can_construct_showing_failures_only = {
 		building_requirement_tribal = no
 	}
@@ -85,10 +81,6 @@ necromancer_sanctum_3 = {
 
 	cost = { gold = 800 }
 	construction_time = 730
-
-	can_construct_potential = {
-		always = no
-	}
 
 	can_construct_showing_failures_only = {
 		building_requirement_tribal = no
@@ -121,10 +113,6 @@ necromancer_sanctum_4 = {
 	cost = { gold = 1200 }
 	construction_time = 730
 
-	can_construct_potential = {
-		always = no
-	}
-
 	can_construct_showing_failures_only = {
 		building_requirement_tribal = no
 	}
@@ -153,10 +141,6 @@ necromancer_sanctum_5 = {
 
 	cost = { gold = 2000 }
 	construction_time = 730
-
-	can_construct_potential = {
-		always = no
-	}
 
 	can_construct_showing_failures_only = {
 		building_requirement_tribal = no

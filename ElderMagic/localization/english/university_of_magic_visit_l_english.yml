@@ -1,7 +1,23 @@
 ﻿l_english:
  activity_university_of_magic_visit:0 "University of Magic Visit"
- activity_university_of_magic_visit_desc:0 "Travel to a settlement with a built Elemental Tower or Necromancer Sanctum and study under its resident scholars. Select your destination on the map â€” only sites with a completed magical academy are worthy of study."
+ activity_university_of_magic_visit_desc:0 "Travel to a settlement with a built Elemental Tower or Necromancer Sanctum and study under its resident scholars. Select your destination on the map — only sites with a completed magical academy are worthy of study."
+ activity_university_of_magic_visit_guest_desc:0 ""
+ activity_university_of_magic_visit_conclusion_desc:0 "The [GetActivityType( 'activity_university_of_magic_visit' ).GetName] has concluded"
+ # Phase's own loc key (matches its exact db key); vanilla's own single-phase
+ # activities substitute in the activity's name the same way (see
+ # education_study_phase in vanilla University Visit loc).
+ university_of_magic_visit_phase:0 "$activity_university_of_magic_visit$"
  university_of_magic_visit_province_desc:0 "A settlement with a magical academy where a mage of sufficient standing may study."
+ university_of_magic_visit_host_desc:0 "You will travel to a settlement with a completed Elemental Tower or Necromancer Sanctum and study alongside its scholars. Depending on your Learning skill, you have a good chance of gaining a brand-new Lore of Magic trait if you lack one — or additional experience toward a lore you already possess."
+ study_magic_intent:0 "Study Magic"
+ study_magic_intent_desc:0 "You have traveled here to study the arcane arts under this academy's resident scholars, hoping to deepen your understanding of magic."
+
+ apa_university_of_magic_late_night_study_key_title:0 "A Late Night of Study"
+ apa_university_of_magic_late_night_study_key:0 "[first.GetShortUIName|U] pores over ancient tomes long after the candles have burned low."
+ apa_university_of_magic_scholarly_debate_key_title:0 "A Scholarly Debate"
+ apa_university_of_magic_scholarly_debate_key:0 "[first.GetShortUIName|U] engages the academy's resident scholars in a spirited debate on the nature of magic."
+ apa_university_of_magic_curious_findings_key_title:0 "Curious Findings"
+ apa_university_of_magic_curious_findings_key:0 "[first.GetShortUIName|U] stumbles upon a curious footnote in the academy's archives, worth pondering further."
 
  university_of_magic_visit.0001.t:0 "A Season at the Elemental Tower"
  university_of_magic_visit.0001.desc:0 "You spend your time among the scholars of the Elemental Tower, poring over old treatises on fire, earth, water, and the higher mysteries."

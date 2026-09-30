@@ -6,7 +6,20 @@ university_of_magic_visit.0001 = {
 	title = university_of_magic_visit.0001.t
 	desc = university_of_magic_visit.0001.desc
 	theme = learning
-	left_icon = ROOT
+	override_background = { reference = "bp2_university" }
+
+	left_portrait = {
+		character = root
+		animation = personality_curious
+		triggered_animation = {
+			trigger = { var:wizard_university_visit_success = 1 }
+			animation = happiness
+		}
+		triggered_animation = {
+			trigger = { var:wizard_university_visit_success = 0 }
+			animation = disapproval
+		}
+	}
 
 	immediate = {
 		if = { limit = { learning >= 24 } set_variable = { name = wizard_university_visit_tier value = 4 } }
@@ -72,7 +85,20 @@ university_of_magic_visit.0002 = {
 	title = university_of_magic_visit.0002.t
 	desc = university_of_magic_visit.0002.desc
 	theme = learning
-	left_icon = ROOT
+	override_background = { reference = "dungeon" }
+
+	left_portrait = {
+		character = root
+		animation = personality_curious
+		triggered_animation = {
+			trigger = { var:wizard_university_visit_success = 1 }
+			animation = happiness
+		}
+		triggered_animation = {
+			trigger = { var:wizard_university_visit_success = 0 }
+			animation = disapproval
+		}
+	}
 
 	immediate = {
 		if = { limit = { learning >= 24 } set_variable = { name = wizard_university_visit_tier value = 4 } }

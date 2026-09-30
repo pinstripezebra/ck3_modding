@@ -80,24 +80,15 @@ wizard_has_all_elemental_lore_trigger = {
 	has_trait = lore_of_high_magic
 }
 
-# Barony-scope checks for the University of Magic Visit destination gate —
-# any level of the chain counts, since upgrading replaces the lower-level key.
+# Barony-scope checks for the University of Magic Visit destination gate.
+# is_location_valid/province_score are evaluated per-province (root = the
+# province, confirmed in _activity_type.info) — checking the exact province
+# directly (no county/duchy-wide wrap) keeps only the barony that actually
+# has the building selectable, not its whole county or duchy.
 wizard_barony_has_necromancer_sanctum_trigger = {
-	OR = {
-		has_building = necromancer_sanctum_1
-		has_building = necromancer_sanctum_2
-		has_building = necromancer_sanctum_3
-		has_building = necromancer_sanctum_4
-		has_building = necromancer_sanctum_5
-	}
+	has_building_or_higher = necromancer_sanctum_1
 }
 
 wizard_barony_has_elemental_tower_trigger = {
-	OR = {
-		has_building = elemental_tower_1
-		has_building = elemental_tower_2
-		has_building = elemental_tower_3
-		has_building = elemental_tower_4
-		has_building = elemental_tower_5
-	}
+	has_building_or_higher = elemental_tower_1
 }

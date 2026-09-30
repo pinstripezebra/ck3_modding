@@ -1,0 +1,56 @@
+# Solo-friendly flavor vignettes for the University of Magic Visit's in-progress
+# screen (character = scope:host, no guest/pairing scopes required).
+
+apa_university_of_magic_late_night_study = {
+	icon = public
+
+	is_valid = {
+		is_current_phase_active = yes
+	}
+
+	weight = 1
+
+	effect = {
+		add_activity_log_entry = {
+			key = apa_university_of_magic_late_night_study_key
+			tags = { pulse_action }
+			character = scope:host
+		}
+	}
+}
+
+apa_university_of_magic_scholarly_debate = {
+	icon = public
+
+	is_valid = {
+		is_current_phase_active = yes
+	}
+
+	weight = 1
+
+	effect = {
+		add_activity_log_entry = {
+			key = apa_university_of_magic_scholarly_debate_key
+			tags = { pulse_action }
+			character = scope:host
+		}
+	}
+}
+
+apa_university_of_magic_curious_findings = {
+	icon = public
+
+	is_valid = {
+		is_current_phase_active = yes
+	}
+
+	weight = 1
+
+	effect = {
+		add_activity_log_entry = {
+			key = apa_university_of_magic_curious_findings_key
+			tags = { pulse_action }
+			character = scope:host
+		}
+	}
+}

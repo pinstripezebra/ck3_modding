@@ -8,7 +8,6 @@
 
 activity_university_of_magic_visit = {
 	is_shown = {
-		always = no
 		is_playable_character = yes
 		is_adult = yes
 		wizard_has_any_magic_potential_trait = yes
@@ -27,13 +26,48 @@ activity_university_of_magic_visit = {
 		}
 	}
 
-	# Only baronies with a built Necromancer Sanctum or Elemental Tower are valid.
+	# Same base cost as the base game's University Visit (activity_adult_education).
+	cost = {
+		gold = {
+			value = adult_education_activity_cost
+		}
+	}
+
+	# Separate from `cost` — this is what the planning/selection screen actually
+	# displays; omitting it is why the UI showed "No Cost" despite `cost` above
+	# being charged correctly.
+	ui_predicted_cost = {
+		gold = {
+			value = adult_education_activity_cost
+		}
+	}
+
+	# Mirrors vanilla University Visit's own filters (province_filter = all,
+	# ai_province_filter = holy_sites) so any built academy anywhere is reachable.
+	province_filter = all
+	ai_province_filter = domain
+
+	# Only provinces with a built Necromancer Sanctum or Elemental Tower are valid.
+	# root is already the province here, has_building does not work through a
+	# .barony title-scope hop.
 	is_location_valid = {
-		barony ?= {
-			OR = {
-				wizard_barony_has_necromancer_sanctum_trigger = yes
-				wizard_barony_has_elemental_tower_trigger = yes
-			}
+		OR = {
+			wizard_barony_has_necromancer_sanctum_trigger = yes
+			wizard_barony_has_elemental_tower_trigger = yes
+		}
+	}
+
+	# Never set before (defaults to an empty/undefined score); explicit value
+	# ensures matching provinces actually render as pins on the map.
+	province_score = {
+		value = 0
+		if = {
+			limit = { wizard_barony_has_elemental_tower_trigger = yes }
+			add = 100
+		}
+		if = {
+			limit = { wizard_barony_has_necromancer_sanctum_trigger = yes }
+			add = 100
 		}
 	}
 
@@ -41,21 +75,112 @@ activity_university_of_magic_visit = {
 		desc = university_of_magic_visit_province_desc
 	}
 
+	# Shown on the "start hosting" screen; defaults to "<key>_host_desc" if omitted.
+	host_description = {
+		desc = university_of_magic_visit_host_desc
+	}
+
+	# In-progress activity window background (the screen shown for the whole
+	# 3-month stay) — this is a SEPARATE lookup from event override_background;
+	# _activity_type.info documents it as its own top-level field, keyed to the
+	# activity itself rather than any individual event. Reuses vanilla's own
+	# "Western-ish University" art (bp2_university's default background).
+	background = {
+		texture = "gfx/interface/illustrations/event_scenes/ep3_medi_study.dds"
+		environment = "environment_ep3_byzantine_study"
+		ambience = "event:/SFX/Events/Backgrounds/office_workplace"
+	}
+
+	# Puts the host's own portrait on the in-progress activity screen once they
+	# arrive (mirrors vanilla's solo travel activity "hike"'s host slot).
+	window_characters = {
+		host = {
+			camera = camera_body
+
+			effect = {
+				if = {
+					limit = {
+						scope:host.location = scope:activity.activity_location
+					}
+					scope:host = {
+						add_to_list = characters
+					}
+				}
+			}
+		}
+	}
+
+	# ActivityIntent.GetName/GetDesc resolve to the intent's own key + "_desc";
+	# without any intents defined the UI showed a blank name and just "_desc".
+	host_intents = {
+		intents = { study_magic_intent }
+		default = study_magic_intent
+	}
+
+	guest_intents = {
+		intents = { study_magic_intent }
+		default = study_magic_intent
+	}
+
+	# Guests are optional (solo study trip is valid) but invitable, mirroring
+	# vanilla University Visit's guest system minus its bp2-specific pulses.
+	allow_zero_guest_invites = yes
+
+	can_be_activity_guest = {
+		is_adult = yes
+		is_imprisoned = no
+		NOT = { is_incapable = yes }
+	}
+
+	max_guests = 8
+
 	cooldown = { years = 10 }
 
-	# When the host arrives, branch to the Necromancer or Elemental outcome event
-	# depending on which building the destination barony actually has.
-	on_enter_active_state = {
-		if = {
-			limit = { this = scope:host }
-			if = {
-				limit = {
-					scope:activity.activity_location.barony ?= { wizard_barony_has_necromancer_sanctum_trigger = yes }
+	# Flavor vignettes shown on the activity's in-progress screen while studying.
+	pulse_actions = {
+		entries = {
+			apa_university_of_magic_late_night_study
+			apa_university_of_magic_scholarly_debate
+			apa_university_of_magic_curious_findings
+		}
+		chance_of_no_event = 40
+	}
+
+	# activity_type.cpp requires at least one phase to exist for the location
+	# picker/map to function correctly, even for a single-destination activity.
+	phases = {
+		university_of_magic_visit_phase = {
+			is_predefined = yes
+
+			# Schedules this (only) phase to conclude on its own after 3 months;
+			# without this the activity never ends on its own (missing in the
+			# original implementation, matching vanilla University Visit's own
+			# 6-month `progress_activity_phase_after` call).
+			on_phase_active = {
+				if = {
+					limit = { this = scope:host }
+					scope:activity = {
+						progress_activity_phase_after = { months = 3 }
+					}
 				}
-				trigger_event = university_of_magic_visit.0002
 			}
-			else = {
-				trigger_event = university_of_magic_visit.0001
+
+			# Branch to the Necromancer or Elemental outcome event depending on
+			# which building the destination barony actually has, once the
+			# 3-month study period above has actually elapsed.
+			on_end = {
+				if = {
+					limit = { this = scope:host }
+					if = {
+						limit = {
+							scope:activity.activity_location ?= { wizard_barony_has_necromancer_sanctum_trigger = yes }
+						}
+						trigger_event = university_of_magic_visit.0002
+					}
+					else = {
+						trigger_event = university_of_magic_visit.0001
+					}
+				}
 			}
 		}
 	}

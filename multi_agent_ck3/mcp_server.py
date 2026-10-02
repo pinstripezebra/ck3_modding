@@ -43,7 +43,14 @@ def _invoke_with_timeout(supervisor, task: str, timeout: float = 600.0) -> str:
         print("[mcp_server] invoke starting...", file=sys.stderr, flush=True)
         result = supervisor.invoke(
             {"messages": [HumanMessage(content=task)]},
-            config={"run_name": "ck3_supervisor", "tags": ["supervisor"], "metadata": {"task": task}},
+            config={
+                "run_name": "ck3_supervisor",
+                "tags": ["supervisor"],
+                "metadata": {"task": task},
+                # Low, explicit cap so a confused agent fails fast (seconds) instead
+                # of silently looping for many minutes with no tool making progress.
+                "recursion_limit": 15,
+            },
         )
         print("[mcp_server] invoke finished", file=sys.stderr, flush=True)
         return result["messages"][-1].content

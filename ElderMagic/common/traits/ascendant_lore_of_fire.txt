@@ -1,0 +1,8 @@
+﻿ascendant_lore_of_fire = {
+	category = personality
+	icon = ascendant_lore_of_fire.dds
+
+	no_prowess_loss_from_age = yes
+
+	ruler_designer_cost = 5
+}

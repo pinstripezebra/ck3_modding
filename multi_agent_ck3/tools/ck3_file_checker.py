@@ -88,7 +88,7 @@ def _read_capped(path: pathlib.Path, max_lines: int) -> str:
     return out
 
 
-def register(mcp, ck3_game_dir: pathlib.Path):
+def register(mcp, ck3_game_dir: pathlib.Path, repo_root: Optional[pathlib.Path] = None):
     @mcp.tool()
     def check_ck3_file(
         file_type: str,
@@ -136,6 +136,17 @@ def register(mcp, ck3_game_dir: pathlib.Path):
 
         if file_name:
             target = folder / file_name
+            # An absolute file_name makes pathlib's `/` discard `folder` entirely,
+            # so guard against paths outside ck3_game_dir before reading anything.
+            try:
+                target.resolve().relative_to(ck3_game_dir.resolve())
+            except ValueError:
+                return (
+                    f"'{file_name}' is not a vanilla CK3 game file (outside {ck3_game_dir}). "
+                    "check_ck3_file only reads vanilla files for format reference — "
+                    "pass a bare file name (e.g. '00_traits.txt'), not an absolute path "
+                    "to a mod file."
+                )
             if not target.exists():
                 # Try a recursive search one level deep (some types have sub-folders)
                 matches = list(folder.rglob(file_name))
@@ -183,6 +194,107 @@ def register(mcp, ck3_game_dir: pathlib.Path):
         )
         return "\n\n---\n\n".join(parts) + footer
 
+    if repo_root is not None:
+        @mcp.tool()
+        def read_mod_file(
+            mod_name: str,
+            relative_path: str,
+            max_lines: Optional[int] = None,
+        ) -> str:
+            """Read a file from one of this repo's OWN mod folders (e.g. ElderMagic),
+            as opposed to check_ck3_file which only reads vanilla game files.
+
+            Args:
+                mod_name: Mod folder name under the repo root (e.g. 'ElderMagic').
+                relative_path: Path to the file relative to the mod folder
+                    (e.g. 'common/traits/ascendant_lore_traits.txt').
+                max_lines: Override the line cap (default 300).
+            Returns:
+                File contents, or an error message if the mod/file isn't found
+                or relative_path escapes the mod folder.
+            """
+            mod_dir = repo_root / mod_name
+            if not mod_dir.is_dir():
+                return f"Mod folder not found: {mod_dir}"
+
+            target = (mod_dir / relative_path).resolve()
+            try:
+                target.relative_to(mod_dir.resolve())
+            except ValueError:
+                return f"'{relative_path}' escapes the mod folder '{mod_dir}'."
+
+            if not target.is_file():
+                return f"File not found: {target}"
+
+            cap = max_lines or _MAX_LINES_FULL
+            content = _read_capped(target, cap)
+            return f"=== {mod_name}/{relative_path} ===\n\n{content}"
+
+        @mcp.tool()
+        def edit_mod_file(
+            mod_name: str,
+            relative_path: str,
+            old_text: str,
+            new_text: str,
+        ) -> str:
+            """Make an exact find-and-replace edit to an EXISTING file in one of our
+            OWN mods — use this to modify existing content (e.g. add a field to an
+            existing trait block). The create_* tools only generate brand-new
+            content and cannot edit a file that already exists.
+
+            old_text must match the file's current content EXACTLY ONCE, including
+            whitespace/indentation — call read_mod_file first to get the exact
+            current text, then include enough surrounding context in old_text to
+            make the match unique.
+
+            Args:
+                mod_name: Mod folder name under the repo root (e.g. 'ElderMagic').
+                relative_path: Path to the file relative to the mod folder.
+                old_text: Exact text to replace. Must appear exactly once.
+                new_text: Text to replace it with.
+            Returns:
+                A confirmation of the edit, or an error message if the mod/file
+                isn't found, relative_path escapes the mod folder, or old_text
+                doesn't match exactly once.
+            """
+            mod_dir = repo_root / mod_name
+            if not mod_dir.is_dir():
+                return f"Mod folder not found: {mod_dir}"
+
+            target = (mod_dir / relative_path).resolve()
+            try:
+                target.relative_to(mod_dir.resolve())
+            except ValueError:
+                return f"'{relative_path}' escapes the mod folder '{mod_dir}'."
+
+            if not target.is_file():
+                return f"File not found: {target}"
+
+            raw = target.read_bytes()
+            has_bom = raw[:3] == b"\xef\xbb\xbf"
+            text = (raw[3:] if has_bom else raw).decode("utf-8", errors="replace")
+
+            count = text.count(old_text)
+            if count == 0:
+                return (
+                    f"old_text not found in {mod_name}/{relative_path}. "
+                    "Call read_mod_file again to get the exact current content."
+                )
+            if count > 1:
+                return (
+                    f"old_text matches {count} locations in {mod_name}/{relative_path} — "
+                    "include more surrounding context so it matches exactly once."
+                )
+
+            new_file_text = text.replace(old_text, new_text, 1)
+            encoded = new_file_text.encode("utf-8")
+            target.write_bytes((b"\xef\xbb\xbf" + encoded) if has_bom else encoded)
+
+            return (
+                f"Edited {mod_name}/{relative_path}: replaced 1 occurrence "
+                f"({len(old_text)} chars -> {len(new_text)} chars)."
+            )
+
 # -- LangChain tool factory -------------------------------------------------
 
 class _ToolCollector:
@@ -196,9 +308,9 @@ class _ToolCollector:
         return _wrap
 
 
-def get_tools(ck3_game_dir) -> list:
+def get_tools(ck3_game_dir, repo_root=None) -> list:
     """Return this module's tools as LangChain StructuredTool objects."""
     from langchain_core.tools import StructuredTool
     collector = _ToolCollector()
-    register(collector, ck3_game_dir)
+    register(collector, ck3_game_dir, repo_root=repo_root)
     return [StructuredTool.from_function(fn) for fn in collector._fns]

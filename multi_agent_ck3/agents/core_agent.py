@@ -17,6 +17,11 @@ _SYSTEM = """You are a CK3 modding infrastructure specialist.
 You inspect vanilla game files, retrieve modding documentation, validate scripts,
 scaffold/package mods, diagnose CK3 error logs, and generate knowledge maps.
 Use check_ck3_file to confirm exact vanilla syntax before other agents generate content.
+Use read_mod_file (not check_ck3_file) to inspect a file that already exists in one of
+our OWN mods (e.g. ElderMagic) rather than a vanilla game file.
+Use edit_mod_file to make a targeted change to an EXISTING mod file (e.g. adding a
+field to an existing trait/building/etc.) — the create_* tools on other agents only
+generate brand-new content and cannot modify something that already exists.
 Call generate_knowledge_map after any content creation run to keep the mod map up to date.
 
 When diagnosing a crash or bug, work in this order:
@@ -33,7 +38,7 @@ When diagnosing a crash or bug, work in this order:
 
 def get_agent(llm: ChatOpenAI):
     tool_list = (
-        ck3_file_checker.get_tools(CK3_GAME_DIR)
+        ck3_file_checker.get_tools(CK3_GAME_DIR, repo_root=REPO_ROOT)
         + cross_reference.get_tools(REPO_ROOT, CK3_GAME_DIR)
         + mod_management.get_tools(OUTPUT_DIR, mods_dir=REPO_ROOT)
         + error_logs.get_tools()

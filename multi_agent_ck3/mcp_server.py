@@ -35,13 +35,16 @@ def _get_supervisor():
     return _supervisor
 
 
-def _invoke_with_timeout(supervisor, task: str, timeout: float = 90.0) -> str:
+def _invoke_with_timeout(supervisor, task: str, timeout: float = 600.0) -> str:
     """Run supervisor.invoke in a thread so a hang raises instead of blocking forever."""
     import concurrent.futures
 
     def _run():
         print("[mcp_server] invoke starting...", file=sys.stderr, flush=True)
-        result = supervisor.invoke({"messages": [HumanMessage(content=task)]})
+        result = supervisor.invoke(
+            {"messages": [HumanMessage(content=task)]},
+            config={"run_name": "ck3_supervisor", "tags": ["supervisor"], "metadata": {"task": task}},
+        )
         print("[mcp_server] invoke finished", file=sys.stderr, flush=True)
         return result["messages"][-1].content
 

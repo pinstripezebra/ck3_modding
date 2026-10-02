@@ -17,10 +17,14 @@ Routing heuristic (the supervisor decides via its system prompt):
                    error log analysis
 """
 import os
+from unittest import result
 from dotenv import load_dotenv
 from langchain_core.messages import HumanMessage
 from langchain_core.tools import StructuredTool
+from langgraph.func import task
 from langgraph.prebuilt import create_react_agent
+from langchain_core.runnables import RunnableConfig
+
 
 from agents import (
     content_agent, world_agent, events_agent, gui_agent,
@@ -78,8 +82,11 @@ Never attempt to create CK3 files yourself — always delegate to sub-agents."""
 
 def _make_agent_tool(name: str, description: str, agent):
     """Wrap a compiled LangGraph agent as a StructuredTool the supervisor can call."""
-    def _run(task: str) -> str:
-        result = agent.invoke({"messages": [HumanMessage(content=task)]})
+    def _run(task: str, config: RunnableConfig) -> str:
+        result = agent.invoke(
+            {"messages": [HumanMessage(content=task)]},
+            config={**config, "run_name": name, "tags": [name]},
+        )
         return result["messages"][-1].content
 
     return StructuredTool.from_function(

@@ -244,8 +244,13 @@ def register(mcp, ck3_game_dir: pathlib.Path, repo_root: Optional[pathlib.Path] 
 
             old_text must match the file's current content EXACTLY ONCE, including
             whitespace/indentation — call read_mod_file first to get the exact
-            current text, then include enough surrounding context in old_text to
-            make the match unique.
+            current text. Prefer a SHORT, uniquely-identifying anchor line (e.g. a
+            filename/icon reference, or one distinctive field) over a multi-line
+            snippet: multi-line old_text is much more likely to mismatch on
+            indentation/newlines and waste repeated failed attempts. If applying
+            the same change across several near-identical blocks (e.g. one field
+            added to N trait definitions), make one call per block using that
+            block's own unique anchor (its icon/filename line is usually perfect).
 
             Args:
                 mod_name: Mod folder name under the repo root (e.g. 'ElderMagic').
@@ -274,16 +279,36 @@ def register(mcp, ck3_game_dir: pathlib.Path, repo_root: Optional[pathlib.Path] 
             has_bom = raw[:3] == b"\xef\xbb\xbf"
             text = (raw[3:] if has_bom else raw).decode("utf-8", errors="replace")
 
+            # Idempotency guard: if every occurrence of old_text is already part of
+            # an inserted new_text (the common case: new_text = old_text + appended
+            # content), this edit was already applied -- skip the redundant write
+            # instead of re-inserting a duplicate. Mask out existing new_text
+            # instances first so a leftover old_text INSIDE new_text (e.g. as its
+            # own prefix) isn't mistaken for a genuine still-unedited occurrence.
+            count_new = text.count(new_text)
+            if count_new > 0:
+                remaining = text.replace(new_text, "", count_new)
+                if old_text not in remaining:
+                    return (
+                        f"No-op: new_text already present in {mod_name}/{relative_path} "
+                        "(this edit looks like it was already applied). Nothing changed."
+                    )
+
             count = text.count(old_text)
             if count == 0:
                 return (
-                    f"old_text not found in {mod_name}/{relative_path}. "
-                    "Call read_mod_file again to get the exact current content."
+                    f"old_text not found in {mod_name}/{relative_path}. Call read_mod_file "
+                    "again to get the exact current content -- do not guess whitespace/line "
+                    "endings. Prefer a SHORT, uniquely-identifying line as old_text (e.g. a "
+                    "filename/icon reference, or a single distinctive field) over a multi-line "
+                    "snippet, which is far more likely to mismatch on indentation/newlines."
                 )
             if count > 1:
                 return (
                     f"old_text matches {count} locations in {mod_name}/{relative_path} — "
-                    "include more surrounding context so it matches exactly once."
+                    "it's too generic. Include more surrounding context, or better, switch to "
+                    "a short line that's unique to just this one block (e.g. that block's own "
+                    "icon/filename reference) so it matches exactly once."
                 )
 
             new_file_text = text.replace(old_text, new_text, 1)

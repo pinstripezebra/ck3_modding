@@ -1,4 +1,6 @@
 """Core agent — file inspection, docs retrieval, validation, mod management, error logs."""
+import os
+
 from langchain_openai import ChatOpenAI
 from langgraph.prebuilt import create_react_agent
 
@@ -22,6 +24,14 @@ our OWN mods (e.g. ElderMagic) rather than a vanilla game file.
 Use edit_mod_file to make a targeted change to an EXISTING mod file (e.g. adding a
 field to an existing trait/building/etc.) — the create_* tools on other agents only
 generate brand-new content and cannot modify something that already exists.
+MANDATORY before any edit_mod_file call: call read_mod_file on that exact file FIRST
+in the same turn-sequence to see its real current content — never guess old_text from
+memory or a prior summary. Use the SHORTEST line that uniquely identifies the target
+block (e.g. its own icon/filename reference) as old_text, not a multi-line snippet —
+multi-line text is fragile against whitespace/newline differences and wastes repeated
+failed attempts. When the same field needs adding to several near-identical blocks,
+make one edit_mod_file call per block using that block's own unique anchor, and do not
+repeat a call once it has already reported success for that block.
 Call generate_knowledge_map after any content creation run to keep the mod map up to date.
 
 When diagnosing a crash or bug, work in this order:
@@ -46,8 +56,11 @@ def get_agent(llm: ChatOpenAI):
     )
     try:
         # Doc/validation tools need a vectorstore, which needs OpenAI embeddings
-        # (Anthropic has no embeddings API) — skip them rather than blocking the
-        # whole supervisor when OPENAI_API_KEY isn't set.
+        # (Anthropic has no embeddings API) — skip immediately (no construction
+        # attempt at all) rather than blocking graph build on a hung/slow client
+        # when the credential isn't even present.
+        if not os.environ.get("OPENAI_API_KEY"):
+            raise RuntimeError("OPENAI_API_KEY not set")
         vs = get_vectorstore()
         tool_list += docs.get_tools(vs) + validation.get_tools(vs)
     except Exception:

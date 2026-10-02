@@ -21,6 +21,12 @@ CK3_GAME_DIR = pathlib.Path(
 def get_vectorstore():
     """Lazy-initialise the Chroma vectorstore (cached after first call)."""
     load_dotenv(REPO_ROOT / ".env", override=True)
+    import os
+    # chromadb fires an anonymous telemetry call (via posthog, not httpx) on
+    # client construction that can hang/retry silently for minutes with no
+    # visible log line -- this is the prime suspect for the multi-minute
+    # build_graph() delays seen in practice. Must be set before import.
+    os.environ.setdefault("ANONYMIZED_TELEMETRY", "False")
     from langchain_openai import OpenAIEmbeddings
     from langchain_chroma import Chroma
 

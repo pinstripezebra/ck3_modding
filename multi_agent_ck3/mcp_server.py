@@ -25,20 +25,53 @@ mcp = FastMCP("ck3-multi-agent")
 _supervisor = None
 
 
+def _run_with_timeout(fn, timeout: float, label: str):
+    """Run fn() in a thread so a hang raises instead of blocking forever.
+
+    Deliberately does NOT use ThreadPoolExecutor as a context manager: its
+    __exit__ calls shutdown(wait=True), which blocks until the background
+    thread actually finishes -- silently defeating the timeout (the caller
+    would still wait out the full hang before ever seeing the raised error).
+    Letting the pool (and its thread) leak on timeout is intentional so this
+    function returns control the instant the timeout elapses.
+    """
+    import concurrent.futures
+
+    pool = concurrent.futures.ThreadPoolExecutor(max_workers=1)
+    future = pool.submit(fn)
+    try:
+        return future.result(timeout=timeout)
+    except concurrent.futures.TimeoutError:
+        print(f"[mcp_server] {label} TIMED OUT after {timeout}s", file=sys.stderr, flush=True)
+        raise RuntimeError(f"{label} timed out after {timeout}s") from None
+
+
 def _get_supervisor():
     global _supervisor
     if _supervisor is None:
         print("[mcp_server] building supervisor graph...", file=sys.stderr, flush=True)
-        from graph import build_graph
-        _supervisor = build_graph()
+
+        def _import_and_build():
+            # `graph` module-level code eagerly builds `supervisor_graph` for
+            # langgraph.json/LangGraph Studio compatibility -- that build runs as
+            # a side effect of THIS import statement, unprotected by any timeout,
+            # the very first time the module loads. Importing inside the worker
+            # thread (instead of a bare top-level `from graph import build_graph`
+            # in this function) puts that implicit build under the SAME timeout
+            # below, and reuses it instead of constructing a second, redundant
+            # supervisor via our own separate build_graph() call.
+            from graph import supervisor_graph
+            return supervisor_graph
+
+        # Construction should be near-instant (no LLM calls) -- a low cap catches
+        # a hung dependency (e.g. a vectorstore/embeddings client) fast and loud
+        # instead of silently blocking for many minutes with no trace/timeout.
+        _supervisor = _run_with_timeout(_import_and_build, timeout=60.0, label="build_graph")
         print("[mcp_server] supervisor graph built", file=sys.stderr, flush=True)
     return _supervisor
 
 
 def _invoke_with_timeout(supervisor, task: str, timeout: float = 600.0) -> str:
-    """Run supervisor.invoke in a thread so a hang raises instead of blocking forever."""
-    import concurrent.futures
-
     def _run():
         print("[mcp_server] invoke starting...", file=sys.stderr, flush=True)
         result = supervisor.invoke(
@@ -47,21 +80,18 @@ def _invoke_with_timeout(supervisor, task: str, timeout: float = 600.0) -> str:
                 "run_name": "ck3_supervisor",
                 "tags": ["supervisor"],
                 "metadata": {"task": task},
-                # Low, explicit cap so a confused agent fails fast (seconds) instead
-                # of silently looping for many minutes with no tool making progress.
-                "recursion_limit": 15,
+                # 15 was too aggressive once real multi-step edits (check vanilla
+                # format, read_mod_file, several edit_mod_file calls) are legitimate
+                # work, not thrashing -- confirmed by a real GraphRecursionError on
+                # a correctly-scoped task. 40 still fails fast on genuine loops
+                # while giving normal multi-tool-call tasks enough headroom.
+                "recursion_limit": 40,
             },
         )
         print("[mcp_server] invoke finished", file=sys.stderr, flush=True)
         return result["messages"][-1].content
 
-    with concurrent.futures.ThreadPoolExecutor(max_workers=1) as pool:
-        future = pool.submit(_run)
-        try:
-            return future.result(timeout=timeout)
-        except concurrent.futures.TimeoutError:
-            print(f"[mcp_server] invoke TIMED OUT after {timeout}s", file=sys.stderr, flush=True)
-            raise RuntimeError(f"supervisor.invoke timed out after {timeout}s") from None
+    return _run_with_timeout(_run, timeout=timeout, label="invoke")
 
 
 @mcp.tool()

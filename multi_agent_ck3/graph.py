@@ -108,15 +108,25 @@ def _build_llm(model: str | None):
 
 
 def build_graph(model: str | None = None):
-    llm = _build_llm(model)
+    import sys
+    import time
 
-    content = content_agent.get_agent(llm)
-    world   = world_agent.get_agent(llm)
-    events  = events_agent.get_agent(llm)
-    gui     = gui_agent.get_agent(llm)
-    core    = core_agent.get_agent(llm)
-    maa     = maa_agent.get_agent(llm)
-    common  = common_agent.get_agent(llm)
+    def _timed(label: str, fn):
+        t0 = time.time()
+        print(f"[graph] {label} starting...", file=sys.stderr, flush=True)
+        result = fn()
+        print(f"[graph] {label} done in {time.time()-t0:.2f}s", file=sys.stderr, flush=True)
+        return result
+
+    llm = _timed("_build_llm", lambda: _build_llm(model))
+
+    content = _timed("content_agent", lambda: content_agent.get_agent(llm))
+    world   = _timed("world_agent", lambda: world_agent.get_agent(llm))
+    events  = _timed("events_agent", lambda: events_agent.get_agent(llm))
+    gui     = _timed("gui_agent", lambda: gui_agent.get_agent(llm))
+    core    = _timed("core_agent", lambda: core_agent.get_agent(llm))
+    maa     = _timed("maa_agent", lambda: maa_agent.get_agent(llm))
+    common  = _timed("common_agent", lambda: common_agent.get_agent(llm))
 
     agent_tools = [
         _make_agent_tool(

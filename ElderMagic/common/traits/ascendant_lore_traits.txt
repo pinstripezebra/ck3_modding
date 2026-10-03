@@ -5,6 +5,7 @@
 ascendant_lore_of_fire = {
 	category = lifestyle
 	icon = ascendant_lore_of_fire.dds
+
 	no_prowess_loss_from_age = yes
 
 	prowess = 5
@@ -17,6 +18,7 @@ ascendant_lore_of_fire = {
 ascendant_lore_of_earth = {
 	category = lifestyle
 	icon = ascendant_lore_of_earth.dds
+
 	no_prowess_loss_from_age = yes
 
 	prowess = 5
@@ -29,6 +31,7 @@ ascendant_lore_of_earth = {
 ascendant_lore_of_water = {
 	category = lifestyle
 	icon = ascendant_lore_of_water.dds
+
 	no_prowess_loss_from_age = yes
 
 	prowess = 5
@@ -41,6 +44,7 @@ ascendant_lore_of_water = {
 ascendant_lore_of_death = {
 	category = lifestyle
 	icon = ascendant_lore_of_death.dds
+
 	no_prowess_loss_from_age = yes
 
 	prowess = 5
@@ -53,6 +57,7 @@ ascendant_lore_of_death = {
 ascendant_lore_of_high_magic = {
 	category = lifestyle
 	icon = ascendant_lore_of_high_magic.dds
+
 	no_prowess_loss_from_age = yes
 
 	prowess = 5

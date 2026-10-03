@@ -26,24 +26,36 @@ _supervisor = None
 
 
 def _run_with_timeout(fn, timeout: float, label: str):
-    """Run fn() in a thread so a hang raises instead of blocking forever.
+    """Run fn() in a daemon thread so a hang raises instead of blocking forever.
 
-    Deliberately does NOT use ThreadPoolExecutor as a context manager: its
-    __exit__ calls shutdown(wait=True), which blocks until the background
-    thread actually finishes -- silently defeating the timeout (the caller
-    would still wait out the full hang before ever seeing the raised error).
-    Letting the pool (and its thread) leak on timeout is intentional so this
-    function returns control the instant the timeout elapses.
+    Uses a raw daemon threading.Thread instead of ThreadPoolExecutor: a pool's
+    worker thread is NOT a daemon thread, so every timed-out call used to leak
+    a thread that lingers for the rest of the server process's life -- over
+    many retries in one long-lived process this accumulated into dozens of
+    threads contending for the GIL, which was itself slowing down later calls.
+    A daemon thread leaks far more cheaply (it never blocks process exit and
+    is scheduled like any other background thread, not specially retained by
+    a pool object), and we only ever need one result from one call here.
     """
-    import concurrent.futures
+    import threading
 
-    pool = concurrent.futures.ThreadPoolExecutor(max_workers=1)
-    future = pool.submit(fn)
-    try:
-        return future.result(timeout=timeout)
-    except concurrent.futures.TimeoutError:
+    result: dict = {}
+
+    def _runner():
+        try:
+            result["value"] = fn()
+        except BaseException as exc:  # noqa: BLE001 - surface any failure to the waiter
+            result["error"] = exc
+
+    thread = threading.Thread(target=_runner, daemon=True)
+    thread.start()
+    thread.join(timeout=timeout)
+    if thread.is_alive():
         print(f"[mcp_server] {label} TIMED OUT after {timeout}s", file=sys.stderr, flush=True)
         raise RuntimeError(f"{label} timed out after {timeout}s") from None
+    if "error" in result:
+        raise result["error"]
+    return result["value"]
 
 
 def _get_supervisor():

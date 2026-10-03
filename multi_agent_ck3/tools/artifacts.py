@@ -2,10 +2,9 @@ import pathlib
 from io import BytesIO
 from typing import Optional
 
-import replicate
 from PIL import Image
 
-from .icons import _save_dds
+from .icons import _run_replicate_flux, _save_dds
 
 # Valid CK3 artifact rarities
 _RARITIES = {"common", "masterwork", "famed", "illustrious", "legendary"}
@@ -91,16 +90,7 @@ def register(mcp, output_dir: pathlib.Path):
             "dark background, ornate detailed game item icon, painterly, no text, "
             "CK3 art style"
         )
-        output = replicate.run(
-            "black-forest-labs/flux-schnell",
-            input={"prompt": prompt, "width": gen, "height": gen, "num_outputs": 1},
-        )
-        img_data = output[0].read()
-        img = (
-            Image.open(BytesIO(img_data))
-            .convert("RGBA")
-            .resize((image_size, image_size), Image.LANCZOS)
-        )
+        img = _run_replicate_flux(prompt, gen, gen).resize((image_size, image_size), Image.LANCZOS)
         _save_dds(img, icon_dir / icon_file)
 
         # --- Visuals: link the 2D icon to the artifact ---

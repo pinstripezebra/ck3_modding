@@ -25,11 +25,26 @@ from langgraph.func import task
 from langgraph.prebuilt import create_react_agent
 from langchain_core.runnables import RunnableConfig
 
+import sys as _sys
+import time as _time
 
-from agents import (
-    content_agent, world_agent, events_agent, gui_agent,
-    core_agent, maa_agent, common_agent,
-)
+
+def _timed_import(name: str):
+    t0 = _time.time()
+    print(f"[graph] import agents.{name} starting...", file=_sys.stderr, flush=True)
+    import importlib
+    mod = importlib.import_module(f"agents.{name}")
+    print(f"[graph] import agents.{name} done in {_time.time()-t0:.2f}s", file=_sys.stderr, flush=True)
+    return mod
+
+
+content_agent = _timed_import("content_agent")
+world_agent = _timed_import("world_agent")
+events_agent = _timed_import("events_agent")
+gui_agent = _timed_import("gui_agent")
+core_agent = _timed_import("core_agent")
+maa_agent = _timed_import("maa_agent")
+common_agent = _timed_import("common_agent")
 
 load_dotenv()
 

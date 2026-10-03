@@ -42,6 +42,10 @@ FILE_TYPE_MAP: dict[str, str] = {
     "lifestyle":              "common/lifestyles",
     "holdings":               "common/holdings",
     "holding":                "common/holdings",
+    "dynasty_perks":          "common/dynasty_perks",
+    "dynasty_perk":           "common/dynasty_perks",
+    "dynasty_legacies":       "common/dynasty_legacies",
+    "dynasty_legacy":         "common/dynasty_legacies",
     # --- events/ ---
     "events":                 "events",
     "event":                  "events",
@@ -67,6 +71,7 @@ _EXT_MAP: dict[str, set[str]] = {
 _SAMPLE_FILES   = 2    # how many files to return when no specific file requested
 _MAX_LINES_EACH = 150  # line cap per file in sample mode
 _MAX_LINES_FULL = 300  # line cap when a specific file is requested
+_MAX_LINES_HARD_CAP = 1000  # absolute ceiling regardless of what a caller requests
 
 
 def _extensions_for(rel_path: str) -> set[str]:
@@ -77,6 +82,7 @@ def _extensions_for(rel_path: str) -> set[str]:
 
 
 def _read_capped(path: pathlib.Path, max_lines: int) -> str:
+    max_lines = min(max_lines, _MAX_LINES_HARD_CAP)
     try:
         lines = path.read_text(encoding="utf-8-sig", errors="replace").splitlines()
     except OSError as exc:
@@ -84,7 +90,38 @@ def _read_capped(path: pathlib.Path, max_lines: int) -> str:
     truncated = len(lines) > max_lines
     out = "\n".join(lines[:max_lines])
     if truncated:
-        out += f"\n\n[... truncated — file has {len(lines)} lines total ...]"
+        out += (
+            f"\n\n[... truncated at {max_lines} lines (hard cap) — file has {len(lines)} "
+            "lines total. Use search_term instead of a larger max_lines to find a specific "
+            "part of a large file without reading it in full.]"
+        )
+    return out
+
+
+def _search_capped(path: pathlib.Path, search_term: str, context: int = 3, max_matches: int = 15) -> str:
+    """Grep a file for search_term, returning each match with surrounding context
+    lines instead of the whole file -- for finding one mechanic/field in a huge
+    vanilla file without paying to read it in full.
+    """
+    try:
+        lines = path.read_text(encoding="utf-8-sig", errors="replace").splitlines()
+    except OSError as exc:
+        return f"[Error reading file: {exc}]"
+
+    needle = search_term.lower()
+    hits = [i for i, line in enumerate(lines) if needle in line.lower()]
+    if not hits:
+        return f"No match for '{search_term}' in {path.name} ({len(lines)} lines)."
+
+    truncated = len(hits) > max_matches
+    parts = []
+    for i in hits[:max_matches]:
+        lo, hi = max(0, i - context), min(len(lines), i + context + 1)
+        snippet = "\n".join(f"{n+1:6d}: {lines[n]}" for n in range(lo, hi))
+        parts.append(snippet)
+    out = f"\n\n{'-'*40}\n\n".join(parts)
+    if truncated:
+        out += f"\n\n[... {len(hits)} total matches, showing first {max_matches} ...]"
     return out
 
 
@@ -94,6 +131,7 @@ def register(mcp, ck3_game_dir: pathlib.Path, repo_root: Optional[pathlib.Path] 
         file_type: str,
         file_name: Optional[str] = None,
         max_lines: Optional[int] = None,
+        search_term: Optional[str] = None,
     ) -> str:
         """Read vanilla CK3 game files so you can copy their exact format.
 
@@ -108,12 +146,18 @@ def register(mcp, ck3_game_dir: pathlib.Path, repo_root: Optional[pathlib.Path] 
                 interactions, scripted_effects, scripted_triggers, on_actions,
                 lifestyle_perks, perks, buildings, modifiers, cultures,
                 religions, schemes, artifacts, script_values, scripted_guis,
-                lifestyles, holdings, gui, localization.
+                lifestyles, holdings, dynasty_perks, dynasty_legacies, gui,
+                localization.
             file_name: Optional specific file name (e.g. "00_decisions.txt").
                 When omitted the tool returns a sample of the first
                 1-2 files alphabetically from the folder.
             max_lines: Override the per-file line cap (default 150 for samples,
-                300 for a named file).
+                300 for a named file). Hard-capped at 1000 regardless of the
+                value passed -- use search_term for anything in a larger file.
+            search_term: If set (requires file_name), return only the matching
+                lines (+/- a few lines of context) instead of the whole file.
+                Use this for a known large vanilla file (e.g. 00_traits.txt)
+                instead of raising max_lines to read it in full.
 
         Returns:
             Formatted file content with clear section headers, or an error
@@ -162,7 +206,10 @@ def register(mcp, ck3_game_dir: pathlib.Path, repo_root: Optional[pathlib.Path] 
                         f"Available files (first 20): {available}"
                     )
             cap = max_lines or _MAX_LINES_FULL
-            content = _read_capped(target, cap)
+            if search_term:
+                content = _search_capped(target, search_term)
+            else:
+                content = _read_capped(target, cap)
             return f"=== {target.relative_to(ck3_game_dir)} ===\n\n{content}"
 
         # Collect candidate files (top-level first, then recurse)
@@ -200,6 +247,7 @@ def register(mcp, ck3_game_dir: pathlib.Path, repo_root: Optional[pathlib.Path] 
             mod_name: str,
             relative_path: str,
             max_lines: Optional[int] = None,
+            search_term: Optional[str] = None,
         ) -> str:
             """Read a file from one of this repo's OWN mod folders (e.g. ElderMagic),
             as opposed to check_ck3_file which only reads vanilla game files.
@@ -208,7 +256,11 @@ def register(mcp, ck3_game_dir: pathlib.Path, repo_root: Optional[pathlib.Path] 
                 mod_name: Mod folder name under the repo root (e.g. 'ElderMagic').
                 relative_path: Path to the file relative to the mod folder
                     (e.g. 'common/traits/ascendant_lore_traits.txt').
-                max_lines: Override the line cap (default 300).
+                max_lines: Override the line cap (default 300). Hard-capped at
+                    1000 regardless of the value passed.
+                search_term: If set, return only matching lines (+/- a few lines
+                    of context) instead of the whole file -- use this for a large
+                    file instead of raising max_lines to read it in full.
             Returns:
                 File contents, or an error message if the mod/file isn't found
                 or relative_path escapes the mod folder.
@@ -227,7 +279,10 @@ def register(mcp, ck3_game_dir: pathlib.Path, repo_root: Optional[pathlib.Path] 
                 return f"File not found: {target}"
 
             cap = max_lines or _MAX_LINES_FULL
-            content = _read_capped(target, cap)
+            if search_term:
+                content = _search_capped(target, search_term)
+            else:
+                content = _read_capped(target, cap)
             return f"=== {mod_name}/{relative_path} ===\n\n{content}"
 
         @mcp.tool()

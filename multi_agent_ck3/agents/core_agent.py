@@ -1,5 +1,6 @@
 """Core agent — file inspection, docs retrieval, validation, mod management, error logs."""
 import os
+import sys
 
 from langchain_openai import ChatOpenAI
 from langgraph.prebuilt import create_react_agent
@@ -61,8 +62,22 @@ def get_agent(llm: ChatOpenAI):
         # when the credential isn't even present.
         if not os.environ.get("OPENAI_API_KEY"):
             raise RuntimeError("OPENAI_API_KEY not set")
-        vs = get_vectorstore()
+        # get_vectorstore() (OpenAIEmbeddings/Chroma construction) has hung for
+        # minutes in practice despite disabling chromadb telemetry -- bound it
+        # with a hard timeout so a hang here degrades to "skip docs/validation
+        # tools" instead of blocking the entire supervisor's construction.
+        # A daemon thread (not ThreadPoolExecutor) so a timeout leaks at most a
+        # cheap background thread instead of a pool that lingers for the rest
+        # of this long-lived server process's life across repeated retries.
+        import threading
+        result: dict = {}
+        t = threading.Thread(target=lambda: result.update(vs=get_vectorstore()), daemon=True)
+        t.start()
+        t.join(timeout=15.0)
+        if t.is_alive() or "vs" not in result:
+            raise RuntimeError("get_vectorstore() timed out after 15.0s")
+        vs = result["vs"]
         tool_list += docs.get_tools(vs) + validation.get_tools(vs)
-    except Exception:
-        pass
+    except Exception as exc:
+        print(f"[core_agent] skipping doc/validation tools: {exc!r}", file=sys.stderr, flush=True)
     return create_react_agent(llm, tool_list, prompt=_SYSTEM)
